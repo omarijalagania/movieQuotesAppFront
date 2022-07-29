@@ -1,5 +1,6 @@
 import NextAuth from 'next-auth';
 import GoogleProvider from 'next-auth/providers/google';
+import { googleLoginHandler } from 'services';
 
 export default NextAuth({
   providers: [
@@ -9,4 +10,14 @@ export default NextAuth({
     }),
   ],
   secret: process.env.JWT_SECRET,
+  callbacks: {
+    async signIn({ user }) {
+      const data = {
+        userName: user.name,
+        email: user.email,
+      };
+      googleLoginHandler(data);
+      return true;
+    },
+  },
 });

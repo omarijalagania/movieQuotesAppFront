@@ -10,6 +10,11 @@ export const registerHandler = async (data: {
   userName: string;
   repeatPassword: string;
 }) => {
-  const response = request.post(`/user/register`, data);
+  const response = await request.post(`/user/register`, data);
+  return response;
+};
+
+export const googleLoginHandler = async (data: {}) => {
+  const response = await request.post(`/user/register/google`, data);
   return response;
 };
