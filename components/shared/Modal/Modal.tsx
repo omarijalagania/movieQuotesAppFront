@@ -15,7 +15,7 @@ const Modal: React.FC<ModalProps> = ({ setOpen, open, children }) => {
           leaveFrom='opacity-100'
           leaveTo='opacity-0'
         >
-          <div className='!fixed !inset-0 backdrop-blur-md' />
+          <div className='!fixed !inset-0 !backdrop-blur-md' />
         </Transition.Child>
 
         <div className='fixed z-10 inset-0 overflow-y-auto'>
@@ -31,7 +31,6 @@ const Modal: React.FC<ModalProps> = ({ setOpen, open, children }) => {
             >
               <Dialog.Panel className='relative bg-[#222030] rounded-lg px-4 pt-5 pb-4 text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:max-w-lg min-w-max sm:w-full sm:p-6'>
                 <div className='flex justify-center  items-center'>
-                  {/* Content */}
                   {children}
                 </div>
               </Dialog.Panel>

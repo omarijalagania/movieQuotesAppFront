@@ -22,16 +22,12 @@ const Register = () => {
         repeatPassword: values.repeatPassword,
       };
       try {
-        const response = await registerHandler(data);
-        console.log(response);
+        await registerHandler(data);
       } catch (error) {
         throw error;
       }
-      alert(JSON.stringify(values, null, 2));
     },
   });
-
-  console.log(formik.errors);
 
   return (
     <div className='flex flex-col p-10 justify-center'>
@@ -49,6 +45,7 @@ const Register = () => {
           onChange={formik.handleChange}
           value={formik.values.userName}
         />
+        {formik && <p className='text-red-500'>{formik.errors.userName}</p>}
         <Input
           id='email'
           type='email'
@@ -58,6 +55,7 @@ const Register = () => {
           onChange={formik.handleChange}
           value={formik.values.email}
         />
+        {formik && <p className='text-red-500'>{formik.errors.email}</p>}
         <Input
           id='password'
           type='password'
@@ -67,6 +65,7 @@ const Register = () => {
           onChange={formik.handleChange}
           value={formik.values.password}
         />
+        {formik && <p className='text-red-500'>{formik.errors.password}</p>}
         <Input
           id='repeatPassword'
           type='password'
@@ -76,6 +75,9 @@ const Register = () => {
           onChange={formik.handleChange}
           value={formik.values.repeatPassword}
         />
+        {formik && (
+          <p className='text-red-500'>{formik.errors.repeatPassword}</p>
+        )}
         <RedButton className='w-96 h-10 my-5' name='Get started' />
         <Button
           onClick={() => signIn()}

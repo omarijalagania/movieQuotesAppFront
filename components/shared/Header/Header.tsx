@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
-import { Button, RedButton } from '../Buttons';
-import { Modal, Register } from 'components';
+import { Modal, Register, Login, Button, RedButton } from 'components';
 import { useSession, signOut } from 'next-auth/react';
 
 const Header = () => {
   const { data: session } = useSession();
 
   const [isOpen, setIsOpen] = useState(false);
+  const [isOpenLogin, setIsOpenLogin] = useState(false);
   return (
     <div className='fixed top-0 z-50 flex text-white w-full items-center bg-black justify-between py-3 px-10'>
       <div className='text-primaryGold uppercase'>movie quotes</div>
@@ -20,16 +20,20 @@ const Header = () => {
               name='Sign Up'
             />
 
-            <Button name='Log In' />
+            <Button onClick={() => setIsOpenLogin(true)} name='Log In' />
           </>
         ) : (
-          //@ts-ignore
           <Button onClick={() => signOut()} name='Log Out' />
         )}
       </div>
       {isOpen && (
         <Modal open={isOpen} setOpen={setIsOpen}>
           <Register />
+        </Modal>
+      )}
+      {isOpenLogin && (
+        <Modal open={isOpenLogin} setOpen={setIsOpenLogin}>
+          <Login />
         </Modal>
       )}
     </div>

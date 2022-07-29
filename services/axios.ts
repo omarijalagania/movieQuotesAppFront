@@ -18,3 +18,11 @@ export const googleLoginHandler = async (data: {}) => {
   const response = await request.post(`/user/register/google`, data);
   return response;
 };
+
+export const loginHandler = async (data: {
+  email: string;
+  password: string;
+}) => {
+  const response = await request.post(`/user/login`, data);
+  return response;
+};
