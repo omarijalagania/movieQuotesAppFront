@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const request = axios.create({
-  baseURL: process.env.BACKEND_URL,
+  baseURL: 'http://localhost:4242',
 });
 
 export const registerHandler = async (data: {
