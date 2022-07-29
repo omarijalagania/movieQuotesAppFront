@@ -2,17 +2,31 @@ import React from 'react';
 import { Input, RedButton, Button } from 'components';
 import { useFormik } from 'formik';
 import { RegisterSchema } from 'schema';
+import { signIn } from 'next-auth/react';
+import { registerHandler } from 'services';
 
 const Register = () => {
   const formik = useFormik({
     initialValues: {
-      name: '',
+      user_name: '',
       email: '',
       password: '',
       repeatPassword: '',
     },
     validationSchema: RegisterSchema,
-    onSubmit: (values) => {
+    onSubmit: async (values) => {
+      const data = {
+        user_name: values.user_name,
+        email: values.email,
+        password: values.password,
+        repeatPassword: values.repeatPassword,
+      };
+      try {
+        const response = await registerHandler(data);
+        console.log(response);
+      } catch (error) {
+        throw error;
+      }
       alert(JSON.stringify(values, null, 2));
     },
   });
@@ -27,13 +41,13 @@ const Register = () => {
       </p>
       <form onSubmit={formik.handleSubmit} className='flex flex-col'>
         <Input
-          id='name'
+          id='user_name'
           type='text'
           placeholder='At least 3 & max.15 lower case characters'
           label='Name'
-          name='name'
+          name='user_name'
           onChange={formik.handleChange}
-          value={formik.values.name}
+          value={formik.values.user_name}
         />
         <Input
           id='email'
@@ -63,7 +77,11 @@ const Register = () => {
           value={formik.values.repeatPassword}
         />
         <RedButton className='w-96 h-10 my-5' name='Get started' />
-        <Button className='w-96 h-10 mt-2' name='Sign up with Google' />
+        <Button
+          onClick={() => signIn()}
+          className='w-96 h-10 mt-2'
+          name='Sign up with Google'
+        />
       </form>
       <p className='text-gray-500 text-center mt-10'>
         Already have an account?

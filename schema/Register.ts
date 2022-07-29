@@ -1,7 +1,7 @@
 import * as Yup from 'yup';
 
 const signUpSchema = Yup.object().shape({
-  name: Yup.string()
+  user_name: Yup.string()
     .lowercase()
     .min(3, 'min 3 chars')
     .max(15, 'max 15 chars')

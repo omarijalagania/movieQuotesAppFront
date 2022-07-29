@@ -2,6 +2,8 @@
 @tailwind components;
 @tailwind utilities;
 
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;900&family=Montserrat:wght@400;700&family=Press+Start+2P&display=swap');
+
 @layer base {
   .vertical-gradient::after {
     content: '' !important;
@@ -22,4 +24,5 @@
   span[style^='box-sizing:border-box;display:inline-block'] {
     display: block !important;
   }
+  font-family: 'Montserrat', sans-serif;
 }
