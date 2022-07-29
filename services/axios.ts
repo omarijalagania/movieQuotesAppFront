@@ -3,7 +3,7 @@ import axios from 'axios';
 export const registerHandler = async (data: {
   email: string;
   password: string;
-  user_name: string;
+  userName: string;
   repeatPassword: string;
 }) => {
   const response = await axios.post(

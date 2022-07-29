@@ -8,7 +8,7 @@ import { registerHandler } from 'services';
 const Register = () => {
   const formik = useFormik({
     initialValues: {
-      user_name: '',
+      userName: '',
       email: '',
       password: '',
       repeatPassword: '',
@@ -16,7 +16,7 @@ const Register = () => {
     validationSchema: RegisterSchema,
     onSubmit: async (values) => {
       const data = {
-        user_name: values.user_name,
+        userName: values.userName,
         email: values.email,
         password: values.password,
         repeatPassword: values.repeatPassword,
@@ -41,13 +41,13 @@ const Register = () => {
       </p>
       <form onSubmit={formik.handleSubmit} className='flex flex-col'>
         <Input
-          id='user_name'
+          id='userName'
           type='text'
           placeholder='At least 3 & max.15 lower case characters'
           label='Name'
-          name='user_name'
+          name='userName'
           onChange={formik.handleChange}
-          value={formik.values.user_name}
+          value={formik.values.userName}
         />
         <Input
           id='email'
