@@ -29,7 +29,7 @@ const HomePage: React.FC = () => {
           className='object-cover z-10'
           width={1920}
           height={1080}
-          src='/../public/assets/interstellar.png'
+          src='/assets/interstellar.png'
           alt='cover'
         />
       </div>
@@ -47,7 +47,7 @@ const HomePage: React.FC = () => {
             className='object-cover'
             width={1920}
             height={1080}
-            src='/../public/assets/tenen.png'
+            src='/assets/tenen.png'
             alt='cover'
           />
         </div>
@@ -64,7 +64,7 @@ const HomePage: React.FC = () => {
           className='object-cover'
           width={1920}
           height={1080}
-          src='/../public/assets/lord.png'
+          src='/assets/lord.png'
           alt='cover'
         />
       </div>

@@ -1,10 +1,6 @@
 import NextAuth from 'next-auth';
 import GoogleProvider from 'next-auth/providers/google';
 
-import { MongoDBAdapter } from '@next-auth/mongodb-adapter';
-//@ts-ignore
-import { clientPromise } from 'pages/api/auth/lib';
-
 export default NextAuth({
   providers: [
     GoogleProvider({
@@ -13,6 +9,4 @@ export default NextAuth({
     }),
   ],
   secret: process.env.JWT_SECRET,
-  //@ts-ignore
-  adapter: MongoDBAdapter(clientPromise),
 });
