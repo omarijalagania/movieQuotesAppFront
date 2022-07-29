@@ -42,12 +42,14 @@ export default NextAuth({
   ],
   secret: process.env.JWT_SECRET,
   callbacks: {
-    async signIn({ user }) {
-      const data = {
-        userName: user.name,
-        email: user.email,
-      };
-      googleLoginHandler(data);
+    async signIn({ user, account }) {
+      if (account.provider === 'google') {
+        const data = {
+          userName: user.name,
+          email: user.email,
+        };
+        googleLoginHandler(data);
+      }
 
       return true;
     },
