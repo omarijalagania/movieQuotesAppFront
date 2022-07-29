@@ -5,3 +5,9 @@ declare global {
 }
 
 export {};
+
+export type ButtonProps = {
+  name: string;
+  className?: string;
+  onClick?: () => void;
+};

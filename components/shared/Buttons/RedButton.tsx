@@ -1,10 +1,5 @@
 import React from 'react';
-
-type ButtonProps = {
-  name: string;
-  className?: string;
-  onClick?: () => void;
-};
+import { ButtonProps } from 'types';
 
 const RedButton: React.FC<ButtonProps> = ({ name, className, onClick }) => {
   return (
