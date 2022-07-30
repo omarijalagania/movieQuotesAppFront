@@ -1,3 +1,4 @@
 export interface GlobalState {
-  token: string;
+  registerResponse: RegisterResponse;
+  confirmResponse: ConfirmResponse;
 }

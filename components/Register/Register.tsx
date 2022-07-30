@@ -4,8 +4,11 @@ import { useFormik } from 'formik';
 import { RegisterSchema } from 'schema';
 import { signIn } from 'next-auth/react';
 import { registerHandler } from 'services';
+import { useDispatch } from 'react-redux';
+import { saveRegisterResponse } from 'state';
 
 const Register = () => {
+  const dispatch = useDispatch();
   const formik = useFormik({
     initialValues: {
       userName: '',
@@ -22,7 +25,8 @@ const Register = () => {
         repeatPassword: values.repeatPassword,
       };
       try {
-        await registerHandler(data);
+        const response = await registerHandler(data);
+        dispatch(saveRegisterResponse(response));
       } catch (error) {
         throw error;
       }
@@ -78,7 +82,7 @@ const Register = () => {
         {formik && (
           <p className='text-red-500'>{formik.errors.repeatPassword}</p>
         )}
-        <RedButton className='w-96 h-10 my-5' name='Get started' />
+        <RedButton className='w-96 h-10 my-5 text-white' name='Get started' />
         <Button
           onClick={() => signIn()}
           className='w-96 h-10 mt-2'

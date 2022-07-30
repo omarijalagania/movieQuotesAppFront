@@ -26,3 +26,8 @@ export const loginHandler = async (data: {
   const response = await request.post(`/user/login`, data);
   return response;
 };
+
+export const userConfirmHandler = async (token: { token: string }) => {
+  const response = await request.post(`/user/confirm`, token);
+  return response;
+};
