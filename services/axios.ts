@@ -1,8 +1,4 @@
-import axios from 'axios';
-
-const request = axios.create({
-  baseURL: 'http://localhost:4242',
-});
+import { request } from 'services';
 
 export const registerHandler = async (data: {
   email: string;
