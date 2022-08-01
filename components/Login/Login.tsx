@@ -1,30 +1,10 @@
 import React from 'react';
-import { Button, Input, RedButton } from 'components/shared';
-import { useFormik } from 'formik';
+import { Button, Input, RedButton } from 'components';
 import { signIn } from 'next-auth/react';
-import { LoginSchema } from 'schema';
+import { useLoginForm } from 'components';
 
 const Login = () => {
-  const formik = useFormik({
-    initialValues: {
-      email: '',
-      password: '',
-    },
-    validationSchema: LoginSchema,
-    onSubmit: async (values) => {
-      const data = {
-        email: values.email,
-        password: values.password,
-      };
-      try {
-        await signIn('credentials', {
-          ...data,
-        });
-      } catch (error) {
-        throw error;
-      }
-    },
-  });
+  const { formik } = useLoginForm();
 
   return (
     <div className='flex flex-col p-10 justify-center'>
@@ -52,7 +32,6 @@ const Login = () => {
           label='Password'
           name='password'
           onChange={formik.handleChange}
-          //@ts-ignore
           value={formik.values.password}
         />
         {formik && <p className='text-red-500'>{formik.errors.password}</p>}

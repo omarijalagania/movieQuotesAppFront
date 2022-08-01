@@ -1,37 +1,11 @@
 import React from 'react';
 import { Input, RedButton, Button } from 'components';
-import { useFormik } from 'formik';
-import { RegisterSchema } from 'schema';
+
 import { signIn } from 'next-auth/react';
-import { registerHandler } from 'services';
-import { useDispatch } from 'react-redux';
-import { saveRegisterResponse } from 'state';
+import { usePersonalInformationForm } from 'components';
 
 const Register = () => {
-  const dispatch = useDispatch();
-  const formik = useFormik({
-    initialValues: {
-      userName: '',
-      email: '',
-      password: '',
-      repeatPassword: '',
-    },
-    validationSchema: RegisterSchema,
-    onSubmit: async (values) => {
-      const data = {
-        userName: values.userName,
-        email: values.email,
-        password: values.password,
-        repeatPassword: values.repeatPassword,
-      };
-      try {
-        const response = await registerHandler(data);
-        dispatch(saveRegisterResponse(response));
-      } catch (error) {
-        throw error;
-      }
-    },
-  });
+  const { formik } = usePersonalInformationForm();
 
   return (
     <div className='flex flex-col p-10 justify-center'>
