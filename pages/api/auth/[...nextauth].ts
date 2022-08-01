@@ -12,7 +12,7 @@ export default NextAuth({
         email: { type: 'string' },
         password: { type: 'password' },
       },
-      // @ts-ignore
+
       authorize: async (credentials) => {
         try {
           const data = {
@@ -32,6 +32,7 @@ export default NextAuth({
         } catch (error) {
           throw new Error('error');
         }
+        return null;
       },
     }),
 
