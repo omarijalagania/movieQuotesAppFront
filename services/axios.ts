@@ -30,3 +30,8 @@ export const userConfirmHandler = async (token: { token: string }) => {
   const response = await request.post(`/user/confirm`, token);
   return response;
 };
+
+export const userRecoverHandler = async (data: { email: string }) => {
+  const response = await request.post(`/user/password/recover`, data);
+  return response;
+};

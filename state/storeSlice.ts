@@ -4,6 +4,8 @@ import { GlobalState } from './types';
 const initialState: GlobalState = {
   registerResponse: {},
   confirmResponse: {},
+  passwordRecoveryResponse: {},
+  token: '',
 };
 
 export const storeSlice = createSlice({
@@ -16,9 +18,20 @@ export const storeSlice = createSlice({
     saveConfirmResponse: (state, action) => {
       state.confirmResponse = action.payload;
     },
+    savePasswordRecoveryResponse: (state, action) => {
+      state.passwordRecoveryResponse = action.payload;
+    },
+    saveToken: (state, action) => {
+      state.token = action.payload;
+    },
   },
 });
 
-export const { saveRegisterResponse, saveConfirmResponse } = storeSlice.actions;
+export const {
+  saveRegisterResponse,
+  saveConfirmResponse,
+  savePasswordRecoveryResponse,
+  saveToken,
+} = storeSlice.actions;
 
 export default storeSlice.reducer;

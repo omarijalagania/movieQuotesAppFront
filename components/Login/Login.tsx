@@ -39,7 +39,10 @@ const Login: React.FC<LoginProps> = ({ setOpenRecoverModal }) => {
             <input type='checkbox' />
             <p className='ml-1'>Remember me</p>
           </div>
-          <p className='text-white' onClick={() => setOpenRecoverModal(true)}>
+          <p
+            className='text-white cursor-pointer'
+            onClick={() => setOpenRecoverModal(true)}
+          >
             Forgot password?
           </p>
         </div>
