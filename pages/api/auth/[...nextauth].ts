@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import NextAuth from 'next-auth';
+import NextAuth, { User } from 'next-auth';
 import GoogleProvider from 'next-auth/providers/google';
 import CredentialsProvider from 'next-auth/providers/credentials';
 import { googleLoginHandler, loginHandler } from 'services';
@@ -43,6 +43,15 @@ export default NextAuth({
   ],
   secret: process.env.JWT_SECRET,
   callbacks: {
+    jwt: async ({ token, user }) => {
+      user && (token.user = user);
+      return token;
+    },
+    session: async ({ session, token }) => {
+      session.user = token.user as User;
+      return session;
+    },
+
     async signIn({ user, account }) {
       if (account.provider === 'google') {
         const data = {

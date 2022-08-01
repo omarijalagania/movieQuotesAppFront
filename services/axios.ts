@@ -35,3 +35,12 @@ export const userRecoverHandler = async (data: { email: string }) => {
   const response = await request.post(`/user/password/recover`, data);
   return response;
 };
+
+export const newUserPasswordHandler = async (data: {
+  password: string;
+  repeatPassword: string;
+  token: string | null | undefined;
+}) => {
+  const response = await request.post(`/user/password/new`, data);
+  return response;
+};

@@ -8,6 +8,7 @@ import {
   ThankYou,
   PasswordRecover,
   CheckEmail,
+  NewPassword,
 } from 'components';
 import { useSession, signOut } from 'next-auth/react';
 import { useSelector } from 'react-redux';
@@ -15,7 +16,8 @@ import { RootState } from 'state';
 
 const Header = () => {
   const { data: session } = useSession();
-  const { registerResponse, passwordRecoveryResponse } = useSelector(
+
+  const { registerResponse, passwordRecoveryResponse, tokens } = useSelector(
     (state: RootState) => state.quotes
   );
 
@@ -24,6 +26,7 @@ const Header = () => {
   const [isOpenThanks, setIsOpenThanks] = useState(false);
   const [openRecoverModal, setOpenRecoverModal] = useState(false);
   const [openCheckEmailModal, setOpenCheckEmailModal] = useState(false);
+  const [openNewPasswordModal, setOpenNewPasswordModal] = useState(false);
 
   useEffect(() => {
     if (registerResponse.status === 200) {
@@ -44,6 +47,12 @@ const Header = () => {
       setOpenCheckEmailModal(true);
     }
   }, [passwordRecoveryResponse]);
+
+  useEffect(() => {
+    if (tokens) {
+      setOpenNewPasswordModal(true);
+    }
+  }, [tokens]);
 
   return (
     <div className='fixed top-0 z-50 flex text-white w-full items-center bg-black justify-between py-3 px-10'>
@@ -89,6 +98,11 @@ const Header = () => {
       {openCheckEmailModal && (
         <Modal open={openCheckEmailModal} setOpen={setOpenCheckEmailModal}>
           <CheckEmail />
+        </Modal>
+      )}
+      {openNewPasswordModal && (
+        <Modal open={openNewPasswordModal} setOpen={setOpenNewPasswordModal}>
+          <NewPassword />
         </Modal>
       )}
     </div>
