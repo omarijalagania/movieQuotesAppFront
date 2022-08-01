@@ -10,7 +10,10 @@ export const registerHandler = async (data: {
   return response;
 };
 
-export const googleLoginHandler = async (data: {}) => {
+export const googleLoginHandler = async (data: {
+  userName: string | null | undefined;
+  email: string | null | undefined;
+}) => {
   const response = await request.post(`/user/register/google`, data);
   return response;
 };
