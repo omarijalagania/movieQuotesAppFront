@@ -6,6 +6,7 @@ import {
   Button,
   RedButton,
   ThankYou,
+  PasswordRecover,
 } from 'components';
 import { useSession, signOut } from 'next-auth/react';
 import { useSelector } from 'react-redux';
@@ -19,6 +20,7 @@ const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [isOpenLogin, setIsOpenLogin] = useState(false);
   const [isOpenThanks, setIsOpenThanks] = useState(false);
+  const [openRecoverModal, setOpenRecoverModal] = useState(false);
 
   useEffect(() => {
     if (registerResponse.status === 200) {
@@ -26,6 +28,12 @@ const Header = () => {
       setIsOpen(false);
     }
   }, [registerResponse]);
+
+  useEffect(() => {
+    if (openRecoverModal) {
+      setIsOpenLogin(false);
+    }
+  }, [openRecoverModal]);
 
   return (
     <div className='fixed top-0 z-50 flex text-white w-full items-center bg-black justify-between py-3 px-10'>
@@ -53,13 +61,19 @@ const Header = () => {
       )}
       {isOpenLogin && (
         <Modal open={isOpenLogin} setOpen={setIsOpenLogin}>
-          <Login />
+          <Login setOpenRecoverModal={setOpenRecoverModal} />
         </Modal>
       )}
 
       {isOpenThanks && (
         <Modal open={isOpenThanks} setOpen={setIsOpenThanks}>
           <ThankYou />
+        </Modal>
+      )}
+
+      {openRecoverModal && (
+        <Modal open={openRecoverModal} setOpen={setOpenRecoverModal}>
+          <PasswordRecover />
         </Modal>
       )}
     </div>

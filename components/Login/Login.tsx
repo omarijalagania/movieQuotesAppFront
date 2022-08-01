@@ -1,9 +1,8 @@
 import React from 'react';
-import { Button, Input, RedButton } from 'components';
+import { Button, Input, RedButton, useLoginForm, LoginProps } from 'components';
 import { signIn } from 'next-auth/react';
-import { useLoginForm } from 'components';
 
-const Login = () => {
+const Login: React.FC<LoginProps> = ({ setOpenRecoverModal }) => {
   const { formik } = useLoginForm();
 
   return (
@@ -40,9 +39,9 @@ const Login = () => {
             <input type='checkbox' />
             <p className='ml-1'>Remember me</p>
           </div>
-          <a className='text-white' href='#'>
+          <p className='text-white' onClick={() => setOpenRecoverModal(true)}>
             Forgot password?
-          </a>
+          </p>
         </div>
         <RedButton className='w-96 text-white h-10 my-5' name='Sign in' />
         <Button
