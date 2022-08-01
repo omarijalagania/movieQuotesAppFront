@@ -7,8 +7,7 @@ import { saveNewPasswordResponse } from 'state';
 
 export const useNewPasswordFrom = () => {
   const dispatch = useDispatch();
-  const token =
-    'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MmU1MWMyMzNiYWZlMzhjZDllNGZhODgiLCJuYW1lIjoib21hcmkiLCJpYXQiOjE2NTkzNjcwMDV9.gzY3qymqEwnDDhrCFiG80YGrt78wQb94H0NOXcAr1Q4';
+  const token = localStorage.getItem('token');
   const formik = useFormik({
     initialValues: getPasswordsFormInitialValue(),
     onSubmit: async (values) => {
@@ -19,7 +18,6 @@ export const useNewPasswordFrom = () => {
       };
       try {
         const response = await newUserPasswordHandler(data);
-        console.log(response);
         dispatch(saveNewPasswordResponse(response));
       } catch (error) {
         throw error;

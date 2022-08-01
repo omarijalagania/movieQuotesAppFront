@@ -6,3 +6,4 @@ export * from './ConfirmToken';
 export * from './PasswordRecover';
 export * from './CheckEmail';
 export * from './NewPassword';
+export * from './SuccessPasswordChange';

@@ -35,12 +35,6 @@ const NewPassword = () => {
         {formik && (
           <p className='text-red-500'>{formik.errors.repeatPassword}</p>
         )}
-        <div className='flex justify-between mt-2 items-center'>
-          <div className='flex text-white justify-between items-center'>
-            <input type='checkbox' />
-            <p className='ml-1'>Remember me</p>
-          </div>
-        </div>
         <RedButton
           className='w-96 text-white h-10 my-5'
           name='Reset password'

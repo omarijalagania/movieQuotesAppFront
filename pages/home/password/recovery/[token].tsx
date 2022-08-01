@@ -11,6 +11,7 @@ const PasswordRecover = () => {
     if (router.query.token) {
       const token = router.query.token;
       dispatch(saveToken(token));
+      localStorage.setItem('token', token as string);
       router.push('/');
     }
   }, [dispatch, router]);
