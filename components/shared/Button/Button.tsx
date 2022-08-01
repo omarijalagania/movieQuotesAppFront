@@ -1,13 +1,10 @@
 import React from 'react';
+import { ButtonProps } from 'types';
 
-type ButtonProps = {
-  name: string;
-  className?: string;
-};
-
-const Button: React.FC<ButtonProps> = ({ name, className }) => {
+const Button: React.FC<ButtonProps> = ({ name, className, onClick }) => {
   return (
     <button
+      onClick={onClick}
       className={`bg-transparent px-5 py-1 border-white text-white border-[1px] rounded-md ${className}`}
     >
       {name}

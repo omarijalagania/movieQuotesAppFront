@@ -1,8 +1,22 @@
-import { Header } from 'components';
+import { useState, useEffect } from 'react';
+import { ConfirmToken, Header, Modal } from 'components';
 import Head from 'next/head';
 import HomePage from 'pages/home';
+import { useSelector } from 'react-redux';
+import { RootState } from 'state';
 
 const Home = () => {
+  const [isOpenConfirm, setIsOpenConfirm] = useState(false);
+  const confirmResponse = useSelector(
+    (state: RootState) => state.quotes.confirmResponse
+  );
+
+  useEffect(() => {
+    if (confirmResponse.status === 200) {
+      setIsOpenConfirm(true);
+    }
+  }, [confirmResponse]);
+
   return (
     <div>
       <Head>
@@ -15,6 +29,11 @@ const Home = () => {
         <Header />
         <HomePage />
       </main>
+      {isOpenConfirm && (
+        <Modal open={isOpenConfirm} setOpen={setIsOpenConfirm}>
+          <ConfirmToken />
+        </Modal>
+      )}
     </div>
   );
 };

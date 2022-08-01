@@ -20,7 +20,7 @@ const HomePage: React.FC = () => {
 
       <div className='relative z-30 vertical-gradient'>
         <div className='absolute w-[300px] md:w-[800px] z-30 bottom-1/2 left-10 md:left-20 text-white'>
-          <h2 className='text-sm md:text-4xl truncate lg:text-6xl  z-50'>
+          <h2 className='text-sm md:text-4xl  lg:text-6xl  z-50'>
             - “You have to leave somethig behind to go forward”
           </h2>
           <p>Interstellar, 2014</p>
@@ -29,15 +29,15 @@ const HomePage: React.FC = () => {
           className='object-cover z-10'
           width={1920}
           height={1080}
-          src='/../public/assets/interstellar.png'
+          src='/assets/interstellar.png'
           alt='cover'
         />
       </div>
 
-      <Parallax translateY={[-100, 100]}>
+      <Parallax translateY={[-50, 50]}>
         <div className='relative z-30 vertical-gradient'>
           <div className='absolute w-[300px] md:w-[800px] z-30 bottom-1/2 left-10 md:left-20 text-white'>
-            <h2 className='text-sm md:text-4xl truncate lg:text-6xl z-50'>
+            <h2 className='text-sm md:text-4xl  lg:text-6xl z-50'>
               - I think we’re just gonna have to be secretly in love with earch
               other and leave it that
             </h2>
@@ -47,14 +47,14 @@ const HomePage: React.FC = () => {
             className='object-cover'
             width={1920}
             height={1080}
-            src='/../public/assets/tenen.png'
+            src='/assets/tenen.png'
             alt='cover'
           />
         </div>
       </Parallax>
       <div className='relative z-30 vertical-gradient'>
         <div className='absolute w-[300px] md:w-[800px] z-30 bottom-1/2 left-10 md:left-20 text-white'>
-          <h2 className='text-sm md:text-4xl truncate lg:text-6xl z-50'>
+          <h2 className='text-sm md:text-4xl  lg:text-6xl z-50'>
             - I think we’re just gonna have to be secretly in love with earch
             other and leave it that
           </h2>
@@ -64,7 +64,7 @@ const HomePage: React.FC = () => {
           className='object-cover'
           width={1920}
           height={1080}
-          src='/../public/assets/lord.png'
+          src='/assets/lord.png'
           alt='cover'
         />
       </div>

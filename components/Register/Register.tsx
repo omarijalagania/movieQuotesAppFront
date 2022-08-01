@@ -1,23 +1,11 @@
 import React from 'react';
 import { Input, RedButton, Button } from 'components';
-import { useFormik } from 'formik';
-import { RegisterSchema } from 'schema';
+
+import { signIn } from 'next-auth/react';
+import { usePersonalInformationForm } from 'components';
 
 const Register = () => {
-  const formik = useFormik({
-    initialValues: {
-      name: '',
-      email: '',
-      password: '',
-      repeatPassword: '',
-    },
-    validationSchema: RegisterSchema,
-    onSubmit: (values) => {
-      alert(JSON.stringify(values, null, 2));
-    },
-  });
-
-  console.log(formik.errors);
+  const { formik } = usePersonalInformationForm();
 
   return (
     <div className='flex flex-col p-10 justify-center'>
@@ -27,14 +15,15 @@ const Register = () => {
       </p>
       <form onSubmit={formik.handleSubmit} className='flex flex-col'>
         <Input
-          id='name'
+          id='userName'
           type='text'
           placeholder='At least 3 & max.15 lower case characters'
           label='Name'
-          name='name'
+          name='userName'
           onChange={formik.handleChange}
-          value={formik.values.name}
+          value={formik.values.userName}
         />
+        {formik && <p className='text-red-500'>{formik.errors.userName}</p>}
         <Input
           id='email'
           type='email'
@@ -44,6 +33,7 @@ const Register = () => {
           onChange={formik.handleChange}
           value={formik.values.email}
         />
+        {formik && <p className='text-red-500'>{formik.errors.email}</p>}
         <Input
           id='password'
           type='password'
@@ -53,6 +43,7 @@ const Register = () => {
           onChange={formik.handleChange}
           value={formik.values.password}
         />
+        {formik && <p className='text-red-500'>{formik.errors.password}</p>}
         <Input
           id='repeatPassword'
           type='password'
@@ -62,8 +53,15 @@ const Register = () => {
           onChange={formik.handleChange}
           value={formik.values.repeatPassword}
         />
-        <RedButton className='w-96 h-10 my-5' name='Get started' />
-        <Button className='w-96 h-10 mt-2' name='Sign up with Google' />
+        {formik && (
+          <p className='text-red-500'>{formik.errors.repeatPassword}</p>
+        )}
+        <RedButton className='w-96 h-10 my-5 text-white' name='Get started' />
+        <Button
+          onClick={() => signIn()}
+          className='w-96 h-10 mt-2'
+          name='Sign up with Google'
+        />
       </form>
       <p className='text-gray-500 text-center mt-10'>
         Already have an account?

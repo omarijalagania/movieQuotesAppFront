@@ -1,12 +1,20 @@
 import '../styles/globals.css';
 import type { AppProps } from 'next/app';
 import { ParallaxProvider } from 'react-scroll-parallax';
+import { SessionProvider } from 'next-auth/react';
 
-function MyApp({ Component, pageProps }: AppProps) {
+import { store } from 'state';
+import { Provider } from 'react-redux';
+
+function MyApp({ Component, pageProps: { session, ...pageProps } }: AppProps) {
   return (
-    <ParallaxProvider>
-      <Component {...pageProps} />
-    </ParallaxProvider>
+    <SessionProvider session={session}>
+      <ParallaxProvider>
+        <Provider store={store}>
+          <Component {...pageProps} />
+        </Provider>
+      </ParallaxProvider>
+    </SessionProvider>
   );
 }
 
