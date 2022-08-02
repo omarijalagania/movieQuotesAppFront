@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import {
   Modal,
   Register,
@@ -12,61 +12,27 @@ import {
   SuccessPasswordChange,
 } from 'components';
 import { useSession, signOut } from 'next-auth/react';
-import { useSelector } from 'react-redux';
-import { RootState } from 'state';
+import { useOpenModals } from 'components';
 
 const Header = () => {
   const { data: session } = useSession();
 
   const {
-    registerResponse,
-    passwordRecoveryResponse,
-    tokens,
-    newPasswordResponse,
-  } = useSelector((state: RootState) => state.quotes);
-
-  const [isOpen, setIsOpen] = useState(false);
-  const [isOpenLogin, setIsOpenLogin] = useState(false);
-  const [isOpenThanks, setIsOpenThanks] = useState(false);
-  const [openRecoverModal, setOpenRecoverModal] = useState(false);
-  const [openCheckEmailModal, setOpenCheckEmailModal] = useState(false);
-  const [openNewPasswordModal, setOpenNewPasswordModal] = useState(false);
-  const [openSuccessPasswordChangeModal, setOpenSuccessPasswordChangeModal] =
-    useState(false);
-
-  useEffect(() => {
-    if (registerResponse.status === 200) {
-      setIsOpenThanks(true);
-      setIsOpen(false);
-    }
-  }, [registerResponse]);
-
-  useEffect(() => {
-    if (openRecoverModal) {
-      setIsOpenLogin(false);
-    }
-  }, [openRecoverModal]);
-
-  useEffect(() => {
-    if (passwordRecoveryResponse.status === 200) {
-      setOpenRecoverModal(false);
-      setOpenCheckEmailModal(true);
-    }
-  }, [passwordRecoveryResponse]);
-
-  useEffect(() => {
-    if (tokens) {
-      setOpenNewPasswordModal(true);
-    }
-  }, [tokens]);
-
-  useEffect(() => {
-    if (newPasswordResponse.status === 200) {
-      setOpenNewPasswordModal(false);
-      setOpenSuccessPasswordChangeModal(true);
-      localStorage.removeItem('token');
-    }
-  }, [newPasswordResponse]);
+    isOpen,
+    setIsOpen,
+    isOpenLogin,
+    setIsOpenLogin,
+    isOpenThanks,
+    setIsOpenThanks,
+    openRecoverModal,
+    setOpenRecoverModal,
+    openCheckEmailModal,
+    setOpenCheckEmailModal,
+    openNewPasswordModal,
+    setOpenNewPasswordModal,
+    openSuccessPasswordChangeModal,
+    setOpenSuccessPasswordChangeModal,
+  } = useOpenModals();
 
   return (
     <div className='fixed top-0 z-50 flex text-white w-full items-center bg-black justify-between py-3 px-10'>
