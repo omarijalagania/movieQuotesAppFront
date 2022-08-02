@@ -1,0 +1,29 @@
+import { useFormik } from 'formik';
+import { getRecoverFormInitialValue } from 'components';
+import { passwordRecoverSchema } from 'schema';
+import { userRecoverHandler } from 'services';
+import { useDispatch } from 'react-redux';
+import { savePasswordRecoveryResponse } from 'state';
+
+export const useRecoverForm = () => {
+  const dispatch = useDispatch();
+  const formik = useFormik({
+    initialValues: getRecoverFormInitialValue(),
+    onSubmit: async (values) => {
+      const data = {
+        email: values.email,
+      };
+
+      try {
+        const response = await userRecoverHandler(data);
+        dispatch(savePasswordRecoveryResponse(response));
+      } catch (error) {
+        throw error;
+      }
+    },
+
+    validationSchema: passwordRecoverSchema,
+  });
+
+  return { formik };
+};

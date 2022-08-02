@@ -15,7 +15,7 @@ const Modal: React.FC<ModalProps> = ({ setOpen, open, children }) => {
           leaveFrom='opacity-100'
           leaveTo='opacity-0'
         >
-          <div className='!fixed !inset-0 !backdrop-blur-md' />
+          <div className='fixed inset-0 backdrop-blur-md' />
         </Transition.Child>
 
         <div className='fixed z-10 inset-0 overflow-y-auto'>

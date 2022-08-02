@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import {
   Modal,
   Register,
@@ -6,26 +6,33 @@ import {
   Button,
   RedButton,
   ThankYou,
+  PasswordRecover,
+  CheckEmail,
+  NewPassword,
+  SuccessPasswordChange,
 } from 'components';
 import { useSession, signOut } from 'next-auth/react';
-import { useSelector } from 'react-redux';
-import { RootState } from 'state';
+import { useHeader } from 'components';
 
 const Header = () => {
   const { data: session } = useSession();
-  const registerResponse = useSelector(
-    (state: RootState) => state.quotes.registerResponse
-  );
-  const [isOpen, setIsOpen] = useState(false);
-  const [isOpenLogin, setIsOpenLogin] = useState(false);
-  const [isOpenThanks, setIsOpenThanks] = useState(false);
 
-  useEffect(() => {
-    if (registerResponse.status === 200) {
-      setIsOpenThanks(true);
-      setIsOpen(false);
-    }
-  }, [registerResponse]);
+  const {
+    isOpen,
+    setIsOpen,
+    isOpenLogin,
+    setIsOpenLogin,
+    isOpenThanks,
+    setIsOpenThanks,
+    openRecoverModal,
+    setOpenRecoverModal,
+    openCheckEmailModal,
+    setOpenCheckEmailModal,
+    openNewPasswordModal,
+    setOpenNewPasswordModal,
+    openSuccessPasswordChangeModal,
+    setOpenSuccessPasswordChangeModal,
+  } = useHeader();
 
   return (
     <div className='fixed top-0 z-50 flex text-white w-full items-center bg-black justify-between py-3 px-10'>
@@ -53,13 +60,37 @@ const Header = () => {
       )}
       {isOpenLogin && (
         <Modal open={isOpenLogin} setOpen={setIsOpenLogin}>
-          <Login />
+          <Login setOpenRecoverModal={setOpenRecoverModal} />
         </Modal>
       )}
 
       {isOpenThanks && (
         <Modal open={isOpenThanks} setOpen={setIsOpenThanks}>
           <ThankYou />
+        </Modal>
+      )}
+
+      {openRecoverModal && (
+        <Modal open={openRecoverModal} setOpen={setOpenRecoverModal}>
+          <PasswordRecover />
+        </Modal>
+      )}
+      {openCheckEmailModal && (
+        <Modal open={openCheckEmailModal} setOpen={setOpenCheckEmailModal}>
+          <CheckEmail />
+        </Modal>
+      )}
+      {openNewPasswordModal && (
+        <Modal open={openNewPasswordModal} setOpen={setOpenNewPasswordModal}>
+          <NewPassword />
+        </Modal>
+      )}
+      {openSuccessPasswordChangeModal && (
+        <Modal
+          open={openSuccessPasswordChangeModal}
+          setOpen={setOpenSuccessPasswordChangeModal}
+        >
+          <SuccessPasswordChange />
         </Modal>
       )}
     </div>
