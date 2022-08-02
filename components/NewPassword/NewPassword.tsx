@@ -3,7 +3,6 @@ import React from 'react';
 
 const NewPassword = () => {
   const { formik } = useNewPasswordFrom();
-  console.log(formik.errors);
   return (
     <div className='flex flex-col p-10 justify-center'>
       <h1 className='text-white text-center text-3xl'>Create new password</h1>
