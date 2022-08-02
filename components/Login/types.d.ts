@@ -1,5 +1,5 @@
 type LoginProps = {
-  setOpenRecoverModal: (open: boolean) => void;
+  setOpenRecoverModal: Dispatch<SetStateAction>;
 };
 
 export default LoginProps;
