@@ -12,7 +12,7 @@ import {
   SuccessPasswordChange,
 } from 'components';
 import { useSession, signOut } from 'next-auth/react';
-import { useOpenModals } from 'components';
+import { useHeader } from 'components';
 
 const Header = () => {
   const { data: session } = useSession();
@@ -32,7 +32,7 @@ const Header = () => {
     setOpenNewPasswordModal,
     openSuccessPasswordChangeModal,
     setOpenSuccessPasswordChangeModal,
-  } = useOpenModals();
+  } = useHeader();
 
   return (
     <div className='fixed top-0 z-50 flex text-white w-full items-center bg-black justify-between py-3 px-10'>

@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { RootState } from 'state';
 
-export const useOpenModals = () => {
+export const useHeader = () => {
   const {
     registerResponse,
     passwordRecoveryResponse,
