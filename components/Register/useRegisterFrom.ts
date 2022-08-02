@@ -5,9 +5,12 @@ import { RegisterSchema } from 'schema';
 import { registerHandler } from 'services';
 import { saveRegisterResponse } from 'state';
 import { useDispatch } from 'react-redux';
+import { useState } from 'react';
 
 export const usePersonalInformationForm = () => {
   const dispatch = useDispatch();
+  const [error, setError] = useState('');
+
   const formik = useFormik({
     initialValues: getFormInitialValue(),
     onSubmit: async (values) => {
@@ -21,12 +24,12 @@ export const usePersonalInformationForm = () => {
         const response = await registerHandler(data);
         dispatch(saveRegisterResponse(response));
       } catch (error) {
-        throw error;
+        setError('wrong email or password');
       }
     },
 
     validationSchema: RegisterSchema,
   });
 
-  return { formik };
+  return { formik, error, setError };
 };

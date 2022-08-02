@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import {
   Modal,
   Register,
@@ -10,13 +10,20 @@ import {
   CheckEmail,
   NewPassword,
   SuccessPasswordChange,
+  useHeader,
 } from 'components';
 import { useSession, signOut } from 'next-auth/react';
-import { useHeader } from 'components';
+import { useRouter } from 'next/router';
+import { useTranslation } from 'react-i18next';
+import { Menu, Transition } from '@headlessui/react';
+import { ChevronDownIcon } from '@heroicons/react/solid';
+
+import Link from 'next/link';
 
 const Header = () => {
   const { data: session } = useSession();
-
+  const router = useRouter();
+  const { t } = useTranslation();
   const {
     isOpen,
     setIsOpen,
@@ -38,7 +45,38 @@ const Header = () => {
     <div className='fixed top-0 z-50 flex text-white w-full items-center bg-black justify-between py-3 px-10'>
       <div className='text-primaryGold uppercase'>movie quotes</div>
       <div className='flex items-center space-x-5'>
-        <p>Eng</p>
+        <Menu as='div'>
+          <Menu.Button className='text-gray-200 outline-none hover:text-gray-300 flex items-center'>
+            {`${router.locale === 'en' ? 'Eng' : 'ქართ'}`}
+            <ChevronDownIcon
+              id='menu-item'
+              className='h-5 w-5 group-hover:text-gray-500'
+              aria-hidden='true'
+            />
+          </Menu.Button>
+          <Transition
+            as={Fragment}
+            enter='transition ease-out duration-100'
+            enterFrom='transform opacity-0 scale-95'
+            enterTo='transform opacity-100 scale-100'
+            leave='transition ease-in duration-55'
+            leaveFrom='transform opacity-100 scale-100'
+            leaveTo='transform opacity-0 scale-95'
+          >
+            <div className='flex space-y-3 justify-center items-center flex-col'>
+              <div>
+                <Link href='/' locale='en'>
+                  Eng
+                </Link>
+              </div>
+              <div>
+                <Link href='/' locale='ge'>
+                  ქართ
+                </Link>
+              </div>
+            </div>
+          </Transition>
+        </Menu>
         {!session ? (
           <>
             <RedButton
@@ -47,7 +85,7 @@ const Header = () => {
               name='Sign Up'
             />
 
-            <Button onClick={() => setIsOpenLogin(true)} name='Log In' />
+            <Button onClick={() => setIsOpenLogin(true)} name={t('login')} />
           </>
         ) : (
           <Button onClick={() => signOut()} name='Log Out' />

@@ -11,10 +11,10 @@ const signUpSchema = Yup.object().shape({
     .lowercase()
     .min(8, 'min 8 chars')
     .max(15, 'max 15 chars')
-    .required(),
+    .required('password is required'),
   repeatPassword: Yup.string()
-    .oneOf([Yup.ref('password'), null])
-    .required(),
+    .oneOf([Yup.ref('password'), null], 'Password must match')
+    .required('passwords must match'),
 });
 
 export default signUpSchema;
