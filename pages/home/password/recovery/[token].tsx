@@ -3,20 +3,27 @@ import { useRouter } from 'next/router';
 import { useDispatch } from 'react-redux';
 import { saveToken } from 'state';
 
-const PasswordRecover = () => {
+const PasswordRecover = (props: { query: { token: string | null } }) => {
   const router = useRouter();
   const dispatch = useDispatch();
+  let token = props.query.token;
 
   useEffect(() => {
-    if (router.query.token) {
-      const token = router.query.token;
+    if (token) {
       dispatch(saveToken(token));
       localStorage.setItem('token', token as string);
       router.push('/');
     }
-  }, [dispatch, router]);
+  }, [dispatch, router, token]);
 
-  return <div>token</div>;
+  return <div></div>;
 };
 
 export default PasswordRecover;
+
+export async function getServerSideProps(context: { query: string }) {
+  const { query } = context;
+  return {
+    props: { query },
+  };
+}
