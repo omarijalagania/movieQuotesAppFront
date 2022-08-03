@@ -1,11 +1,11 @@
 import { CheckIcon, ExclamationCircleIcon } from '@heroicons/react/solid';
 import { RedButton, Input, useNewPasswordFrom } from 'components';
-import { useTranslate } from 'hooks';
+
 import React from 'react';
 
 const NewPassword = () => {
-  const { formik } = useNewPasswordFrom();
-  const { t } = useTranslate();
+  const { formik, t } = useNewPasswordFrom();
+
   return (
     <div className='flex flex-col p-10 justify-center'>
       <h1 className='text-white text-center text-3xl'>{t('newPassword')}</h1>

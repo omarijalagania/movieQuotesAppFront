@@ -1,6 +1,6 @@
 import { useFormik } from 'formik';
 import { getFormInitialValue } from 'components';
-
+import { useTranslate } from 'hooks';
 import { RegisterSchema } from 'schema';
 import { registerHandler } from 'services';
 import { saveRegisterResponse } from 'state';
@@ -10,7 +10,7 @@ import { useState, useEffect } from 'react';
 export const usePersonalInformationForm = () => {
   const dispatch = useDispatch();
   const [error, setError] = useState('');
-
+  const { t } = useTranslate();
   const formik = useFormik({
     initialValues: getFormInitialValue(),
     onSubmit: async (values) => {
@@ -37,5 +37,5 @@ export const usePersonalInformationForm = () => {
     }
   }, [formik.values.email, formik.values.userName, setError]);
 
-  return { formik, error };
+  return { formik, error, t };
 };

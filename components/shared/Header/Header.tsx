@@ -14,13 +14,12 @@ import {
   LangToggler,
 } from 'components';
 import { useSession, signOut } from 'next-auth/react';
-import { useTranslate } from 'hooks';
+
 import { Menu, Transition } from '@headlessui/react';
 import { ChevronDownIcon } from '@heroicons/react/solid';
 
 const Header = () => {
   const { data: session } = useSession();
-  const { t, router } = useTranslate();
 
   const {
     isOpen,
@@ -37,6 +36,8 @@ const Header = () => {
     setOpenNewPasswordModal,
     openSuccessPasswordChangeModal,
     setOpenSuccessPasswordChangeModal,
+    t,
+    router,
   } = useHeader();
 
   return (
