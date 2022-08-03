@@ -4,8 +4,10 @@ import { passwordRecoverSchema } from 'schema';
 import { userRecoverHandler } from 'services';
 import { useDispatch } from 'react-redux';
 import { savePasswordRecoveryResponse } from 'state';
+import { useState } from 'react';
 
 export const useRecoverForm = () => {
+  const [error, setError] = useState('');
   const dispatch = useDispatch();
   const formik = useFormik({
     initialValues: getRecoverFormInitialValue(),
@@ -18,12 +20,12 @@ export const useRecoverForm = () => {
         const response = await userRecoverHandler(data);
         dispatch(savePasswordRecoveryResponse(response));
       } catch (error) {
-        throw error;
+        setError('email not found');
       }
     },
 
     validationSchema: passwordRecoverSchema,
   });
 
-  return { formik };
+  return { formik, error, setError };
 };

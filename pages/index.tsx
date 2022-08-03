@@ -4,6 +4,7 @@ import Head from 'next/head';
 import HomePage from 'pages/home';
 import { useSelector } from 'react-redux';
 import { RootState } from 'state';
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 
 const Home = () => {
   const [isOpenConfirm, setIsOpenConfirm] = useState(false);
@@ -39,3 +40,11 @@ const Home = () => {
 };
 
 export default Home;
+
+export async function getStaticProps(context: { locale: string }) {
+  return {
+    props: {
+      ...(await serverSideTranslations(context.locale!, ['common'])),
+    },
+  };
+}
