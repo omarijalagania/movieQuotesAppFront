@@ -26,6 +26,10 @@
   "differentPasswords": " Your new password must be different from previous used passwords",
   "resetPass": "Reset password",
 
+  "emailVerify": "Enter the email and we’ll send an email with instructions to reset your password",
+  "back": "Back to log in",
+  "instructions": "Send instructions",
+
   "quotes": "movie quotes",
   "getStarted": "Get started",
   "millionMovies": "Find any quote in millions of movie lines",
