@@ -2,10 +2,10 @@ import React from 'react';
 import { RedButton } from 'components';
 import Image from 'next/image';
 import { Parallax } from 'react-scroll-parallax';
-import { useTransition } from 'hooks';
+import { useTranslate } from 'hooks';
 
 const HomePage: React.FC = () => {
-  const { t } = useTransition();
+  const { t } = useTranslate();
   return (
     <>
       <div className='w-full h-[500px] md:h-[800px] bg-black flex justify-center items-center'>

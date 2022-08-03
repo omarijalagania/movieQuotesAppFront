@@ -1,10 +1,10 @@
 import React from 'react';
 import Image from 'next/image';
 import { RedButton } from 'components';
-import { useTransition } from 'hooks';
+import { useTranslate } from 'hooks';
 
 const SuccessPasswordChange = () => {
-  const { t } = useTransition();
+  const { t } = useTranslate();
   return (
     <div className='flex flex-col p-10 items-center justify-center'>
       <div className='mb-10'>

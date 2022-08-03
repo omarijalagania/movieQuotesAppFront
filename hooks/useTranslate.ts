@@ -1,11 +1,11 @@
 import { useTranslation } from 'next-i18next';
 import { useRouter } from 'next/router';
 
-const useTransition = () => {
+const useTranslate = () => {
   const { t } = useTranslation('common');
   const router = useRouter();
 
   return { t, router };
 };
 
-export default useTransition;
+export default useTranslate;

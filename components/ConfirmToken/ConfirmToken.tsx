@@ -1,10 +1,10 @@
 import { RedButton } from 'components/shared';
 import Image from 'next/image';
 import React from 'react';
-import { useTransition } from 'hooks';
+import { useTranslate } from 'hooks';
 
 const ConfirmToken = () => {
-  const { t } = useTransition();
+  const { t } = useTranslate();
   return (
     <div className='flex flex-col p-10 items-center justify-center'>
       <div className='mb-10'>

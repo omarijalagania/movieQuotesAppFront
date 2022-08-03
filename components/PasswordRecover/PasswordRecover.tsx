@@ -2,11 +2,11 @@ import React from 'react';
 import { RedButton, useRecoverForm, Input } from 'components';
 import Image from 'next/image';
 import { CheckIcon, ExclamationCircleIcon } from '@heroicons/react/solid';
-import { useTransition } from 'hooks';
+import { useTranslate } from 'hooks';
 
 const PasswordRecover = () => {
   const { formik, error } = useRecoverForm();
-  const { t } = useTransition();
+  const { t } = useTranslate();
 
   return (
     <div className='flex flex-col p-10 items-center justify-center'>
