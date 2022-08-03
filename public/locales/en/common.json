@@ -18,6 +18,14 @@
   "emailPlaceholder": "Enter your email",
   "passwordPlaceholder": "At least 8 & max.15 lower case characters",
 
+  "accountLogin": "Log in to your account",
+  "remember": "Remember me",
+  "welcomeBack": "Welcome back! Please enter your details.",
+
+  "newPassword": "Create new password",
+  "differentPasswords": " Your new password must be different from previous used passwords",
+  "resetPass": "Reset password",
+
   "quotes": "movie quotes",
   "getStarted": "Get started",
   "millionMovies": "Find any quote in millions of movie lines",

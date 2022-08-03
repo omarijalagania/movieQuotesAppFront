@@ -1,14 +1,16 @@
 import { CheckIcon, ExclamationCircleIcon } from '@heroicons/react/solid';
 import { RedButton, Input, useNewPasswordFrom } from 'components';
+import { useTranslation } from 'next-i18next';
 import React from 'react';
 
 const NewPassword = () => {
   const { formik } = useNewPasswordFrom();
+  const { t } = useTranslation();
   return (
     <div className='flex flex-col p-10 justify-center'>
-      <h1 className='text-white text-center text-3xl'>Create new password</h1>
+      <h1 className='text-white text-center text-3xl'>{t('newPassword')}</h1>
       <p className='text-center text-xs mt-2 text-gray-500'>
-        Your new password must be different from previous used passwords
+        {t('differentPasswords')}
       </p>
 
       <form onSubmit={formik.handleSubmit} className='flex flex-col'>
@@ -16,8 +18,8 @@ const NewPassword = () => {
           <Input
             id='password'
             type='password'
-            placeholder='At least 8 & max.15 lower case characters'
-            label='Password'
+            placeholder={t('passwordPlaceholder')}
+            label={t('password')}
             name='password'
             onChange={formik.handleChange}
             value={formik.values.password}
@@ -44,8 +46,8 @@ const NewPassword = () => {
           <Input
             id='repeatPassword'
             type='password'
-            placeholder='Confirm password'
-            label='Confirm password'
+            placeholder={t('repeatPassword')}
+            label={t('repeatPassword')}
             name='repeatPassword'
             onChange={formik.handleChange}
             value={formik.values.repeatPassword}
@@ -72,7 +74,7 @@ const NewPassword = () => {
         )}
         <RedButton
           className='w-96 text-white h-10 my-5'
-          name='Reset password'
+          name={t('resetPass')}
         />
       </form>
     </div>
