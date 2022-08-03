@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { Input, RedButton, Button } from 'components';
 import { CheckIcon, ExclamationCircleIcon } from '@heroicons/react/solid';
 import { signIn } from 'next-auth/react';
@@ -6,14 +6,8 @@ import { usePersonalInformationForm } from 'components';
 import { useTranslation } from 'next-i18next';
 
 const Register = () => {
-  const { formik, error, setError } = usePersonalInformationForm();
+  const { formik, error } = usePersonalInformationForm();
   const { t } = useTranslation();
-
-  useEffect(() => {
-    if (formik.values.email) {
-      setError('');
-    }
-  }, [formik.values.email, formik.values.userName, setError]);
 
   return (
     <div className='flex flex-col p-10 justify-center'>

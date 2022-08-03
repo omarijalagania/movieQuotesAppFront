@@ -1,17 +1,12 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { Button, Input, RedButton, useLoginForm, LoginProps } from 'components';
 import { signIn } from 'next-auth/react';
 import { CheckIcon, ExclamationCircleIcon } from '@heroicons/react/solid';
 import { useTranslation } from 'next-i18next';
 
 const Login: React.FC<LoginProps> = ({ setOpenRecoverModal }) => {
-  const { formik, error, setError } = useLoginForm();
+  const { formik, error } = useLoginForm();
   const { t } = useTranslation();
-  useEffect(() => {
-    if (formik.values.email) {
-      setError('');
-    }
-  }, [formik.values.email, setError]);
 
   return (
     <div className='flex flex-col p-10 justify-center'>
@@ -47,9 +42,9 @@ const Login: React.FC<LoginProps> = ({ setOpenRecoverModal }) => {
           )}
         </div>
         {error ? (
-          <p className='text-red-500 mt-1'>{error}</p>
+          <p className='text-red-500 mt-1'>{t(error)}</p>
         ) : formik.errors.email ? (
-          <p className='text-red-500 mt-1'>{formik.errors.email}</p>
+          <p className='text-red-500 mt-1'>{t(formik.errors.email)}</p>
         ) : (
           ''
         )}
@@ -81,7 +76,7 @@ const Login: React.FC<LoginProps> = ({ setOpenRecoverModal }) => {
         </div>
 
         {formik.errors.password && (
-          <p className='text-red-500 mt-1'>{formik.errors.password}</p>
+          <p className='text-red-500 mt-1'>{t(formik.errors.password)}</p>
         )}
         <div className='flex justify-between mt-2 items-center'>
           <div className='flex text-white justify-between items-center'>

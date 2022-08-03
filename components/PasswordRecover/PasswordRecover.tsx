@@ -1,17 +1,13 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { RedButton, useRecoverForm, Input } from 'components';
 import Image from 'next/image';
 import { CheckIcon, ExclamationCircleIcon } from '@heroicons/react/solid';
 import { useTranslation } from 'next-i18next';
 
 const PasswordRecover = () => {
-  const { formik, error, setError } = useRecoverForm();
+  const { formik, error } = useRecoverForm();
   const { t } = useTranslation();
-  useEffect(() => {
-    if (formik.values.email) {
-      setError('');
-    }
-  }, [formik.values.email, setError]);
+
   return (
     <div className='flex flex-col p-10 items-center justify-center'>
       <h1 className='text-white text-center text-3xl'>{t('forgotPassword')}</h1>

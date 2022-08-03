@@ -3,11 +3,10 @@ import { getLoginFormInitialValue } from 'components';
 import { LoginSchema } from 'schema';
 import { signIn } from 'next-auth/react';
 import { useRouter } from 'next/router';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 export const useLoginForm = () => {
   const [error, setError] = useState('');
-  console.log(error);
   const router = useRouter();
   const formik = useFormik({
     initialValues: getLoginFormInitialValue(),
@@ -40,5 +39,11 @@ export const useLoginForm = () => {
     validationSchema: LoginSchema,
   });
 
-  return { formik, error, setError };
+  useEffect(() => {
+    if (formik.values.email) {
+      setError('');
+    }
+  }, [formik.values.email, setError]);
+
+  return { formik, error };
 };

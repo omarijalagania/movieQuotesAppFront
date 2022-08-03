@@ -5,7 +5,7 @@ import { RegisterSchema } from 'schema';
 import { registerHandler } from 'services';
 import { saveRegisterResponse } from 'state';
 import { useDispatch } from 'react-redux';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 export const usePersonalInformationForm = () => {
   const dispatch = useDispatch();
@@ -31,5 +31,11 @@ export const usePersonalInformationForm = () => {
     validationSchema: RegisterSchema,
   });
 
-  return { formik, error, setError };
+  useEffect(() => {
+    if (formik.values.email) {
+      setError('');
+    }
+  }, [formik.values.email, formik.values.userName, setError]);
+
+  return { formik, error };
 };

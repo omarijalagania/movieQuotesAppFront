@@ -4,7 +4,7 @@ import { passwordRecoverSchema } from 'schema';
 import { userRecoverHandler } from 'services';
 import { useDispatch } from 'react-redux';
 import { savePasswordRecoveryResponse } from 'state';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 export const useRecoverForm = () => {
   const [error, setError] = useState('');
@@ -26,6 +26,12 @@ export const useRecoverForm = () => {
 
     validationSchema: passwordRecoverSchema,
   });
+
+  useEffect(() => {
+    if (formik.values.email) {
+      setError('');
+    }
+  }, [formik.values.email, setError]);
 
   return { formik, error, setError };
 };
