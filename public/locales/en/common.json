@@ -2,5 +2,29 @@
   "login": "Login",
   "logout": "Logout",
   "forgotPassword": "Forgot Password?",
-  "register": "Sign Up"
+  "register": "Sign Up",
+
+  "name": "Name",
+  "email": "Email",
+  "password": "Password",
+  "repeatPassword": "Repeat password",
+
+  "createAccount": "Create an account",
+  "journey": "Start your journey!",
+  "haveAccount": "Already have an account?",
+  "google": "Sign up with Google",
+
+  "namePlaceholder": "At least 3 & max.15 lower case characters",
+  "emailPlaceholder": "Enter your email",
+  "passwordPlaceholder": "At least 8 & max.15 lower case characters",
+
+  "quotes": "movie quotes",
+  "getStarted": "Get started",
+  "millionMovies": "Find any quote in millions of movie lines",
+  "movie1": "You have to leave something behind to go forward",
+  "movie2": "You're Not Going To Do It Again, Are You?",
+  "movie3": "Your time will come. You will face the same Evil, and you will defeat it.",
+  "Interstellar": "Interstellar",
+  "royal": "The Royal Tenenbaums",
+  "lord": "Lord Of The Rings"
 }

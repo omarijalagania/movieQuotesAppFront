@@ -2,10 +2,11 @@ import React, { useEffect } from 'react';
 import { Button, Input, RedButton, useLoginForm, LoginProps } from 'components';
 import { signIn } from 'next-auth/react';
 import { CheckIcon, ExclamationCircleIcon } from '@heroicons/react/solid';
+import { useTranslation } from 'next-i18next';
 
 const Login: React.FC<LoginProps> = ({ setOpenRecoverModal }) => {
   const { formik, error, setError } = useLoginForm();
-
+  const { t } = useTranslation();
   useEffect(() => {
     if (formik.values.email) {
       setError('');
@@ -14,19 +15,17 @@ const Login: React.FC<LoginProps> = ({ setOpenRecoverModal }) => {
 
   return (
     <div className='flex flex-col p-10 justify-center'>
-      <h1 className='text-white text-center text-3xl'>
-        Log in to your account
-      </h1>
+      <h1 className='text-white text-center text-3xl'>{t('accountLogin')}</h1>
       <p className='text-center text-xs mt-2 text-gray-500'>
-        Welcome back! Please enter your details.
+        {t('welcomeBack')}
       </p>
       <form onSubmit={formik.handleSubmit} className='flex flex-col'>
         <div className='relative'>
           <Input
             id='email'
             type='email'
-            placeholder='Enter your email'
-            label='Email'
+            placeholder={t('emailPlaceholder')}
+            label={t('email')}
             name='email'
             onChange={formik.handleChange}
             value={formik.values.email}
@@ -58,8 +57,8 @@ const Login: React.FC<LoginProps> = ({ setOpenRecoverModal }) => {
           <Input
             id='password'
             type='password'
-            placeholder='At least 8 & max.15 lower case characters'
-            label='Password'
+            placeholder={t('passwordPlaceholder')}
+            label={t('password')}
             name='password'
             onChange={formik.handleChange}
             value={formik.values.password}
@@ -87,20 +86,20 @@ const Login: React.FC<LoginProps> = ({ setOpenRecoverModal }) => {
         <div className='flex justify-between mt-2 items-center'>
           <div className='flex text-white justify-between items-center'>
             <input type='checkbox' />
-            <p className='ml-1'>Remember me</p>
+            <p className='ml-1'>{t('remember')}</p>
           </div>
           <p
             className='text-white cursor-pointer'
             onClick={() => setOpenRecoverModal(true)}
           >
-            Forgot password?
+            {t('forgotPassword')}
           </p>
         </div>
         <RedButton className='w-96 text-white h-10 my-5' name='Sign in' />
         <Button
           onClick={() => signIn()}
           className='w-96 h-10 mt-2'
-          name='Sign up with Google'
+          name={t('google')}
         />
       </form>
     </div>
