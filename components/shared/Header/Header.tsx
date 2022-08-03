@@ -11,6 +11,7 @@ import {
   NewPassword,
   SuccessPasswordChange,
   useHeader,
+  LangToggler,
 } from 'components';
 import { useSession, signOut } from 'next-auth/react';
 import { useRouter } from 'next/router';
@@ -18,12 +19,11 @@ import { useTranslation } from 'react-i18next';
 import { Menu, Transition } from '@headlessui/react';
 import { ChevronDownIcon } from '@heroicons/react/solid';
 
-import Link from 'next/link';
-
 const Header = () => {
   const { data: session } = useSession();
   const router = useRouter();
-  const { t } = useTranslation();
+  const { t } = useTranslation('common');
+
   const {
     isOpen,
     setIsOpen,
@@ -47,7 +47,7 @@ const Header = () => {
       <div className='flex items-center space-x-5'>
         <Menu as='div'>
           <Menu.Button className='text-gray-200 outline-none hover:text-gray-300 flex items-center'>
-            {`${router.locale === 'en' ? 'Eng' : 'ქართ'}`}
+            {`${router.locale === 'en' ? 'Eng' : 'ქარ'}`}
             <ChevronDownIcon
               id='menu-item'
               className='h-5 w-5 group-hover:text-gray-500'
@@ -63,18 +63,9 @@ const Header = () => {
             leaveFrom='transform opacity-100 scale-100'
             leaveTo='transform opacity-0 scale-95'
           >
-            <div className='flex space-y-3 justify-center items-center flex-col'>
-              <div>
-                <Link href='/' locale='en'>
-                  Eng
-                </Link>
-              </div>
-              <div>
-                <Link href='/' locale='ge'>
-                  ქართ
-                </Link>
-              </div>
-            </div>
+            <Menu.Items>
+              <LangToggler />
+            </Menu.Items>
           </Transition>
         </Menu>
         {!session ? (
@@ -82,13 +73,13 @@ const Header = () => {
             <RedButton
               onClick={() => setIsOpen(true)}
               className='hidden md:block'
-              name='Sign Up'
+              name={t('register')}
             />
 
             <Button onClick={() => setIsOpenLogin(true)} name={t('login')} />
           </>
         ) : (
-          <Button onClick={() => signOut()} name='Log Out' />
+          <Button onClick={() => signOut()} name={t('logout')} />
         )}
       </div>
       {isOpen && (
