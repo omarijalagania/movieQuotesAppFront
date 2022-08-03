@@ -38,6 +38,16 @@
   "requiredPassword": "Password is required",
   "mustMatch": "Password must match",
   "wrongCreds": "Wrong email or password",
+  "emailNotFound": "Email not found",
+
+  "thankYou": "Thank you!",
+  "checkEmail": "Please check your email and follow the instructions to activate your account.",
+  "success": "Success!",
+  "passChange": "Your Password changed successfully",
+  "accountActivated": "Your account has been activated.",
+  "checkMail": "Check your email",
+  "checkMailText": "We have sent a password recover instructions to your email",
+  "skip": "Skip, I’ll confirm later",
 
   "quotes": "movie quotes",
   "getStarted": "Get started",
