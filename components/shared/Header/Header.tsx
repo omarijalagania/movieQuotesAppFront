@@ -14,15 +14,13 @@ import {
   LangToggler,
 } from 'components';
 import { useSession, signOut } from 'next-auth/react';
-import { useRouter } from 'next/router';
-import { useTranslation } from 'react-i18next';
+import { useTransition } from 'hooks';
 import { Menu, Transition } from '@headlessui/react';
 import { ChevronDownIcon } from '@heroicons/react/solid';
 
 const Header = () => {
   const { data: session } = useSession();
-  const router = useRouter();
-  const { t } = useTranslation('common');
+  const { t, router } = useTransition();
 
   const {
     isOpen,

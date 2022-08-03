@@ -2,11 +2,11 @@ import React from 'react';
 import { Button, Input, RedButton, useLoginForm, LoginProps } from 'components';
 import { signIn } from 'next-auth/react';
 import { CheckIcon, ExclamationCircleIcon } from '@heroicons/react/solid';
-import { useTranslation } from 'next-i18next';
+import { useTransition } from 'hooks';
 
 const Login: React.FC<LoginProps> = ({ setOpenRecoverModal }) => {
   const { formik, error } = useLoginForm();
-  const { t } = useTranslation();
+  const { t } = useTransition();
 
   return (
     <div className='flex flex-col p-10 justify-center'>

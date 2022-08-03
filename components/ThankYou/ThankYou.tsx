@@ -1,10 +1,10 @@
 import { RedButton } from 'components/shared';
 import React from 'react';
 import Image from 'next/image';
-import { useTranslation } from 'next-i18next';
+import { useTransition } from 'hooks';
 
 const ThankYou = () => {
-  const { t } = useTranslation();
+  const { t } = useTransition();
   return (
     <div className='flex flex-col p-10 items-center justify-center'>
       <div className='mb-10'>

@@ -3,11 +3,11 @@ import { Input, RedButton, Button } from 'components';
 import { CheckIcon, ExclamationCircleIcon } from '@heroicons/react/solid';
 import { signIn } from 'next-auth/react';
 import { usePersonalInformationForm } from 'components';
-import { useTranslation } from 'next-i18next';
+import { useTransition } from 'hooks';
 
 const Register = () => {
   const { formik, error } = usePersonalInformationForm();
-  const { t } = useTranslation();
+  const { t } = useTransition();
 
   return (
     <div className='flex flex-col p-10 justify-center'>
