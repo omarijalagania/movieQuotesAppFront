@@ -47,7 +47,7 @@ const Register = () => {
         </div>
 
         {formik.errors.userName && (
-          <p className='text-red-500 mt-1'>{formik.errors.userName}</p>
+          <p className='text-red-500 mt-1'>{t(formik.errors.userName)}</p>
         )}
 
         <div className='relative'>
@@ -77,9 +77,9 @@ const Register = () => {
         </div>
 
         {error ? (
-          <p className='text-red-500 mt-1'>{error}</p>
+          <p className='text-red-500 mt-1'>{t(error)}</p>
         ) : formik.errors.email ? (
-          <p className='text-red-500 mt-1'>{formik.errors.email}</p>
+          <p className='text-red-500 mt-1'>{t(formik.errors.email)}</p>
         ) : (
           ''
         )}
@@ -110,7 +110,7 @@ const Register = () => {
         </div>
 
         {formik.errors.password && (
-          <p className='text-red-500 mt-1'>{formik.errors.password}</p>
+          <p className='text-red-500 mt-1'>{t(formik.errors.password)}</p>
         )}
 
         <div className='relative'>
@@ -141,7 +141,7 @@ const Register = () => {
         </div>
 
         {formik.errors.repeatPassword && (
-          <p className='text-red-500 mt-1'>{formik.errors.repeatPassword}</p>
+          <p className='text-red-500 mt-1'>{t(formik.errors.repeatPassword)}</p>
         )}
 
         <RedButton

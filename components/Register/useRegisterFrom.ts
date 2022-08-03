@@ -24,7 +24,7 @@ export const usePersonalInformationForm = () => {
         const response = await registerHandler(data);
         dispatch(saveRegisterResponse(response));
       } catch (error) {
-        setError('wrong email or password');
+        setError('wrongCreds');
       }
     },
 

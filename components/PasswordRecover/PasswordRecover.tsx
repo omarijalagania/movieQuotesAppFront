@@ -45,9 +45,9 @@ const PasswordRecover = () => {
           )}
         </div>
         {error ? (
-          <p className='text-red-500 mt-1'>{error}</p>
+          <p className='text-red-500 mt-1'>{t(error)}</p>
         ) : formik.errors.email ? (
-          <p className='text-red-500 mt-1'>{formik.errors.email}</p>
+          <p className='text-red-500 mt-1'>{t(formik.errors.email)}</p>
         ) : (
           ''
         )}

@@ -20,7 +20,7 @@ export const useRecoverForm = () => {
         const response = await userRecoverHandler(data);
         dispatch(savePasswordRecoveryResponse(response));
       } catch (error) {
-        setError('email not found');
+        setError('emailNotFound');
       }
     },
 

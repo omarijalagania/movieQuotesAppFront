@@ -30,10 +30,10 @@ export const useLoginForm = () => {
         if (response?.status === 200) {
           router.push('/test');
         } else {
-          setError('Email or password is incorrect');
+          setError('wrongCreds');
         }
       } catch (error) {
-        setError('Email or password is incorrect');
+        setError('wrongCreds');
       }
     },
 

@@ -1,7 +1,7 @@
 import * as Yup from 'yup';
 
 const passwordRecoverSchema = Yup.object().shape({
-  email: Yup.string().email('Email is invalid').required('Email is required'),
+  email: Yup.string().email('invalidEmail').required('invalidEmail'),
 });
 
 export default passwordRecoverSchema;

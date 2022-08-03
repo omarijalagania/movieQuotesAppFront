@@ -40,7 +40,7 @@ const NewPassword = () => {
           )}
         </div>
         {formik.errors.password && (
-          <p className='text-red-500 mt-1'>{formik.errors.password}</p>
+          <p className='text-red-500 mt-1'>{t(formik.errors.password)}</p>
         )}
         <div className='relative'>
           <Input
@@ -70,7 +70,7 @@ const NewPassword = () => {
         </div>
 
         {formik.errors.repeatPassword && (
-          <p className='text-red-500 mt-1'>{formik.errors.repeatPassword}</p>
+          <p className='text-red-500 mt-1'>{t(formik.errors.repeatPassword)}</p>
         )}
         <RedButton
           className='w-96 text-white h-10 my-5'

@@ -30,6 +30,15 @@
   "back": "Back to log in",
   "instructions": "Send instructions",
 
+  "min3Chars": "min 3 chars",
+  "max15Chars": "max 15 chars",
+  "requiredName": "Name is required",
+  "invalidEmail": "Email is invalid",
+  "min8Chars": "min 8 chars",
+  "requiredPassword": "Password is required",
+  "mustMatch": "Password must match",
+  "wrongCreds": "Wrong email or password",
+
   "quotes": "movie quotes",
   "getStarted": "Get started",
   "millionMovies": "Find any quote in millions of movie lines",
