@@ -3,18 +3,18 @@ import * as Yup from 'yup';
 const signUpSchema = Yup.object().shape({
   userName: Yup.string()
     .lowercase()
-    .min(3, 'min 3 chars')
-    .max(15, 'max 15 chars')
-    .required('Name is required'),
-  email: Yup.string().email('Email is invalid').required('Email is required'),
+    .min(3, 'min3Chars')
+    .max(15, 'max15Chars')
+    .required('requiredName'),
+  email: Yup.string().email('invalidEmail').required('invalidEmail'),
   password: Yup.string()
     .lowercase()
-    .min(8, 'min 8 chars')
-    .max(15, 'max 15 chars')
-    .required(),
+    .min(8, 'min8Chars')
+    .max(15, 'max15Chars')
+    .required('requiredPassword'),
   repeatPassword: Yup.string()
-    .oneOf([Yup.ref('password'), null])
-    .required(),
+    .oneOf([Yup.ref('password'), null], 'mustMatch')
+    .required('mustMatch'),
 });
 
 export default signUpSchema;

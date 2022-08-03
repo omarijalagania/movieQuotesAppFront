@@ -4,9 +4,11 @@ import { newPasswordSchema } from 'schema';
 import { newUserPasswordHandler } from 'services';
 import { useDispatch } from 'react-redux';
 import { saveNewPasswordResponse } from 'state';
+import { useTranslate } from 'hooks';
 
 export const useNewPasswordFrom = () => {
   const dispatch = useDispatch();
+  const { t } = useTranslate();
   const token = localStorage.getItem('token');
   const formik = useFormik({
     initialValues: getPasswordsFormInitialValue(),
@@ -27,5 +29,5 @@ export const useNewPasswordFrom = () => {
     validationSchema: newPasswordSchema,
   });
 
-  return { formik };
+  return { formik, t };
 };

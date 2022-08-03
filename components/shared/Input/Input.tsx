@@ -1,15 +1,5 @@
 import React from 'react';
-
-type InputProps = {
-  name: string;
-  label: string;
-  type: string;
-  placeholder: string;
-  onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
-  className?: string;
-  id: string;
-  value?: string;
-};
+import { InputProps } from 'components';
 
 const Input: React.FC<InputProps> = ({
   label,
@@ -29,7 +19,7 @@ const Input: React.FC<InputProps> = ({
       <input
         value={value}
         id={id}
-        className={`w-full md:w-96 p-2 rounded-md ${className}`}
+        className={`w-full md:w-96 border-2 p-2 rounded-md ${className}`}
         onChange={onChange}
         type={type}
         placeholder={placeholder}

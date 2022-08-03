@@ -1,0 +1,61 @@
+{
+  "login": "Login",
+  "logout": "Logout",
+  "forgotPassword": "Forgot Password?",
+  "register": "Sign Up",
+
+  "name": "Name",
+  "email": "Email",
+  "password": "Password",
+  "repeatPassword": "Repeat password",
+
+  "createAccount": "Create an account",
+  "journey": "Start your journey!",
+  "haveAccount": "Already have an account?",
+  "google": "Sign up with Google",
+
+  "namePlaceholder": "At least 3 & max.15 lower case characters",
+  "emailPlaceholder": "Enter your email",
+  "passwordPlaceholder": "At least 8 & max.15 lower case characters",
+
+  "accountLogin": "Log in to your account",
+  "remember": "Remember me",
+  "welcomeBack": "Welcome back! Please enter your details.",
+
+  "newPassword": "Create new password",
+  "differentPasswords": " Your new password must be different from previous used passwords",
+  "resetPass": "Reset password",
+
+  "emailVerify": "Enter the email and we’ll send an email with instructions to reset your password",
+  "back": "Back to log in",
+  "instructions": "Send instructions",
+
+  "min3Chars": "min 3 chars",
+  "max15Chars": "max 15 chars",
+  "requiredName": "Name is required",
+  "invalidEmail": "Email is invalid",
+  "min8Chars": "min 8 chars",
+  "requiredPassword": "Password is required",
+  "mustMatch": "Password must match",
+  "wrongCreds": "Wrong email or password",
+  "emailNotFound": "Email not found",
+
+  "thankYou": "Thank you!",
+  "checkEmail": "Please check your email and follow the instructions to activate your account.",
+  "success": "Success!",
+  "passChange": "Your Password changed successfully",
+  "accountActivated": "Your account has been activated.",
+  "checkMail": "Check your email",
+  "checkMailText": "We have sent a password recover instructions to your email",
+  "skip": "Skip, I’ll confirm later",
+
+  "quotes": "movie quotes",
+  "getStarted": "Get started",
+  "millionMovies": "Find any quote in millions of movie lines",
+  "movie1": "You have to leave something behind to go forward",
+  "movie2": "You're Not Going To Do It Again, Are You?",
+  "movie3": "Your time will come. You will face the same Evil, and you will defeat it.",
+  "Interstellar": "Interstellar",
+  "royal": "The Royal Tenenbaums",
+  "lord": "Lord Of The Rings"
+}

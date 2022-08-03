@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { RootState } from 'state';
-
+import { useTranslate } from 'hooks';
 export const useHeader = () => {
   const {
     registerResponse,
@@ -9,6 +9,7 @@ export const useHeader = () => {
     tokens,
     newPasswordResponse,
   } = useSelector((state: RootState) => state.quotes);
+  const { t, router } = useTranslate();
 
   const [isOpen, setIsOpen] = useState(false);
   const [isOpenLogin, setIsOpenLogin] = useState(false);
@@ -68,5 +69,7 @@ export const useHeader = () => {
     setOpenNewPasswordModal,
     openSuccessPasswordChangeModal,
     setOpenSuccessPasswordChangeModal,
+    t,
+    router,
   };
 };
