@@ -1,14 +1,15 @@
 import React from 'react';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
-import { Layout, Search, WriteQuote } from 'components';
+import { Layout, Post, Search, WriteQuote } from 'components';
 
 const Feed: React.FC<any> = () => {
   return (
     <Layout>
-      <div className='flex w-full'>
+      <div className='flex w-[85%]'>
         <WriteQuote />
         <Search />
       </div>
+      <Post />
     </Layout>
   );
 };

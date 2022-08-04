@@ -11,3 +11,4 @@ export * from './FeedProfile';
 export * from './Layout';
 export * from './WriteQuote';
 export * from './Search';
+export * from './Post';

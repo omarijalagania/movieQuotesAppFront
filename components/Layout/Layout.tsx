@@ -10,13 +10,15 @@ const Layout: React.FC<any> = ({ children }) => {
         <Header />
       </div>
       <div className='grid overflow-hidden grid-cols-5 bg-gradient-to-r from-bg1 to-bg2 grid-rows-1 w-auto'>
-        <aside className=' h-screen  col-span-1'>
+        <aside className=' h-screen col-span-1'>
           <div className='fixed'>
             <FeedProfile />
           </div>
         </aside>
         <div className=' h-screen col-span-3'>
-          <div className='flex justify-center pt-6 pl-10'>{children}</div>
+          <div className='flex flex-col justify-center pt-6 pl-10'>
+            {children}
+          </div>
         </div>
         <aside className=' h-screen '>
           <div className='fixed'>Right Side</div>
