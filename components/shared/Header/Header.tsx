@@ -41,7 +41,11 @@ const Header = () => {
   } = useHeader();
 
   return (
-    <div className='fixed top-0 z-50 flex text-white w-full items-center bg-black justify-between py-3 px-10'>
+    <div
+      className={`fixed top-0 z-50 flex text-white w-full items-center ${
+        router.pathname.startsWith('/feed') ? 'bg-headerBg' : 'bg-black'
+      }  justify-between py-3 px-10`}
+    >
       <div className='text-primaryGold uppercase'>{t('quotes')}</div>
       <div className='flex items-center justify-center space-x-5'>
         {router.pathname.startsWith('/feed') ? (

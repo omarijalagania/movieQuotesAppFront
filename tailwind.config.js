@@ -14,6 +14,7 @@ module.exports = {
         bg2: '#151221',
         lightBlue: '#24222F',
         darkBlue: '#11101A',
+        headerBg: '#222030',
       },
     },
   },

@@ -1,10 +1,10 @@
 import React from 'react';
 import Image from 'next/image';
 import { ChatIcon } from '@heroicons/react/outline';
-
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 const Movies = () => {
   return (
-    <div className='w-[90%]'>
+    <>
       <div className='flex justify-between text-white mb-5'>
         <p>My list of movies (Total 25)</p>
         <p>Search</p>
@@ -35,8 +35,16 @@ const Movies = () => {
           </div>
         </div>
       </div>
-    </div>
+    </>
   );
 };
 
 export default Movies;
+
+export async function getStaticProps(context: { locale: string }) {
+  return {
+    props: {
+      ...(await serverSideTranslations(context.locale ?? 'en', ['common'])),
+    },
+  };
+}
