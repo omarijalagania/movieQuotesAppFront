@@ -2,9 +2,9 @@ import React from 'react';
 import { PencilAltIcon } from '@heroicons/react/solid';
 const WriteQuote = () => {
   return (
-    <div className='w-[80%] relative'>
+    <div className='relative w-[88%]'>
       <input
-        className='w-full py-2 pl-10 rounded-md text-white bg-lightBlue placeholder-white'
+        className='py-2 w-[100%] pl-10 rounded-md text-white bg-lightBlue placeholder-white'
         type='text'
         placeholder='Write new quote'
       />

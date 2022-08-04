@@ -1,7 +1,5 @@
-import { Header } from 'components';
 import React from 'react';
-
-import { FeedProfile, LayoutProps } from 'components';
+import { FeedProfile, LayoutProps, Header } from 'components';
 
 const Layout: React.FC<LayoutProps> = ({ children }) => {
   return (
@@ -20,8 +18,8 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
             {children}
           </div>
         </div>
-        <aside className=' h-screen '>
-          <div className='fixed'>Right Side</div>
+        <aside className=' h-screen'>
+          <div className='fixed text-white'>Right Side</div>
         </aside>
       </div>
     </>

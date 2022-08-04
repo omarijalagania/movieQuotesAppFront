@@ -44,7 +44,15 @@ const Header = () => {
     <div className='fixed top-0 z-50 flex text-white w-full items-center bg-black justify-between py-3 px-10'>
       <div className='text-primaryGold uppercase'>{t('quotes')}</div>
       <div className='flex items-center justify-center space-x-5'>
-        <BellIcon className='w-6 h-6' />
+        {router.pathname.startsWith('/feed') ? (
+          <div className='relative'>
+            <BellIcon className='w-6 h-6' />
+            <div className='w-4 h-4 absolute -right-1 -top-1 rounded-full bg-red-500 flex justify-center items-center text-xs'>
+              3
+            </div>
+          </div>
+        ) : null}
+
         <Menu as='div'>
           <Menu.Button className='text-gray-200 outline-none hover:text-gray-300 flex items-center'>
             {`${router.locale === 'en' ? 'Eng' : 'ქარ'}`}
@@ -70,11 +78,15 @@ const Header = () => {
         </Menu>
         {!session ? (
           <>
-            <RedButton
-              onClick={() => setIsOpen(true)}
-              className='hidden md:block'
-              name={t('register')}
-            />
+            {router.pathname.startsWith('/feed') ? (
+              ''
+            ) : (
+              <RedButton
+                onClick={() => setIsOpen(true)}
+                className='hidden md:block'
+                name={t('register')}
+              />
+            )}
 
             <Button onClick={() => setIsOpenLogin(true)} name={t('login')} />
           </>
