@@ -12,6 +12,7 @@ module.exports = {
         rocketHover: '#bd0f1c',
         bg1: '#181623',
         bg2: '#0D0B14',
+        lightBlue: '#24222F',
       },
     },
   },

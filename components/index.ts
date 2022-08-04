@@ -9,3 +9,5 @@ export * from './NewPassword';
 export * from './SuccessPasswordChange';
 export * from './FeedProfile';
 export * from './Layout';
+export * from './WriteQuote';
+export * from './Search';

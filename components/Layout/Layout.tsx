@@ -1,6 +1,6 @@
 import { Header } from 'components';
 import React from 'react';
-import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
+
 import { FeedProfile } from 'components';
 
 const Layout: React.FC<any> = ({ children }) => {
@@ -27,11 +27,3 @@ const Layout: React.FC<any> = ({ children }) => {
 };
 
 export default Layout;
-
-export async function getStaticProps(context: { locale: string }) {
-  return {
-    props: {
-      ...(await serverSideTranslations(context.locale ?? 'en', ['common'])),
-    },
-  };
-}

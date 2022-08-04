@@ -1,8 +1,24 @@
 import React from 'react';
-import { Layout } from 'components';
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
+import { Layout, Search, WriteQuote } from 'components';
 
 const Feed: React.FC<any> = () => {
-  return <Layout>lol</Layout>;
+  return (
+    <Layout>
+      <div className='flex w-full'>
+        <WriteQuote />
+        <Search />
+      </div>
+    </Layout>
+  );
 };
 
 export default Feed;
+
+export async function getStaticProps(context: { locale: string }) {
+  return {
+    props: {
+      ...(await serverSideTranslations(context.locale ?? 'en', ['common'])),
+    },
+  };
+}
