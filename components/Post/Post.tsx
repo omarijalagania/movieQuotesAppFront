@@ -4,7 +4,7 @@ import { HeartIcon, AnnotationIcon } from '@heroicons/react/outline';
 import { Comment, WriteComment } from 'components';
 const Post = () => {
   return (
-    <div className='bg-darkBlue p-5 text-white w-[90%] rounded-md mt-5'>
+    <div className='bg-darkBlue p-5 text-white md:w-[90%] rounded-md mt-5'>
       <div className='flex  items-center'>
         <div className='w-10 h-10 rounded-full bg-green-300' />
         <h3 className='ml-2'>Bilbo Baggins</h3>

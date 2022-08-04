@@ -14,12 +14,14 @@ import {
   LangToggler,
 } from 'components';
 import { useSession, signOut } from 'next-auth/react';
-
+import { useMediaSize } from 'hooks';
 import { Menu, Transition } from '@headlessui/react';
-import { ChevronDownIcon, BellIcon } from '@heroicons/react/solid';
+import { ChevronDownIcon } from '@heroicons/react/solid';
+import { BellIcon } from '@heroicons/react/outline';
 
 const Header = () => {
   const { data: session } = useSession();
+  const { width } = useMediaSize();
 
   const {
     isOpen,
@@ -43,8 +45,8 @@ const Header = () => {
   return (
     <div
       className={`fixed top-0 z-50 flex text-white w-full items-center ${
-        router.pathname.startsWith('/feed') ? 'bg-headerBg' : 'bg-black'
-      }  justify-between py-3 px-10`}
+        router.pathname.endsWith('/feed') ? 'bg-headerBg' : 'bg-black'
+      } justify-between py-5 px-10`}
     >
       <div className='text-primaryGold uppercase'>{t('quotes')}</div>
       <div className='flex items-center justify-center space-x-5'>
@@ -56,7 +58,6 @@ const Header = () => {
             </div>
           </div>
         ) : null}
-
         <Menu as='div'>
           <Menu.Button className='text-gray-200 outline-none hover:text-gray-300 flex items-center'>
             {`${router.locale === 'en' ? 'Eng' : 'ქარ'}`}
@@ -82,7 +83,7 @@ const Header = () => {
         </Menu>
         {!session ? (
           <>
-            {router.pathname.startsWith('/feed') ? (
+            {router.pathname.endsWith('/feed') ? (
               ''
             ) : (
               <RedButton
@@ -92,7 +93,10 @@ const Header = () => {
               />
             )}
 
-            <Button onClick={() => setIsOpenLogin(true)} name={t('login')} />
+            {(width as number) < 768 &&
+            router.pathname.endsWith('/feed') ? null : (
+              <Button onClick={() => setIsOpenLogin(true)} name={t('login')} />
+            )}
           </>
         ) : (
           <Button onClick={() => signOut()} name={t('logout')} />

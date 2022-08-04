@@ -2,7 +2,7 @@ import React from 'react';
 import { PencilAltIcon } from '@heroicons/react/solid';
 const WriteQuote = () => {
   return (
-    <div className='relative w-[88%]'>
+    <div className='relative w-full md:w-[88%]'>
       <input
         className='py-2 w-[100%] pl-10 rounded-md text-white bg-lightBlue placeholder-white'
         type='text'

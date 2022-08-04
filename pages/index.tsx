@@ -5,6 +5,7 @@ import HomePage from 'pages/home';
 import { useSelector } from 'react-redux';
 import { RootState } from 'state';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
+
 const Home = () => {
   const [isOpenConfirm, setIsOpenConfirm] = useState(false);
   const confirmResponse = useSelector(
