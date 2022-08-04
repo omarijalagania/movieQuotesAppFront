@@ -1,16 +1,16 @@
 import React from 'react';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
-import { Layout, Post, Search, WriteQuote } from 'components';
+import { Post, Search, WriteQuote } from 'components';
 
-const Feed: React.FC<any> = () => {
+const Feed: React.FC = () => {
   return (
-    <Layout>
+    <>
       <div className='flex w-[85%]'>
         <WriteQuote />
         <Search />
       </div>
       <Post />
-    </Layout>
+    </>
   );
 };
 

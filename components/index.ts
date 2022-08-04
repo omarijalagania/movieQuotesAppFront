@@ -12,3 +12,5 @@ export * from './Layout';
 export * from './WriteQuote';
 export * from './Search';
 export * from './Post';
+export * from './Comment';
+export * from './WriteComment';

@@ -1,9 +1,9 @@
 import { Header } from 'components';
 import React from 'react';
 
-import { FeedProfile } from 'components';
+import { FeedProfile, LayoutProps } from 'components';
 
-const Layout: React.FC<any> = ({ children }) => {
+const Layout: React.FC<LayoutProps> = ({ children }) => {
   return (
     <>
       <div className='mb-[58px]'>
@@ -15,7 +15,7 @@ const Layout: React.FC<any> = ({ children }) => {
             <FeedProfile />
           </div>
         </aside>
-        <div className=' h-screen col-span-3'>
+        <div className='h-screen col-span-3'>
           <div className='flex flex-col justify-center pt-6 pl-10'>
             {children}
           </div>
