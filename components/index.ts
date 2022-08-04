@@ -7,3 +7,5 @@ export * from './PasswordRecover';
 export * from './CheckEmail';
 export * from './NewPassword';
 export * from './SuccessPasswordChange';
+export * from './FeedProfile';
+export * from './Layout';

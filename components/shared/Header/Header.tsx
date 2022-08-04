@@ -16,7 +16,7 @@ import {
 import { useSession, signOut } from 'next-auth/react';
 
 import { Menu, Transition } from '@headlessui/react';
-import { ChevronDownIcon } from '@heroicons/react/solid';
+import { ChevronDownIcon, BellIcon } from '@heroicons/react/solid';
 
 const Header = () => {
   const { data: session } = useSession();
@@ -43,7 +43,8 @@ const Header = () => {
   return (
     <div className='fixed top-0 z-50 flex text-white w-full items-center bg-black justify-between py-3 px-10'>
       <div className='text-primaryGold uppercase'>{t('quotes')}</div>
-      <div className='flex items-center space-x-5'>
+      <div className='flex items-center justify-center space-x-5'>
+        <BellIcon className='w-6 h-6' />
         <Menu as='div'>
           <Menu.Button className='text-gray-200 outline-none hover:text-gray-300 flex items-center'>
             {`${router.locale === 'en' ? 'Eng' : 'ქარ'}`}
