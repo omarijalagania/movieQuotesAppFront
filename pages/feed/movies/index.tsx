@@ -1,13 +1,22 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Image from 'next/image';
 import { ChatIcon } from '@heroicons/react/outline';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
+import { AddMovie, Modal, RedButton } from 'components';
 const Movies = () => {
+  const [openAddMovieModal, setOpenAddMovieModal] = useState(false);
   return (
     <>
       <div className='flex justify-between text-white mb-5'>
         <p>My list of movies (Total 25)</p>
-        <p>Search</p>
+        <div className='flex items-center'>
+          <p>Search</p>
+          <RedButton
+            onClick={() => setOpenAddMovieModal(true)}
+            className='ml-3'
+            name='Add movie'
+          />
+        </div>
       </div>
       <div className='grid grid-cols-3 gap-5'>
         <div>
@@ -35,6 +44,11 @@ const Movies = () => {
           </div>
         </div>
       </div>
+      {openAddMovieModal && (
+        <Modal open={openAddMovieModal} setOpen={setOpenAddMovieModal}>
+          <AddMovie />
+        </Modal>
+      )}
     </>
   );
 };

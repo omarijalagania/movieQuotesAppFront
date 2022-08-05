@@ -4,7 +4,7 @@ import { VideoCameraIcon } from '@heroicons/react/outline';
 import Link from 'next/link';
 const FeedProfile = () => {
   return (
-    <div className='pt-6 pl-10'>
+    <div className='pt-8 pl-10'>
       <div className='flex flex-col space-y-7'>
         <div className='flex'>
           <div className='w-10 h-10 rounded-full bg-red-500' />

@@ -9,13 +9,16 @@ const Input: React.FC<InputProps> = ({
   className,
   id,
   value,
+  isLabel,
 }) => {
   return (
     <div className='flex my-2 flex-col'>
-      <label className='text-white mb-3' htmlFor={id}>
-        {label}
-        <span className='text-red-700 ml-1'>*</span>
-      </label>
+      {isLabel && (
+        <label className='text-white mb-3' htmlFor={id}>
+          {label}
+          <span className='text-red-700 ml-1'>*</span>
+        </label>
+      )}
       <input
         value={value}
         id={id}

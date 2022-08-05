@@ -25,7 +25,7 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
               : 'md:col-span-3'
           } `}
         >
-          <div className='flex flex-col justify-center pt-6 p-10 overflow-hidden'>
+          <div className='flex flex-col justify-center pt-8 p-10 overflow-hidden'>
             {children}
           </div>
         </div>

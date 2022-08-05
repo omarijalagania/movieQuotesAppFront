@@ -45,7 +45,7 @@ const Header = () => {
   return (
     <div
       className={`fixed top-0 z-50 flex text-white w-full items-center ${
-        router.pathname.endsWith('/feed') ? 'bg-headerBg' : 'bg-black'
+        router.pathname.includes('/feed') ? 'bg-headerBg' : 'bg-black'
       } justify-between py-5 px-10`}
     >
       <div className='text-primaryGold uppercase'>{t('quotes')}</div>
@@ -94,7 +94,7 @@ const Header = () => {
             )}
 
             {(width as number) < 768 &&
-            router.pathname.endsWith('/feed') ? null : (
+            router.pathname.includes('/feed') ? null : (
               <Button onClick={() => setIsOpenLogin(true)} name={t('login')} />
             )}
           </>
