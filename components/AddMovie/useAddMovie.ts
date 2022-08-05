@@ -8,8 +8,7 @@ export const useAddMovie = () => {
   const { t } = useTranslate();
   const formik = useFormik({
     initialValues: getMovieFormInitialValue(),
-    onSubmit: async (values) => {
-      console.log(values);
+    onSubmit: async () => {
       try {
       } catch (error) {
         throw error;
