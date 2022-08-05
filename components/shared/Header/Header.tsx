@@ -14,14 +14,13 @@ import {
   LangToggler,
 } from 'components';
 import { useSession, signOut } from 'next-auth/react';
-import { useMediaSize } from 'hooks';
+
 import { Menu, Transition } from '@headlessui/react';
 import { ChevronDownIcon } from '@heroicons/react/solid';
 import { BellIcon, MenuIcon } from '@heroicons/react/outline';
 
 const Header = () => {
   const { data: session } = useSession();
-  const { width } = useMediaSize();
 
   const {
     isOpen,
@@ -40,6 +39,7 @@ const Header = () => {
     setOpenSuccessPasswordChangeModal,
     t,
     router,
+    width,
   } = useHeader();
 
   return (
