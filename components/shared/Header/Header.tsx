@@ -17,7 +17,7 @@ import { useSession, signOut } from 'next-auth/react';
 import { useMediaSize } from 'hooks';
 import { Menu, Transition } from '@headlessui/react';
 import { ChevronDownIcon } from '@heroicons/react/solid';
-import { BellIcon } from '@heroicons/react/outline';
+import { BellIcon, MenuIcon } from '@heroicons/react/outline';
 
 const Header = () => {
   const { data: session } = useSession();
@@ -48,9 +48,13 @@ const Header = () => {
         router.pathname.includes('/feed') ? 'bg-headerBg' : 'bg-black'
       } justify-between py-5 px-10`}
     >
-      <div className='text-primaryGold uppercase'>{t('quotes')}</div>
+      {(width as number) < 768 && router.pathname.includes('/feed') ? (
+        <MenuIcon className='cursor-pointer w-5 h-5' />
+      ) : (
+        <div className='text-primaryGold uppercase'>{t('quotes')}</div>
+      )}
       <div className='flex items-center justify-center space-x-5'>
-        {router.pathname.startsWith('/feed') ? (
+        {router.pathname.includes('/feed') ? (
           <div className='relative'>
             <BellIcon className='w-6 h-6' />
             <div className='w-4 h-4 absolute -right-1 -top-1 rounded-full bg-red-500 flex justify-center items-center text-xs'>
@@ -83,7 +87,7 @@ const Header = () => {
         </Menu>
         {!session ? (
           <>
-            {router.pathname.endsWith('/feed') ? (
+            {router.pathname.includes('/feed') ? (
               ''
             ) : (
               <RedButton
