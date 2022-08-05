@@ -1,5 +1,5 @@
 type LayoutProps = {
-  children: React.ReactNode;
+  children: PropsWithChildren;
 };
 
 export default LayoutProps;
