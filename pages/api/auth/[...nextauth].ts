@@ -48,7 +48,8 @@ export default NextAuth({
       return token;
     },
     session: async ({ session, token }) => {
-      session.user = token.user as User;
+      //@ts-ignore
+      session.user = token.user;
       return session;
     },
 

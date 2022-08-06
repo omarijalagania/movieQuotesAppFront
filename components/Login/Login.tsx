@@ -15,6 +15,7 @@ const Login: React.FC<LoginProps> = ({ setOpenRecoverModal }) => {
       <form onSubmit={formik.handleSubmit} className='flex flex-col'>
         <div className='relative'>
           <Input
+            isLabel={true}
             id='email'
             type='email'
             placeholder={t('emailPlaceholder')}
@@ -48,6 +49,7 @@ const Login: React.FC<LoginProps> = ({ setOpenRecoverModal }) => {
         )}
         <div className='relative'>
           <Input
+            isLabel={true}
             id='password'
             type='password'
             placeholder={t('passwordPlaceholder')}
@@ -89,12 +91,17 @@ const Login: React.FC<LoginProps> = ({ setOpenRecoverModal }) => {
           </p>
         </div>
         <RedButton className='w-96 text-white h-10 my-5' name='Sign in' />
-        <Button
-          onClick={() => signIn()}
-          className='w-96 h-10 mt-2'
-          name={t('google')}
-        />
       </form>
+      <Button
+        onClick={() =>
+          signIn('google', {
+            redirect: true,
+            callbackUrl: '/feed',
+          })
+        }
+        className='w-96 h-10 mt-2'
+        name={t('google')}
+      />
     </div>
   );
 };

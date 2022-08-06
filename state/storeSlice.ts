@@ -7,6 +7,7 @@ const initialState: GlobalState = {
   passwordRecoveryResponse: {},
   newPasswordResponse: {},
   tokens: '',
+  userId: '',
 };
 
 export const storeSlice = createSlice({
@@ -28,6 +29,9 @@ export const storeSlice = createSlice({
     saveNewPasswordResponse: (state, action) => {
       state.newPasswordResponse = action.payload;
     },
+    saveUserId: (state, action) => {
+      state.userId = action.payload;
+    },
   },
 });
 
@@ -37,6 +41,7 @@ export const {
   savePasswordRecoveryResponse,
   saveToken,
   saveNewPasswordResponse,
+  saveUserId,
 } = storeSlice.actions;
 
 export default storeSlice.reducer;

@@ -2,8 +2,9 @@ import React from 'react';
 import { XIcon } from '@heroicons/react/solid';
 import { Input, RedButton, useAddMovie } from 'components';
 import { CameraIcon } from '@heroicons/react/outline';
+
 const AddMovie = () => {
-  const { formik } = useAddMovie();
+  const { formik, setFile } = useAddMovie();
 
   return (
     <div className='w-full'>
@@ -17,7 +18,11 @@ const AddMovie = () => {
           <p className='ml-3 text-white'>Sirius Black</p>
         </div>
       </div>
-      <form onSubmit={formik.handleSubmit} className='mt-5'>
+      <form
+        onSubmit={formik.handleSubmit}
+        className='mt-5'
+        encType='multipart/form-data'
+      >
         <div className='relative mb-3'>
           <Input
             className='!rounded-none py-1 !border-[1px] !text-sm border-gray-400 bg-darkBlue text-white !w-[500px] !placeholder-white'
@@ -76,7 +81,7 @@ const AddMovie = () => {
             type='text'
             id='directorGe'
             name='directorGe'
-            placeholder='Director'
+            placeholder='რეჟისორი'
             onChange={formik.handleChange}
           />
           <p className='text-sm text-gray-400 absolute top-[20%] right-2'>
@@ -86,7 +91,7 @@ const AddMovie = () => {
         <div className='relative mb-1'>
           <textarea
             onChange={formik.handleChange}
-            className='border-[1px] text-sm border-gray-400 bg-darkBlue text-white w-[500px] placeholder-white'
+            className='border-[1px] p-1 text-sm border-gray-400 bg-darkBlue text-white w-[500px] placeholder-white'
             name='descriptionEn'
             placeholder='Movie description'
           />
@@ -97,9 +102,9 @@ const AddMovie = () => {
         <div className='relative mb-1'>
           <textarea
             onChange={formik.handleChange}
-            className='border-[1px] text-sm border-gray-400 bg-darkBlue text-white w-[500px] placeholder-white'
+            className='border-[1px] p-1 text-sm border-gray-400 bg-darkBlue text-white w-[500px] placeholder-white'
             name='descriptionGe'
-            placeholder='Movie description'
+            placeholder='ფილმის აღწერა'
           />
           <p className='text-sm text-gray-400 absolute top-[20%] right-2'>
             ქართ
@@ -118,11 +123,18 @@ const AddMovie = () => {
               </span>
             </span>
             <input
-              onChange={formik.handleChange}
+              onChange={(event) => {
+                const target = event.currentTarget as HTMLInputElement;
+                if (target.files) {
+                  console.log(target.files[0]);
+                  setFile(target.files[0]);
+                }
+              }}
               type='file'
-              id='file'
-              name='fileUpload'
+              id='poster'
+              name='poster'
               className='hidden'
+              accept='.png, .jpg, .jpeg'
             />
           </label>
         </div>

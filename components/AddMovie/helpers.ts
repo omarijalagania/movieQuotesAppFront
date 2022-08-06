@@ -9,8 +9,8 @@ export const getMovieFormInitialValue = () => {
 
   let descriptionEn = '';
   let descriptionGe = '';
-
-  let fileUpload = '';
+  let userId = '';
+  let poster = '';
 
   return {
     movieNameEn,
@@ -20,6 +20,7 @@ export const getMovieFormInitialValue = () => {
     directorGe,
     descriptionEn,
     descriptionGe,
-    fileUpload,
+    poster,
+    userId,
   };
 };

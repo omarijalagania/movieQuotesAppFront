@@ -15,6 +15,7 @@ export const googleLoginHandler = async (data: {
   email: string | null | undefined;
 }) => {
   const response = await request.post(`/user/register/google`, data);
+
   return response;
 };
 
@@ -42,5 +43,29 @@ export const newUserPasswordHandler = async (data: {
   token: string | null | undefined;
 }) => {
   const response = await request.post(`/user/password/new`, data);
+  return response;
+};
+
+export const addMovieHandler = async (data: {
+  movieNameEn: string;
+  movieNameGe: string;
+  genre: string;
+  directorEn: string;
+  directorGe: string;
+  descriptionEn: string;
+  descriptionGe: string;
+  poster: string;
+  userId: string;
+}) => {
+  const response = await request.post(`/movie/add`, data, {
+    headers: {
+      'Content-Type': 'multipart/form-data',
+    },
+  });
+  return response;
+};
+
+export const getUserHandler = async (data: { email: string | undefined }) => {
+  const response = await request.post(`/user/get`, data);
   return response;
 };
