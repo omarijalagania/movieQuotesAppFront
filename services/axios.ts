@@ -69,3 +69,8 @@ export const getUserHandler = async (data: { email: string | undefined }) => {
   const response = await request.post(`/user/get`, data);
   return response;
 };
+
+export const getAllMoviesHandler = async () => {
+  const response = await request.get(`/movie/all`);
+  return response;
+};

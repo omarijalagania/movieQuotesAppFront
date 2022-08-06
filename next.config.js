@@ -13,6 +13,9 @@ const nextConfig = {
 
   reactStrictMode: true,
   i18n,
+  images: {
+    domains: ['localhost'],
+  },
 };
 
 module.exports = nextConfig;
