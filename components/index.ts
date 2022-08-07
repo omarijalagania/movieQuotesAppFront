@@ -15,3 +15,4 @@ export * from './Post';
 export * from './Comment';
 export * from './WriteComment';
 export * from './AddMovie';
+export * from './QuoteMovieDetails';

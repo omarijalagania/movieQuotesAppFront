@@ -5,6 +5,7 @@ import { RootState, saveSingleMovie } from 'state';
 import { useDispatch, useSelector } from 'react-redux';
 import { backUrl } from 'helpers';
 import Image from 'next/image';
+import { QuoteMovieDetails, RedButton } from 'components';
 
 const MovieDetails = () => {
   const dispatch = useDispatch();
@@ -33,6 +34,11 @@ const MovieDetails = () => {
           alt={movie.movieNameEn}
         />
       </div>
+      <div className='flex mt-7 items-center'>
+        <p className='border-r-[1px] border-gray-500 px-3'>Quotes (total 7)</p>
+        <RedButton className='ml-3' name='Add quote' />
+      </div>
+      <QuoteMovieDetails />
     </div>
   );
 };
