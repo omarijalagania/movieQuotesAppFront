@@ -74,3 +74,10 @@ export const getAllMoviesHandler = async () => {
   const response = await request.get(`/movie/all`);
   return response;
 };
+
+export const getSingleMovieHandler = async (
+  id: string | string[] | undefined
+) => {
+  const response = await request.get(`/movie/${id}`);
+  return response;
+};

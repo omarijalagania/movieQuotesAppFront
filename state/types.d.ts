@@ -5,4 +5,5 @@ export interface GlobalState {
   newPasswordResponse: NewPasswordResponse;
   tokens: string;
   userId: string;
+  singleMovie: SingleMovie;
 }

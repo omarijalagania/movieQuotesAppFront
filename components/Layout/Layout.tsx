@@ -3,6 +3,7 @@ import { FeedProfile, LayoutProps, Header } from 'components';
 import { useTranslate } from 'hooks';
 const Layout: React.FC<LayoutProps> = ({ children }) => {
   const { router } = useTranslate();
+
   return (
     <>
       <div className='mb-[58px]'>
@@ -10,7 +11,7 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
       </div>
       <div
         className={`grid grid-cols-1 overflow-hidden ${
-          router.pathname.startsWith('/feed/movies') ? 'md:grid-cols-4' : ''
+          router.pathname.includes('/feed/movies') ? 'md:grid-cols-4' : ''
         } md:grid-cols-5 bg-gradient-to-r from-bg1 to-bg2 grid-rows-1 w-auto`}
       >
         <aside className='hidden h-screen md:block md:col-span-1'>
@@ -20,7 +21,8 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
         </aside>
         <div
           className={`h-screen  ${
-            router.pathname.startsWith('/feed/movies')
+            router.pathname.includes('/feed/movies') &&
+            !router.pathname.includes('/feed/movies/[id]')
               ? 'md:col-span-4'
               : 'md:col-span-3'
           } `}
@@ -29,11 +31,12 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
             {children}
           </div>
         </div>
-        {router.pathname.startsWith('/feed/movies') ? (
+        {router.pathname.includes('/feed/movies') &&
+        !router.pathname.includes('/feed/movies/[id]') ? (
           ''
         ) : (
-          <aside className='hidden md:block h-screen'>
-            <div className='text-white pt-6 pl-10'></div>
+          <aside className='hidden md:block  h-screen'>
+            <div className='text-white pt-6 pl-10'>Test</div>
           </aside>
         )}
       </div>

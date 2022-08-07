@@ -4,10 +4,12 @@ import { ChatIcon } from '@heroicons/react/outline';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { AddMovie, Modal, RedButton } from 'components';
 import { getAllMoviesHandler } from 'services';
+import { backUrl } from 'helpers';
+import { useTranslate } from 'hooks';
 const Movies = () => {
   const [movie, setMovie] = useState([]);
   const [openAddMovieModal, setOpenAddMovieModal] = useState(false);
-  const backUrl = 'http://localhost:4242';
+  const { router } = useTranslate();
   useEffect(() => {
     const getAllMovies = async () => {
       const response = await getAllMoviesHandler();
@@ -20,7 +22,10 @@ const Movies = () => {
   const renderMovies = () => {
     return movie.map(
       (item: { poster: string; movieNameEn: string; _id: string }) => (
-        <div key={item._id}>
+        <div
+          onClick={() => router.push(`/feed/movies/${item._id}`)}
+          key={item._id}
+        >
           <Image
             className='rounded-lg object-cover'
             width={450}
