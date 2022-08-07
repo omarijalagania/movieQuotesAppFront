@@ -1,5 +1,5 @@
 import React from 'react';
-import { FeedProfile, LayoutProps, Header } from 'components';
+import { FeedProfile, LayoutProps, Header, MovieDetailsSide } from 'components';
 import { useTranslate } from 'hooks';
 const Layout: React.FC<LayoutProps> = ({ children }) => {
   const { router } = useTranslate();
@@ -35,8 +35,12 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
         !router.pathname.includes('/feed/movies/[id]') ? (
           ''
         ) : (
-          <aside className='hidden md:block  h-screen'>
-            <div className='text-white pt-6 pl-10'>Test</div>
+          <aside className='hidden md:block h-screen'>
+            <div className='text-white pt-6 pl-10'>
+              {router.pathname.includes('/feed/movies/[id]') && (
+                <MovieDetailsSide />
+              )}
+            </div>
           </aside>
         )}
       </div>

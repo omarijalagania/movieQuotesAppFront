@@ -23,12 +23,12 @@ const MovieDetails = () => {
   }, [dispatch, id]);
 
   return (
-    <div className='text-white'>
+    <div className='text-white w-[80%]'>
       <h3>Movie description</h3>
       <div className='mt-3 w-full'>
         <Image
           className='rounded-lg object-cover'
-          width={600}
+          width={550}
           height={500}
           src={`${backUrl}/${movie.poster}`}
           alt={movie.movieNameEn}
