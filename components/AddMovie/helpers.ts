@@ -2,7 +2,7 @@ export const getMovieFormInitialValue = () => {
   let movieNameEn = '';
   let movieNameGe = '';
 
-  let genre = '';
+  let genre: string[] = [];
 
   let directorEn = '';
   let directorGe = '';

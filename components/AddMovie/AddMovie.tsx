@@ -60,7 +60,6 @@ const AddMovie = () => {
           placeholder='Genre'
         />
 
-        {/* <Select closeMenuOnSelect={false} isMulti options={genres} /> */}
         <div className='relative mb-3'>
           <Input
             className='!rounded-none py-1 !border-[1px] !text-sm border-gray-400 bg-darkBlue text-white !w-[500px] !placeholder-white'
@@ -127,7 +126,6 @@ const AddMovie = () => {
               onChange={(event) => {
                 const target = event.currentTarget as HTMLInputElement;
                 if (target.files) {
-                  console.log(target.files[0]);
                   setFile(target.files[0]);
                 }
               }}

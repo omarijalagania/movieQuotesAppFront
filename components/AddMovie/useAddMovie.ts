@@ -1,6 +1,7 @@
 import { useFormik } from 'formik';
 import { getMovieFormInitialValue, JwDecode } from 'components';
 import { movieSchema } from 'schema';
+import { toast } from 'react-toastify';
 import {
   addMovieHandler,
   getUserHandler,
@@ -9,23 +10,26 @@ import {
 import { useTranslate } from 'hooks';
 import { useEffect, useState } from 'react';
 import { useSession } from 'next-auth/react';
+import { useDispatch } from 'react-redux';
+import { saveAddMovie } from 'state';
 import jwtDecode from 'jwt-decode';
 
 export const useAddMovie = () => {
   const [file, setFile] = useState<File | null>(null);
   const [userId, setUserId] = useState<string>('');
   const [genres, setGenres] = useState([]);
-  const [selectedGenres, setSelectedGenres] = useState([]);
+  const [selectedGenres, setSelectedGenres] = useState<string[]>([]);
   const { data: session } = useSession();
+  const dispatch = useDispatch();
 
   const handleChange = (selectedOption: any) => {
-    const selectedGenres = selectedOption.map(
+    const selectedGenresVal = selectedOption.map(
       (option: { value: string; label: string }) => ({
         genre: option.value,
         label: option.label,
       })
     );
-    setSelectedGenres(selectedGenres);
+    setSelectedGenres(selectedGenresVal);
   };
 
   const newGenre = genres.map((genre: { genre: string; label: string }) => ({
@@ -42,7 +46,9 @@ export const useAddMovie = () => {
         try {
           const response = await getUserHandler(data);
           setUserId(response.data._id);
-        } catch (error) {}
+        } catch (error) {
+          toast.error('Server Error');
+        }
       } else if (session?.user.user.token) {
         const decoded = jwtDecode<JwDecode>(session?.user.user.token);
         const email = decoded.name;
@@ -52,7 +58,9 @@ export const useAddMovie = () => {
         try {
           const response = await getUserHandler(data);
           setUserId(response.data._id);
-        } catch (error) {}
+        } catch (error) {
+          toast.error('Server Error');
+        }
       }
     };
     getUserEmail();
@@ -63,7 +71,9 @@ export const useAddMovie = () => {
       try {
         const response = await getMovieGenresHandler();
         setGenres(response.data);
-      } catch (error) {}
+      } catch (error) {
+        toast.error('Server Error');
+      }
     };
     getGenres();
   }, []);
@@ -76,18 +86,25 @@ export const useAddMovie = () => {
       const formData = new FormData();
       formData.append('movieNameGe', values.movieNameGe);
       formData.append('movieNameEn', values.movieNameEn);
-      formData.append('genre', selectedGenres as any);
+      formData.append('genre', JSON.stringify(selectedGenres));
       formData.append('directorGe', values.directorGe);
       formData.append('directorEn', values.directorEn);
       formData.append('descriptionGe', values.descriptionGe);
       formData.append('descriptionEn', values.descriptionEn);
       formData.append('poster', file as File);
       formData.append('userId', userId);
+
       try {
         const response = await addMovieHandler(formData as any);
-        console.log(response);
+        dispatch(saveAddMovie(response));
+        if (response.status === 422) {
+          toast.error('Error');
+        }
+        if (response.status === 200) {
+          toast.success('Movie added');
+        }
       } catch (error) {
-        throw error;
+        toast.error('Error');
       }
     },
 

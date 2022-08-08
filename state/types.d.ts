@@ -6,4 +6,5 @@ export interface GlobalState {
   tokens: string;
   userId: string;
   singleMovie: SingleMovie;
+  addMovie: AddMovie;
 }

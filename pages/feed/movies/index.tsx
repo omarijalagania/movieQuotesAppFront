@@ -6,18 +6,25 @@ import { AddMovie, Modal, RedButton } from 'components';
 import { getAllMoviesHandler } from 'services';
 import { backUrl } from 'helpers';
 import { useTranslate } from 'hooks';
+import { useSelector } from 'react-redux';
+import { RootState } from 'state';
 const Movies = () => {
   const [movie, setMovie] = useState([]);
   const [openAddMovieModal, setOpenAddMovieModal] = useState(false);
+  const addMovieResponse = useSelector(
+    (state: RootState) => state.quotes.addMovie
+  );
   const { router } = useTranslate();
   useEffect(() => {
     const getAllMovies = async () => {
       const response = await getAllMoviesHandler();
       setMovie(response.data);
     };
-
+    if (addMovieResponse.status === 200) {
+      setOpenAddMovieModal(false);
+    }
     getAllMovies();
-  }, []);
+  }, [addMovieResponse.status]);
 
   const renderMovies = () => {
     return movie.map(

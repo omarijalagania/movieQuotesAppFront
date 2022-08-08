@@ -14,11 +14,13 @@ const MovieDetails = () => {
   const movie = useSelector((state: RootState) => state.quotes.singleMovie);
   useEffect(() => {
     try {
-      const getOneMovie = async () => {
-        const response = await getSingleMovieHandler(id);
-        dispatch(saveSingleMovie(response.data));
-      };
-      getOneMovie();
+      if (id) {
+        const getOneMovie = async () => {
+          const response = await getSingleMovieHandler(id);
+          dispatch(saveSingleMovie(response.data));
+        };
+        getOneMovie();
+      }
     } catch (error) {}
   }, [dispatch, id]);
 
@@ -28,7 +30,7 @@ const MovieDetails = () => {
       <div className='mt-3 w-full'>
         <Image
           className='rounded-lg object-cover'
-          width={850}
+          width={950}
           height={500}
           src={`${backUrl}/${movie.poster}`}
           alt={movie.movieNameEn}

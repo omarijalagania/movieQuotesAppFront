@@ -9,6 +9,7 @@ const initialState: GlobalState = {
   tokens: '',
   userId: '',
   singleMovie: {},
+  addMovie: {},
 };
 
 export const storeSlice = createSlice({
@@ -36,6 +37,9 @@ export const storeSlice = createSlice({
     saveSingleMovie: (state, action) => {
       state.singleMovie = action.payload;
     },
+    saveAddMovie: (state, action) => {
+      state.addMovie = action.payload;
+    },
   },
 });
 
@@ -47,6 +51,7 @@ export const {
   saveNewPasswordResponse,
   saveUserId,
   saveSingleMovie,
+  saveAddMovie,
 } = storeSlice.actions;
 
 export default storeSlice.reducer;
