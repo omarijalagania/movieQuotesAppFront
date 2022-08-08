@@ -81,3 +81,8 @@ export const getSingleMovieHandler = async (
   const response = await request.get(`/movie/${id}`);
   return response;
 };
+
+export const getMovieGenresHandler = async () => {
+  const response = await request.get(`/movies/genres`);
+  return response;
+};

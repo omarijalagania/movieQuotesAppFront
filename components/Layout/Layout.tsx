@@ -11,7 +11,9 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
       </div>
       <div
         className={`grid grid-cols-1 overflow-hidden ${
-          router.pathname.includes('/feed/movies') ? 'md:grid-cols-4' : ''
+          router.pathname.includes('/feed/movies/[id]')
+            ? 'md:grid-cols-6'
+            : 'md:grid-cols-4'
         } md:grid-cols-5 bg-gradient-to-r from-bg1 to-bg2 grid-rows-1 w-auto`}
       >
         <aside className='hidden h-screen md:block md:col-span-1'>
@@ -35,8 +37,14 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
         !router.pathname.includes('/feed/movies/[id]') ? (
           ''
         ) : (
-          <aside className='hidden md:block h-screen'>
-            <div className='text-white pt-6 pl-10'>
+          <aside
+            className={`hidden ${
+              router.pathname.includes('/feed/movies/[id]')
+                ? 'col-span-2'
+                : 'col-span-1'
+            }  md:block h-screen`}
+          >
+            <div className='text-white pt-6 px-10'>
               {router.pathname.includes('/feed/movies/[id]') && (
                 <MovieDetailsSide />
               )}

@@ -1,10 +1,11 @@
 import React from 'react';
 import { XIcon } from '@heroicons/react/solid';
-import { Input, RedButton, useAddMovie } from 'components';
+import Select from 'react-select';
+import { Input, RedButton, useAddMovie, customStyles } from 'components';
 import { CameraIcon } from '@heroicons/react/outline';
 
 const AddMovie = () => {
-  const { formik, setFile } = useAddMovie();
+  const { formik, setFile, newGenre, handleChange } = useAddMovie();
 
   return (
     <div className='w-full'>
@@ -51,15 +52,15 @@ const AddMovie = () => {
             ქართ
           </p>
         </div>
-        <Input
-          className='!rounded-none py-1 !border-[1px] !text-sm border-gray-400 bg-darkBlue text-white !w-[500px] !placeholder-white'
-          isLabel={false}
-          type='text'
-          id='genre'
-          name='genre'
+        <Select
+          styles={customStyles}
+          onChange={handleChange}
+          isMulti
+          options={newGenre}
           placeholder='Genre'
-          onChange={formik.handleChange}
         />
+
+        {/* <Select closeMenuOnSelect={false} isMulti options={genres} /> */}
         <div className='relative mb-3'>
           <Input
             className='!rounded-none py-1 !border-[1px] !text-sm border-gray-400 bg-darkBlue text-white !w-[500px] !placeholder-white'

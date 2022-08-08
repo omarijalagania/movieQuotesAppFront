@@ -8,7 +8,7 @@ const movieSchema = Yup.object().shape({
   directorGe: Yup.string().notRequired(),
   descriptionEn: Yup.string().notRequired(),
   descriptionGe: Yup.string().notRequired(),
-  poster: Yup.string().notRequired(),
+  poster: Yup.array().notRequired(),
   userId: Yup.string().notRequired(),
 });
 

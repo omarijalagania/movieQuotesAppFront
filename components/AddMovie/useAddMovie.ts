@@ -1,7 +1,11 @@
 import { useFormik } from 'formik';
 import { getMovieFormInitialValue, JwDecode } from 'components';
 import { movieSchema } from 'schema';
-import { addMovieHandler, getUserHandler } from 'services';
+import {
+  addMovieHandler,
+  getUserHandler,
+  getMovieGenresHandler,
+} from 'services';
 import { useTranslate } from 'hooks';
 import { useEffect, useState } from 'react';
 import { useSession } from 'next-auth/react';
@@ -10,7 +14,24 @@ import jwtDecode from 'jwt-decode';
 export const useAddMovie = () => {
   const [file, setFile] = useState<File | null>(null);
   const [userId, setUserId] = useState<string>('');
+  const [genres, setGenres] = useState([]);
+  const [selectedGenres, setSelectedGenres] = useState([]);
   const { data: session } = useSession();
+
+  const handleChange = (selectedOption: any) => {
+    const selectedGenres = selectedOption.map(
+      (option: { value: string; label: string }) => ({
+        genre: option.value,
+        label: option.label,
+      })
+    );
+    setSelectedGenres(selectedGenres);
+  };
+
+  const newGenre = genres.map((genre: { genre: string; label: string }) => ({
+    value: genre.genre,
+    label: genre.label,
+  }));
 
   useEffect(() => {
     const getUserEmail = async () => {
@@ -37,6 +58,16 @@ export const useAddMovie = () => {
     getUserEmail();
   }, [session]);
 
+  useEffect(() => {
+    const getGenres = async () => {
+      try {
+        const response = await getMovieGenresHandler();
+        setGenres(response.data);
+      } catch (error) {}
+    };
+    getGenres();
+  }, []);
+
   const { t } = useTranslate();
   const formik = useFormik({
     initialValues: getMovieFormInitialValue(),
@@ -45,7 +76,7 @@ export const useAddMovie = () => {
       const formData = new FormData();
       formData.append('movieNameGe', values.movieNameGe);
       formData.append('movieNameEn', values.movieNameEn);
-      formData.append('genre', values.genre);
+      formData.append('genre', selectedGenres as any);
       formData.append('directorGe', values.directorGe);
       formData.append('directorEn', values.directorEn);
       formData.append('descriptionGe', values.descriptionGe);
@@ -63,5 +94,5 @@ export const useAddMovie = () => {
     validationSchema: movieSchema,
   });
 
-  return { formik, t, setFile };
+  return { formik, t, setFile, newGenre, handleChange, selectedGenres };
 };

@@ -24,3 +24,17 @@ export const getMovieFormInitialValue = () => {
     userId,
   };
 };
+
+export const customStyles = {
+  dropdownIndicator: () => ({
+    display: 'none',
+  }),
+  input: (provided: any) => ({
+    ...provided,
+    backgroundColor: '#11101A',
+  }),
+  control: (provided: any) => ({
+    ...provided,
+    backgroundColor: '#11101A',
+  }),
+};
