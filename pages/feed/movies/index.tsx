@@ -8,23 +8,28 @@ import { backUrl } from 'helpers';
 import { useTranslate } from 'hooks';
 import { useSelector } from 'react-redux';
 import { RootState } from 'state';
+import { useHeader } from 'components';
+
 const Movies = () => {
   const [movie, setMovie] = useState([]);
   const [openAddMovieModal, setOpenAddMovieModal] = useState(false);
   const addMovieResponse = useSelector(
     (state: RootState) => state.quotes.addMovie
   );
+  const { userId } = useHeader();
+
+  console.log(userId);
   const { router } = useTranslate();
   useEffect(() => {
     const getAllMovies = async () => {
-      const response = await getAllMoviesHandler();
+      const response = await getAllMoviesHandler(userId);
       setMovie(response.data);
     };
     if (addMovieResponse.status === 200) {
       setOpenAddMovieModal(false);
     }
     getAllMovies();
-  }, [addMovieResponse.status]);
+  }, [addMovieResponse.status, userId]);
 
   const renderMovies = () => {
     return movie.map(

@@ -1,25 +1,19 @@
 import { useFormik } from 'formik';
-import { getMovieFormInitialValue, JwDecode } from 'components';
+import { getMovieFormInitialValue, useHeader } from 'components';
 import { movieSchema } from 'schema';
 import { toast } from 'react-toastify';
-import {
-  addMovieHandler,
-  getUserHandler,
-  getMovieGenresHandler,
-} from 'services';
+import { addMovieHandler, getMovieGenresHandler } from 'services';
 import { useTranslate } from 'hooks';
 import { useEffect, useState } from 'react';
-import { useSession } from 'next-auth/react';
 import { useDispatch } from 'react-redux';
 import { saveAddMovie } from 'state';
-import jwtDecode from 'jwt-decode';
 
 export const useAddMovie = () => {
   const [file, setFile] = useState<File | null>(null);
-  const [userId, setUserId] = useState<string>('');
+  const { userId } = useHeader();
   const [genres, setGenres] = useState([]);
   const [selectedGenres, setSelectedGenres] = useState<string[]>([]);
-  const { data: session } = useSession();
+
   const dispatch = useDispatch();
 
   const handleChange = (selectedOption: any) => {
@@ -36,35 +30,6 @@ export const useAddMovie = () => {
     value: genre.genre,
     label: genre.label,
   }));
-
-  useEffect(() => {
-    const getUserEmail = async () => {
-      if (session?.user.email) {
-        const data = {
-          email: session?.user.email,
-        };
-        try {
-          const response = await getUserHandler(data);
-          setUserId(response.data._id);
-        } catch (error) {
-          toast.error('Server Error');
-        }
-      } else if (session?.user.user.token) {
-        const decoded = jwtDecode<JwDecode>(session?.user.user.token);
-        const email = decoded.name;
-        const data = {
-          email: email,
-        };
-        try {
-          const response = await getUserHandler(data);
-          setUserId(response.data._id);
-        } catch (error) {
-          toast.error('Server Error');
-        }
-      }
-    };
-    getUserEmail();
-  }, [session]);
 
   useEffect(() => {
     const getGenres = async () => {

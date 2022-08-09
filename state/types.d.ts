@@ -7,4 +7,5 @@ export interface GlobalState {
   userId: string;
   singleMovie: SingleMovie;
   addMovie: AddMovie;
+  isDelete: boolean;
 }

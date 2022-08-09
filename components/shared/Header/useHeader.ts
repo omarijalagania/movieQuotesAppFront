@@ -2,6 +2,11 @@ import { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { RootState } from 'state';
 import { useTranslate, useMediaSize } from 'hooks';
+import { useSession } from 'next-auth/react';
+import { getUserHandler } from 'services';
+import jwtDecode from 'jwt-decode';
+import { JwDecode } from 'components/AddMovie';
+import { toast } from 'react-toastify';
 
 export const useHeader = () => {
   const {
@@ -12,6 +17,7 @@ export const useHeader = () => {
   } = useSelector((state: RootState) => state.quotes);
   const { t, router } = useTranslate();
   const { width } = useMediaSize();
+  const [userId, setUserId] = useState<string>('');
   const [isOpen, setIsOpen] = useState(false);
   const [isOpenLogin, setIsOpenLogin] = useState(false);
   const [isOpenThanks, setIsOpenThanks] = useState(false);
@@ -20,6 +26,7 @@ export const useHeader = () => {
   const [openNewPasswordModal, setOpenNewPasswordModal] = useState(false);
   const [openSuccessPasswordChangeModal, setOpenSuccessPasswordChangeModal] =
     useState(false);
+  const { data: session } = useSession();
 
   useEffect(() => {
     if (registerResponse.status === 200) {
@@ -55,6 +62,37 @@ export const useHeader = () => {
     }
   }, [newPasswordResponse]);
 
+  useEffect(() => {
+    const getUserEmail = async () => {
+      if (session?.user.email) {
+        const data = {
+          email: session?.user.email,
+        };
+        try {
+          const response = await getUserHandler(data);
+          localStorage.setItem('userId', response.data._id);
+          setUserId(response.data._id);
+        } catch (error) {
+          toast.error('Server Error');
+        }
+      } else if (session?.user.user.token) {
+        const decoded = jwtDecode<JwDecode>(session?.user.user.token);
+        const email = decoded.name;
+        const data = {
+          email: email,
+        };
+        try {
+          const response = await getUserHandler(data);
+          localStorage.setItem('userId', response.data._id);
+          setUserId(response.data._id);
+        } catch (error) {
+          toast.error('Server Error');
+        }
+      }
+    };
+    getUserEmail();
+  }, [session]);
+
   return {
     isOpen,
     setIsOpen,
@@ -73,5 +111,6 @@ export const useHeader = () => {
     t,
     router,
     width,
+    userId,
   };
 };

@@ -70,19 +70,24 @@ export const getUserHandler = async (data: { email: string | undefined }) => {
   return response;
 };
 
-export const getAllMoviesHandler = async () => {
-  const response = await request.get(`/movie/all`);
+export const getAllMoviesHandler = async (userId: string | null) => {
+  const response = await request.get(`/my-movies/all/${userId}`);
   return response;
 };
 
 export const getSingleMovieHandler = async (
   id: string | string[] | undefined
 ) => {
-  const response = await request.get(`/movie/${id}`);
+  const response = await request.get(`/my-movies/${id}`);
   return response;
 };
 
 export const getMovieGenresHandler = async () => {
   const response = await request.get(`/movies/genres`);
+  return response;
+};
+
+export const deleteMovieHandler = async (id: string) => {
+  const response = await request.delete(`/my-movies/delete/${id}`);
   return response;
 };
