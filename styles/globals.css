@@ -27,8 +27,4 @@
   span[style^='box-sizing:border-box;display:inline-block'] {
     display: block !important;
   }
-
-  .select-placeholder-text {
-    color: white !important;
-  }
 }

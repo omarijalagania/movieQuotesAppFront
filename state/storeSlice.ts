@@ -10,7 +10,7 @@ const initialState: GlobalState = {
   userId: '',
   singleMovie: {},
   addMovie: {},
-  isDelete: false,
+  triggerDelete: false,
 };
 
 export const storeSlice = createSlice({
@@ -41,8 +41,8 @@ export const storeSlice = createSlice({
     saveAddMovie: (state, action) => {
       state.addMovie = action.payload;
     },
-    isDeleteDialog: (state, action) => {
-      state.isDelete = action.payload;
+    isTriggerDelete: (state, action) => {
+      state.triggerDelete = action.payload;
     },
   },
 });
@@ -56,7 +56,7 @@ export const {
   saveUserId,
   saveSingleMovie,
   saveAddMovie,
-  isDeleteDialog,
+  isTriggerDelete,
 } = storeSlice.actions;
 
 export default storeSlice.reducer;

@@ -12,7 +12,10 @@ export const editMovieFormInitialValue = (movie: {
   let movieNameEn = movie?.movieNameEn;
   let movieNameGe = movie?.movieNameGe;
 
-  let genre: string[] = movie?.genre;
+  let genre = movie?.genre.map((genre: any) => ({
+    genre: genre.genre,
+    label: genre.label,
+  }));
 
   let directorEn = movie?.directorEn;
   let directorGe = movie?.directorGe;
@@ -60,18 +63,4 @@ export const emptyMovieFormInitialValue = () => {
     poster,
     userId,
   };
-};
-
-export const customStyles = {
-  dropdownIndicator: () => ({
-    display: 'none',
-  }),
-  input: (provided: any) => ({
-    ...provided,
-    backgroundColor: '#11101A',
-  }),
-  control: (provided: any) => ({
-    ...provided,
-    backgroundColor: '#11101A',
-  }),
 };

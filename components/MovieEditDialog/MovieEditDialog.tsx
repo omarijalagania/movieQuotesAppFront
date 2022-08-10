@@ -24,8 +24,6 @@ const MovieEditDialog = () => {
     })
   );
 
-  console.log(formik.errors);
-
   return (
     <div className='w-full'>
       <div className='flex relative border-b-[1px] pb-2 border-gray-500'>

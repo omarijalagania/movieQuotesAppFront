@@ -17,5 +17,4 @@ export * from './WriteComment';
 export * from './AddMovie';
 export * from './QuoteMovieDetails';
 export * from './MovieDetailsSide';
-export * from './DeleteMovieDialog';
 export * from './MovieEditDialog';

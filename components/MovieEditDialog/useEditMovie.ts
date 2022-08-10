@@ -18,6 +18,7 @@ export const useEditMovie = () => {
   const [genres, setGenres] = useState([]);
   const [selectedGenres, setSelectedGenres] = useState<string[]>([]);
   const movie = useSelector((state: RootState) => state.quotes.singleMovie);
+  const { router } = useTranslate();
 
   const handleChange = (selectedOption: any) => {
     const selectedGenresVal = selectedOption.map(
@@ -57,7 +58,12 @@ export const useEditMovie = () => {
       const formData = new FormData();
       formData.append('movieNameGe', values.movieNameGe);
       formData.append('movieNameEn', values.movieNameEn);
-      formData.append('genre', JSON.stringify(selectedGenres));
+      formData.append(
+        'genre',
+        JSON.stringify(
+          selectedGenres.length > 0 ? selectedGenres : values.genre
+        )
+      );
       formData.append('directorGe', values.directorGe);
       formData.append('directorEn', values.directorEn);
       formData.append('descriptionGe', values.descriptionGe);
@@ -75,7 +81,9 @@ export const useEditMovie = () => {
           toast.error('Error');
         }
         if (response.status === 200) {
-          toast.success('Movie added');
+          toast.success('Movie edited');
+
+          router.push('/feed/movies');
         }
       } catch (error) {
         toast.error('Error');
