@@ -87,6 +87,11 @@ export const getMovieGenresHandler = async () => {
   return response;
 };
 
+export const updateMovieHandler = async (data: {}, id: string) => {
+  const response = await request.put(`/movie/update/${id}`, data);
+  return response;
+};
+
 export const deleteMovieHandler = async (id: string) => {
   const response = await request.delete(`/my-movies/delete/${id}`);
   return response;

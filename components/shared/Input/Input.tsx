@@ -10,6 +10,7 @@ const Input: React.FC<InputProps> = ({
   id,
   value,
   isLabel,
+  defaultValue,
 }) => {
   return (
     <div className='flex my-2 flex-col'>
@@ -21,6 +22,7 @@ const Input: React.FC<InputProps> = ({
       )}
       <input
         value={value}
+        defaultValue={defaultValue}
         id={id}
         className={`w-full md:w-96 border-2 p-2 rounded-md ${className}`}
         onChange={onChange}

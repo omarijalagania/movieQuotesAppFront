@@ -2,13 +2,12 @@ import React, { useEffect, useState } from 'react';
 import Image from 'next/image';
 import { ChatIcon } from '@heroicons/react/outline';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
-import { AddMovie, Modal, RedButton } from 'components';
+import { AddMovie, Modal, RedButton, useHeader } from 'components';
 import { getAllMoviesHandler } from 'services';
 import { backUrl } from 'helpers';
 import { useTranslate } from 'hooks';
 import { useSelector } from 'react-redux';
 import { RootState } from 'state';
-import { useHeader } from 'components';
 
 const Movies = () => {
   const [movie, setMovie] = useState([]);
@@ -18,7 +17,6 @@ const Movies = () => {
   );
   const { userId } = useHeader();
 
-  console.log(userId);
   const { router } = useTranslate();
   useEffect(() => {
     const getAllMovies = async () => {

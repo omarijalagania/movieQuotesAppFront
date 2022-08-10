@@ -14,7 +14,7 @@ const MovieDetails = () => {
   const movie = useSelector((state: RootState) => state.quotes.singleMovie);
   useEffect(() => {
     try {
-      if (id) {
+      if (id !== '') {
         const getOneMovie = async () => {
           const response = await getSingleMovieHandler(id);
           dispatch(saveSingleMovie(response.data));
