@@ -25,8 +25,6 @@ const MovieDetails = () => {
     } catch (error) {}
   }, [dispatch, id]);
 
-  console.log(id);
-
   return (
     <div className='text-white w-full'>
       <h3>Movie description</h3>
