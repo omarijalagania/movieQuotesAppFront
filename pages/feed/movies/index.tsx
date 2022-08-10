@@ -26,11 +26,13 @@ const Movies = () => {
     if (addMovieResponse.status === 200) {
       setOpenAddMovieModal(false);
     }
-    getAllMovies();
+    if (userId !== '') {
+      getAllMovies();
+    }
   }, [addMovieResponse.status, userId]);
 
   const renderMovies = () => {
-    return movie.map(
+    return movie?.map(
       (item: { poster: string; movieNameEn: string; _id: string }) => (
         <div
           onClick={() => router.push(`/feed/movies/${item._id}`)}

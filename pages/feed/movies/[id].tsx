@@ -11,18 +11,21 @@ const MovieDetails = () => {
   const dispatch = useDispatch();
   const { router } = useTranslate();
   const { id } = router.query;
+
   const movie = useSelector((state: RootState) => state.quotes.singleMovie);
   useEffect(() => {
     try {
+      const getOneMovie = async () => {
+        const response = await getSingleMovieHandler(id);
+        dispatch(saveSingleMovie(response.data));
+      };
       if (id !== '') {
-        const getOneMovie = async () => {
-          const response = await getSingleMovieHandler(id);
-          dispatch(saveSingleMovie(response.data));
-        };
         getOneMovie();
       }
     } catch (error) {}
   }, [dispatch, id]);
+
+  console.log(id);
 
   return (
     <div className='text-white w-full'>
@@ -32,8 +35,8 @@ const MovieDetails = () => {
           className='rounded-lg object-cover'
           width={950}
           height={500}
-          src={`${backUrl}/${movie.poster}`}
-          alt={movie.movieNameEn}
+          src={`${backUrl}/${movie?.poster}`}
+          alt={movie?.movieNameEn}
         />
       </div>
       <div className='flex mt-7 items-center'>
