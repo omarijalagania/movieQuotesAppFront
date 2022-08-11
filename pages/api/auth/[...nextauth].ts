@@ -1,8 +1,9 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import NextAuth, { User } from 'next-auth';
+import NextAuth from 'next-auth';
 import GoogleProvider from 'next-auth/providers/google';
 import CredentialsProvider from 'next-auth/providers/credentials';
 import { googleLoginHandler, loginHandler } from 'services';
+import { User } from 'types';
 
 export default NextAuth({
   providers: [
@@ -48,8 +49,7 @@ export default NextAuth({
       return token;
     },
     session: async ({ session, token }) => {
-      //@ts-ignore
-      session.user = token.user;
+      session.user = token.user as User;
       return session;
     },
 
