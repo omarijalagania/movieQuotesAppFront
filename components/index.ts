@@ -18,3 +18,4 @@ export * from './AddMovie';
 export * from './QuoteMovieDetails';
 export * from './MovieDetailsSide';
 export * from './MovieEditDialog';
+export * from './AddQuote';
