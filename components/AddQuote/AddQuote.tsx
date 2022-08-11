@@ -80,13 +80,11 @@ const AddQuote = () => {
           </label>
         </div>
 
-        {/* <Select
-          styles={customStyles}
+        <select
+          className='rounded-none  w-full border-[1px] text-sm border-gray-400 p-2 bg-darkBlue text-white placeholder-white'
+          placeholder='Choose movie'
           onChange={handleChange}
-          isMulti
-          options={newMovie}
-        /> */}
-        <select placeholder='Choose movie' onChange={handleChange}>
+        >
           <option value='' disabled selected>
             Select your option
           </option>
