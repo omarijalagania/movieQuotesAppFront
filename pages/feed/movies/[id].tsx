@@ -32,7 +32,7 @@ const MovieDetails = () => {
           className='rounded-lg object-cover'
           width={950}
           height={500}
-          src={`${process.env.BACKEND_URL}/${movie?.poster}`}
+          src={`${process.env.NEXT_PUBLIC_BACKEND_URL}/${movie?.poster}`}
           alt={movie?.movieNameEn}
         />
       </div>
