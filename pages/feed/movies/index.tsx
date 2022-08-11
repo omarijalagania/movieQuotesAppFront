@@ -62,13 +62,7 @@ const Movies = () => {
         <div className='flex items-center'>
           <p>Search</p>
           <RedButton
-            onClick={() => {
-              if (userId !== '') {
-                setOpenAddMovieModal(true);
-              } else {
-                router.push('/');
-              }
-            }}
+            onClick={() => setOpenAddMovieModal(true)}
             className='ml-3'
             name='Add movie'
           />

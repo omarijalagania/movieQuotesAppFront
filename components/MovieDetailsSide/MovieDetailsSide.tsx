@@ -1,28 +1,11 @@
-import React, { useState } from 'react';
-import { useSelector } from 'react-redux';
-import { RootState } from 'state';
+import React from 'react';
+
 import { PencilIcon, TrashIcon } from '@heroicons/react/outline';
-import { Modal, MovieEditDialog } from 'components';
-import { deleteMovieHandler } from 'services';
-import { useTranslate } from 'hooks';
-import { toast } from 'react-toastify';
+import { Modal, MovieEditDialog, useMovieDetailsSide } from 'components';
 
 const MovieDetailsSide = () => {
-  const { router } = useTranslate();
-  const movie = useSelector((state: RootState) => state.quotes.singleMovie);
-
-  const [openEditDialog, setOpenEditDialog] = useState(false);
-
-  const deleteMovie = async (id: string) => {
-    try {
-      const response = await deleteMovieHandler(id);
-      if (response.status === 200) {
-        router.push('/feed/movies');
-      }
-    } catch (error) {
-      toast.error('Something went wrong');
-    }
-  };
+  const { movie, openEditDialog, setOpenEditDialog, deleteMovie } =
+    useMovieDetailsSide();
 
   const renderGenres = () => {
     return movie?.genre?.map((genre: { genre: string; label: string }) => (
