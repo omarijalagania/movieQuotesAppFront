@@ -10,6 +10,7 @@ import {
   editMovieFormInitialValue,
   emptyMovieFormInitialValue,
   useHeader,
+  imageUrl,
 } from 'components';
 
 export const useEditMovie = () => {
@@ -35,6 +36,13 @@ export const useEditMovie = () => {
     label: genre.label,
   }));
 
+  const defaultSelects = movie?.genre?.map(
+    (genre: { genre: string; label: string }) => ({
+      value: genre.genre,
+      label: genre.label,
+    })
+  );
+
   useEffect(() => {
     const getGenres = async () => {
       try {
@@ -46,6 +54,7 @@ export const useEditMovie = () => {
     };
     getGenres();
   }, []);
+  const posterUrl = imageUrl(file as File);
 
   const { t } = useTranslate();
   const formik = useFormik({
@@ -93,5 +102,16 @@ export const useEditMovie = () => {
     validationSchema: movieSchema,
   });
 
-  return { formik, t, setFile, file, newGenre, handleChange, selectedGenres };
+  return {
+    formik,
+    t,
+    setFile,
+    file,
+    posterUrl,
+    newGenre,
+    handleChange,
+    selectedGenres,
+    defaultSelects,
+    movie,
+  };
 };

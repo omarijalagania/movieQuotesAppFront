@@ -64,3 +64,11 @@ export const emptyMovieFormInitialValue = () => {
     userId,
   };
 };
+
+export const imageUrl = (file: File) => {
+  let imageUrl = '';
+  if (file) {
+    imageUrl = URL.createObjectURL(file);
+  }
+  return imageUrl;
+};

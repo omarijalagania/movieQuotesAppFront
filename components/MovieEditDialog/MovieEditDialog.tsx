@@ -3,26 +3,20 @@ import { XIcon } from '@heroicons/react/solid';
 import Select from 'react-select';
 import { Input, RedButton, useEditMovie, customStyles } from 'components';
 import { CameraIcon } from '@heroicons/react/outline';
-import { useSelector } from 'react-redux';
-import { RootState } from 'state';
 import { backUrl } from 'helpers';
 import Image from 'next/image';
 
 const MovieEditDialog = () => {
-  const { formik, setFile, file, newGenre, handleChange } = useEditMovie();
-  const movie = useSelector((state: RootState) => state.quotes.singleMovie);
-
-  let imageUrl = '';
-  if (file) {
-    imageUrl = URL.createObjectURL(file);
-  }
-
-  const defaultSelects = movie?.genre?.map(
-    (genre: { genre: string; label: string }) => ({
-      value: genre.genre,
-      label: genre.label,
-    })
-  );
+  const {
+    formik,
+    setFile,
+    file,
+    newGenre,
+    handleChange,
+    posterUrl,
+    defaultSelects,
+    movie,
+  } = useEditMovie();
 
   return (
     <div className='w-full'>
@@ -154,7 +148,7 @@ const MovieEditDialog = () => {
             <Image
               width={477}
               height={300}
-              src={file ? imageUrl : backUrl + '/' + movie.poster}
+              src={file ? posterUrl : backUrl + '/' + movie.poster}
               alt='d'
               className='object-cover z-10 object-center'
             />
