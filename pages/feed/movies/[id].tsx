@@ -3,7 +3,6 @@ import { getSingleMovieHandler } from 'services';
 import { useTranslate } from 'hooks';
 import { RootState, saveSingleMovie } from 'state';
 import { useDispatch, useSelector } from 'react-redux';
-import { backUrl } from 'helpers';
 import Image from 'next/image';
 import { QuoteMovieDetails, RedButton } from 'components';
 
@@ -33,7 +32,7 @@ const MovieDetails = () => {
           className='rounded-lg object-cover'
           width={950}
           height={500}
-          src={`${backUrl}/${movie?.poster}`}
+          src={`${process.env.BACKEND_URL}/${movie?.poster}`}
           alt={movie?.movieNameEn}
         />
       </div>

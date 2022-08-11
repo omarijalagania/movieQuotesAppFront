@@ -4,7 +4,6 @@ import { ChatIcon } from '@heroicons/react/outline';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { AddMovie, Modal, RedButton, useHeader } from 'components';
 import { getAllMoviesHandler } from 'services';
-import { backUrl } from 'helpers';
 import { useTranslate } from 'hooks';
 import { useSelector } from 'react-redux';
 import { RootState } from 'state';
@@ -42,7 +41,7 @@ const Movies = () => {
             className='rounded-lg object-cover'
             width={450}
             height={350}
-            src={`${backUrl}/${item.poster}`}
+            src={`${process.env.NEXT_PUBLIC_BACKEND_URL}/${item.poster}`}
             alt='movie'
           />
           <p className='text-white mt-3 text-xl'>{item.movieNameEn}</p>

@@ -3,7 +3,7 @@ import { XIcon } from '@heroicons/react/solid';
 import Select from 'react-select';
 import { Input, RedButton, useEditMovie, customStyles } from 'components';
 import { CameraIcon } from '@heroicons/react/outline';
-import { backUrl } from 'helpers';
+
 import Image from 'next/image';
 
 const MovieEditDialog = () => {
@@ -148,7 +148,11 @@ const MovieEditDialog = () => {
             <Image
               width={477}
               height={300}
-              src={file ? posterUrl : backUrl + '/' + movie.poster}
+              src={
+                file
+                  ? posterUrl
+                  : process.env.NEXT_PUBLIC_BACKEND_URL + '/' + movie.poster
+              }
               alt='d'
               className='object-cover z-10 object-center'
             />
