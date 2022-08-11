@@ -7,6 +7,8 @@ import { useTranslate } from 'hooks';
 import { store } from 'state';
 import { Provider } from 'react-redux';
 import { Layout } from 'components';
+import 'react-toastify/dist/ReactToastify.css';
+import { ToastContainer } from 'react-toastify';
 
 function MyApp({ Component, pageProps: { session, ...pageProps } }: AppProps) {
   const { router } = useTranslate();
@@ -17,6 +19,7 @@ function MyApp({ Component, pageProps: { session, ...pageProps } }: AppProps) {
         <Provider store={store}>
           <Layout>
             <Component {...pageProps} />
+            <ToastContainer autoClose={1500} limit={1} />
           </Layout>
         </Provider>
       </SessionProvider>
@@ -28,6 +31,7 @@ function MyApp({ Component, pageProps: { session, ...pageProps } }: AppProps) {
       <ParallaxProvider>
         <Provider store={store}>
           <Component {...pageProps} />
+          <ToastContainer autoClose={1500} limit={1} />
         </Provider>
       </ParallaxProvider>
     </SessionProvider>

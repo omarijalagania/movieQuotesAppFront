@@ -5,6 +5,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;900&family=Montserrat:wght@400;700&family=Press+Start+2P&display=swap');
 
 @layer base {
+  body {
+    font-family: 'Montserrat', sans-serif;
+  }
   .vertical-gradient::after {
     content: '' !important;
     position: absolute;
@@ -24,5 +27,4 @@
   span[style^='box-sizing:border-box;display:inline-block'] {
     display: block !important;
   }
-  font-family: 'Montserrat', sans-serif;
 }

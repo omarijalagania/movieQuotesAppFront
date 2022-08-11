@@ -9,7 +9,6 @@ const newPasswordSchema = Yup.object().shape({
   repeatPassword: Yup.string()
     .oneOf([Yup.ref('password'), null], 'mustMatch')
     .required('mustMatch'),
-  token: Yup.string(),
 });
 
 export default newPasswordSchema;

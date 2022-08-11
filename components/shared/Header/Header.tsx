@@ -103,7 +103,15 @@ const Header = () => {
             )}
           </>
         ) : (
-          <Button onClick={() => signOut()} name={t('logout')} />
+          <Button
+            onClick={() =>
+              signOut({
+                redirect: true,
+                callbackUrl: '/',
+              })
+            }
+            name={t('logout')}
+          />
         )}
       </div>
       {isOpen && (

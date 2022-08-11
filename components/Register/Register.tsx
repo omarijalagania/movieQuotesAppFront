@@ -14,6 +14,7 @@ const Register = () => {
       <form onSubmit={formik.handleSubmit} className='flex flex-col'>
         <div className='relative'>
           <Input
+            isLabel={true}
             id='userName'
             type='text'
             placeholder={t('namePlaceholder')}
@@ -44,6 +45,7 @@ const Register = () => {
 
         <div className='relative'>
           <Input
+            isLabel={true}
             id='email'
             type='email'
             placeholder={t('emailPlaceholder')}
@@ -77,6 +79,7 @@ const Register = () => {
         )}
         <div className='relative'>
           <Input
+            isLabel={true}
             id='password'
             type='password'
             placeholder={t('passwordPlaceholder')}
@@ -107,6 +110,7 @@ const Register = () => {
 
         <div className='relative'>
           <Input
+            isLabel={true}
             id='repeatPassword'
             type='password'
             placeholder={t('repeatPassword')}
@@ -140,12 +144,17 @@ const Register = () => {
           className='w-96 h-10 my-5 text-white'
           name={t('getStarted')}
         />
-        <Button
-          onClick={() => signIn()}
-          className='w-96 h-10 mt-2'
-          name={t('google')}
-        />
       </form>
+      <Button
+        onClick={() =>
+          signIn('google', {
+            redirect: true,
+            callbackUrl: '/feed',
+          })
+        }
+        className='w-96 h-10 mt-2'
+        name={t('google')}
+      />
       <p className='text-gray-500 text-center mt-10'>
         {t('haveAccount')}
         <p className='text-blue-500 cursor-pointer ml-2'>{t('login')}</p>

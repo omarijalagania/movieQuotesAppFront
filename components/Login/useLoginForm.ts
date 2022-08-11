@@ -29,7 +29,7 @@ export const useLoginForm = () => {
         );
 
         if (response?.status === 200) {
-          router.push('/test');
+          router.push('/feed');
         } else {
           setError('wrongCreds');
         }

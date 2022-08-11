@@ -1,14 +1,63 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Image from 'next/image';
 import { ChatIcon } from '@heroicons/react/outline';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
-import { AddMovie, Modal, RedButton } from 'components';
+import { AddMovie, Modal, RedButton, useHeader } from 'components';
+import { getAllMoviesHandler } from 'services';
+import { useTranslate } from 'hooks';
+import { useSelector } from 'react-redux';
+import { RootState } from 'state';
+
 const Movies = () => {
+  const [movie, setMovie] = useState([]);
   const [openAddMovieModal, setOpenAddMovieModal] = useState(false);
+  const addMovieResponse = useSelector(
+    (state: RootState) => state.quotes.addMovie
+  );
+  const { userId } = useHeader();
+
+  const { router } = useTranslate();
+  useEffect(() => {
+    const getAllMovies = async () => {
+      const response = await getAllMoviesHandler(userId);
+      setMovie(response.data);
+    };
+    if (addMovieResponse.status === 200) {
+      setOpenAddMovieModal(false);
+    }
+    if (userId !== '') {
+      getAllMovies();
+    }
+  }, [addMovieResponse.status, userId]);
+
+  const renderMovies = () => {
+    return movie?.map(
+      (item: { poster: string; movieNameEn: string; _id: string }) => (
+        <div
+          onClick={() => router.push(`/feed/movies/${item._id}`)}
+          key={item._id}
+        >
+          <Image
+            className='rounded-lg object-cover'
+            width={450}
+            height={350}
+            src={`${process.env.NEXT_PUBLIC_BACKEND_URL}/${item.poster}`}
+            alt='movie'
+          />
+          <p className='text-white mt-3 text-xl'>{item.movieNameEn}</p>
+          <div className='flex items-center mt-4'>
+            <div className='text-white'>10</div>
+            <ChatIcon className='w-8 h-8 text-white ml-3' />
+          </div>
+        </div>
+      )
+    );
+  };
+
   return (
     <>
       <div className='flex justify-between text-white mb-5'>
-        <p>My list of movies (Total 25)</p>
+        <p>My list of movies ({movie.length})</p>
         <div className='flex items-center'>
           <p>Search</p>
           <RedButton
@@ -18,32 +67,7 @@ const Movies = () => {
           />
         </div>
       </div>
-      <div className='grid grid-cols-3 gap-5'>
-        <div>
-          <Image width={450} height={350} src='/assets/movie.png' alt='movie' />
-          <p className='text-white mt-3 text-xl'>Loki Mobius (2021)</p>
-          <div className='flex items-center mt-4'>
-            <div className='text-white'>10</div>
-            <ChatIcon className='w-8 h-8 text-white ml-3' />
-          </div>
-        </div>
-        <div>
-          <Image width={450} height={350} src='/assets/movie.png' alt='movie' />
-          <p className='text-white mt-3 text-xl'>Loki Mobius (2021)</p>
-          <div className='flex items-center mt-4'>
-            <div className='text-white'>10</div>
-            <ChatIcon className='w-8 h-8 text-white ml-3' />
-          </div>
-        </div>
-        <div>
-          <Image width={450} height={350} src='/assets/movie.png' alt='movie' />
-          <p className='text-white mt-3 text-xl'>Loki Mobius (2021)</p>
-          <div className='flex items-center mt-4'>
-            <div className='text-white'>10</div>
-            <ChatIcon className='w-8 h-8 text-white ml-3' />
-          </div>
-        </div>
-      </div>
+      <div className='grid grid-cols-3 gap-5'>{renderMovies()}</div>
       {openAddMovieModal && (
         <Modal open={openAddMovieModal} setOpen={setOpenAddMovieModal}>
           <AddMovie />

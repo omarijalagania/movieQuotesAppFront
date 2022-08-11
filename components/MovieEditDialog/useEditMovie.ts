@@ -1,20 +1,25 @@
 import { useFormik } from 'formik';
-import { getMovieFormInitialValue, useHeader } from 'components';
 import { movieSchema } from 'schema';
 import { toast } from 'react-toastify';
-import { addMovieHandler, getMovieGenresHandler } from 'services';
+import { getMovieGenresHandler, updateMovieHandler } from 'services';
 import { useTranslate } from 'hooks';
 import { useEffect, useState } from 'react';
-import { useDispatch } from 'react-redux';
-import { saveAddMovie } from 'state';
+import { useSelector } from 'react-redux';
+import { RootState } from 'state';
+import {
+  editMovieFormInitialValue,
+  emptyMovieFormInitialValue,
+  useHeader,
+  imageUrl,
+} from 'components';
 
-export const useAddMovie = () => {
+export const useEditMovie = () => {
   const [file, setFile] = useState<File | null>(null);
   const { userId } = useHeader();
   const [genres, setGenres] = useState([]);
   const [selectedGenres, setSelectedGenres] = useState<string[]>([]);
-
-  const dispatch = useDispatch();
+  const movie = useSelector((state: RootState) => state.quotes.singleMovie);
+  const { router } = useTranslate();
 
   const handleChange = (selectedOption: any) => {
     const selectedGenresVal = selectedOption.map(
@@ -31,6 +36,13 @@ export const useAddMovie = () => {
     label: genre.label,
   }));
 
+  const defaultSelects = movie?.genre?.map(
+    (genre: { genre: string; label: string }) => ({
+      value: genre.genre,
+      label: genre.label,
+    })
+  );
+
   useEffect(() => {
     const getGenres = async () => {
       try {
@@ -42,16 +54,25 @@ export const useAddMovie = () => {
     };
     getGenres();
   }, []);
+  const posterUrl = imageUrl(file as File);
 
   const { t } = useTranslate();
   const formik = useFormik({
-    initialValues: getMovieFormInitialValue(),
+    initialValues: movie
+      ? editMovieFormInitialValue(movie)
+      : emptyMovieFormInitialValue(),
 
+    enableReinitialize: true,
     onSubmit: async (values) => {
       const formData = new FormData();
       formData.append('movieNameGe', values.movieNameGe);
       formData.append('movieNameEn', values.movieNameEn);
-      formData.append('genre', JSON.stringify(selectedGenres));
+      formData.append(
+        'genre',
+        JSON.stringify(
+          selectedGenres.length > 0 ? selectedGenres : values.genre
+        )
+      );
       formData.append('directorGe', values.directorGe);
       formData.append('directorEn', values.directorEn);
       formData.append('descriptionGe', values.descriptionGe);
@@ -60,13 +81,18 @@ export const useAddMovie = () => {
       formData.append('userId', userId);
 
       try {
-        const response = await addMovieHandler(formData as any);
-        dispatch(saveAddMovie(response));
+        const response = await updateMovieHandler(
+          formData as any,
+          movie?._id as string
+        );
+
         if (response.status === 422) {
           toast.error('Error');
         }
         if (response.status === 200) {
-          toast.success('Movie added');
+          toast.success('Movie edited');
+
+          router.push('/feed/movies');
         }
       } catch (error) {
         toast.error('Error');
@@ -76,5 +102,16 @@ export const useAddMovie = () => {
     validationSchema: movieSchema,
   });
 
-  return { formik, t, setFile, newGenre, handleChange, selectedGenres };
+  return {
+    formik,
+    t,
+    setFile,
+    file,
+    posterUrl,
+    newGenre,
+    handleChange,
+    selectedGenres,
+    defaultSelects,
+    movie,
+  };
 };

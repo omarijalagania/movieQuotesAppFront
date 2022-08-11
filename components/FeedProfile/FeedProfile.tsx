@@ -23,7 +23,7 @@ const FeedProfile = () => {
           </li>
           <li className='flex text-white'>
             <VideoCameraIcon className='w-6 h-6  mr-4' />
-            <Link href='feed/movies'>List of Movies</Link>
+            <Link href='/feed/movies'>List of Movies</Link>
           </li>
         </ul>
       </div>

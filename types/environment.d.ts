@@ -7,7 +7,7 @@ declare global {
       GOOGLE_CLIENT_SECRET: string;
       JWT_SECRET: string;
       MONGODB_URI: string;
-      BACKEND_URL: string;
+      NEXT_PUBLIC_BACKEND_URL: string;
     }
   }
 }

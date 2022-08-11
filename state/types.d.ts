@@ -4,4 +4,8 @@ export interface GlobalState {
   passwordRecoveryResponse: PasswordRecoveryResponse;
   newPasswordResponse: NewPasswordResponse;
   tokens: string;
+  userId: string;
+  singleMovie: SingleMovie;
+  addMovie: AddMovie;
+  triggerDelete: boolean;
 }

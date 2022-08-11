@@ -7,6 +7,10 @@ const initialState: GlobalState = {
   passwordRecoveryResponse: {},
   newPasswordResponse: {},
   tokens: '',
+  userId: '',
+  singleMovie: {},
+  addMovie: {},
+  triggerDelete: false,
 };
 
 export const storeSlice = createSlice({
@@ -28,6 +32,18 @@ export const storeSlice = createSlice({
     saveNewPasswordResponse: (state, action) => {
       state.newPasswordResponse = action.payload;
     },
+    saveUserId: (state, action) => {
+      state.userId = action.payload;
+    },
+    saveSingleMovie: (state, action) => {
+      state.singleMovie = action.payload;
+    },
+    saveAddMovie: (state, action) => {
+      state.addMovie = action.payload;
+    },
+    isTriggerDelete: (state, action) => {
+      state.triggerDelete = action.payload;
+    },
   },
 });
 
@@ -37,6 +53,10 @@ export const {
   savePasswordRecoveryResponse,
   saveToken,
   saveNewPasswordResponse,
+  saveUserId,
+  saveSingleMovie,
+  saveAddMovie,
+  isTriggerDelete,
 } = storeSlice.actions;
 
 export default storeSlice.reducer;

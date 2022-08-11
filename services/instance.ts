@@ -1,5 +1,5 @@
 import axios from 'axios';
 
 export const request = axios.create({
-  baseURL: 'http://localhost:4242',
+  baseURL: process.env.NEXT_PUBLIC_BACKEND_URL,
 });

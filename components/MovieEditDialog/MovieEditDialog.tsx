@@ -1,11 +1,22 @@
 import React from 'react';
 import { XIcon } from '@heroicons/react/solid';
 import Select from 'react-select';
-import { Input, RedButton, useAddMovie, customStyles } from 'components';
+import { Input, RedButton, useEditMovie, customStyles } from 'components';
 import { CameraIcon } from '@heroicons/react/outline';
 
-const AddMovie = () => {
-  const { formik, setFile, newGenre, handleChange } = useAddMovie();
+import Image from 'next/image';
+
+const MovieEditDialog = () => {
+  const {
+    formik,
+    setFile,
+    file,
+    newGenre,
+    handleChange,
+    posterUrl,
+    defaultSelects,
+    movie,
+  } = useEditMovie();
 
   return (
     <div className='w-full'>
@@ -32,6 +43,7 @@ const AddMovie = () => {
             id='movieNameEn'
             name='movieNameEn'
             placeholder='Movie name'
+            defaultValue={movie?.movieNameEn}
             onChange={formik.handleChange}
           />
           <p className='text-sm text-gray-400 absolute top-[20%] right-2'>
@@ -47,6 +59,7 @@ const AddMovie = () => {
             name='movieNameGe'
             placeholder='ფილმის სახელი'
             onChange={formik.handleChange}
+            defaultValue={movie?.movieNameGe}
           />
           <p className='text-sm text-gray-400 absolute top-[20%] right-2'>
             ქართ
@@ -58,6 +71,7 @@ const AddMovie = () => {
           isMulti
           options={newGenre}
           placeholder='Genre'
+          defaultValue={defaultSelects?.map((el: any) => el)}
         />
 
         <div className='relative mb-3'>
@@ -69,6 +83,7 @@ const AddMovie = () => {
             name='directorEn'
             placeholder='Director'
             onChange={formik.handleChange}
+            defaultValue={movie?.directorEn}
           />
           <p className='text-sm text-gray-400 absolute top-[20%] right-2'>
             Eng
@@ -83,6 +98,7 @@ const AddMovie = () => {
             name='directorGe'
             placeholder='რეჟისორი'
             onChange={formik.handleChange}
+            defaultValue={movie?.directorGe}
           />
           <p className='text-sm text-gray-400 absolute top-[20%] right-2'>
             ქართ
@@ -94,6 +110,7 @@ const AddMovie = () => {
             className='border-[1px] p-1 text-sm border-gray-400 bg-darkBlue text-white w-[500px] placeholder-white'
             name='descriptionEn'
             placeholder='Movie description'
+            defaultValue={movie?.descriptionEn}
           />
           <p className='text-sm text-gray-400 absolute top-[20%] right-2'>
             Eng
@@ -105,23 +122,16 @@ const AddMovie = () => {
             className='border-[1px] p-1 text-sm border-gray-400 bg-darkBlue text-white w-[500px] placeholder-white'
             name='descriptionGe'
             placeholder='ფილმის აღწერა'
+            defaultValue={movie?.descriptionGe}
           />
           <p className='text-sm text-gray-400 absolute top-[20%] right-2'>
             ქართ
           </p>
         </div>
 
-        <div className='mb-3'>
-          <label className='flex px-2 w-full py-3 transition bg-darkBlue border-[1px] border-gray-300  cursor-pointer  focus:outline-none'>
-            <span className='flex items-center space-x-2'>
-              <CameraIcon className='w-5 h-5 text-white' />
-              <span className='text-sm text-white'>
-                Drag & drop your image here or
-                <span className='text-white text-xs py-1 px-2 ml-1 bg-purple-600'>
-                  Choose file
-                </span>
-              </span>
-            </span>
+        <div className='mb-3 relative'>
+          <label className='flex px-2  w-full py-3 transition bg-darkBlue border-[1px] border-gray-300  cursor-pointer  focus:outline-none'>
+            <CameraIcon className='w-5 h-5 z-20 absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 text-white' />
             <input
               onChange={(event) => {
                 const target = event.currentTarget as HTMLInputElement;
@@ -132,16 +142,27 @@ const AddMovie = () => {
               type='file'
               id='poster'
               name='poster'
-              className='hidden'
+              className='hidden z-20'
               accept='.png, .jpg, .jpeg'
+            />
+            <Image
+              width={477}
+              height={300}
+              src={
+                file
+                  ? posterUrl
+                  : process.env.NEXT_PUBLIC_BACKEND_URL + '/' + movie.poster
+              }
+              alt='d'
+              className='object-cover z-10 object-center'
             />
           </label>
         </div>
 
-        <RedButton className='w-full text-white' name='Add movie' />
+        <RedButton className='w-full text-white' name='Save changes' />
       </form>
     </div>
   );
 };
 
-export default AddMovie;
+export default MovieEditDialog;
