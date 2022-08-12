@@ -105,3 +105,17 @@ export const addQuoteHandler = async (data: any) => {
   });
   return response;
 };
+
+export const editQuoteHandler = async (data: any, id: string) => {
+  const response = await request.put(`/quote/update/${id}`, data, {
+    headers: {
+      'Content-Type': 'multipart/form-data',
+    },
+  });
+  return response;
+};
+
+export const getSingleQuoteHandler = async (id: string) => {
+  const response = await request.get(`/one-quote/get/${id}`);
+  return response;
+};

@@ -12,6 +12,7 @@ const MovieDetails = () => {
   const { id } = router.query;
 
   const movie = useSelector((state: RootState) => state.quotes.singleMovie);
+
   useEffect(() => {
     try {
       const getOneMovie = async () => {
@@ -40,7 +41,9 @@ const MovieDetails = () => {
         <p className='border-r-[1px] border-gray-500 px-3'>Quotes (total 7)</p>
         <RedButton className='ml-3' name='Add quote' />
       </div>
-      <QuoteMovieDetails />
+      {movie?.quotes?.map((item: any) => (
+        <QuoteMovieDetails item={item} key={item._id} />
+      ))}
     </div>
   );
 };
