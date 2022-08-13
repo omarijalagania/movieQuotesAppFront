@@ -8,4 +8,5 @@ export interface GlobalState {
   singleMovie: SingleMovie;
   addMovie: AddMovie;
   triggerDelete: boolean;
+  postItem: PostItem;
 }

@@ -1,10 +1,16 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import Image from 'next/image';
 import { HeartIcon, AnnotationIcon } from '@heroicons/react/outline';
 import { Comment, WriteComment } from 'components';
+import { useDispatch } from 'react-redux';
+import { savePostItem } from 'state';
 
 const Post = ({ item }: any) => {
-  console.log(item);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(savePostItem(item));
+  }, [dispatch, item]);
 
   return (
     <div className='bg-darkBlue p-5 text-white md:w-[90%] rounded-md mt-5'>
@@ -27,7 +33,7 @@ const Post = ({ item }: any) => {
       </div>
       <div className='flex py-3 mb-3 border-b-[1px] border-gray-400 space-x-3'>
         <div className='flex'>
-          <p className='pr-2'>1</p>
+          <p className='pr-2'>{item.comments.length}</p>
           <AnnotationIcon className='w-6 h-6' />
         </div>
         <div className='flex'>
@@ -35,8 +41,10 @@ const Post = ({ item }: any) => {
           <HeartIcon className='w-6 h-6' />
         </div>
       </div>
-      <Comment />
-      <WriteComment />
+      {item.comments.map((comment: { _id: React.Key | null | undefined }) => (
+        <Comment key={comment._id} comment={comment} />
+      ))}
+      <WriteComment item={item} />
     </div>
   );
 };

@@ -120,7 +120,7 @@ export const getQuoteHandler = async () => {
   return response;
 };
 
-export const getUserByIdHandler = async (id: string) => {
-  const response = await request.get(`/user/get/${id}`);
+export const addCommentsHandler = async (data: any) => {
+  const response = await request.post(`/comments/add`, data);
   return response;
 };

@@ -12,16 +12,6 @@ export const useAddQuote = () => {
   const [movies, setMovies] = useState([]);
   const [selectMovies, setSelectMovies] = useState('');
 
-  //   const handleChange = (selectedOption: any) => {
-  //     const selectMovieVal = selectedOption.map(
-  //       (option: { value: string; label: string }) => ({
-  //         genre: option.value,
-  //         label: option.label,
-  //       })
-  //     );
-  //     setSelectMovies(selectMovieVal);
-  //   };
-
   const handleChange = (event: { target: { value: any } }) => {
     setSelectMovies(event.target.value);
   };

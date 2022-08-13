@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Comment = () => {
+const Comment = ({ comment }: any) => {
   return (
     <div>
       <div className='flex items-center mb-2'>
@@ -9,10 +9,7 @@ const Comment = () => {
       </div>
 
       <p className='ml-11 border-b-[1px] pb-5 border-gray-400 text-sm'>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque
-        nunc vel massa facilisis consequat elit morbi convallis convallis.
-        Volutpat vitae et nisl et. Adipiscing enim integer mi leo nisl. Arcu
-        vitae mauris odio eget.
+        {comment.comment}
       </p>
     </div>
   );
