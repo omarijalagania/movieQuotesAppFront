@@ -9,7 +9,7 @@ const WriteQuote = ({ setOpenAddQuote }: Props) => {
   return (
     <div
       onClick={() => setOpenAddQuote(true)}
-      className='relative w-full md:w-[88%]'
+      className='relative w-full md:w-[83%]'
     >
       <input
         className='py-2 w-[100%] pl-10 rounded-md text-white bg-lightBlue placeholder-white'

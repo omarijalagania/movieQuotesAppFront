@@ -27,11 +27,11 @@ export const useEditQuote = () => {
     })
   );
 
-  console.log(selectMovies);
-
   const currentQuotes = singleMovie.quotes.filter(
     (quote: any) => quote.movieId === singleMovie._id
   );
+
+  console.log(currentQuotes);
 
   const posterUrl = imageUrl(file as File);
 

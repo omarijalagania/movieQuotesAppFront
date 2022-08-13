@@ -34,11 +34,10 @@ const QuoteMovieDetails = ({ item }: any) => {
         </div>
         {openEditQUoteDialog && (
           <Modal open={openEditQUoteDialog} setOpen={setOpenEditQUoteDialog}>
-            <EditQuote />
+            <EditQuote item={item} />
           </Modal>
         )}
       </div>
-      {}
     </div>
   );
 };

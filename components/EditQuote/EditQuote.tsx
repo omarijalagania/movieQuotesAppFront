@@ -5,7 +5,7 @@ import { Input, RedButton, useEditQuote } from 'components';
 import { CameraIcon } from '@heroicons/react/outline';
 import Image from 'next/image';
 
-const EditQuote = () => {
+const EditQuote = ({ item }: any) => {
   const {
     formik,
     setFile,
@@ -14,7 +14,6 @@ const EditQuote = () => {
     singleMovie,
     file,
     posterUrl,
-    currentQuotes,
   } = useEditQuote();
 
   return (
@@ -43,7 +42,7 @@ const EditQuote = () => {
             name='quoteNameEng'
             placeholder='Quote name'
             onChange={formik.handleChange}
-            defaultValue={currentQuotes[0]?.quoteNameEng}
+            defaultValue={item.quoteNameEng}
           />
           <p className='text-sm text-gray-400 absolute top-[20%] right-2'>
             Eng
@@ -58,7 +57,7 @@ const EditQuote = () => {
             name='quoteNameGe'
             placeholder='ციტატის სახელი'
             onChange={formik.handleChange}
-            defaultValue={currentQuotes[0]?.quoteNameGe}
+            defaultValue={item.quoteNameGe}
           />
           <p className='text-sm text-gray-400 absolute top-[20%] right-2'>
             ქართ
@@ -87,9 +86,7 @@ const EditQuote = () => {
               src={
                 file
                   ? posterUrl
-                  : process.env.NEXT_PUBLIC_BACKEND_URL +
-                    '/' +
-                    currentQuotes[0]?.poster
+                  : process.env.NEXT_PUBLIC_BACKEND_URL + '/' + item.poster
               }
               alt='d'
               className='object-cover z-10 object-center'

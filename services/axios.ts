@@ -115,7 +115,12 @@ export const editQuoteHandler = async (data: any, id: string) => {
   return response;
 };
 
-export const getSingleQuoteHandler = async (id: string) => {
-  const response = await request.get(`/one-quote/get/${id}`);
+export const getQuoteHandler = async () => {
+  const response = await request.get(`/quotes/get`);
+  return response;
+};
+
+export const getUserByIdHandler = async (id: string) => {
+  const response = await request.get(`/user/get/${id}`);
   return response;
 };
