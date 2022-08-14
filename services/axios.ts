@@ -134,3 +134,13 @@ export const deleteQuoteHandler = async (id: string) => {
   const response = await request.delete(`/quotes/delete/${id}`);
   return response;
 };
+
+export const addLikeHandler = async (data: any) => {
+  const response = await request.put(`/likes/add`, data);
+  return response;
+};
+
+export const removeLikeHandler = async (data: any) => {
+  const response = await request.put(`/likes/remove`, data);
+  return response;
+};
