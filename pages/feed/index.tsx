@@ -2,11 +2,16 @@ import React, { useEffect, useState } from 'react';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { AddQuote, Modal, Post, Search, WriteQuote } from 'components';
 import { getQuoteHandler } from 'services';
+import { RootState } from 'state';
+import { useSelector } from 'react-redux';
 
 const Feed: React.FC = () => {
   const [quotes, setQuotes] = useState([]);
   const [openAddQuote, setOpenAddQuote] = useState(false);
   const [getLike, setGetLike] = useState([]);
+  const comments = useSelector(
+    (state: RootState) => state.quotes.updateComment
+  );
 
   useEffect(() => {
     try {
@@ -16,7 +21,7 @@ const Feed: React.FC = () => {
       };
       getAllQuotes();
     } catch (error) {}
-  }, [getLike]);
+  }, [getLike, comments]);
 
   return (
     <div className='flex flex-col w-full'>

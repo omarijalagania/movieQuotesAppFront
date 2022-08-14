@@ -13,6 +13,7 @@ const initialState: GlobalState = {
   triggerDelete: false,
   postItem: {},
   socket: null,
+  updateComment: {},
 };
 
 export const storeSlice = createSlice({
@@ -52,6 +53,9 @@ export const storeSlice = createSlice({
     saveSocket: (state, action) => {
       state.socket = action.payload;
     },
+    saveComment: (state, action) => {
+      state.updateComment = action.payload;
+    },
   },
 });
 
@@ -67,6 +71,7 @@ export const {
   isTriggerDelete,
   savePostItem,
   saveSocket,
+  saveComment,
 } = storeSlice.actions;
 
 export default storeSlice.reducer;

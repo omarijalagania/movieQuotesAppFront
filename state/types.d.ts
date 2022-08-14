@@ -10,4 +10,5 @@ export interface GlobalState {
   triggerDelete: boolean;
   postItem: PostItem;
   socket: Socket;
+  updateComment: UpdateComment;
 }
