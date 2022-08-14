@@ -1,16 +1,21 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { getSingleMovieHandler } from 'services';
 import { useTranslate } from 'hooks';
 import { RootState, saveSingleMovie } from 'state';
 import { useDispatch, useSelector } from 'react-redux';
 import Image from 'next/image';
-import { QuoteMovieDetails, RedButton } from 'components';
+import {
+  AddQuoteFromMovie,
+  Modal,
+  QuoteMovieDetails,
+  RedButton,
+} from 'components';
 
 const MovieDetails = () => {
   const dispatch = useDispatch();
   const { router } = useTranslate();
   const { id } = router.query;
-
+  const [openAddQuoteDialog, setOpenAddQuoteDialog] = useState(false);
   const movie = useSelector((state: RootState) => state.quotes.singleMovie);
 
   useEffect(() => {
@@ -37,9 +42,18 @@ const MovieDetails = () => {
           alt={movie?.movieNameEn}
         />
       </div>
+      {openAddQuoteDialog && (
+        <Modal open={openAddQuoteDialog} setOpen={setOpenAddQuoteDialog}>
+          <AddQuoteFromMovie movie={movie} />
+        </Modal>
+      )}
       <div className='flex mt-7 items-center'>
         <p className='border-r-[1px] border-gray-500 px-3'>Quotes (total 7)</p>
-        <RedButton className='ml-3' name='Add quote' />
+        <RedButton
+          onClick={() => setOpenAddQuoteDialog(true)}
+          className='ml-3'
+          name='Add quote'
+        />
       </div>
       {movie?.quotes?.map((item: any) => (
         <QuoteMovieDetails item={item} key={item._id} />

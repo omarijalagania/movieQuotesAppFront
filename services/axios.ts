@@ -129,3 +129,8 @@ export const getUserByIdHandler = async (id: string) => {
   const response = await request.get(`/user/get/${id}`);
   return response;
 };
+
+export const deleteQuoteHandler = async (id: string) => {
+  const response = await request.delete(`/quotes/delete/${id}`);
+  return response;
+};
