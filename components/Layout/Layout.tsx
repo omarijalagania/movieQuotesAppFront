@@ -1,8 +1,34 @@
-import React from 'react';
-import { FeedProfile, LayoutProps, Header, MovieDetailsSide } from 'components';
+import React, { useEffect } from 'react';
+import {
+  FeedProfile,
+  LayoutProps,
+  Header,
+  MovieDetailsSide,
+  useHeader,
+} from 'components';
 import { useTranslate } from 'hooks';
+import io from 'socket.io-client';
+import { useSelector, useDispatch } from 'react-redux';
+import { RootState, saveSocket } from 'state';
+
 const Layout: React.FC<LayoutProps> = ({ children }) => {
+  const dispatch = useDispatch();
   const { router } = useTranslate();
+  const socket = useSelector((state: RootState) => state.quotes.socket);
+  const { userId } = useHeader();
+
+  useEffect(() => {
+    dispatch(saveSocket(io('http://localhost:4343')));
+  }, [dispatch]);
+
+  useEffect(() => {
+    socket?.emit('newUser', {
+      userId: userId,
+      socketId: socket?.id,
+    });
+
+    socket?.on('disconnect', () => {});
+  }, [socket, userId]);
 
   return (
     <>

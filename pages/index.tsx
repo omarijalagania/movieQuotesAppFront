@@ -1,22 +1,41 @@
 import { useState, useEffect } from 'react';
-import { ConfirmToken, Header, Modal } from 'components';
+import { ConfirmToken, Header, Modal, useHeader } from 'components';
 import Head from 'next/head';
 import HomePage from 'pages/home';
-import { useSelector } from 'react-redux';
-import { RootState } from 'state';
+import { useSelector, useDispatch } from 'react-redux';
+import { RootState, saveSocket } from 'state';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
+
+import io from 'socket.io-client';
 
 const Home = () => {
   const [isOpenConfirm, setIsOpenConfirm] = useState(false);
-  const confirmResponse = useSelector(
-    (state: RootState) => state.quotes.confirmResponse
+  const { userId } = useHeader();
+  const { confirmResponse, socket } = useSelector(
+    (state: RootState) => state.quotes
   );
+  const dispatch = useDispatch();
 
   useEffect(() => {
     if (confirmResponse.status === 200) {
       setIsOpenConfirm(true);
     }
   }, [confirmResponse]);
+
+  useEffect(() => {
+    dispatch(saveSocket(io('http://localhost:4343')));
+  }, [dispatch]);
+
+  useEffect(() => {
+    socket?.emit('newUser', {
+      userId: userId,
+      socketId: socket?.id,
+    });
+
+    socket?.on('disconnect', () => {
+      console.log('disconnected');
+    });
+  }, [socket, userId]);
 
   return (
     <div>

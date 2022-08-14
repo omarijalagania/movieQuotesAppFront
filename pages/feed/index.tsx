@@ -6,6 +6,7 @@ import { getQuoteHandler } from 'services';
 const Feed: React.FC = () => {
   const [quotes, setQuotes] = useState([]);
   const [openAddQuote, setOpenAddQuote] = useState(false);
+  const [getLike, setGetLike] = useState([]);
 
   useEffect(() => {
     try {
@@ -15,7 +16,7 @@ const Feed: React.FC = () => {
       };
       getAllQuotes();
     } catch (error) {}
-  }, []);
+  }, [getLike]);
 
   return (
     <div className='flex flex-col w-full'>
@@ -24,7 +25,7 @@ const Feed: React.FC = () => {
         <Search />
       </div>
       {quotes.map((item: any) => (
-        <Post item={item} key={item._id} />
+        <Post setGetLike={setGetLike} item={item} key={item._id} />
       ))}
       {openAddQuote && (
         <Modal open={openAddQuote} setOpen={setOpenAddQuote}>

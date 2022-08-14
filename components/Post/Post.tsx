@@ -9,13 +9,14 @@ import {
   addLike,
   removeLike,
 } from 'components';
-import { useDispatch } from 'react-redux';
-import { savePostItem } from 'state';
+import { useDispatch, useSelector } from 'react-redux';
+import { RootState, savePostItem } from 'state';
 
-const Post = ({ item }: any) => {
+const Post = ({ item, setGetLike }: any) => {
   const dispatch = useDispatch();
   const [isLiked, setIsLiked] = useState(false);
   const { userId } = useHeader();
+  const socket = useSelector((state: RootState) => state.quotes.socket);
   useEffect(() => {
     dispatch(savePostItem(item));
   }, [dispatch, item]);
@@ -27,6 +28,12 @@ const Post = ({ item }: any) => {
       }
     });
   }, [item.likes, item.userId, userId]);
+
+  useEffect(() => {
+    socket?.on('gotLike', (gotLike: any) => {
+      setGetLike(gotLike);
+    });
+  }, [setGetLike, socket]);
 
   return (
     <div className='bg-darkBlue p-5 text-white md:w-[90%] rounded-md mt-5'>
@@ -56,12 +63,26 @@ const Post = ({ item }: any) => {
           <p className='pr-2'>{item.likes.length}</p>
           {isLiked ? (
             <HeartIconFull
-              onClick={() => removeLike(item._id, userId, setIsLiked)}
+              onClick={() => {
+                removeLike(item._id, userId, setIsLiked);
+                socket?.emit('like', {
+                  whoLikes: userId,
+                  quoteId: item._id,
+                  receiver: item.userId,
+                });
+              }}
               className='w-6 cursor-pointer text-red-500 h-6'
             />
           ) : (
             <HeartIcon
-              onClick={() => addLike(item._id, userId, setIsLiked)}
+              onClick={() => {
+                addLike(item._id, userId, setIsLiked);
+                socket?.emit('like', {
+                  whoLikes: userId,
+                  quoteId: item._id,
+                  receiver: item.userId,
+                });
+              }}
               className='w-6 cursor-pointer h-6'
             />
           )}

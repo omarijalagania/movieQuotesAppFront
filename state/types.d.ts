@@ -9,4 +9,5 @@ export interface GlobalState {
   addMovie: AddMovie;
   triggerDelete: boolean;
   postItem: PostItem;
+  socket: Socket;
 }

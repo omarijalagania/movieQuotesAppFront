@@ -8,6 +8,10 @@ import jwtDecode from 'jwt-decode';
 import { JwDecode } from 'components/AddMovie';
 import { toast } from 'react-toastify';
 
+type UserDetails = {
+  userName: string;
+};
+
 export const useHeader = () => {
   const {
     registerResponse,
@@ -26,6 +30,7 @@ export const useHeader = () => {
   const [openNewPasswordModal, setOpenNewPasswordModal] = useState(false);
   const [openSuccessPasswordChangeModal, setOpenSuccessPasswordChangeModal] =
     useState(false);
+  const [userDetails, setUserDetails] = useState<UserDetails>();
   const { data: session } = useSession();
 
   useEffect(() => {
@@ -72,6 +77,7 @@ export const useHeader = () => {
           const response = await getUserHandler(data);
           localStorage.setItem('userId', response.data._id);
           setUserId(response.data._id);
+          setUserDetails(response.data);
         } catch (error) {
           toast.error('Server Error');
         }
@@ -85,6 +91,7 @@ export const useHeader = () => {
           const response = await getUserHandler(data);
           localStorage.setItem('userId', response.data._id);
           setUserId(response.data._id);
+          setUserDetails(response.data);
         } catch (error) {
           toast.error('Server Error');
         }
@@ -112,5 +119,6 @@ export const useHeader = () => {
     router,
     width,
     userId,
+    userDetails,
   };
 };

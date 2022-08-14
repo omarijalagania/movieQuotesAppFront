@@ -12,6 +12,7 @@ const initialState: GlobalState = {
   addMovie: {},
   triggerDelete: false,
   postItem: {},
+  socket: null,
 };
 
 export const storeSlice = createSlice({
@@ -48,6 +49,9 @@ export const storeSlice = createSlice({
     savePostItem: (state, action) => {
       state.postItem = action.payload;
     },
+    saveSocket: (state, action) => {
+      state.socket = action.payload;
+    },
   },
 });
 
@@ -62,6 +66,7 @@ export const {
   saveAddMovie,
   isTriggerDelete,
   savePostItem,
+  saveSocket,
 } = storeSlice.actions;
 
 export default storeSlice.reducer;
