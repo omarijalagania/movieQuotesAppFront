@@ -112,10 +112,12 @@ export const useHeader = () => {
   }, [session]);
 
   useEffect(() => {
-    socket?.emit('newUser', {
-      userId: userId,
-      socketId: socket?.id,
-    });
+    if (userId) {
+      socket?.emit('newUser', {
+        userId: userId,
+        socketId: socket?.id,
+      });
+    }
 
     socket?.on('disconnect', () => {});
   }, [socket, userId]);
@@ -130,6 +132,12 @@ export const useHeader = () => {
 
   useEffect(() => {
     socket?.on('gotNotification', (data: any) => {
+      dispatch(saveNotification(data));
+    });
+  }, [dispatch, socket]);
+
+  useEffect(() => {
+    socket?.on('gotNotificationLike', (data: any) => {
       dispatch(saveNotification(data));
     });
   }, [dispatch, socket]);

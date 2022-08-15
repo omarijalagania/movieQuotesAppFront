@@ -78,18 +78,22 @@ const Post = ({ item, setGetLike }: any) => {
             <HeartIcon
               onClick={() => {
                 addLike(item._id, userId, setIsLiked);
-                const data = {
-                  userId: userId,
-                  notificationType: 'liked',
-                  isRead: false,
-                  notificationFor: item.userId,
-                };
-                addNotificationHandler(data);
+
                 socket?.emit('like', {
                   whoLikes: userId,
                   quoteId: item._id,
                   receiver: item.userId,
                 });
+                socket?.emit('notificationLike', {
+                  userId: userId,
+                });
+                const dataNotification = {
+                  userId: userId,
+                  notificationType: 'liked',
+                  isRead: false,
+                  notificationFor: item.userId,
+                };
+                addNotificationHandler(dataNotification);
               }}
               className='w-6 cursor-pointer h-6'
             />

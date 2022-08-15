@@ -28,13 +28,10 @@ export const useAddQuoteFromMovie = () => {
         const response = await addQuoteHandler(formData as any);
 
         if (response.status === 422) {
-          toast.error('Error');
-        }
-        if (response.status === 200) {
-          toast.success('Movie added');
+          toast.error('Error adding quote');
         }
       } catch (error) {
-        toast.error('Error');
+        toast.error('Server Error');
       }
     },
 
