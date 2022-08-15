@@ -5,12 +5,15 @@ import { toast } from 'react-toastify';
 import { addQuoteHandler, getAllMoviesHandler } from 'services';
 import { useTranslate } from 'hooks';
 import { useEffect, useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { onModalClose } from 'state';
 
 export const useAddQuote = () => {
   const [file, setFile] = useState<File | null>(null);
   const { userId } = useHeader();
   const [movies, setMovies] = useState([]);
   const [selectMovies, setSelectMovies] = useState('');
+  const dispatch = useDispatch();
 
   const handleChange = (event: { target: { value: any } }) => {
     setSelectMovies(event.target.value);
@@ -48,12 +51,17 @@ export const useAddQuote = () => {
 
       try {
         const response = await addQuoteHandler(formData as any);
-
+        if (response.status === 200 || response.status === 201) {
+          toast.success(t('Quote added successfully'));
+          dispatch(onModalClose(true));
+        }
         if (response.status === 422) {
           toast.error('Error adding quote');
+          dispatch(onModalClose(true));
         }
       } catch (error) {
         toast.error('Server Error');
+        dispatch(onModalClose(false));
       }
     },
 

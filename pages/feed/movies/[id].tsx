@@ -17,7 +17,7 @@ const MovieDetails = () => {
   const { id } = router.query;
   const [openAddQuoteDialog, setOpenAddQuoteDialog] = useState(false);
   const movie = useSelector((state: RootState) => state.quotes.singleMovie);
-
+  const closeModal = useSelector((state: RootState) => state.quotes.closeModal);
   useEffect(() => {
     try {
       const getOneMovie = async () => {
@@ -28,7 +28,7 @@ const MovieDetails = () => {
         getOneMovie();
       }
     } catch (error) {}
-  }, [dispatch, id]);
+  }, [dispatch, id, closeModal]);
 
   return (
     <div className='text-white w-full'>

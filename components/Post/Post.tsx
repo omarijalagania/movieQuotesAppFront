@@ -81,8 +81,8 @@ const Post = ({ item, setGetLike }: any) => {
 
                 socket?.emit('like', {
                   whoLikes: userId,
-                  quoteId: item._id,
-                  receiver: item.userId,
+                  quoteId: item?._id,
+                  receiver: item?.userId,
                 });
                 socket?.emit('notificationLike', {
                   userId: userId,

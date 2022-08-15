@@ -12,4 +12,5 @@ export interface GlobalState {
   socket: Socket;
   updateComment: UpdateComment;
   notifications: Notifications;
+  closeModal: boolean;
 }

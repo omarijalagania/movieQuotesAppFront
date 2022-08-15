@@ -15,6 +15,7 @@ const initialState: GlobalState = {
   socket: null,
   updateComment: {},
   notifications: {},
+  closeModal: false,
 };
 
 export const storeSlice = createSlice({
@@ -60,6 +61,9 @@ export const storeSlice = createSlice({
     saveNotification: (state, action) => {
       state.notifications = action.payload;
     },
+    onModalClose: (state, action) => {
+      state.closeModal = action.payload;
+    },
   },
 });
 
@@ -77,6 +81,7 @@ export const {
   saveSocket,
   saveComment,
   saveNotification,
+  onModalClose,
 } = storeSlice.actions;
 
 export default storeSlice.reducer;

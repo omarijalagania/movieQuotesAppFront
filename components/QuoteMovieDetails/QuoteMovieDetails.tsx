@@ -9,16 +9,28 @@ import { EditQuote, Modal, addLike, removeLike, useHeader } from 'components';
 import { Menu } from '@headlessui/react';
 import { deleteQuoteHandler } from 'services';
 import { toast } from 'react-toastify';
+import { useSelector, useDispatch } from 'react-redux';
+import { onModalClose, RootState } from 'state';
 
 const QuoteMovieDetails = ({ item }: any) => {
   const [openEditQUoteDialog, setOpenEditQUoteDialog] = useState(false);
   const [isLiked, setIsLiked] = useState(false);
   const { userId } = useHeader();
+  const closeModal = useSelector((state: RootState) => state.quotes.closeModal);
+  const dispatch = useDispatch();
+
   const deleteQuote = async () => {
     const response = await deleteQuoteHandler(item._id);
     if (response.status === 200) {
+      dispatch(onModalClose(true));
       toast.success('Quote deleted successfully');
     }
+
+    if (response.status === 422) {
+      dispatch(onModalClose(true));
+      toast.error('Error deleting quote');
+    }
+    dispatch(onModalClose(false));
   };
 
   useEffect(() => {
@@ -28,6 +40,12 @@ const QuoteMovieDetails = ({ item }: any) => {
       }
     });
   }, [item.likes, item.userId, userId]);
+
+  useEffect(() => {
+    if (closeModal) {
+      setOpenEditQUoteDialog(false);
+    }
+  }, [closeModal]);
 
   return (
     <div className='bg-darkBlue rounded-md p-5 mt-10 relative'>

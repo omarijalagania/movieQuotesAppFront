@@ -14,6 +14,7 @@ const Movies = () => {
   const addMovieResponse = useSelector(
     (state: RootState) => state.quotes.addMovie
   );
+  const closeModal = useSelector((state: RootState) => state.quotes.closeModal);
   const { userId } = useHeader();
 
   const { router } = useTranslate();
@@ -28,7 +29,7 @@ const Movies = () => {
     if (userId !== '') {
       getAllMovies();
     }
-  }, [addMovieResponse.status, userId]);
+  }, [addMovieResponse.status, userId, closeModal]);
 
   const renderMovies = () => {
     return movie?.map(

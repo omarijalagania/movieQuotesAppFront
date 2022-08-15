@@ -5,15 +5,16 @@ import { toast } from 'react-toastify';
 import { editQuoteHandler, getAllMoviesHandler } from 'services';
 import { useTranslate } from 'hooks';
 import { useEffect, useState } from 'react';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { getEditQuoteFormInitialValue } from './helpers';
+import { onModalClose } from 'state';
 
 export const useEditQuote = () => {
   const [file, setFile] = useState<File | null>(null);
   const { userId } = useHeader();
   const [movies, setMovies] = useState([]);
   const [selectMovies, setSelectMovies] = useState('');
-
+  const dispatch = useDispatch();
   const singleMovie = useSelector((state: any) => state.quotes.singleMovie);
 
   const handleChange = (event: { target: { value: any } }) => {
@@ -69,12 +70,18 @@ export const useEditQuote = () => {
           formData as any,
           singleMovie._id as string
         );
+        if (response.status === 200 || response.status === 201) {
+          toast.success(t('Quote added successfully'));
+          dispatch(onModalClose(true));
+        }
 
         if (response.status === 422) {
           toast.error('Error editing quote');
+          dispatch(onModalClose(false));
         }
       } catch (error) {
         toast.error('Server Error');
+        dispatch(onModalClose(false));
       }
     },
 
