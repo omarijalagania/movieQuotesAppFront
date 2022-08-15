@@ -144,3 +144,13 @@ export const removeLikeHandler = async (data: any) => {
   const response = await request.put(`/likes/remove`, data);
   return response;
 };
+
+export const addNotificationHandler = async (data: any) => {
+  const response = await request.post(`/notifications/add`, data);
+  return response;
+};
+
+export const getNotificationsHandler = async () => {
+  const response = await request.get(`/notifications/get`);
+  return response;
+};

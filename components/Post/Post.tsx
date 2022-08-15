@@ -11,6 +11,7 @@ import {
 } from 'components';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState, savePostItem } from 'state';
+import { addNotificationHandler } from 'services';
 
 const Post = ({ item, setGetLike }: any) => {
   const dispatch = useDispatch();
@@ -77,6 +78,13 @@ const Post = ({ item, setGetLike }: any) => {
             <HeartIcon
               onClick={() => {
                 addLike(item._id, userId, setIsLiked);
+                const data = {
+                  userId: userId,
+                  notificationType: 'liked',
+                  isRead: false,
+                  notificationFor: item.userId,
+                };
+                addNotificationHandler(data);
                 socket?.emit('like', {
                   whoLikes: userId,
                   quoteId: item._id,

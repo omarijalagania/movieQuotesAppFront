@@ -1,25 +1,18 @@
 import { useFormik } from 'formik';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { toast } from 'react-toastify';
 import { commentSchema } from 'schema';
-import { addCommentsHandler } from 'services';
+import { addCommentsHandler, addNotificationHandler } from 'services';
 import { getCommentsFormInitialValue } from './helpers';
 import { useHeader } from 'components';
-import { useSelector, useDispatch } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { RootState } from 'state';
-import { saveComment } from 'state';
 
 const useAddComment = () => {
   const { userId } = useHeader();
   const [fieldId, setFieldId] = useState('');
   const socket = useSelector((state: RootState) => state.quotes.socket);
-  const dispatch = useDispatch();
-
-  useEffect(() => {
-    socket?.on('comment', (data: any) => {
-      dispatch(saveComment(data));
-    });
-  }, [dispatch, socket]);
+  const [receiverId, setReceiverId] = useState('');
 
   const formik = useFormik({
     initialValues: getCommentsFormInitialValue(),
@@ -35,9 +28,19 @@ const useAddComment = () => {
         quoteId: fieldId,
         receiver: userId,
       });
+      socket?.emit('notification', {
+        userId: receiverId,
+      });
+      const dataNotification = {
+        userId: userId,
+        notificationType: 'commented',
+        isRead: false,
+        notificationFor: receiverId,
+      };
+
       try {
         const response = await addCommentsHandler(data);
-
+        addNotificationHandler(dataNotification);
         if (response.status === 422) {
           toast.error('Error');
         }
@@ -52,7 +55,7 @@ const useAddComment = () => {
     validationSchema: commentSchema,
   });
 
-  return { formik, setFieldId };
+  return { formik, setFieldId, setReceiverId };
 };
 
 export default useAddComment;

@@ -1,12 +1,13 @@
 import { useState, useEffect } from 'react';
-import { useSelector } from 'react-redux';
-import { RootState } from 'state';
+import { useSelector, useDispatch } from 'react-redux';
+import { RootState, saveNotification, saveSocket } from 'state';
 import { useTranslate, useMediaSize } from 'hooks';
 import { useSession } from 'next-auth/react';
-import { getUserHandler } from 'services';
+import { getNotificationsHandler, getUserHandler } from 'services';
 import jwtDecode from 'jwt-decode';
 import { JwDecode } from 'components/AddMovie';
 import { toast } from 'react-toastify';
+import { io } from 'socket.io-client';
 
 type UserDetails = {
   userName: string;
@@ -32,6 +33,12 @@ export const useHeader = () => {
     useState(false);
   const [userDetails, setUserDetails] = useState<UserDetails>();
   const { data: session } = useSession();
+  const socket = useSelector((state: RootState) => state.quotes.socket);
+  const getNotifications = useSelector(
+    (state: RootState) => state.quotes.notifications
+  );
+  const [notifications, setNotifications] = useState([]);
+  const dispatch = useDispatch();
 
   useEffect(() => {
     if (registerResponse.status === 200) {
@@ -58,6 +65,10 @@ export const useHeader = () => {
       setOpenNewPasswordModal(true);
     }
   }, [tokens]);
+
+  useEffect(() => {
+    dispatch(saveSocket(io('http://localhost:4343')));
+  }, [dispatch]);
 
   useEffect(() => {
     if (newPasswordResponse.status === 200) {
@@ -100,6 +111,29 @@ export const useHeader = () => {
     getUserEmail();
   }, [session]);
 
+  useEffect(() => {
+    socket?.emit('newUser', {
+      userId: userId,
+      socketId: socket?.id,
+    });
+
+    socket?.on('disconnect', () => {});
+  }, [socket, userId]);
+
+  useEffect(() => {
+    const getNotifications = async () => {
+      const response = await getNotificationsHandler();
+      setNotifications(response.data);
+    };
+    getNotifications();
+  }, [getNotifications]);
+
+  useEffect(() => {
+    socket?.on('gotNotification', (data: any) => {
+      dispatch(saveNotification(data));
+    });
+  }, [dispatch, socket]);
+
   return {
     isOpen,
     setIsOpen,
@@ -120,5 +154,7 @@ export const useHeader = () => {
     width,
     userId,
     userDetails,
+    socket,
+    notifications,
   };
 };

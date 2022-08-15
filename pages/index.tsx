@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { ConfirmToken, Header, Modal, useHeader } from 'components';
+import { ConfirmToken, Header, Modal } from 'components';
 import Head from 'next/head';
 import HomePage from 'pages/home';
 import { useSelector, useDispatch } from 'react-redux';
@@ -10,10 +10,8 @@ import io from 'socket.io-client';
 
 const Home = () => {
   const [isOpenConfirm, setIsOpenConfirm] = useState(false);
-  const { userId } = useHeader();
-  const { confirmResponse, socket } = useSelector(
-    (state: RootState) => state.quotes
-  );
+
+  const { confirmResponse } = useSelector((state: RootState) => state.quotes);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -25,17 +23,6 @@ const Home = () => {
   useEffect(() => {
     dispatch(saveSocket(io('http://localhost:4343')));
   }, [dispatch]);
-
-  useEffect(() => {
-    socket?.emit('newUser', {
-      userId: userId,
-      socketId: socket?.id,
-    });
-
-    socket?.on('disconnect', () => {
-      console.log('disconnected');
-    });
-  }, [socket, userId]);
 
   return (
     <div>

@@ -11,4 +11,5 @@ export interface GlobalState {
   postItem: PostItem;
   socket: Socket;
   updateComment: UpdateComment;
+  notifications: Notifications;
 }

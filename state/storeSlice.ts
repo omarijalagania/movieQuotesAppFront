@@ -14,6 +14,7 @@ const initialState: GlobalState = {
   postItem: {},
   socket: null,
   updateComment: {},
+  notifications: {},
 };
 
 export const storeSlice = createSlice({
@@ -56,6 +57,9 @@ export const storeSlice = createSlice({
     saveComment: (state, action) => {
       state.updateComment = action.payload;
     },
+    saveNotification: (state, action) => {
+      state.notifications = action.payload;
+    },
   },
 });
 
@@ -72,6 +76,7 @@ export const {
   savePostItem,
   saveSocket,
   saveComment,
+  saveNotification,
 } = storeSlice.actions;
 
 export default storeSlice.reducer;
