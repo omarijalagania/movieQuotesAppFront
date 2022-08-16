@@ -77,7 +77,7 @@ export const getMovieGenresHandler = async () => {
   return response;
 };
 
-export const updateMovieHandler = async (data: any, id: string) => {
+export const updateMovieHandler = async (data: FormData, id: string) => {
   const response = await request.put(`/movie/update/${id}`, data);
   return response;
 };

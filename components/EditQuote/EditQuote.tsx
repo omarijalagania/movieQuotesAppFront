@@ -100,7 +100,7 @@ const EditQuote = ({ item }: ItemProps) => {
           onChange={handleChange}
         >
           <option value={singleMovie._id}>{singleMovie?.movieNameEn}</option>
-          {newMovie.map((movie: any) => {
+          {newMovie.map((movie) => {
             return (
               <option key={movie.value} value={movie.value}>
                 {movie.label}

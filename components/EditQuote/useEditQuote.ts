@@ -38,7 +38,7 @@ export const useEditQuote = () => {
   );
 
   const currentQuotes = singleMovie.quotes.filter(
-    (quote: any) => quote.movieId === singleMovie._id
+    (quote: { movieId: string }) => quote.movieId === singleMovie._id
   );
 
   const posterUrl = imageUrl(file as File);

@@ -12,7 +12,7 @@ const Feed: React.FC = () => {
         <WriteQuote setOpenAddQuote={setOpenAddQuote} />
         <Search />
       </div>
-      {quotes.map((item: any) => (
+      {quotes.map((item) => (
         <Post setGetLike={setGetLike} item={item} key={item._id} />
       ))}
       {openAddQuote && (
