@@ -5,6 +5,7 @@ import { useFeed } from 'pages/feed/hooks';
 
 const Feed: React.FC = () => {
   const { quotes, openAddQuote, setOpenAddQuote, setGetLike } = useFeed();
+
   return (
     <div className='flex flex-col w-full'>
       <div className='flex justify-between md:w-[90%] space-x-2'>

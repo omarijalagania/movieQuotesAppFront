@@ -1,3 +1,4 @@
+import { WriteQUoteProps } from 'components';
 import { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { useDispatch } from 'react-redux';
@@ -5,7 +6,7 @@ import { getQuoteHandler } from 'services';
 import { onModalClose, RootState } from 'state';
 
 const useFeed = () => {
-  const [quotes, setQuotes] = useState([]);
+  const [quotes, setQuotes] = useState<WriteQUoteProps[]>([]);
   const [openAddQuote, setOpenAddQuote] = useState(false);
   const [getLike, setGetLike] = useState([]);
   const { updateComment, closeModal } = useSelector(
