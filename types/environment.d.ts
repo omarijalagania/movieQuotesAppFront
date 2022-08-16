@@ -8,6 +8,7 @@ declare global {
       JWT_SECRET: string;
       MONGODB_URI: string;
       NEXT_PUBLIC_BACKEND_URL: string;
+      NEXT_PUBLIC_SOCKET_URL: string;
     }
   }
 }

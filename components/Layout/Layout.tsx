@@ -1,18 +1,14 @@
-import React, { useEffect } from 'react';
-import { FeedProfile, LayoutProps, Header, MovieDetailsSide } from 'components';
-import { useTranslate } from 'hooks';
-import io from 'socket.io-client';
-import { useDispatch } from 'react-redux';
-import { saveSocket } from 'state';
+import React from 'react';
+import {
+  FeedProfile,
+  LayoutProps,
+  Header,
+  MovieDetailsSide,
+  useLayout,
+} from 'components';
 
 const Layout: React.FC<LayoutProps> = ({ children }) => {
-  const dispatch = useDispatch();
-  const { router } = useTranslate();
-
-  useEffect(() => {
-    dispatch(saveSocket(io('http://localhost:4343')));
-  }, [dispatch]);
-
+  const { router } = useLayout();
   return (
     <>
       <div className='mb-[58px]'>
