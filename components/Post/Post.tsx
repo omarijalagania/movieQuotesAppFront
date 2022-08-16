@@ -1,49 +1,19 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import Image from 'next/image';
 import { HeartIcon, AnnotationIcon } from '@heroicons/react/outline';
 import { HeartIcon as HeartIconFull } from '@heroicons/react/solid';
 import {
   Comment,
   WriteComment,
-  useHeader,
   addLike,
   removeLike,
+  usePost,
 } from 'components';
-import { useDispatch, useSelector } from 'react-redux';
-import { RootState, saveLikeNotification, savePostItem } from 'state';
 import { addNotificationHandler } from 'services';
 import { ReactI18NextChild } from 'react-i18next';
 
 const Post = ({ item, setGetLike }: any) => {
-  const dispatch = useDispatch();
-  const [isLiked, setIsLiked] = useState(false);
-  const { userId } = useHeader();
-  const socket = useSelector((state: RootState) => state.quotes.socket);
-  useEffect(() => {
-    dispatch(savePostItem(item));
-  }, [dispatch, item]);
-
-  useEffect(() => {
-    item.likes.forEach((like: string) => {
-      if (like === userId) {
-        setIsLiked(true);
-      }
-    });
-  }, [item.likes, item.userId, userId]);
-
-  useEffect(() => {
-    socket?.on('gotLike', (gotLike: any) => {
-      setGetLike(gotLike);
-    });
-  }, [dispatch, setGetLike, socket]);
-
-  useEffect(() => {
-    socket?.on('gotNotificationLike', (data: any) => {
-      console.log(data);
-      dispatch(saveLikeNotification(data));
-    });
-  }, [dispatch, socket]);
-
+  const { isLiked, socket, userId, setIsLiked } = usePost(item, setGetLike);
   return (
     <div className='bg-darkBlue p-5 text-white md:w-[90%] rounded-md mt-5'>
       <div className='flex  items-center'>

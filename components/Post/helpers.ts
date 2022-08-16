@@ -2,7 +2,7 @@ import { SetStateAction } from 'react';
 import { addLikeHandler, removeLikeHandler } from 'services';
 
 export const addLike = async (
-  quoteId: any,
+  quoteId: string,
   userId: string,
   setIsLiked: { (value: SetStateAction<boolean>): void; (arg0: boolean): void }
 ) => {
@@ -17,7 +17,7 @@ export const addLike = async (
 };
 
 export const removeLike = async (
-  quoteId: any,
+  quoteId: string,
   userId: string,
   setIsLiked: { (value: SetStateAction<boolean>): void; (arg0: boolean): void }
 ) => {

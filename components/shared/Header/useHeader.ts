@@ -66,7 +66,7 @@ export const useHeader = () => {
   }, [tokens]);
 
   useEffect(() => {
-    dispatch(saveSocket(io('http://localhost:4343')));
+    dispatch(saveSocket(io(process.env.NEXT_PUBLIC_SOCKET_URL)));
   }, [dispatch]);
 
   useEffect(() => {

@@ -27,7 +27,7 @@ const QuoteMovieDetails = ({ item }: ItemProps) => {
   const dispatch = useDispatch();
 
   const deleteQuote = async () => {
-    const response = await deleteQuoteHandler(item._id as string);
+    const response = await deleteQuoteHandler(item._id);
     if (response.status === 200) {
       dispatch(onModalClose(true));
       toast.success('Quote deleted successfully');
