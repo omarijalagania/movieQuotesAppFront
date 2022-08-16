@@ -8,17 +8,6 @@ import Image from 'next/image';
 const AddQuoteFromMovie = ({ movie }: any) => {
   const { formik, setFile } = useAddQuoteFromMovie(movie);
 
-  const renderGenres = () => {
-    return movie?.genre?.map((genre: { genre: string; label: string }) => (
-      <p
-        key={genre.label + Math.random()}
-        className='text-xs w-12 h-6 px-10 flex justify-center items-center bg-gray-500'
-      >
-        {genre.label}
-      </p>
-    ));
-  };
-
   return (
     <div className='w-full p-5'>
       <div className='flex relative border-b-[1px] pb-2 border-gray-500'>
@@ -50,7 +39,16 @@ const AddQuoteFromMovie = ({ movie }: any) => {
             <div>
               <h2 className='text-primaryGold text-2xl'>{movie.movieNameEn}</h2>
             </div>
-            <div>{renderGenres()}</div>
+            <div>
+              {movie?.genre?.map((genre: { genre: string; label: string }) => (
+                <p
+                  key={genre.label + Math.random()}
+                  className='text-xs w-12 h-6 px-10 flex justify-center items-center bg-gray-500'
+                >
+                  {genre.label}
+                </p>
+              ))}
+            </div>
             <p className='text-white text-sm'>Director {movie.directorEn}</p>
           </div>
         </div>
