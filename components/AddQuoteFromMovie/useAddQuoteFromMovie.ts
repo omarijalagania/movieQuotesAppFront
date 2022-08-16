@@ -4,15 +4,16 @@ import { quoteSchema } from 'schema';
 import { toast } from 'react-toastify';
 import { addQuoteHandler } from 'services';
 import { useTranslate } from 'hooks';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
-export const useAddQuoteFromMovie = () => {
+export const useAddQuoteFromMovie = (movie: any) => {
   const [file, setFile] = useState<File | null>(null);
   const { userId } = useHeader();
 
   const [selectMovies, setSelectMovies] = useState('');
 
   const { t } = useTranslate();
+
   const formik = useFormik({
     initialValues: getQuoteFormInitialValue(),
 
@@ -37,6 +38,10 @@ export const useAddQuoteFromMovie = () => {
 
     validationSchema: quoteSchema,
   });
+
+  useEffect(() => {
+    setSelectMovies(movie._id);
+  }, [movie._id]);
 
   return { formik, t, setFile, setSelectMovies };
 };

@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { XIcon } from '@heroicons/react/solid';
 
 import { Input, RedButton, useAddQuoteFromMovie } from 'components';
@@ -6,11 +6,7 @@ import { CameraIcon } from '@heroicons/react/outline';
 import Image from 'next/image';
 
 const AddQuoteFromMovie = ({ movie }: any) => {
-  const { formik, setFile, setSelectMovies } = useAddQuoteFromMovie();
-
-  useEffect(() => {
-    setSelectMovies(movie._id);
-  }, [movie._id, setSelectMovies]);
+  const { formik, setFile } = useAddQuoteFromMovie(movie);
 
   const renderGenres = () => {
     return movie?.genre?.map((genre: { genre: string; label: string }) => (
