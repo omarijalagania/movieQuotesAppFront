@@ -4,7 +4,7 @@ import { quoteSchema } from 'schema';
 import { toast } from 'react-toastify';
 import { addQuoteHandler, getAllMoviesHandler } from 'services';
 import { useTranslate } from 'hooks';
-import { useEffect, useState } from 'react';
+import { SetStateAction, useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { onModalClose } from 'state';
 
@@ -15,12 +15,19 @@ export const useAddQuote = () => {
   const [selectMovies, setSelectMovies] = useState('');
   const dispatch = useDispatch();
 
-  const handleChange = (event: { target: { value: any } }) => {
+  const handleChange = (event: {
+    target: { value: SetStateAction<string> };
+  }) => {
     setSelectMovies(event.target.value);
   };
 
   const newMovie = movies.map(
-    (movie: { movieNameEn: any; _id: any; value: string; label: string }) => ({
+    (movie: {
+      movieNameEn: string;
+      _id: string;
+      value: string;
+      label: string;
+    }) => ({
       value: movie._id,
       label: movie.movieNameEn,
     })
@@ -50,7 +57,7 @@ export const useAddQuote = () => {
       formData.append('userId', userId);
 
       try {
-        const response = await addQuoteHandler(formData as any);
+        const response = await addQuoteHandler(formData as FormData);
         if (response.status === 200 || response.status === 201) {
           toast.success(t('Quote added successfully'));
           dispatch(onModalClose(true));
