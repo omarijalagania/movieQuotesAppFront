@@ -1,9 +1,34 @@
 import React from 'react';
-import { useAddComment, ItemProps } from 'components';
+import { useAddComment } from 'components';
 
-const WriteComment = ({ item }: ItemProps) => {
+const WriteComment = ({
+  item,
+}: {
+  item: {
+    _id: string;
+    comments: Array<{
+      _id: string;
+      userId: string;
+      quoteId: string;
+      comment: string;
+    }>;
+    likes: { userId: string }[];
+    quoteNameEng: string;
+    quoteNameGe: string;
+    movieId: string;
+    poster: string;
+    userId: string;
+    user: [
+      {
+        _id: string;
+        userName: string;
+        email: string;
+        confirmed: boolean;
+      }
+    ];
+  };
+}) => {
   const { formik, setFieldId, setReceiverId } = useAddComment();
-
   return (
     <form onSubmit={formik.handleSubmit} className='flex items-center mt-3'>
       <div className='w-7 h-7 bg-green-400 rounded-full' />

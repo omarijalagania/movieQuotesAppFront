@@ -8,11 +8,21 @@ import {
   addLike,
   removeLike,
   usePost,
+  ItemProps,
 } from 'components';
 import { addNotificationHandler } from 'services';
 import { ReactI18NextChild } from 'react-i18next';
 
-const Post = ({ item, setGetLike }: any) => {
+interface Props {
+  item: ItemProps;
+  setGetLike: (like: {
+    whoLikes: string;
+    quoteId: string;
+    receiver: string;
+  }) => void;
+}
+
+const Post: React.FC<Props> = ({ item, setGetLike }) => {
   const { isLiked, socket, userId, setIsLiked } = usePost(item, setGetLike);
   return (
     <div className='bg-darkBlue p-5 text-white md:w-[90%] rounded-md mt-5'>
@@ -96,16 +106,19 @@ const Post = ({ item, setGetLike }: any) => {
           )}
         </div>
       </div>
-      {item.comments.map(
-        (comment: {
-          _id: string;
-          userId: string;
-          comment: string;
-          quote: string;
-        }) => (
-          <Comment key={comment._id} comment={comment} />
-        )
-      )}
+      {item.comments.map((comment) => (
+        <Comment
+          key={comment._id}
+          comment={comment}
+          quote={{
+            _id: '',
+            userId: '',
+            quoteId: '',
+            comment: '',
+          }}
+        />
+      ))}
+
       <WriteComment item={item} />
     </div>
   );

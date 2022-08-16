@@ -3,8 +3,9 @@ interface CommentProps {
     userId: string;
     comment: string;
     _id: string;
-    quote: string;
   };
+  quote: { _id: string; userId: string; quoteId: string; comment: string };
+  key: string;
 }
 
 export default CommentProps;
