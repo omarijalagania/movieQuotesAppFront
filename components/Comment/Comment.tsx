@@ -1,16 +1,8 @@
-import React, { useEffect, useState } from 'react';
-import { getUserByIdHandler } from 'services';
+import React from 'react';
+import { useComment, CommentProps } from 'components';
 
-const Comment = ({ comment }: any) => {
-  const [user, setUser] = useState({} as any);
-
-  useEffect(() => {
-    const getUserById = async () => {
-      const response = await getUserByIdHandler(comment.userId);
-      setUser(response.data);
-    };
-    getUserById();
-  }, [comment.userId]);
+const Comment = ({ comment }: CommentProps) => {
+  const { user } = useComment(comment);
 
   return (
     <div>

@@ -12,6 +12,7 @@ import {
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState, saveLikeNotification, savePostItem } from 'state';
 import { addNotificationHandler } from 'services';
+import { ReactI18NextChild } from 'react-i18next';
 
 const Post = ({ item, setGetLike }: any) => {
   const dispatch = useDispatch();
@@ -23,7 +24,7 @@ const Post = ({ item, setGetLike }: any) => {
   }, [dispatch, item]);
 
   useEffect(() => {
-    item.likes.forEach((like: any) => {
+    item.likes.forEach((like: string) => {
       if (like === userId) {
         setIsLiked(true);
       }
@@ -47,11 +48,28 @@ const Post = ({ item, setGetLike }: any) => {
     <div className='bg-darkBlue p-5 text-white md:w-[90%] rounded-md mt-5'>
       <div className='flex  items-center'>
         <div className='w-10 h-10 rounded-full bg-green-300' />
-        {item?.user?.map((user: any) => (
-          <h3 key={user._id} className='ml-2'>
-            {user.userName}
-          </h3>
-        ))}
+        {item?.user?.map(
+          (user: {
+            _id: React.Key | null | undefined;
+            userName:
+              | string
+              | number
+              | boolean
+              | React.ReactElement<
+                  any,
+                  string | React.JSXElementConstructor<any>
+                >
+              | React.ReactFragment
+              | React.ReactPortal
+              | Iterable<ReactI18NextChild>
+              | null
+              | undefined;
+          }) => (
+            <h3 key={user._id} className='ml-2'>
+              {user.userName}
+            </h3>
+          )
+        )}
       </div>
       <h4 className='mt-3'>{item.quoteNameEng}</h4>
       <div className='mt-6'>
@@ -108,9 +126,16 @@ const Post = ({ item, setGetLike }: any) => {
           )}
         </div>
       </div>
-      {item.comments.map((comment: { _id: React.Key | null | undefined }) => (
-        <Comment key={comment._id} comment={comment} />
-      ))}
+      {item.comments.map(
+        (comment: {
+          _id: string;
+          userId: string;
+          comment: string;
+          quote: string;
+        }) => (
+          <Comment key={comment._id} comment={comment} />
+        )
+      )}
       <WriteComment item={item} />
     </div>
   );
