@@ -46,17 +46,7 @@ export const newUserPasswordHandler = async (data: {
   return response;
 };
 
-export const addMovieHandler = async (data: {
-  movieNameEn: string;
-  movieNameGe: string;
-  genre: string;
-  directorEn: string;
-  directorGe: string;
-  descriptionEn: string;
-  descriptionGe: string;
-  poster: string;
-  userId: string;
-}) => {
+export const addMovieHandler = async (data: FormData) => {
   const response = await request.post(`/movie/add`, data, {
     headers: {
       'Content-Type': 'multipart/form-data',
@@ -97,7 +87,7 @@ export const deleteMovieHandler = async (id: string) => {
   return response;
 };
 
-export const addQuoteHandler = async (data: any) => {
+export const addQuoteHandler = async (data: FormData) => {
   const response = await request.post(`/quote/add`, data, {
     headers: {
       'Content-Type': 'multipart/form-data',
@@ -106,7 +96,7 @@ export const addQuoteHandler = async (data: any) => {
   return response;
 };
 
-export const editQuoteHandler = async (data: any, id: string) => {
+export const editQuoteHandler = async (data: FormData, id: string) => {
   const response = await request.put(`/quote/update/${id}`, data, {
     headers: {
       'Content-Type': 'multipart/form-data',
@@ -120,7 +110,11 @@ export const getQuoteHandler = async () => {
   return response;
 };
 
-export const addCommentsHandler = async (data: any) => {
+export const addCommentsHandler = async (data: {
+  comment: string;
+  userId: string;
+  quoteId: string;
+}) => {
   const response = await request.post(`/comments/add`, data);
   return response;
 };
@@ -135,17 +129,28 @@ export const deleteQuoteHandler = async (id: string) => {
   return response;
 };
 
-export const addLikeHandler = async (data: any) => {
+export const addLikeHandler = async (data: {
+  quoteId: string;
+  userId: string;
+}) => {
   const response = await request.put(`/likes/add`, data);
   return response;
 };
 
-export const removeLikeHandler = async (data: any) => {
+export const removeLikeHandler = async (data: {
+  quoteId: string;
+  userId: string;
+}) => {
   const response = await request.put(`/likes/remove`, data);
   return response;
 };
 
-export const addNotificationHandler = async (data: any) => {
+export const addNotificationHandler = async (data: {
+  userId: string;
+  notificationType: string;
+  isRead: boolean;
+  notificationFor: string;
+}) => {
   const response = await request.post(`/notifications/add`, data);
   return response;
 };

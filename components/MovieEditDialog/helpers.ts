@@ -1,18 +1,23 @@
 export const editMovieFormInitialValue = (movie: {
-  movieNameEn: any;
-  movieNameGe: any;
-  genre: string[];
-  directorEn: any;
-  directorGe: any;
-  descriptionEn: any;
-  descriptionGe: any;
-  userId: any;
-  poster: any;
+  movieNameEn: string;
+  movieNameGe: string;
+  genre: [
+    {
+      genre: string;
+      label: string;
+    }
+  ];
+  directorEn: string;
+  directorGe: string;
+  descriptionEn: string;
+  descriptionGe: string;
+  userId: string;
+  poster: string;
 }) => {
   let movieNameEn = movie?.movieNameEn;
   let movieNameGe = movie?.movieNameGe;
 
-  let genre = movie?.genre.map((genre: any) => ({
+  let genre = movie?.genre.map((genre) => ({
     genre: genre.genre,
     label: genre.label,
   }));

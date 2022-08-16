@@ -6,7 +6,7 @@ import { addQuoteHandler } from 'services';
 import { useTranslate } from 'hooks';
 import { useEffect, useState } from 'react';
 
-export const useAddQuoteFromMovie = (movie: any) => {
+export const useAddQuoteFromMovie = (movie: { _id: string }) => {
   const [file, setFile] = useState<File | null>(null);
   const { userId } = useHeader();
 
@@ -26,7 +26,7 @@ export const useAddQuoteFromMovie = (movie: any) => {
       formData.append('userId', userId);
 
       try {
-        const response = await addQuoteHandler(formData as any);
+        const response = await addQuoteHandler(formData as FormData);
 
         if (response.status === 422) {
           toast.error('Error adding quote');

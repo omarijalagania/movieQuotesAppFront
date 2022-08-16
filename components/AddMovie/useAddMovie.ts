@@ -60,7 +60,7 @@ export const useAddMovie = () => {
       formData.append('userId', userId);
 
       try {
-        const response = await addMovieHandler(formData as any);
+        const response = await addMovieHandler(formData);
         dispatch(saveAddMovie(response));
         if (response.status === 200 || response.status === 201) {
           toast.success(t('Movie added successfully'));
