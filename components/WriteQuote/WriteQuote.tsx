@@ -1,11 +1,8 @@
 import React from 'react';
 import { PencilAltIcon } from '@heroicons/react/solid';
+import { WriteQUoteProps } from 'components';
 
-type Props = {
-  setOpenAddQuote: (open: boolean) => void;
-};
-
-const WriteQuote = ({ setOpenAddQuote }: Props) => {
+const WriteQuote = ({ setOpenAddQuote }: WriteQUoteProps) => {
   return (
     <div
       onClick={() => setOpenAddQuote(true)}

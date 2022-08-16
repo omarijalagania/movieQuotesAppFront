@@ -46,7 +46,7 @@ const Header = () => {
   } = useHeader();
 
   const newNotifications = notifications.filter(
-    (notification: any) => notification.isRead === false
+    (notification: { isRead: boolean }) => notification.isRead === false
   );
 
   return (
@@ -64,7 +64,8 @@ const Header = () => {
         {router.pathname.includes('/feed') ? (
           <div className='relative'>
             {notifications.find(
-              (notification: any) => notification.notificationFor === userId
+              (notification: { notificationFor: string }) =>
+                notification.notificationFor === userId
             ) &&
               newNotifications.length !== 0 && (
                 <div className='w-4 h-4 absolute -right-1 -top-1 rounded-full bg-red-500 flex justify-center items-center text-xs'>
@@ -89,54 +90,61 @@ const Header = () => {
                         <p>mark all as read</p>
                       </div>
                       <Menu.Items>
-                        {/* @ts-ignore */}
-                        {notifications?.map((notification: any) => {
-                          return (
-                            <>
-                              {notification.notificationFor === userId && (
-                                <Menu.Item>
-                                  {({}) => (
-                                    <div className='mb-3 border-[1px] border-gray-700'>
-                                      <div>
-                                        <div className='flex justify-between items-center'>
+                        {notifications?.map(
+                          (notification: {
+                            notificationFor: string;
+                            user: { userName: string };
+                            createdAt: string;
+                            isRead: boolean;
+                            notificationType: string;
+                          }) => {
+                            return (
+                              <>
+                                {notification.notificationFor === userId && (
+                                  <Menu.Item>
+                                    {({}) => (
+                                      <div className='mb-3 border-[1px] border-gray-700'>
+                                        <div>
                                           <div className='flex justify-between items-center'>
-                                            <div className='w-10 h-10 bg-red-500 rounded-full'></div>
+                                            <div className='flex justify-between items-center'>
+                                              <div className='w-10 h-10 bg-red-500 rounded-full'></div>
 
-                                            <div className='ml-3'>
-                                              <p>
-                                                {notification.user.userName}
-                                              </p>
-                                              {notification.notificationType ===
-                                              'commented' ? (
-                                                <p>Commented on your quote</p>
-                                              ) : (
-                                                <p>Liked on your quote</p>
-                                              )}
+                                              <div className='ml-3'>
+                                                <p>
+                                                  {notification.user.userName}
+                                                </p>
+                                                {notification.notificationType ===
+                                                'commented' ? (
+                                                  <p>Commented on your quote</p>
+                                                ) : (
+                                                  <p>Liked on your quote</p>
+                                                )}
+                                              </div>
                                             </div>
-                                          </div>
-                                          <div className='flex flex-col'>
-                                            <p>
-                                              {moment
-                                                .utc(notification.createdAt)
-                                                .local()
-                                                .startOf('seconds')
-                                                .fromNow()}
-                                            </p>
-                                            <p className='text-right text-green-600'>
-                                              {!notification.isRead
-                                                ? 'New'
-                                                : ''}
-                                            </p>
+                                            <div className='flex flex-col'>
+                                              <p>
+                                                {moment
+                                                  .utc(notification.createdAt)
+                                                  .local()
+                                                  .startOf('seconds')
+                                                  .fromNow()}
+                                              </p>
+                                              <p className='text-right text-green-600'>
+                                                {!notification.isRead
+                                                  ? 'New'
+                                                  : ''}
+                                              </p>
+                                            </div>
                                           </div>
                                         </div>
                                       </div>
-                                    </div>
-                                  )}
-                                </Menu.Item>
-                              )}
-                            </>
-                          );
-                        })}
+                                    )}
+                                  </Menu.Item>
+                                )}
+                              </>
+                            );
+                          }
+                        )}
                       </Menu.Items>
                     </div>
                   )}

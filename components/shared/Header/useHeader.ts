@@ -128,7 +128,7 @@ export const useHeader = () => {
   }, [getNotifications, likeNotification]);
 
   useEffect(() => {
-    socket?.on('gotNotification', (data: any) => {
+    socket?.on('gotNotification', (data: { userId: string }) => {
       dispatch(saveNotification(data));
     });
   }, [dispatch, socket]);

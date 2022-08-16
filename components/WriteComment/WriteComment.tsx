@@ -1,7 +1,7 @@
 import React from 'react';
-import { useAddComment } from 'components';
+import { useAddComment, ItemProps } from 'components';
 
-const WriteComment = ({ item }: any) => {
+const WriteComment = ({ item }: ItemProps) => {
   const { formik, setFieldId, setReceiverId } = useAddComment();
 
   return (

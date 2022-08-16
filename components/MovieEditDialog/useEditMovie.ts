@@ -82,7 +82,7 @@ export const useEditMovie = () => {
 
       try {
         const response = await updateMovieHandler(
-          formData as any,
+          formData,
           movie?._id as string
         );
 
