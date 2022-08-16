@@ -10,7 +10,7 @@ import {
   removeLike,
 } from 'components';
 import { useDispatch, useSelector } from 'react-redux';
-import { RootState, savePostItem } from 'state';
+import { RootState, saveLikeNotification, savePostItem } from 'state';
 import { addNotificationHandler } from 'services';
 
 const Post = ({ item, setGetLike }: any) => {
@@ -34,7 +34,14 @@ const Post = ({ item, setGetLike }: any) => {
     socket?.on('gotLike', (gotLike: any) => {
       setGetLike(gotLike);
     });
-  }, [setGetLike, socket]);
+  }, [dispatch, setGetLike, socket]);
+
+  useEffect(() => {
+    socket?.on('gotNotificationLike', (data: any) => {
+      console.log(data);
+      dispatch(saveLikeNotification(data));
+    });
+  }, [dispatch, socket]);
 
   return (
     <div className='bg-darkBlue p-5 text-white md:w-[90%] rounded-md mt-5'>
@@ -85,7 +92,7 @@ const Post = ({ item, setGetLike }: any) => {
                   receiver: item?.userId,
                 });
                 socket?.emit('notificationLike', {
-                  userId: userId,
+                  userId: item?.userId,
                 });
                 const dataNotification = {
                   userId: userId,
@@ -93,6 +100,7 @@ const Post = ({ item, setGetLike }: any) => {
                   isRead: false,
                   notificationFor: item.userId,
                 };
+                console.log(item?.userId);
                 addNotificationHandler(dataNotification);
               }}
               className='w-6 cursor-pointer h-6'

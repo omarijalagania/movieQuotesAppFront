@@ -5,13 +5,9 @@ import { useTranslate, useMediaSize } from 'hooks';
 import { useSession } from 'next-auth/react';
 import { getNotificationsHandler, getUserHandler } from 'services';
 import jwtDecode from 'jwt-decode';
-import { JwDecode } from 'components/AddMovie';
+import { JwDecode, UserDetails } from 'components';
 import { toast } from 'react-toastify';
 import { io } from 'socket.io-client';
-
-type UserDetails = {
-  userName: string;
-};
 
 export const useHeader = () => {
   const {
@@ -36,6 +32,9 @@ export const useHeader = () => {
   const socket = useSelector((state: RootState) => state.quotes.socket);
   const getNotifications = useSelector(
     (state: RootState) => state.quotes.notifications
+  );
+  const likeNotification = useSelector(
+    (state: RootState) => state.quotes.likeNotification
   );
   const [notifications, setNotifications] = useState([]);
   const dispatch = useDispatch();
@@ -126,16 +125,10 @@ export const useHeader = () => {
       setNotifications(response.data);
     };
     getNotifications();
-  }, [getNotifications]);
+  }, [getNotifications, likeNotification]);
 
   useEffect(() => {
     socket?.on('gotNotification', (data: any) => {
-      dispatch(saveNotification(data));
-    });
-  }, [dispatch, socket]);
-
-  useEffect(() => {
-    socket?.on('gotNotificationLike', (data: any) => {
       dispatch(saveNotification(data));
     });
   }, [dispatch, socket]);

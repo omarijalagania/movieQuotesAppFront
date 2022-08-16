@@ -154,3 +154,8 @@ export const getNotificationsHandler = async () => {
   const response = await request.get(`/notifications/get`);
   return response;
 };
+
+export const updateNotificationHandler = async () => {
+  const response = await request.post(`/notifications/update`);
+  return response;
+};

@@ -18,6 +18,7 @@ import moment from 'moment';
 import { Menu, Transition } from '@headlessui/react';
 import { ChevronDownIcon } from '@heroicons/react/solid';
 import { BellIcon, MenuIcon } from '@heroicons/react/outline';
+import { updateNotificationHandler } from 'services';
 
 const Header = () => {
   const { data: session } = useSession();
@@ -44,6 +45,10 @@ const Header = () => {
     userId,
   } = useHeader();
 
+  const newNotifications = notifications.filter(
+    (notification: any) => notification.isRead === false
+  );
+
   return (
     <div
       className={`fixed top-0 z-50 flex text-white w-full items-center ${
@@ -58,18 +63,24 @@ const Header = () => {
       <div className='flex items-center justify-center space-x-5'>
         {router.pathname.includes('/feed') ? (
           <div className='relative'>
-            {notifications.some(
+            {notifications.find(
               (notification: any) => notification.notificationFor === userId
-            ) && (
-              <div className='w-4 h-4 absolute -right-1 -top-1 rounded-full bg-red-500 flex justify-center items-center text-xs'>
-                {notifications.length}
-              </div>
-            )}
+            ) &&
+              newNotifications.length !== 0 && (
+                <div className='w-4 h-4 absolute -right-1 -top-1 rounded-full bg-red-500 flex justify-center items-center text-xs'>
+                  {newNotifications.length}
+                </div>
+              )}
             <Menu>
               {({ open }) => (
                 <div className='w-full'>
                   <Menu.Button>
-                    <BellIcon className='w-6 h-6 cursor-pointer ' />
+                    <BellIcon
+                      onClick={() => {
+                        updateNotificationHandler();
+                      }}
+                      className='w-6 h-6 cursor-pointer '
+                    />
                   </Menu.Button>
                   {open && (
                     <div className='bg-darkBlue absolute w-[500px] overflow-y-auto h-[400px] -right-[100px] top-12 p-3'>
