@@ -5,14 +5,21 @@ import {
   HeartIcon as HeartIconFull,
 } from '@heroicons/react/solid';
 import Image from 'next/image';
-import { EditQuote, Modal, addLike, removeLike, useHeader } from 'components';
+import {
+  EditQuote,
+  Modal,
+  addLike,
+  removeLike,
+  useHeader,
+  ItemProps,
+} from 'components';
 import { Menu } from '@headlessui/react';
 import { deleteQuoteHandler } from 'services';
 import { toast } from 'react-toastify';
 import { useSelector, useDispatch } from 'react-redux';
 import { onModalClose, RootState } from 'state';
 
-const QuoteMovieDetails = ({ item }: any) => {
+const QuoteMovieDetails = ({ item }: ItemProps) => {
   const [openEditQUoteDialog, setOpenEditQUoteDialog] = useState(false);
   const [isLiked, setIsLiked] = useState(false);
   const { userId } = useHeader();
@@ -20,7 +27,7 @@ const QuoteMovieDetails = ({ item }: any) => {
   const dispatch = useDispatch();
 
   const deleteQuote = async () => {
-    const response = await deleteQuoteHandler(item._id);
+    const response = await deleteQuoteHandler(item._id as string);
     if (response.status === 200) {
       dispatch(onModalClose(true));
       toast.success('Quote deleted successfully');

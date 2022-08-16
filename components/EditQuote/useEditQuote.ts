@@ -4,10 +4,10 @@ import { quoteSchema } from 'schema';
 import { toast } from 'react-toastify';
 import { editQuoteHandler, getAllMoviesHandler } from 'services';
 import { useTranslate } from 'hooks';
-import { useEffect, useState } from 'react';
+import { SetStateAction, useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { getEditQuoteFormInitialValue } from './helpers';
-import { onModalClose } from 'state';
+import { onModalClose, RootState } from 'state';
 
 export const useEditQuote = () => {
   const [file, setFile] = useState<File | null>(null);
@@ -15,14 +15,23 @@ export const useEditQuote = () => {
   const [movies, setMovies] = useState([]);
   const [selectMovies, setSelectMovies] = useState('');
   const dispatch = useDispatch();
-  const singleMovie = useSelector((state: any) => state.quotes.singleMovie);
+  const singleMovie = useSelector(
+    (state: RootState) => state.quotes.singleMovie
+  );
 
-  const handleChange = (event: { target: { value: any } }) => {
+  const handleChange = (event: {
+    target: { value: SetStateAction<string> };
+  }) => {
     setSelectMovies(event.target.value);
   };
 
   const newMovie = movies.map(
-    (movie: { movieNameEn: any; _id: any; value: string; label: string }) => ({
+    (movie: {
+      movieNameEn: string;
+      _id: string;
+      value: string;
+      label: string;
+    }) => ({
       value: movie._id,
       label: movie.movieNameEn,
     })
@@ -31,8 +40,6 @@ export const useEditQuote = () => {
   const currentQuotes = singleMovie.quotes.filter(
     (quote: any) => quote.movieId === singleMovie._id
   );
-
-  console.log(currentQuotes);
 
   const posterUrl = imageUrl(file as File);
 
@@ -66,10 +73,7 @@ export const useEditQuote = () => {
       formData.append('userId', userId);
 
       try {
-        const response = await editQuoteHandler(
-          formData as any,
-          singleMovie._id as string
-        );
+        const response = await editQuoteHandler(formData, singleMovie._id);
         if (response.status === 200 || response.status === 201) {
           toast.success(t('Quote added successfully'));
           dispatch(onModalClose(true));
