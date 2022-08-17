@@ -1,39 +1,23 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import Image from 'next/image';
 import { ChatIcon } from '@heroicons/react/outline';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
-import { AddMovie, Modal, RedButton, useHeader } from 'components';
-import { getAllMoviesHandler } from 'services';
-import { useTranslate } from 'hooks';
-import { useSelector } from 'react-redux';
-import { RootState } from 'state';
+import { AddMovie, Modal, RedButton } from 'components';
+import { useMovie } from 'hooks';
 
-const Movies = () => {
-  const [movie, setMovie] = useState([]);
-  const [openAddMovieModal, setOpenAddMovieModal] = useState(false);
-  const addMovieResponse = useSelector(
-    (state: RootState) => state.quotes.addMovie
-  );
-  const { userId } = useHeader();
-
-  const { router } = useTranslate();
-  useEffect(() => {
-    const getAllMovies = async () => {
-      const response = await getAllMoviesHandler(userId);
-      setMovie(response.data);
-    };
-    if (addMovieResponse.status === 200) {
-      setOpenAddMovieModal(false);
-    }
-    if (userId !== '') {
-      getAllMovies();
-    }
-  }, [addMovieResponse.status, userId]);
+const Movies: React.FC = () => {
+  const { movie, openAddMovieModal, setOpenAddMovieModal, router } = useMovie();
 
   const renderMovies = () => {
     return movie?.map(
-      (item: { poster: string; movieNameEn: string; _id: string }) => (
+      (item: {
+        quotes: string[];
+        poster: string;
+        movieNameEn: string;
+        _id: string;
+      }) => (
         <div
+          className='cursor-pointer'
           onClick={() => router.push(`/feed/movies/${item._id}`)}
           key={item._id}
         >
@@ -46,7 +30,7 @@ const Movies = () => {
           />
           <p className='text-white mt-3 text-xl'>{item.movieNameEn}</p>
           <div className='flex items-center mt-4'>
-            <div className='text-white'>10</div>
+            <div className='text-white'>{item.quotes.length}</div>
             <ChatIcon className='w-8 h-8 text-white ml-3' />
           </div>
         </div>

@@ -2,7 +2,12 @@ import React from 'react';
 import { HomeIcon } from '@heroicons/react/solid';
 import { VideoCameraIcon } from '@heroicons/react/outline';
 import Link from 'next/link';
-const FeedProfile = () => {
+
+import { useHeader } from 'components';
+
+const FeedProfile: React.FC = () => {
+  const { userDetails } = useHeader();
+
   return (
     <div className='pt-8 pl-10'>
       <div className='flex flex-col space-y-7'>
@@ -10,7 +15,7 @@ const FeedProfile = () => {
           <div className='w-10 h-10 rounded-full bg-red-500' />
           <div className='ml-2'>
             <h3 className='text-xl mb-1 overflow-hidden text-white'>
-              John Smith
+              {userDetails?.userName}
             </h3>
             <p className='text-xs text-gray-300'>Edit your profile</p>
           </div>

@@ -3,7 +3,7 @@ import { RedButton, Input, useNewPasswordFrom } from 'components';
 
 import React from 'react';
 
-const NewPassword = () => {
+const NewPassword: React.FC = () => {
   const { formik, t } = useNewPasswordFrom();
 
   return (

@@ -8,4 +8,10 @@ export interface GlobalState {
   singleMovie: SingleMovie;
   addMovie: AddMovie;
   triggerDelete: boolean;
+  postItem: PostItem;
+  socket: Socket;
+  updateComment: UpdateComment;
+  notifications: Notifications;
+  likeNotification: LikeNotification;
+  closeModal: boolean;
 }

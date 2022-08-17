@@ -1,8 +1,13 @@
 import React from 'react';
 import { PencilAltIcon } from '@heroicons/react/solid';
-const WriteQuote = () => {
+import { WriteQUoteProps } from 'components';
+
+const WriteQuote: React.FC<WriteQUoteProps> = ({ setOpenAddQuote }) => {
   return (
-    <div className='relative w-full md:w-[88%]'>
+    <div
+      onClick={() => setOpenAddQuote(true)}
+      className='relative w-full md:w-[83%]'
+    >
       <input
         className='py-2 w-[100%] pl-10 rounded-md text-white bg-lightBlue placeholder-white'
         type='text'

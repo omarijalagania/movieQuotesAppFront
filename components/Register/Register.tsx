@@ -4,7 +4,7 @@ import { CheckIcon, ExclamationCircleIcon } from '@heroicons/react/solid';
 import { signIn } from 'next-auth/react';
 import { usePersonalInformationForm } from 'components';
 
-const Register = () => {
+const Register: React.FC = () => {
   const { formik, error, t } = usePersonalInformationForm();
 
   return (

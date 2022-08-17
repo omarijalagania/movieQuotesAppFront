@@ -60,16 +60,16 @@ export const useAddMovie = () => {
       formData.append('userId', userId);
 
       try {
-        const response = await addMovieHandler(formData as any);
+        const response = await addMovieHandler(formData);
         dispatch(saveAddMovie(response));
-        if (response.status === 422) {
-          toast.error('Error');
+        if (response.status === 200 || response.status === 201) {
+          toast.success(t('Movie added successfully'));
         }
-        if (response.status === 200) {
-          toast.success('Movie added');
+        if (response.status === 422) {
+          toast.error('Error adding movie');
         }
       } catch (error) {
-        toast.error('Error');
+        toast.error('Server Error');
       }
     },
 

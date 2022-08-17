@@ -3,7 +3,7 @@ import Image from 'next/image';
 import { RedButton } from 'components';
 import { useTranslate } from 'hooks';
 
-const SuccessPasswordChange = () => {
+const SuccessPasswordChange: React.FC = () => {
   const { t } = useTranslate();
   return (
     <div className='flex flex-col p-10 items-center justify-center'>

@@ -1,17 +1,24 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { getSingleMovieHandler } from 'services';
 import { useTranslate } from 'hooks';
 import { RootState, saveSingleMovie } from 'state';
 import { useDispatch, useSelector } from 'react-redux';
 import Image from 'next/image';
-import { QuoteMovieDetails, RedButton } from 'components';
+import {
+  AddQuoteFromMovie,
+  Modal,
+  QuoteMovieDetails,
+  RedButton,
+} from 'components';
+import { QuoteProps } from 'types';
 
-const MovieDetails = () => {
+const MovieDetails: React.FC = () => {
   const dispatch = useDispatch();
   const { router } = useTranslate();
   const { id } = router.query;
-
+  const [openAddQuoteDialog, setOpenAddQuoteDialog] = useState(false);
   const movie = useSelector((state: RootState) => state.quotes.singleMovie);
+  const closeModal = useSelector((state: RootState) => state.quotes.closeModal);
   useEffect(() => {
     try {
       const getOneMovie = async () => {
@@ -22,7 +29,7 @@ const MovieDetails = () => {
         getOneMovie();
       }
     } catch (error) {}
-  }, [dispatch, id]);
+  }, [dispatch, id, closeModal]);
 
   return (
     <div className='text-white w-full'>
@@ -36,11 +43,27 @@ const MovieDetails = () => {
           alt={movie?.movieNameEn}
         />
       </div>
+      {openAddQuoteDialog && (
+        <Modal open={openAddQuoteDialog} setOpen={setOpenAddQuoteDialog}>
+          <AddQuoteFromMovie
+            movie={movie}
+            _id={function () {
+              throw new Error('Function not implemented.');
+            }}
+          />
+        </Modal>
+      )}
       <div className='flex mt-7 items-center'>
         <p className='border-r-[1px] border-gray-500 px-3'>Quotes (total 7)</p>
-        <RedButton className='ml-3' name='Add quote' />
+        <RedButton
+          onClick={() => setOpenAddQuoteDialog(true)}
+          className='ml-3'
+          name='Add quote'
+        />
       </div>
-      <QuoteMovieDetails />
+      {movie?.quotes?.map((item: QuoteProps) => (
+        <QuoteMovieDetails item={item} key={item._id} />
+      ))}
     </div>
   );
 };

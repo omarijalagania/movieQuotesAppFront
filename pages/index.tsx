@@ -2,21 +2,27 @@ import { useState, useEffect } from 'react';
 import { ConfirmToken, Header, Modal } from 'components';
 import Head from 'next/head';
 import HomePage from 'pages/home';
-import { useSelector } from 'react-redux';
-import { RootState } from 'state';
+import { useSelector, useDispatch } from 'react-redux';
+import { RootState, saveSocket } from 'state';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 
-const Home = () => {
+import io from 'socket.io-client';
+
+const Home: React.FC = () => {
   const [isOpenConfirm, setIsOpenConfirm] = useState(false);
-  const confirmResponse = useSelector(
-    (state: RootState) => state.quotes.confirmResponse
-  );
+
+  const { confirmResponse } = useSelector((state: RootState) => state.quotes);
+  const dispatch = useDispatch();
 
   useEffect(() => {
     if (confirmResponse.status === 200) {
       setIsOpenConfirm(true);
     }
   }, [confirmResponse]);
+
+  useEffect(() => {
+    dispatch(saveSocket(io(process.env.NEXT_PUBLIC_SOCKET_URL)));
+  }, [dispatch]);
 
   return (
     <div>

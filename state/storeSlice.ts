@@ -11,6 +11,12 @@ const initialState: GlobalState = {
   singleMovie: {},
   addMovie: {},
   triggerDelete: false,
+  postItem: {},
+  socket: null,
+  updateComment: {},
+  notifications: {},
+  likeNotification: {},
+  closeModal: false,
 };
 
 export const storeSlice = createSlice({
@@ -44,6 +50,24 @@ export const storeSlice = createSlice({
     isTriggerDelete: (state, action) => {
       state.triggerDelete = action.payload;
     },
+    savePostItem: (state, action) => {
+      state.postItem = action.payload;
+    },
+    saveSocket: (state, action) => {
+      state.socket = action.payload;
+    },
+    saveComment: (state, action) => {
+      state.updateComment = action.payload;
+    },
+    saveNotification: (state, action) => {
+      state.notifications = action.payload;
+    },
+    onModalClose: (state, action) => {
+      state.closeModal = action.payload;
+    },
+    saveLikeNotification: (state, action) => {
+      state.likeNotification = action.payload;
+    },
   },
 });
 
@@ -57,6 +81,12 @@ export const {
   saveSingleMovie,
   saveAddMovie,
   isTriggerDelete,
+  savePostItem,
+  saveSocket,
+  saveComment,
+  saveNotification,
+  onModalClose,
+  saveLikeNotification,
 } = storeSlice.actions;
 
 export default storeSlice.reducer;

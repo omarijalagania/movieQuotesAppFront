@@ -3,7 +3,7 @@ import { RedButton, useRecoverForm, Input } from 'components';
 import Image from 'next/image';
 import { CheckIcon, ExclamationCircleIcon } from '@heroicons/react/solid';
 
-const PasswordRecover = () => {
+const PasswordRecover: React.FC = () => {
   const { formik, error, t } = useRecoverForm();
 
   return (

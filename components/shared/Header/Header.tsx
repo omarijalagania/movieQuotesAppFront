@@ -12,14 +12,16 @@ import {
   SuccessPasswordChange,
   useHeader,
   LangToggler,
+  NotificationProps,
 } from 'components';
 import { useSession, signOut } from 'next-auth/react';
-
+import moment from 'moment';
 import { Menu, Transition } from '@headlessui/react';
 import { ChevronDownIcon } from '@heroicons/react/solid';
 import { BellIcon, MenuIcon } from '@heroicons/react/outline';
+import { updateNotificationHandler } from 'services';
 
-const Header = () => {
+const Header: React.FC = () => {
   const { data: session } = useSession();
 
   const {
@@ -40,7 +42,13 @@ const Header = () => {
     t,
     router,
     width,
+    notifications,
+    userId,
   } = useHeader();
+
+  const newNotifications = notifications.filter(
+    (notification: { isRead: boolean }) => notification.isRead === false
+  );
 
   return (
     <div
@@ -56,10 +64,88 @@ const Header = () => {
       <div className='flex items-center justify-center space-x-5'>
         {router.pathname.includes('/feed') ? (
           <div className='relative'>
-            <BellIcon className='w-6 h-6' />
-            <div className='w-4 h-4 absolute -right-1 -top-1 rounded-full bg-red-500 flex justify-center items-center text-xs'>
-              3
-            </div>
+            {notifications.find(
+              (notification: { notificationFor: string }) =>
+                notification.notificationFor === userId
+            ) &&
+              newNotifications.length !== 0 && (
+                <div className='w-4 h-4 absolute -right-1 -top-1 rounded-full bg-red-500 flex justify-center items-center text-xs'>
+                  {newNotifications.length}
+                </div>
+              )}
+            <Menu>
+              {({ open }) => (
+                <div className='w-full'>
+                  <Menu.Button>
+                    <BellIcon
+                      onClick={() => {
+                        updateNotificationHandler();
+                      }}
+                      className='w-6 h-6 cursor-pointer '
+                    />
+                  </Menu.Button>
+                  {open && (
+                    <div className='bg-darkBlue absolute w-[500px] overflow-y-auto h-[400px] -right-[100px] top-12 p-3'>
+                      <div className='flex justify-between  bg-darkBlue items-center my-5'>
+                        <h2 className='text-xl'>Notifications</h2>
+                        <p>mark all as read</p>
+                      </div>
+                      <Menu.Items>
+                        {notifications?.map(
+                          (notification: NotificationProps) => {
+                            return (
+                              <>
+                                {notification.notificationFor === userId && (
+                                  <Menu.Item>
+                                    {({}) => (
+                                      <div className='mb-3 border-[1px] border-gray-700'>
+                                        <div>
+                                          <div className='flex justify-between items-center'>
+                                            <div className='flex justify-between items-center'>
+                                              <div className='w-10 h-10 bg-red-500 rounded-full'></div>
+
+                                              <div className='ml-3'>
+                                                <p>
+                                                  {notification.user.userName}
+                                                </p>
+                                                {notification.notificationType ===
+                                                'commented' ? (
+                                                  <p>Commented on your quote</p>
+                                                ) : (
+                                                  <p>Liked on your quote</p>
+                                                )}
+                                              </div>
+                                            </div>
+                                            <div className='flex flex-col'>
+                                              <p>
+                                                {moment
+                                                  .utc(notification.createdAt)
+                                                  .local()
+                                                  .startOf('seconds')
+                                                  .fromNow()}
+                                              </p>
+                                              <p className='text-right text-green-600'>
+                                                {!notification.isRead
+                                                  ? 'New'
+                                                  : ''}
+                                              </p>
+                                            </div>
+                                          </div>
+                                        </div>
+                                      </div>
+                                    )}
+                                  </Menu.Item>
+                                )}
+                              </>
+                            );
+                          }
+                        )}
+                      </Menu.Items>
+                    </div>
+                  )}
+                </div>
+              )}
+            </Menu>
           </div>
         ) : null}
         <Menu as='div'>

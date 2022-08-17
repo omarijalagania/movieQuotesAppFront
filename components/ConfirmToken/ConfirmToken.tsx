@@ -3,7 +3,7 @@ import Image from 'next/image';
 import React from 'react';
 import { useTranslate } from 'hooks';
 
-const ConfirmToken = () => {
+const ConfirmToken: React.FC = () => {
   const { t } = useTranslate();
   return (
     <div className='flex flex-col p-10 items-center justify-center'>
