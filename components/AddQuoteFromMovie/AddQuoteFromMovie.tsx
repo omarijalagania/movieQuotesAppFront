@@ -1,11 +1,11 @@
 import React from 'react';
 import { XIcon } from '@heroicons/react/solid';
 
-import { Input, RedButton, useAddQuoteFromMovie } from 'components';
+import { Input, RedButton, useAddQuoteFromMovie, MovieProp } from 'components';
 import { CameraIcon } from '@heroicons/react/outline';
 import Image from 'next/image';
 
-const AddQuoteFromMovie = ({ movie }: any) => {
+const AddQuoteFromMovie: React.FC<MovieProp> = ({ movie }) => {
   const { formik, setFile } = useAddQuoteFromMovie(movie);
 
   return (

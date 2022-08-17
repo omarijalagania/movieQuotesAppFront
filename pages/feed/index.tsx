@@ -1,7 +1,7 @@
 import React from 'react';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { AddQuote, Modal, Post, Search, WriteQuote } from 'components';
-import { useFeed } from 'pages/feed/hooks';
+import { useFeed } from 'hooks';
 
 const Feed: React.FC = () => {
   const { quotes, openAddQuote, setOpenAddQuote, setGetLike } = useFeed();

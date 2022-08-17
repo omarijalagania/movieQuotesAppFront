@@ -21,7 +21,7 @@ const usePost = (
   }, [dispatch, item]);
 
   useEffect(() => {
-    item.likes.forEach((like: string) => {
+    item.likes.forEach((like) => {
       if (like === userId) {
         setIsLiked(true);
       }

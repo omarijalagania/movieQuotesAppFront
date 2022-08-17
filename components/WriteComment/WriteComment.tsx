@@ -1,33 +1,7 @@
 import React from 'react';
-import { useAddComment } from 'components';
+import { useAddComment, SIngleItemProps } from 'components';
 
-const WriteComment = ({
-  item,
-}: {
-  item: {
-    _id: string;
-    comments: Array<{
-      _id: string;
-      userId: string;
-      quoteId: string;
-      comment: string;
-    }>;
-    likes: { userId: string }[];
-    quoteNameEng: string;
-    quoteNameGe: string;
-    movieId: string;
-    poster: string;
-    userId: string;
-    user: [
-      {
-        _id: string;
-        userName: string;
-        email: string;
-        confirmed: boolean;
-      }
-    ];
-  };
-}) => {
+const WriteComment: React.FC<SIngleItemProps> = ({ item }) => {
   const { formik, setFieldId, setReceiverId } = useAddComment();
   return (
     <form onSubmit={formik.handleSubmit} className='flex items-center mt-3'>

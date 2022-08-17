@@ -4,7 +4,7 @@ import { XIcon } from '@heroicons/react/solid';
 import { Input, RedButton, useAddQuote } from 'components';
 import { CameraIcon } from '@heroicons/react/outline';
 
-const AddQuote = () => {
+const AddQuote: React.FC = () => {
   const { formik, setFile, newMovie, handleChange } = useAddQuote();
 
   return (

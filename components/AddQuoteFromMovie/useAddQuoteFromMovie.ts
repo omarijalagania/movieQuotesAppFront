@@ -1,12 +1,16 @@
 import { useFormik } from 'formik';
-import { getQuoteFormInitialValue, useHeader } from 'components';
+import {
+  getQuoteFormInitialValue,
+  useHeader,
+  SingleMovieProps,
+} from 'components';
 import { quoteSchema } from 'schema';
 import { toast } from 'react-toastify';
 import { addQuoteHandler } from 'services';
 import { useTranslate } from 'hooks';
 import { useEffect, useState } from 'react';
 
-export const useAddQuoteFromMovie = (movie: { _id: string }) => {
+export const useAddQuoteFromMovie = (movie: SingleMovieProps) => {
   const [file, setFile] = useState<File | null>(null);
   const { userId } = useHeader();
 

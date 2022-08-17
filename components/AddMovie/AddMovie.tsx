@@ -4,7 +4,7 @@ import Select from 'react-select';
 import { Input, RedButton, useAddMovie, customStyles } from 'components';
 import { CameraIcon } from '@heroicons/react/outline';
 
-const AddMovie = () => {
+const AddMovie: React.FC = () => {
   const { formik, setFile, newGenre, handleChange } = useAddMovie();
 
   return (

@@ -2,7 +2,7 @@ import React from 'react';
 import { PencilAltIcon } from '@heroicons/react/solid';
 import { WriteQUoteProps } from 'components';
 
-const WriteQuote = ({ setOpenAddQuote }: WriteQUoteProps) => {
+const WriteQuote: React.FC<WriteQUoteProps> = ({ setOpenAddQuote }) => {
   return (
     <div
       onClick={() => setOpenAddQuote(true)}

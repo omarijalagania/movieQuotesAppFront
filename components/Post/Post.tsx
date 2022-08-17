@@ -8,19 +8,11 @@ import {
   addLike,
   removeLike,
   usePost,
-  ItemProps,
+  Props,
+  CommentProp,
+  UserProps,
 } from 'components';
 import { addNotificationHandler } from 'services';
-import { ReactI18NextChild } from 'react-i18next';
-
-interface Props {
-  item: ItemProps;
-  setGetLike: (like: {
-    whoLikes: string;
-    quoteId: string;
-    receiver: string;
-  }) => void;
-}
 
 const Post: React.FC<Props> = ({ item, setGetLike }) => {
   const { isLiked, socket, userId, setIsLiked } = usePost(item, setGetLike);
@@ -28,28 +20,11 @@ const Post: React.FC<Props> = ({ item, setGetLike }) => {
     <div className='bg-darkBlue p-5 text-white md:w-[90%] rounded-md mt-5'>
       <div className='flex  items-center'>
         <div className='w-10 h-10 rounded-full bg-green-300' />
-        {item?.user?.map(
-          (user: {
-            _id: React.Key | null | undefined;
-            userName:
-              | string
-              | number
-              | boolean
-              | React.ReactElement<
-                  any,
-                  string | React.JSXElementConstructor<any>
-                >
-              | React.ReactFragment
-              | React.ReactPortal
-              | Iterable<ReactI18NextChild>
-              | null
-              | undefined;
-          }) => (
-            <h3 key={user._id} className='ml-2'>
-              {user.userName}
-            </h3>
-          )
-        )}
+        {item?.user?.map((user: UserProps) => (
+          <h3 key={user._id} className='ml-2'>
+            {user.userName}
+          </h3>
+        ))}
       </div>
       <h4 className='mt-3'>{item.quoteNameEng}</h4>
       <div className='mt-6'>
@@ -106,17 +81,8 @@ const Post: React.FC<Props> = ({ item, setGetLike }) => {
           )}
         </div>
       </div>
-      {item.comments.map((comment) => (
-        <Comment
-          key={comment._id}
-          comment={comment}
-          quote={{
-            _id: '',
-            userId: '',
-            quoteId: '',
-            comment: '',
-          }}
-        />
+      {item.comments.map((comment: CommentProp) => (
+        <Comment key={comment._id} comment={comment} />
       ))}
 
       <WriteComment item={item} />

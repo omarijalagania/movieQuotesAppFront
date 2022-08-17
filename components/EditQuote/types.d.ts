@@ -22,6 +22,32 @@ export type ItemProps = {
       }
     ];
   };
+
+  item: {
+    _id: string;
+    comments: Array<{
+      _id: string;
+      userId: string;
+      quoteId: string;
+      comment: string;
+    }>;
+    likes: { userId: string }[];
+    quoteNameEng: string;
+    quoteNameGe: string;
+    movieId: string;
+    poster: string;
+    userId: string;
+    user: [
+      {
+        _id: string;
+        userName: string;
+        email: string;
+        confirmed: boolean;
+      }
+    ];
+  };
+  key: string;
+
   _id: string;
   comments: Array<{
     _id: string;
@@ -65,4 +91,30 @@ export type ItemProps = {
   quoteNameEng: string;
   userId: string;
   likes: string[];
+};
+
+export type SIngleItemProps = {
+  item: {
+    _id: string;
+    comments: Array<{
+      _id: string;
+      userId: string;
+      quoteId: string;
+      comment: string;
+    }>;
+    likes: { userId: string }[];
+    quoteNameEng: string;
+    quoteNameGe: string;
+    movieId: string;
+    poster: string;
+    userId: string;
+    user: [
+      {
+        _id: string;
+        userName: string;
+        email: string;
+        confirmed: boolean;
+      }
+    ];
+  };
 };

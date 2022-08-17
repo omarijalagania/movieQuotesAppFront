@@ -10,8 +10,9 @@ import {
   QuoteMovieDetails,
   RedButton,
 } from 'components';
+import { QuoteProps } from 'types';
 
-const MovieDetails = () => {
+const MovieDetails: React.FC = () => {
   const dispatch = useDispatch();
   const { router } = useTranslate();
   const { id } = router.query;
@@ -44,7 +45,12 @@ const MovieDetails = () => {
       </div>
       {openAddQuoteDialog && (
         <Modal open={openAddQuoteDialog} setOpen={setOpenAddQuoteDialog}>
-          <AddQuoteFromMovie movie={movie} />
+          <AddQuoteFromMovie
+            movie={movie}
+            _id={function () {
+              throw new Error('Function not implemented.');
+            }}
+          />
         </Modal>
       )}
       <div className='flex mt-7 items-center'>
@@ -55,7 +61,7 @@ const MovieDetails = () => {
           name='Add quote'
         />
       </div>
-      {movie?.quotes?.map((item: any) => (
+      {movie?.quotes?.map((item: QuoteProps) => (
         <QuoteMovieDetails item={item} key={item._id} />
       ))}
     </div>

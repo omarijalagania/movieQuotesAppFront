@@ -1,7 +1,7 @@
 import React from 'react';
-import { useComment, CommentProps } from 'components';
+import { useComment, SingleCommentProps } from 'components';
 
-const Comment = ({ comment }: CommentProps) => {
+const Comment: React.FC<SingleCommentProps> = ({ comment }) => {
   const { user } = useComment(comment);
 
   return (

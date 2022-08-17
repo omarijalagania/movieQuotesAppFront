@@ -12,6 +12,7 @@ import {
   SuccessPasswordChange,
   useHeader,
   LangToggler,
+  NotificationProps,
 } from 'components';
 import { useSession, signOut } from 'next-auth/react';
 import moment from 'moment';
@@ -20,7 +21,7 @@ import { ChevronDownIcon } from '@heroicons/react/solid';
 import { BellIcon, MenuIcon } from '@heroicons/react/outline';
 import { updateNotificationHandler } from 'services';
 
-const Header = () => {
+const Header: React.FC = () => {
   const { data: session } = useSession();
 
   const {
@@ -91,13 +92,7 @@ const Header = () => {
                       </div>
                       <Menu.Items>
                         {notifications?.map(
-                          (notification: {
-                            notificationFor: string;
-                            user: { userName: string };
-                            createdAt: string;
-                            isRead: boolean;
-                            notificationType: string;
-                          }) => {
+                          (notification: NotificationProps) => {
                             return (
                               <>
                                 {notification.notificationFor === userId && (

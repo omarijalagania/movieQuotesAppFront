@@ -3,7 +3,7 @@ import React from 'react';
 import Image from 'next/image';
 import { useTranslate } from 'hooks';
 
-const ThankYou = () => {
+const ThankYou: React.FC = () => {
   const { t } = useTranslate();
   return (
     <div className='flex flex-col p-10 items-center justify-center'>

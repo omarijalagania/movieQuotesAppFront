@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react';
 import { getUserByIdHandler } from 'services';
-import { UserProps } from 'components';
+import { UserProps, CommentProp } from 'components';
 
-const useComment = (comment: { userId: string }) => {
+const useComment = (comment: CommentProp) => {
   const [user, setUser] = useState<UserProps>();
 
   useEffect(() => {

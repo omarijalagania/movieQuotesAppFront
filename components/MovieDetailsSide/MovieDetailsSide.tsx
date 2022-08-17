@@ -3,7 +3,7 @@ import React from 'react';
 import { PencilIcon, TrashIcon } from '@heroicons/react/outline';
 import { Modal, MovieEditDialog, useMovieDetailsSide } from 'components';
 
-const MovieDetailsSide = () => {
+const MovieDetailsSide: React.FC = () => {
   const { movie, openEditDialog, setOpenEditDialog, deleteMovie } =
     useMovieDetailsSide();
 

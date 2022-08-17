@@ -3,9 +3,9 @@ import Image from 'next/image';
 import { ChatIcon } from '@heroicons/react/outline';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { AddMovie, Modal, RedButton } from 'components';
-import { useMovie } from 'pages/feed/movies/hooks';
+import { useMovie } from 'hooks';
 
-const Movies = () => {
+const Movies: React.FC = () => {
   const { movie, openAddMovieModal, setOpenAddMovieModal, router } = useMovie();
 
   const renderMovies = () => {

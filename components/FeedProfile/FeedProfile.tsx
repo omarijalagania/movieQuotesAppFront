@@ -5,7 +5,7 @@ import Link from 'next/link';
 
 import { useHeader } from 'components';
 
-const FeedProfile = () => {
+const FeedProfile: React.FC = () => {
   const { userDetails } = useHeader();
 
   return (

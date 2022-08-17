@@ -5,21 +5,15 @@ import {
   HeartIcon as HeartIconFull,
 } from '@heroicons/react/solid';
 import Image from 'next/image';
-import {
-  EditQuote,
-  Modal,
-  addLike,
-  removeLike,
-  useHeader,
-  ItemProps,
-} from 'components';
+import { EditQuote, Modal, addLike, removeLike, useHeader } from 'components';
 import { Menu } from '@headlessui/react';
 import { deleteQuoteHandler } from 'services';
 import { toast } from 'react-toastify';
 import { useSelector, useDispatch } from 'react-redux';
 import { onModalClose, RootState } from 'state';
+import { QuotePropsItem } from 'types';
 
-const QuoteMovieDetails = ({ item }: ItemProps) => {
+const QuoteMovieDetails: React.FC<QuotePropsItem> = ({ item }) => {
   const [openEditQUoteDialog, setOpenEditQUoteDialog] = useState(false);
   const [isLiked, setIsLiked] = useState(false);
   const { userId } = useHeader();

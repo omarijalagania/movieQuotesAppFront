@@ -1,11 +1,12 @@
 import React from 'react';
 import { XIcon } from '@heroicons/react/solid';
 
-import { Input, RedButton, useEditQuote, ItemProps } from 'components';
+import { Input, RedButton, useEditQuote } from 'components';
 import { CameraIcon } from '@heroicons/react/outline';
 import Image from 'next/image';
+import { QuotePropsItem } from 'types';
 
-const EditQuote = ({ item }: ItemProps) => {
+const EditQuote: React.FC<QuotePropsItem> = ({ item }) => {
   const {
     formik,
     setFile,

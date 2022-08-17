@@ -6,7 +6,7 @@ import { CameraIcon } from '@heroicons/react/outline';
 
 import Image from 'next/image';
 
-const MovieEditDialog = () => {
+const MovieEditDialog: React.FC = () => {
   const {
     formik,
     setFile,

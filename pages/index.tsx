@@ -8,7 +8,7 @@ import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 
 import io from 'socket.io-client';
 
-const Home = () => {
+const Home: React.FC = () => {
   const [isOpenConfirm, setIsOpenConfirm] = useState(false);
 
   const { confirmResponse } = useSelector((state: RootState) => state.quotes);
@@ -21,7 +21,7 @@ const Home = () => {
   }, [confirmResponse]);
 
   useEffect(() => {
-    dispatch(saveSocket(io('http://localhost:4343')));
+    dispatch(saveSocket(io(process.env.NEXT_PUBLIC_SOCKET_URL)));
   }, [dispatch]);
 
   return (
