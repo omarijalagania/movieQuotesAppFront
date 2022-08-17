@@ -1,52 +1,30 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { AnnotationIcon, HeartIcon } from '@heroicons/react/outline';
 import {
   DotsHorizontalIcon,
   HeartIcon as HeartIconFull,
 } from '@heroicons/react/solid';
 import Image from 'next/image';
-import { EditQuote, Modal, addLike, removeLike, useHeader } from 'components';
+import {
+  EditQuote,
+  Modal,
+  addLike,
+  removeLike,
+  useQuoteMovieDetails,
+} from 'components';
 import { Menu } from '@headlessui/react';
-import { deleteQuoteHandler } from 'services';
-import { toast } from 'react-toastify';
-import { useSelector, useDispatch } from 'react-redux';
-import { onModalClose, RootState } from 'state';
+
 import { QuotePropsItem } from 'types';
 
 const QuoteMovieDetails: React.FC<QuotePropsItem> = ({ item }) => {
-  const [openEditQUoteDialog, setOpenEditQUoteDialog] = useState(false);
-  const [isLiked, setIsLiked] = useState(false);
-  const { userId } = useHeader();
-  const closeModal = useSelector((state: RootState) => state.quotes.closeModal);
-  const dispatch = useDispatch();
-
-  const deleteQuote = async () => {
-    const response = await deleteQuoteHandler(item._id);
-    if (response.status === 200) {
-      dispatch(onModalClose(true));
-      toast.success('Quote deleted successfully');
-    }
-
-    if (response.status === 422) {
-      dispatch(onModalClose(true));
-      toast.error('Error deleting quote');
-    }
-    dispatch(onModalClose(false));
-  };
-
-  useEffect(() => {
-    item.likes.forEach((like: any) => {
-      if (like === userId) {
-        setIsLiked(true);
-      }
-    });
-  }, [item.likes, item.userId, userId]);
-
-  useEffect(() => {
-    if (closeModal) {
-      setOpenEditQUoteDialog(false);
-    }
-  }, [closeModal]);
+  const {
+    openEditQUoteDialog,
+    setOpenEditQUoteDialog,
+    isLiked,
+    setIsLiked,
+    deleteQuote,
+    userId,
+  } = useQuoteMovieDetails(item);
 
   return (
     <div className='bg-darkBlue rounded-md p-5 mt-10 relative'>

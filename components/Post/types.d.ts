@@ -3,20 +3,6 @@ export interface Props {
   setGetLike: Dispatch<SetStateAction<never[]>>;
 }
 
-export type SingleCommentProps = {
-  comment: {
-    userId: string;
-    comment: string;
-    _id: string;
-  };
-};
-
-export type CommentProp = {
-  userId: string;
-  comment: string;
-  _id: string;
-};
-
 export type UserProps = {
   _id: React.Key | null | undefined;
   userName:

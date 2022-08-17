@@ -1,7 +1,8 @@
-import { useHeader, ItemProps } from 'components';
+import { useHeader } from 'components';
 import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState, saveLikeNotification, savePostItem } from 'state';
+import { ItemProps } from 'types';
 
 const usePost = (
   item: ItemProps,
@@ -21,7 +22,7 @@ const usePost = (
   }, [dispatch, item]);
 
   useEffect(() => {
-    item.likes.forEach((like) => {
+    item.likes.forEach((like: string) => {
       if (like === userId) {
         setIsLiked(true);
       }

@@ -9,10 +9,10 @@ import {
   removeLike,
   usePost,
   Props,
-  CommentProp,
   UserProps,
 } from 'components';
 import { addNotificationHandler } from 'services';
+import { CommentProp } from 'types';
 
 const Post: React.FC<Props> = ({ item, setGetLike }) => {
   const { isLiked, socket, userId, setIsLiked } = usePost(item, setGetLike);

@@ -1,5 +1,6 @@
 import React from 'react';
-import { useAddComment, SIngleItemProps } from 'components';
+import { useAddComment } from 'components';
+import { SIngleItemProps } from 'types';
 
 const WriteComment: React.FC<SIngleItemProps> = ({ item }) => {
   const { formik, setFieldId, setReceiverId } = useAddComment();
