@@ -13,6 +13,7 @@ export const useAddQuote = () => {
   const { userId, userDetails } = useHeader();
   const [movies, setMovies] = useState([]);
   const [selectMovies, setSelectMovies] = useState('');
+  const { t } = useTranslate();
   const dispatch = useDispatch();
 
   const handleChange = (event: {
@@ -44,7 +45,6 @@ export const useAddQuote = () => {
     }
   }, [userId]);
 
-  const { t } = useTranslate();
   const formik = useFormik({
     initialValues: getQuoteFormInitialValue(),
 

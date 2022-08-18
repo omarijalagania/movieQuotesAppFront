@@ -9,7 +9,9 @@ const WriteComment: React.FC<SIngleItemProps> = ({ item }) => {
       <img
         className='w-10 h-10 rounded-full'
         src={
-          userDetails?.image ? userDetails?.image : 'https://i.pravatar.cc/50'
+          userDetails?.image
+            ? userDetails?.image
+            : process.env.NEXT_PUBLIC_RANDOM_AVATAR
         }
         alt='avatar'
       />

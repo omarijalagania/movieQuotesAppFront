@@ -9,6 +9,7 @@ declare global {
       MONGODB_URI: string;
       NEXT_PUBLIC_BACKEND_URL: string;
       NEXT_PUBLIC_SOCKET_URL: string;
+      NEXT_PUBLIC_RANDOM_AVATAR: string;
     }
   }
 }

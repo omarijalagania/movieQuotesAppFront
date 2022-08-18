@@ -16,18 +16,28 @@ const MovieEditDialog: React.FC = () => {
     posterUrl,
     defaultSelects,
     movie,
+    t,
+    userDetails,
   } = useEditMovie();
 
   return (
     <div className='w-full'>
       <div className='flex relative border-b-[1px] pb-2 border-gray-500'>
-        <h1 className='text-white mx-auto'>Add movie</h1>
+        <h1 className='text-white mx-auto'>{t('movieEdit')}</h1>
         <XIcon className='w-5 h-5 cursor-pointer text-white absolute right-0' />
       </div>
       <div className='mt-5'>
         <div className='flex items-center mb-2'>
-          <div className='w-8 h-8 rounded-full bg-yellow-600' />
-          <p className='ml-3 text-white'>Sirius Black</p>
+          <img
+            className='w-10 h-10 rounded-full'
+            src={
+              userDetails?.image
+                ? userDetails?.image
+                : process.env.NEXT_PUBLIC_RANDOM_AVATAR
+            }
+            alt='avatar'
+          />
+          <p className='ml-3 text-white'>{userDetails?.userName}</p>
         </div>
       </div>
       <form
@@ -70,7 +80,7 @@ const MovieEditDialog: React.FC = () => {
           onChange={handleChange}
           isMulti
           options={newGenre}
-          placeholder='Genre'
+          placeholder={t('selectGenre')}
           defaultValue={defaultSelects?.map((el: any) => el)}
         />
 
@@ -159,7 +169,7 @@ const MovieEditDialog: React.FC = () => {
           </label>
         </div>
 
-        <RedButton className='w-full text-white' name='Save changes' />
+        <RedButton className='w-full text-white' name={t('saveChanges')} />
       </form>
     </div>
   );

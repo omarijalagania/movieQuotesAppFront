@@ -5,13 +5,13 @@ import { Input, RedButton, useAddQuote } from 'components';
 import { CameraIcon } from '@heroicons/react/outline';
 
 const AddQuote: React.FC = () => {
-  const { formik, setFile, newMovie, handleChange, userDetails } =
+  const { formik, setFile, newMovie, handleChange, userDetails, t } =
     useAddQuote();
 
   return (
     <div className='w-full h-screen md:h-full md:p-5'>
       <div className='flex relative border-b-[1px] pb-2 border-gray-500'>
-        <h1 className='text-white mx-auto'>Add Quote</h1>
+        <h1 className='text-white mx-auto'>{t('addQuote')}</h1>
         <XIcon className='w-5 h-5 cursor-pointer text-white absolute right-0' />
       </div>
       <div className='mt-5'>
@@ -21,7 +21,7 @@ const AddQuote: React.FC = () => {
             src={
               userDetails?.image
                 ? userDetails?.image
-                : 'https://i.pravatar.cc/50'
+                : process.env.NEXT_PUBLIC_RANDOM_AVATAR
             }
             alt='avatar'
           />
@@ -67,9 +67,9 @@ const AddQuote: React.FC = () => {
             <span className='flex items-center space-x-2'>
               <CameraIcon className='w-5 h-5 text-white' />
               <span className='text-sm text-white'>
-                Drag & drop your image here or
+                {t('drag')}
                 <span className='text-white text-xs py-1 px-2 ml-1 bg-purple-600'>
-                  Choose file
+                  {t('chooseFile')}
                 </span>
               </span>
             </span>
@@ -95,7 +95,7 @@ const AddQuote: React.FC = () => {
           onChange={handleChange}
         >
           <option value='' disabled selected>
-            Select your option
+            {t('selectMovie')}
           </option>
           {newMovie.map((movie) => {
             return (
@@ -106,7 +106,7 @@ const AddQuote: React.FC = () => {
           })}
         </select>
 
-        <RedButton className='w-full mt-3 text-white' name='Add quote' />
+        <RedButton className='w-full mt-3 text-white' name={t('addQuote')} />
       </form>
     </div>
   );

@@ -4,19 +4,8 @@ import { PencilIcon, TrashIcon } from '@heroicons/react/outline';
 import { Modal, MovieEditDialog, useMovieDetailsSide } from 'components';
 
 const MovieDetailsSide: React.FC = () => {
-  const { movie, openEditDialog, setOpenEditDialog, deleteMovie } =
+  const { movie, openEditDialog, setOpenEditDialog, deleteMovie, t } =
     useMovieDetailsSide();
-
-  const renderGenres = () => {
-    return movie?.genre?.map((genre: { genre: string; label: string }) => (
-      <p
-        key={genre.label + Math.random()}
-        className='text-xs w-12 h-6 px-10 flex justify-center items-center bg-gray-500'
-      >
-        {genre.label}
-      </p>
-    ));
-  };
 
   return (
     <div className='mt-10 space-y-6 flex flex-col justify-start'>
@@ -33,8 +22,19 @@ const MovieDetailsSide: React.FC = () => {
           />
         </div>
       </div>
-      <div className='flex space-x-2'>{renderGenres()}</div>
-      <p className='text-xs'>Director: {movie.directorEn}</p>
+      <div className='flex space-x-2'>
+        {movie?.genre?.map((genre: { genre: string; label: string }) => (
+          <p
+            key={genre.label + Math.random()}
+            className='text-xs w-12 h-6 px-10 flex justify-center items-center bg-gray-500'
+          >
+            {genre.label}
+          </p>
+        ))}
+      </div>
+      <p className='text-xs'>
+        {t('director')}: {movie.directorEn}
+      </p>
       <p className='text-xs'>{movie.descriptionEn}</p>
 
       {openEditDialog && (

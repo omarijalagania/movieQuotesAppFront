@@ -11,7 +11,7 @@ import { onModalClose, RootState } from 'state';
 
 export const useEditQuote = () => {
   const [file, setFile] = useState<File | null>(null);
-  const { userId } = useHeader();
+  const { userId, userDetails } = useHeader();
   const [movies, setMovies] = useState([]);
   const [selectMovies, setSelectMovies] = useState('');
   const dispatch = useDispatch();
@@ -102,5 +102,6 @@ export const useEditQuote = () => {
     posterUrl,
     handleChange,
     currentQuotes,
+    userDetails,
   };
 };

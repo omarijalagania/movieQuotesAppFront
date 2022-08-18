@@ -17,7 +17,7 @@ const FeedProfile: React.FC = () => {
             src={
               userDetails?.image
                 ? userDetails?.image
-                : 'https://i.pravatar.cc/50'
+                : process.env.NEXT_PUBLIC_RANDOM_AVATAR
             }
             alt='avatar'
           />

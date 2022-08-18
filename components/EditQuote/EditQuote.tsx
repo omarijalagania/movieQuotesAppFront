@@ -15,18 +15,28 @@ const EditQuote: React.FC<QuotePropsItem> = ({ item }) => {
     singleMovie,
     file,
     posterUrl,
+    userDetails,
+    t,
   } = useEditQuote();
 
   return (
     <div className='w-full p-5'>
       <div className='flex relative border-b-[1px] pb-2 border-gray-500'>
-        <h1 className='text-white mx-auto'>Add Quote</h1>
+        <h1 className='text-white mx-auto'>{t('addQuote')}</h1>
         <XIcon className='w-5 h-5 cursor-pointer text-white absolute right-0' />
       </div>
       <div className='mt-5'>
         <div className='flex items-center mb-2'>
-          <div className='w-8 h-8 rounded-full bg-yellow-600' />
-          <p className='ml-3 text-white'>Sirius Black</p>
+          <img
+            className='w-8 h-8 rounded-full'
+            src={
+              userDetails?.image
+                ? userDetails?.image
+                : process.env.NEXT_PUBLIC_RANDOM_AVATAR
+            }
+            alt='avatar'
+          />
+          <p className='ml-3 text-white'>{userDetails?.userName}</p>
         </div>
       </div>
       <form
@@ -97,7 +107,7 @@ const EditQuote: React.FC<QuotePropsItem> = ({ item }) => {
 
         <select
           className='rounded-none  w-full border-[1px] text-sm border-gray-400 p-2 bg-darkBlue text-white placeholder-white'
-          placeholder='Choose movie'
+          placeholder={t('selectMovie')}
           onChange={handleChange}
         >
           <option value={singleMovie._id}>{singleMovie?.movieNameEn}</option>
@@ -110,7 +120,7 @@ const EditQuote: React.FC<QuotePropsItem> = ({ item }) => {
           })}
         </select>
 
-        <RedButton className='w-full mt-3 text-white' name='Add quote' />
+        <RedButton className='w-full mt-3 text-white' name={t('addQuote')} />
       </form>
     </div>
   );

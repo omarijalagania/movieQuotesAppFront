@@ -6,7 +6,7 @@ import { deleteMovieHandler } from 'services';
 import { RootState } from 'state';
 
 const useMovieDetailsSide = () => {
-  const { router } = useTranslate();
+  const { router, t } = useTranslate();
   const movie = useSelector((state: RootState) => state.quotes.singleMovie);
 
   const [openEditDialog, setOpenEditDialog] = useState(false);
@@ -21,7 +21,7 @@ const useMovieDetailsSide = () => {
     }
   };
 
-  return { movie, openEditDialog, setOpenEditDialog, deleteMovie };
+  return { movie, openEditDialog, setOpenEditDialog, deleteMovie, t };
 };
 
 export default useMovieDetailsSide;

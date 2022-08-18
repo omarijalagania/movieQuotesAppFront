@@ -10,11 +10,11 @@ const AddQuoteFromMovie: React.FC<MovieProp> = ({
   setOpenAddQuoteDialog,
 }) => {
   const { formik, setFile } = useAddQuoteFromMovie(movie);
-  const { userDetails } = useHeader();
+  const { userDetails, t } = useHeader();
   return (
     <div className='w-screen h-screen md:w-full p-5'>
       <div className='flex relative border-b-[1px] pb-2 border-gray-500'>
-        <h1 className='text-white mx-auto'>Add Quote</h1>
+        <h1 className='text-white mx-auto'>{t('addQuote')}</h1>
         <XIcon
           onClick={() => setOpenAddQuoteDialog(false)}
           className='w-5 h-5 cursor-pointer text-white absolute right-0'
@@ -55,7 +55,9 @@ const AddQuoteFromMovie: React.FC<MovieProp> = ({
                 </p>
               ))}
             </div>
-            <p className='text-white text-sm'>Director {movie.directorEn}</p>
+            <p className='text-white text-sm'>
+              {t('director')} {movie.directorEn}
+            </p>
           </div>
         </div>
         <div className='relative mb-3'>
@@ -92,9 +94,9 @@ const AddQuoteFromMovie: React.FC<MovieProp> = ({
             <span className='flex items-center space-x-2'>
               <CameraIcon className='w-5 h-5 text-white' />
               <span className='text-sm text-white'>
-                Drag & drop your image here or
+                {t('drag')}
                 <span className='text-white text-xs py-1 px-2 ml-1 bg-purple-600'>
-                  Choose file
+                  {t('chooseFile')}
                 </span>
               </span>
             </span>
@@ -114,7 +116,7 @@ const AddQuoteFromMovie: React.FC<MovieProp> = ({
           </label>
         </div>
 
-        <RedButton className='w-full mt-3 text-white' name='Add quote' />
+        <RedButton className='w-full mt-3 text-white' name={t('addQuote')} />
       </form>
     </div>
   );

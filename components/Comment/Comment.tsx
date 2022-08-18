@@ -5,8 +5,6 @@ import { SingleCommentProps } from 'types';
 const Comment: React.FC<SingleCommentProps> = ({ comment }) => {
   const { user } = useComment(comment);
 
-  console.log(user);
-
   return (
     <div>
       <div className='flex items-center mb-2'>

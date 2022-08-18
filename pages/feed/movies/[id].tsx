@@ -46,7 +46,7 @@ const MovieDetails: React.FC = () => {
         <RedButton
           onClick={() => setOpenAddQuoteDialog(true)}
           className='ml-3'
-          name='Add quote'
+          name={t('addQuote')}
         />
       </div>
       {movie?.quotes?.map((item: QuoteProps) => (

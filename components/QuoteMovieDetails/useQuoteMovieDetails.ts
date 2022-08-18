@@ -9,7 +9,7 @@ import { QuoteProps } from 'types';
 const useQuoteMovieDetails = (item: QuoteProps) => {
   const [openEditQUoteDialog, setOpenEditQUoteDialog] = useState(false);
   const [isLiked, setIsLiked] = useState(false);
-  const { userId } = useHeader();
+  const { userId, t } = useHeader();
   const closeModal = useSelector((state: RootState) => state.quotes.closeModal);
   const dispatch = useDispatch();
 
@@ -47,6 +47,7 @@ const useQuoteMovieDetails = (item: QuoteProps) => {
     setIsLiked,
     deleteQuote,
     userId,
+    t,
   };
 };
 

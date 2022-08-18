@@ -5,13 +5,13 @@ import { Input, RedButton, useAddMovie, customStyles } from 'components';
 import { CameraIcon } from '@heroicons/react/outline';
 
 const AddMovie: React.FC = () => {
-  const { formik, setFile, newGenre, handleChange, userDetails } =
+  const { formik, setFile, newGenre, handleChange, userDetails, t } =
     useAddMovie();
 
   return (
     <div className='w-screen md:w-full md:h-full px-5 md:px-0 overflow-hidden h-screen'>
       <div className='flex relative border-b-[1px] pb-2 border-gray-500'>
-        <h1 className='text-white mx-auto'>Add movie</h1>
+        <h1 className='text-white mx-auto'>{t('addMovie')}</h1>
         <XIcon className='w-5 h-5 cursor-pointer text-white absolute right-0' />
       </div>
       <div className='mt-5'>
@@ -58,7 +58,7 @@ const AddMovie: React.FC = () => {
           onChange={handleChange}
           isMulti
           options={newGenre}
-          placeholder='Genre'
+          placeholder={t('selectGenre')}
         />
 
         <div className='relative mb-3'>
@@ -117,9 +117,9 @@ const AddMovie: React.FC = () => {
             <span className='flex items-center space-x-2'>
               <CameraIcon className='w-5 h-5 text-white' />
               <span className='text-sm text-white'>
-                Drag & drop your image here or
+                {t('drag')}
                 <span className='text-white text-xs py-1 px-2 ml-1 bg-purple-600'>
-                  Choose file
+                  {t('chooseFile')}
                 </span>
               </span>
             </span>
@@ -139,7 +139,7 @@ const AddMovie: React.FC = () => {
           </label>
         </div>
 
-        <RedButton className='w-full text-white' name='Add movie' />
+        <RedButton className='w-full text-white' name={t('addMovie')} />
       </form>
     </div>
   );

@@ -5,7 +5,6 @@ import HomePage from 'pages/home';
 import { useSelector, useDispatch } from 'react-redux';
 import { RootState, saveSocket } from 'state';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
-
 import io from 'socket.io-client';
 
 const Home: React.FC = () => {
