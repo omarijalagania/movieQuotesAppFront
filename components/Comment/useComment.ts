@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { getUserByIdHandler } from 'services';
-import { UserProps, CommentProp } from 'components';
+import { UserProps } from 'components';
+import { CommentProp } from 'types';
 
 const useComment = (comment: CommentProp) => {
   const [user, setUser] = useState<UserProps>();
