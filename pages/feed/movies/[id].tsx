@@ -1,8 +1,7 @@
-import React, { useEffect, useState } from 'react';
-import { getSingleMovieHandler } from 'services';
+import React, { useState } from 'react';
 import { useTranslate } from 'hooks';
-import { RootState, saveSingleMovie } from 'state';
-import { useDispatch, useSelector } from 'react-redux';
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
+import { useSingleMovie } from 'hooks';
 import Image from 'next/image';
 import {
   AddQuoteFromMovie,
@@ -13,27 +12,14 @@ import {
 import { QuoteProps } from 'types';
 
 const MovieDetails: React.FC = () => {
-  const dispatch = useDispatch();
-  const { router } = useTranslate();
+  const { router, t } = useTranslate();
   const { id } = router.query;
   const [openAddQuoteDialog, setOpenAddQuoteDialog] = useState(false);
-  const movie = useSelector((state: RootState) => state.quotes.singleMovie);
-  const closeModal = useSelector((state: RootState) => state.quotes.closeModal);
-  useEffect(() => {
-    try {
-      const getOneMovie = async () => {
-        const response = await getSingleMovieHandler(id);
-        dispatch(saveSingleMovie(response.data));
-      };
-      if (id !== '') {
-        getOneMovie();
-      }
-    } catch (error) {}
-  }, [dispatch, id, closeModal]);
+  const { movie } = useSingleMovie(id as string);
 
   return (
     <div className='text-white w-full'>
-      <h3>Movie description</h3>
+      <h3>{t('movieDesc')}</h3>
       <div className='mt-3 w-full'>
         <Image
           className='rounded-lg object-cover'
@@ -46,6 +32,7 @@ const MovieDetails: React.FC = () => {
       {openAddQuoteDialog && (
         <Modal open={openAddQuoteDialog} setOpen={setOpenAddQuoteDialog}>
           <AddQuoteFromMovie
+            setOpenAddQuoteDialog={setOpenAddQuoteDialog}
             movie={movie}
             _id={function () {
               throw new Error('Function not implemented.');
@@ -54,7 +41,9 @@ const MovieDetails: React.FC = () => {
         </Modal>
       )}
       <div className='flex mt-7 items-center'>
-        <p className='border-r-[1px] border-gray-500 px-3'>Quotes (total 7)</p>
+        <p className='border-r-[1px] border-gray-500 px-3'>
+          {t('quote')} ({t('total')} {movie?.quotes?.length})
+        </p>
         <RedButton
           onClick={() => setOpenAddQuoteDialog(true)}
           className='ml-3'
@@ -69,3 +58,11 @@ const MovieDetails: React.FC = () => {
 };
 
 export default MovieDetails;
+
+export async function getStaticProps(context: { locale: string }) {
+  return {
+    props: {
+      ...(await serverSideTranslations(context.locale ?? 'en', ['common'])),
+    },
+  };
+}

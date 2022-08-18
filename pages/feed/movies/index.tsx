@@ -51,7 +51,9 @@ const Movies: React.FC = () => {
           />
         </div>
       </div>
-      <div className='grid grid-cols-3 gap-5'>{renderMovies()}</div>
+      <div className='grid grid-cols-1 md:grid-cols-3 gap-5'>
+        {renderMovies()}
+      </div>
       {openAddMovieModal && (
         <Modal open={openAddMovieModal} setOpen={setOpenAddMovieModal}>
           <AddMovie />

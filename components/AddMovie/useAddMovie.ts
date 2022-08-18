@@ -10,7 +10,7 @@ import { saveAddMovie } from 'state';
 
 export const useAddMovie = () => {
   const [file, setFile] = useState<File | null>(null);
-  const { userId } = useHeader();
+  const { userId, userDetails } = useHeader();
   const [genres, setGenres] = useState([]);
   const [selectedGenres, setSelectedGenres] = useState<string[]>([]);
 
@@ -76,5 +76,13 @@ export const useAddMovie = () => {
     validationSchema: movieSchema,
   });
 
-  return { formik, t, setFile, newGenre, handleChange, selectedGenres };
+  return {
+    formik,
+    t,
+    setFile,
+    newGenre,
+    handleChange,
+    selectedGenres,
+    userDetails,
+  };
 };

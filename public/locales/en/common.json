@@ -57,5 +57,13 @@
   "movie3": "Your time will come. You will face the same Evil, and you will defeat it.",
   "Interstellar": "Interstellar",
   "royal": "The Royal Tenenbaums",
-  "lord": "Lord Of The Rings"
+  "lord": "Lord Of The Rings",
+
+  "editProfile": "Edit your profile",
+  "feed": "News Feed",
+  "movieList": "List of Movies",
+  "writeComment": "Write a comment",
+  "movieDesc": "Movie description",
+  "quote": "Quotes",
+  "total": "total"
 }

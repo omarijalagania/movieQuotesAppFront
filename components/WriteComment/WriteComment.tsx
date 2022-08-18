@@ -3,7 +3,7 @@ import { useAddComment } from 'components';
 import { SIngleItemProps } from 'types';
 
 const WriteComment: React.FC<SIngleItemProps> = ({ item }) => {
-  const { formik, setFieldId, setReceiverId } = useAddComment();
+  const { formik, setFieldId, setReceiverId, t } = useAddComment();
   return (
     <form onSubmit={formik.handleSubmit} className='flex items-center mt-3'>
       <div className='w-7 h-7 bg-green-400 rounded-full' />
@@ -19,7 +19,7 @@ const WriteComment: React.FC<SIngleItemProps> = ({ item }) => {
         id={item._id}
         className='bg-lightBlue w-full rounded-md p-2 ml-4'
         type='text'
-        placeholder='Write a comment'
+        placeholder={t('writeComment')}
       />
     </form>
   );

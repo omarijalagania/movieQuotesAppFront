@@ -8,7 +8,16 @@ import {
 } from 'components';
 
 const Layout: React.FC<LayoutProps> = ({ children }) => {
-  const { router } = useLayout();
+  const { router, status } = useLayout();
+
+  if (status === 'loading') {
+    return <p>Loading...</p>;
+  }
+
+  if (status === 'unauthenticated') {
+    return <p>Access Denied</p>;
+  }
+
   return (
     <>
       <div className='mb-[58px]'>
@@ -23,7 +32,7 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
           </div>
         </aside>
         <div
-          className={`h-screen col-span-5 ${
+          className={`md:h-screen col-span-5 ${
             router.pathname.includes('/feed/movies') &&
             !router.pathname.includes('/feed/movies/[id]')
               ? 'md:col-span-4'
@@ -38,7 +47,7 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
         !router.pathname.includes('/feed/movies/[id]') ? (
           ''
         ) : (
-          <aside className={`hidden md:block h-screen`}>
+          <aside className={` md:block h-screen`}>
             <div className='text-white pt-6 px-10'>
               {router.pathname.includes('/feed/movies/[id]') && (
                 <MovieDetailsSide />

@@ -5,10 +5,11 @@ import { Input, RedButton, useAddMovie, customStyles } from 'components';
 import { CameraIcon } from '@heroicons/react/outline';
 
 const AddMovie: React.FC = () => {
-  const { formik, setFile, newGenre, handleChange } = useAddMovie();
+  const { formik, setFile, newGenre, handleChange, userDetails } =
+    useAddMovie();
 
   return (
-    <div className='w-full'>
+    <div className='w-screen md:w-full md:h-full px-5 md:px-0 overflow-hidden h-screen'>
       <div className='flex relative border-b-[1px] pb-2 border-gray-500'>
         <h1 className='text-white mx-auto'>Add movie</h1>
         <XIcon className='w-5 h-5 cursor-pointer text-white absolute right-0' />
@@ -16,17 +17,17 @@ const AddMovie: React.FC = () => {
       <div className='mt-5'>
         <div className='flex items-center mb-2'>
           <div className='w-8 h-8 rounded-full bg-yellow-600' />
-          <p className='ml-3 text-white'>Sirius Black</p>
+          <p className='ml-3 text-white'>{userDetails?.userName}</p>
         </div>
       </div>
       <form
         onSubmit={formik.handleSubmit}
-        className='mt-5'
+        className='mt-5 w-full'
         encType='multipart/form-data'
       >
         <div className='relative mb-3'>
           <Input
-            className='!rounded-none py-1 !border-[1px] !text-sm border-gray-400 bg-darkBlue text-white !w-[500px] !placeholder-white'
+            className='!rounded-none py-1 !border-[1px] !text-sm border-gray-400 bg-darkBlue text-white  md:!w-[500px] !placeholder-white'
             isLabel={false}
             type='text'
             id='movieNameEn'
@@ -40,7 +41,7 @@ const AddMovie: React.FC = () => {
         </div>
         <div className='relative mb-3'>
           <Input
-            className='!rounded-none py-1 !border-[1px] !text-sm border-gray-400 bg-darkBlue text-white !w-[500px] !placeholder-white'
+            className='!rounded-none py-1 !border-[1px] !text-sm border-gray-400 bg-darkBlue text-white md:!w-[500px] !placeholder-white'
             isLabel={false}
             type='text'
             id='movieNameGe'
@@ -62,7 +63,7 @@ const AddMovie: React.FC = () => {
 
         <div className='relative mb-3'>
           <Input
-            className='!rounded-none py-1 !border-[1px] !text-sm border-gray-400 bg-darkBlue text-white !w-[500px] !placeholder-white'
+            className='!rounded-none py-1 !border-[1px] !text-sm border-gray-400 bg-darkBlue text-white md:!w-[500px] !placeholder-white'
             isLabel={false}
             type='text'
             id='directorEn'
@@ -76,7 +77,7 @@ const AddMovie: React.FC = () => {
         </div>
         <div className='relative mb-1'>
           <Input
-            className='!rounded-none py-1 !mb-1 !border-[1px] !text-sm border-gray-400 bg-darkBlue text-white !w-[500px] !placeholder-white'
+            className='!rounded-none py-1 !mb-1 !border-[1px] !text-sm border-gray-400 bg-darkBlue text-white md:!w-[500px] !placeholder-white'
             isLabel={false}
             type='text'
             id='directorGe'
@@ -91,7 +92,7 @@ const AddMovie: React.FC = () => {
         <div className='relative mb-1'>
           <textarea
             onChange={formik.handleChange}
-            className='border-[1px] p-1 text-sm border-gray-400 bg-darkBlue text-white w-[500px] placeholder-white'
+            className='border-[1px] p-1 text-sm border-gray-400 bg-darkBlue text-white w-full  md:w-[500px] placeholder-white'
             name='descriptionEn'
             placeholder='Movie description'
           />
@@ -102,7 +103,7 @@ const AddMovie: React.FC = () => {
         <div className='relative mb-1'>
           <textarea
             onChange={formik.handleChange}
-            className='border-[1px] p-1 text-sm border-gray-400 bg-darkBlue text-white w-[500px] placeholder-white'
+            className='border-[1px] p-1 text-sm border-gray-400 bg-darkBlue text-white w-full md:w-[500px] placeholder-white'
             name='descriptionGe'
             placeholder='ფილმის აღწერა'
           />
