@@ -59,15 +59,15 @@ export const useAddQuote = () => {
       try {
         const response = await addQuoteHandler(formData as FormData);
         if (response.status === 200 || response.status === 201) {
-          toast.success(t('Quote added successfully'));
+          toast.success(t('quoteAdded'));
           dispatch(onModalClose(true));
         }
         if (response.status === 422) {
-          toast.error('Error adding quote');
+          toast.error(t('addingError'));
           dispatch(onModalClose(true));
         }
       } catch (error) {
-        toast.error('Server Error');
+        toast.error(t('serverError'));
         dispatch(onModalClose(false));
       }
     },

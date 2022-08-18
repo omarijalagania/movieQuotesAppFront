@@ -17,7 +17,7 @@ const useMovieDetailsSide = () => {
         router.push('/feed/movies');
       }
     } catch (error) {
-      toast.error('Something went wrong');
+      toast.error(t('serverError'));
     }
   };
 

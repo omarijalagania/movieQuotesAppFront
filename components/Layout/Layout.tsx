@@ -39,7 +39,9 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
               : 'md:col-span-3'
           }  `}
         >
-          <div className={`flex flex-col justify-center pt-8 p-10 `}>
+          <div
+            className={`flex flex-col justify-start md:justify-center md:h-screen  pt-8 p-5 md:p-10 `}
+          >
             {children}
           </div>
         </div>

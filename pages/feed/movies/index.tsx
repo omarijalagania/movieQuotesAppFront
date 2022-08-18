@@ -41,7 +41,7 @@ const Movies: React.FC = () => {
 
   return (
     <>
-      <div className='flex justify-between text-white mb-5'>
+      <div className='flex justify-between  text-white mb-5'>
         <p>
           {t('myMovieList')} ({movie.length})
         </p>

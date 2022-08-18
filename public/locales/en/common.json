@@ -83,5 +83,12 @@
   "editPost": "Edit post",
   "deletePost": "Delete post",
   "movieEdit": "Edit movie",
-  "saveChanges": "Save changes"
+  "saveChanges": "Save changes",
+  "successMovieAdd": "Movie added successfully",
+  "serverError": "Server error",
+  "movieAddError": "Error adding movie",
+  "quoteAdded": "Quote added successfully",
+  "addingError": "Error Adding...",
+  "editingError": "Error editing...",
+  "editedQuote": "Quote added successfully"
 }

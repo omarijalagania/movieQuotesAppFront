@@ -20,7 +20,6 @@ const Post: React.FC<Props> = ({ item, setGetLike }) => {
     setGetLike
   );
 
-  console.log(item);
   return (
     <div className='bg-darkBlue p-5 text-white md:w-[90%] rounded-md mt-5'>
       <div className='flex  items-center'>
@@ -30,7 +29,7 @@ const Post: React.FC<Props> = ({ item, setGetLike }) => {
             item?.user[0]?.provider === 'email'
               ? item?.user[0]?.image
                 ? item?.user[0]?.image
-                : 'https://i.pravatar.cc/50'
+                : process.env.NEXT_PUBLIC_RANDOM_AVATAR
               : item?.user[0]?.image
           }
           alt='avatar'

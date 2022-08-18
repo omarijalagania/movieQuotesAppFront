@@ -83,5 +83,12 @@
   "editPost": "პოსტის რედაქტირება",
   "deletePost": "პოსტის წაშლა",
   "movieEdit": "ფილმის რედაქტირება",
-  "saveChanges": "შენახვა"
+  "saveChanges": "შენახვა",
+  "successMovieAdd": "ფილმი წარმატებით დაემატა",
+  "serverError": "სერვერის შეცდომა",
+  "movieAddError": "ფილმის დამატებისას დაფიქსირდა შეცდომა",
+  "quoteAdded": "ციტატა წარმატებით დაემატა",
+  "addingError": "დაფიქსირდა შეცდომა",
+  "editingError": "დაფიქსირდა შეცდომა",
+  "editedQuote": "ციტატა წარმატებით შეიცვალა"
 }
