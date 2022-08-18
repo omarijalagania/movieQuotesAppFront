@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
-import { useTranslate } from 'hooks';
+import { useTranslate, useSingleMovie } from 'hooks';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
-import { useSingleMovie } from 'hooks';
 import Image from 'next/image';
 import {
   AddQuoteFromMovie,
@@ -58,6 +57,13 @@ const MovieDetails: React.FC = () => {
 };
 
 export default MovieDetails;
+
+export async function getStaticPaths() {
+  return {
+    paths: [],
+    fallback: true,
+  };
+}
 
 export async function getStaticProps(context: { locale: string }) {
   return {

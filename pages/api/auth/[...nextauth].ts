@@ -42,14 +42,17 @@ export default NextAuth({
       clientSecret: process.env.GOOGLE_CLIENT_SECRET,
     }),
   ],
+
   secret: process.env.JWT_SECRET,
   callbacks: {
     jwt: async ({ token, user }) => {
       user && (token.user = user);
       return token;
     },
+
     session: async ({ session, token }) => {
       session.user = token.user as User;
+
       return session;
     },
 
@@ -58,6 +61,7 @@ export default NextAuth({
         const data = {
           userName: user.name,
           email: user.email,
+          image: user.image,
         };
         googleLoginHandler(data);
       }

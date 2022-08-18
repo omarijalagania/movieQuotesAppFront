@@ -10,7 +10,7 @@ import { onModalClose } from 'state';
 
 export const useAddQuote = () => {
   const [file, setFile] = useState<File | null>(null);
-  const { userId } = useHeader();
+  const { userId, userDetails } = useHeader();
   const [movies, setMovies] = useState([]);
   const [selectMovies, setSelectMovies] = useState('');
   const dispatch = useDispatch();
@@ -75,5 +75,5 @@ export const useAddQuote = () => {
     validationSchema: quoteSchema,
   });
 
-  return { formik, t, setFile, newMovie, handleChange };
+  return { formik, t, setFile, newMovie, handleChange, userDetails };
 };

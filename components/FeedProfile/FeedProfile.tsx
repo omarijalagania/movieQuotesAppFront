@@ -12,7 +12,16 @@ const FeedProfile: React.FC = () => {
     <div className='pt-8 pl-10'>
       <div className='flex flex-col space-y-7'>
         <div className='flex'>
-          <div className='w-10 h-10 rounded-full bg-red-500' />
+          <img
+            className='w-10 h-10 rounded-full'
+            src={
+              userDetails?.image
+                ? userDetails?.image
+                : 'https://i.pravatar.cc/50'
+            }
+            alt='avatar'
+          />
+
           <div className='ml-2'>
             <h3 className='text-xl mb-1 overflow-hidden text-white'>
               {userDetails?.userName}

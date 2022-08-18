@@ -65,6 +65,7 @@ export type SingleCommentProps = {
     userId: string;
     comment: string;
     _id: string;
+    image: string;
   };
 };
 
@@ -72,6 +73,7 @@ export type CommentProp = {
   userId: string;
   comment: string;
   _id: string;
+  image: string;
 };
 
 export type ItemProps = {
