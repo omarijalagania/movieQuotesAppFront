@@ -15,10 +15,7 @@ import { addNotificationHandler } from 'services';
 import { CommentProp } from 'types';
 
 const Post: React.FC<Props> = ({ item, setGetLike }) => {
-  const { isLiked, socket, userId, setIsLiked, userDetails } = usePost(
-    item,
-    setGetLike
-  );
+  const { isLiked, socket, userId, setIsLiked } = usePost(item, setGetLike);
 
   return (
     <div className='bg-darkBlue p-5 text-white md:w-[90%] rounded-md mt-5'>

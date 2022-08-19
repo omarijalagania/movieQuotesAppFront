@@ -65,6 +65,11 @@ export const getAllMoviesHandler = async (userId: string | null) => {
   return response;
 };
 
+export const getMovieFeed = async () => {
+  const response = await request.get(`/my-movies/feed-movies`);
+  return response;
+};
+
 export const getSingleMovieHandler = async (
   id: string | string[] | undefined
 ) => {
