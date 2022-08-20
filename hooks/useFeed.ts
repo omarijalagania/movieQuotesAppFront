@@ -1,9 +1,9 @@
 import { WriteQUoteProps } from 'components';
 import React, { useState, useEffect } from 'react';
-import { useSelector } from 'react-redux';
-import { useDispatch } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { getMovieFeed, getQuoteHandler } from 'services';
 import { onModalClose, RootState } from 'state';
+import { QuotePropsItem } from 'types';
 
 const useFeed = () => {
   const [quotes, setQuotes] = useState<WriteQUoteProps[]>([]);
@@ -61,19 +61,23 @@ const useFeed = () => {
   useEffect(() => {
     if (searchTerm.startsWith('#')) {
       const filteredMovie = forSearch.filter((item) =>
-        item.quoteNameEng?.toLowerCase().includes(searchTerm?.substring(1))
+        (item.quoteNameEng || item.quoteNameGe)
+          ?.toLowerCase()
+          .includes(searchTerm?.substring(1))
       );
       setQuotes(filteredMovie);
     } else if (searchTerm.startsWith('@')) {
       const filteredMovie = feedMovies?.filter((item) =>
-        item.movieNameEn.toLowerCase().includes(searchTerm?.substring(1))
+        (item.movieNameEn || item.movieNameGe)
+          ?.toLowerCase()
+          .includes(searchTerm?.substring(1))
       );
       const quoteArr = filteredMovie?.map((item) => item);
 
       setQuotes(
         //@ts-ignore
         ...quoteArr.map((item) => {
-          return item.quotes.map((quote: any) => ({
+          return item.quotes.map((quote: QuotePropsItem) => ({
             ...quote,
             user: item.user,
           }));

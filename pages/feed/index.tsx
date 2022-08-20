@@ -7,8 +7,6 @@ const Feed: React.FC = () => {
   const { quotes, openAddQuote, setOpenAddQuote, setGetLike, handleSearch } =
     useFeed();
 
-  console.log(quotes);
-
   return (
     <div className='flex flex-col w-full'>
       <div className='flex justify-between md:w-[90%] space-x-2'>
