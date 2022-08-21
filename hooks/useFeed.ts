@@ -75,13 +75,14 @@ const useFeed = () => {
       const quoteArr = filteredMovie?.map((item) => item);
 
       setQuotes(
-        //@ts-ignore
-        ...quoteArr.map((item) => {
-          return item.quotes.map((quote: QuotePropsItem) => ({
-            ...quote,
-            user: item.user,
-          }));
-        })
+        [
+          ...quoteArr.map((item) => {
+            return item.quotes.map((quote: QuotePropsItem) => ({
+              ...quote,
+              user: item.user,
+            }));
+          }),
+        ].flat()
       );
     }
     if (searchTerm === '') {
