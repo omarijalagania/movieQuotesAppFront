@@ -4,6 +4,7 @@ export interface Props {
 }
 
 export type UserProps = {
+  image: string | undefined;
   _id: React.Key | null | undefined;
   userName:
     | string

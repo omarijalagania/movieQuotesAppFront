@@ -16,8 +16,8 @@ on:
             script_stop: true
             script: |
               cd apps
-              cd nextjs-example
+              cd movie-quotes-front-omarijalagania
               git pull
               npm ci
               npm run build
-              pm2 restart nextjs-example-process
+              pm2 restart nextjs-movie
