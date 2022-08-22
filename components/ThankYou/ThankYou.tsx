@@ -14,7 +14,7 @@ const ThankYou: React.FC = () => {
       <p className='text-center text-md w-96 mt-2 text-white'>
         {t('checkEmail')}
       </p>
-      <RedButton className='text-white mt-7' name='Go to my email' />
+      <RedButton className='text-white mt-7' name={t('checkMailButton')} />
     </div>
   );
 };

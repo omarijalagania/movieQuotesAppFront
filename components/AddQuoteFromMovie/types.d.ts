@@ -1,3 +1,5 @@
+import React from 'react';
+
 export type MovieProp = {
   _id(_id: any);
   movie: {
@@ -18,6 +20,7 @@ export type MovieProp = {
     poster: string;
     userId: string;
   };
+  setOpenAddQuoteDialog: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
 export type SingleMovieProps = {

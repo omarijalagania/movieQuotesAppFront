@@ -31,10 +31,16 @@ export const customStyles = {
   }),
   input: (provided: any) => ({
     ...provided,
-    backgroundColor: '#11101A',
   }),
   control: (provided: any) => ({
     ...provided,
     backgroundColor: '#11101A',
+    color: 'white',
   }),
+  placeholder: (provided: any) => {
+    return {
+      ...provided,
+      color: 'white',
+    };
+  },
 };

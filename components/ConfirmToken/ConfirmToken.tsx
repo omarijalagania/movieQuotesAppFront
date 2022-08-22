@@ -14,7 +14,7 @@ const ConfirmToken: React.FC = () => {
       <p className='text-center text-md w-96 mt-2 text-white'>
         {t('accountActivated')}
       </p>
-      <RedButton className='text-white w-72 mt-7' name='Go to my feed' />
+      <RedButton className='text-white w-72 mt-7' name={t('goToFeed')} />
     </div>
   );
 };

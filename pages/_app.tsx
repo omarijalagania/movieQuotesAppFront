@@ -9,9 +9,16 @@ import { Provider } from 'react-redux';
 import { Layout } from 'components';
 import 'react-toastify/dist/ReactToastify.css';
 import { ToastContainer } from 'react-toastify';
+import { useEffect } from 'react';
 
 function MyApp({ Component, pageProps: { session, ...pageProps } }: AppProps) {
   const { router } = useTranslate();
+
+  useEffect(() => {
+    if (session) {
+      router.push('/feed');
+    }
+  }, [router, session]);
 
   if (router.pathname.startsWith('/feed')) {
     return (

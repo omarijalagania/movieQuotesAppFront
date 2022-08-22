@@ -13,7 +13,7 @@ const useMovie = () => {
   );
   const closeModal = useSelector((state: RootState) => state.quotes.closeModal);
   const { userId } = useHeader();
-  const { router } = useTranslate();
+  const { router, t } = useTranslate();
 
   useEffect(() => {
     const getAllMovies = async () => {
@@ -27,7 +27,7 @@ const useMovie = () => {
       getAllMovies();
     }
   }, [addMovieResponse.status, userId, closeModal]);
-  return { movie, openAddMovieModal, setOpenAddMovieModal, router };
+  return { movie, openAddMovieModal, setOpenAddMovieModal, router, t };
 };
 
 export default useMovie;

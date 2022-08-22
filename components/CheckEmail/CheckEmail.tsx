@@ -16,7 +16,7 @@ const CheckEmail: React.FC = () => {
       </p>
       <RedButton
         className='text-white w-full py-2 mt-7'
-        name='Go to my email'
+        name={t('checkMailButton')}
       />
 
       <p className='text-gray-500 mt-10'>{t('skip')}</p>

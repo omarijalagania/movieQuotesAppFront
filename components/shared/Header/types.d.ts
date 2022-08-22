@@ -1,5 +1,7 @@
 export type UserDetails = {
   userName: string;
+  provider: string;
+  image: string;
 };
 
 export type NotificationProps = {

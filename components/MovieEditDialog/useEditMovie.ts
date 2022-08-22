@@ -15,11 +15,11 @@ import {
 
 export const useEditMovie = () => {
   const [file, setFile] = useState<File | null>(null);
-  const { userId } = useHeader();
+  const { userId, userDetails } = useHeader();
   const [genres, setGenres] = useState([]);
   const [selectedGenres, setSelectedGenres] = useState<string[]>([]);
   const movie = useSelector((state: RootState) => state.quotes.singleMovie);
-  const { router } = useTranslate();
+  const { router, t } = useTranslate();
 
   const handleChange = (selectedOption: any) => {
     const selectedGenresVal = selectedOption.map(
@@ -56,7 +56,6 @@ export const useEditMovie = () => {
   }, []);
   const posterUrl = imageUrl(file as File);
 
-  const { t } = useTranslate();
   const formik = useFormik({
     initialValues: movie
       ? editMovieFormInitialValue(movie)
@@ -113,5 +112,6 @@ export const useEditMovie = () => {
     selectedGenres,
     defaultSelects,
     movie,
+    userDetails,
   };
 };

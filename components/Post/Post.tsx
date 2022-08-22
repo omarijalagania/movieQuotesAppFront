@@ -10,19 +10,25 @@ import {
   usePost,
   Props,
   UserProps,
+  imageUrl,
 } from 'components';
 import { addNotificationHandler } from 'services';
 import { CommentProp } from 'types';
 
 const Post: React.FC<Props> = ({ item, setGetLike }) => {
   const { isLiked, socket, userId, setIsLiked } = usePost(item, setGetLike);
+
   return (
     <div className='bg-darkBlue p-5 text-white md:w-[90%] rounded-md mt-5'>
       <div className='flex  items-center'>
-        <div className='w-10 h-10 rounded-full bg-green-300' />
+        <img
+          className='w-10 h-10 rounded-full'
+          src={imageUrl(item)}
+          alt='avatar'
+        />
         {item?.user?.map((user: UserProps) => (
           <h3 key={user._id} className='ml-2'>
-            {user.userName}
+            {user?.userName}
           </h3>
         ))}
       </div>
@@ -73,7 +79,7 @@ const Post: React.FC<Props> = ({ item, setGetLike }) => {
                   isRead: false,
                   notificationFor: item.userId,
                 };
-                console.log(item?.userId);
+
                 addNotificationHandler(dataNotification);
               }}
               className='w-6 cursor-pointer h-6'

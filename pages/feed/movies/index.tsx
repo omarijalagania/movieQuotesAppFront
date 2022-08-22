@@ -6,7 +6,8 @@ import { AddMovie, Modal, RedButton } from 'components';
 import { useMovie } from 'hooks';
 
 const Movies: React.FC = () => {
-  const { movie, openAddMovieModal, setOpenAddMovieModal, router } = useMovie();
+  const { movie, openAddMovieModal, setOpenAddMovieModal, router, t } =
+    useMovie();
 
   const renderMovies = () => {
     return movie?.map(
@@ -40,18 +41,22 @@ const Movies: React.FC = () => {
 
   return (
     <>
-      <div className='flex justify-between text-white mb-5'>
-        <p>My list of movies ({movie.length})</p>
+      <div className='flex justify-between  text-white mb-5'>
+        <p>
+          {t('myMovieList')} ({movie.length})
+        </p>
         <div className='flex items-center'>
-          <p>Search</p>
+          <p>{t('search')}</p>
           <RedButton
             onClick={() => setOpenAddMovieModal(true)}
             className='ml-3'
-            name='Add movie'
+            name={t('addMovie')}
           />
         </div>
       </div>
-      <div className='grid grid-cols-3 gap-5'>{renderMovies()}</div>
+      <div className='grid grid-cols-1 md:grid-cols-3 gap-5'>
+        {renderMovies()}
+      </div>
       {openAddMovieModal && (
         <Modal open={openAddMovieModal} setOpen={setOpenAddMovieModal}>
           <AddMovie />

@@ -7,7 +7,7 @@ const Login: React.FC<LoginProps> = ({ setOpenRecoverModal }) => {
   const { formik, error, t } = useLoginForm();
 
   return (
-    <div className='flex flex-col p-10 justify-center'>
+    <div className='flex flex-col  md:p-10 h-screen justify-start md:h-full md:justify-center'>
       <h1 className='text-white text-center text-3xl'>{t('accountLogin')}</h1>
       <p className='text-center text-xs mt-2 text-gray-500'>
         {t('welcomeBack')}
@@ -23,7 +23,7 @@ const Login: React.FC<LoginProps> = ({ setOpenRecoverModal }) => {
             name='email'
             onChange={formik.handleChange}
             value={formik.values.email}
-            className={`border-2 ${
+            className={`border-2  md:!full ${
               formik.errors.email || error
                 ? 'border-red-500'
                 : formik.values.email

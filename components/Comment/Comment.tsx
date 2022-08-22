@@ -8,7 +8,11 @@ const Comment: React.FC<SingleCommentProps> = ({ comment }) => {
   return (
     <div>
       <div className='flex items-center mb-2'>
-        <div className='w-7 h-7 rounded-full bg-yellow-600' />
+        <img
+          className='w-8 h-8 rounded-full'
+          src={user?.image ? user?.image : 'https://i.pravatar.cc/50'}
+          alt='avatar'
+        />
         <p className='ml-4'>{user?.userName}</p>
       </div>
 

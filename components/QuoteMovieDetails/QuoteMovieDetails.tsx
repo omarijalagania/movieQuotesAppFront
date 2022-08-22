@@ -24,6 +24,7 @@ const QuoteMovieDetails: React.FC<QuotePropsItem> = ({ item }) => {
     setIsLiked,
     deleteQuote,
     userId,
+    t,
   } = useQuoteMovieDetails(item);
 
   return (
@@ -41,25 +42,29 @@ const QuoteMovieDetails: React.FC<QuotePropsItem> = ({ item }) => {
                     <Menu.Item>
                       {({}) => (
                         <div
-                          className='mb-3'
+                          className='mb-3 cursor-pointer'
                           onClick={() => setOpenEditQUoteDialog(true)}
                         >
-                          View Post
+                          {t('viewPost')}
                         </div>
                       )}
                     </Menu.Item>
                     <Menu.Item>
                       {({}) => (
                         <div
-                          className='mb-3'
+                          className='mb-3 cursor-pointer'
                           onClick={() => setOpenEditQUoteDialog(true)}
                         >
-                          Edit Quote
+                          {t('editPost')}
                         </div>
                       )}
                     </Menu.Item>
                     <Menu.Item>
-                      {({}) => <div onClick={deleteQuote}>Delete Quote</div>}
+                      {({}) => (
+                        <div className='cursor-pointer' onClick={deleteQuote}>
+                          {t('deletePost')}
+                        </div>
+                      )}
                     </Menu.Item>
                   </Menu.Items>
                 </div>

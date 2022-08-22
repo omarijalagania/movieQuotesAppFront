@@ -8,7 +8,7 @@ const useComment = (comment: CommentProp) => {
 
   useEffect(() => {
     const getUserById = async () => {
-      const response = await getUserByIdHandler(comment.userId);
+      const response = await getUserByIdHandler(comment?.userId);
       setUser(response.data);
     };
     getUserById();

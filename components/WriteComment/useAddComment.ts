@@ -9,7 +9,7 @@ import { useSelector } from 'react-redux';
 import { RootState } from 'state';
 
 const useAddComment = () => {
-  const { userId } = useHeader();
+  const { userId, t, userDetails } = useHeader();
   const [fieldId, setFieldId] = useState('');
   const socket = useSelector((state: RootState) => state.quotes.socket);
   const [receiverId, setReceiverId] = useState('');
@@ -52,7 +52,7 @@ const useAddComment = () => {
     validationSchema: commentSchema,
   });
 
-  return { formik, setFieldId, setReceiverId };
+  return { formik, setFieldId, setReceiverId, t, userDetails };
 };
 
 export default useAddComment;

@@ -10,7 +10,7 @@ import { saveAddMovie } from 'state';
 
 export const useAddMovie = () => {
   const [file, setFile] = useState<File | null>(null);
-  const { userId } = useHeader();
+  const { userId, userDetails } = useHeader();
   const [genres, setGenres] = useState([]);
   const [selectedGenres, setSelectedGenres] = useState<string[]>([]);
 
@@ -63,18 +63,26 @@ export const useAddMovie = () => {
         const response = await addMovieHandler(formData);
         dispatch(saveAddMovie(response));
         if (response.status === 200 || response.status === 201) {
-          toast.success(t('Movie added successfully'));
+          toast.success(t('successMovieAdd'));
         }
         if (response.status === 422) {
-          toast.error('Error adding movie');
+          toast.error(t('movieAddError'));
         }
       } catch (error) {
-        toast.error('Server Error');
+        toast.error(t('serverError'));
       }
     },
 
     validationSchema: movieSchema,
   });
 
-  return { formik, t, setFile, newGenre, handleChange, selectedGenres };
+  return {
+    formik,
+    t,
+    setFile,
+    newGenre,
+    handleChange,
+    selectedGenres,
+    userDetails,
+  };
 };

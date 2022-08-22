@@ -1,23 +1,29 @@
 import React from 'react';
 import { XIcon } from '@heroicons/react/solid';
-
+import { useHeader } from 'components';
 import { Input, RedButton, useAddQuoteFromMovie, MovieProp } from 'components';
 import { CameraIcon } from '@heroicons/react/outline';
 import Image from 'next/image';
 
-const AddQuoteFromMovie: React.FC<MovieProp> = ({ movie }) => {
+const AddQuoteFromMovie: React.FC<MovieProp> = ({
+  movie,
+  setOpenAddQuoteDialog,
+}) => {
   const { formik, setFile } = useAddQuoteFromMovie(movie);
-
+  const { userDetails, t } = useHeader();
   return (
-    <div className='w-full p-5'>
+    <div className='w-screen h-screen md:w-full p-5'>
       <div className='flex relative border-b-[1px] pb-2 border-gray-500'>
-        <h1 className='text-white mx-auto'>Add Quote</h1>
-        <XIcon className='w-5 h-5 cursor-pointer text-white absolute right-0' />
+        <h1 className='text-white mx-auto'>{t('addQuote')}</h1>
+        <XIcon
+          onClick={() => setOpenAddQuoteDialog(false)}
+          className='w-5 h-5 cursor-pointer text-white absolute right-0'
+        />
       </div>
       <div className='mt-5'>
         <div className='flex items-center mb-2'>
           <div className='w-8 h-8 rounded-full bg-yellow-600' />
-          <p className='ml-3 text-white'>Sirius Black</p>
+          <p className='ml-3 text-white'>{userDetails?.userName}</p>
         </div>
       </div>
       <form
@@ -49,12 +55,14 @@ const AddQuoteFromMovie: React.FC<MovieProp> = ({ movie }) => {
                 </p>
               ))}
             </div>
-            <p className='text-white text-sm'>Director {movie.directorEn}</p>
+            <p className='text-white text-sm'>
+              {t('director')} {movie.directorEn}
+            </p>
           </div>
         </div>
         <div className='relative mb-3'>
           <Input
-            className='!rounded-none py-2 !border-[1px] !text-sm border-gray-400 bg-darkBlue text-white !w-[500px] !placeholder-white'
+            className='!rounded-none py-2 !border-[1px] !text-sm border-gray-400 bg-darkBlue text-white md:!w-[500px] !placeholder-white'
             isLabel={false}
             type='text'
             id='quoteNameEng'
@@ -68,7 +76,7 @@ const AddQuoteFromMovie: React.FC<MovieProp> = ({ movie }) => {
         </div>
         <div className='relative mb-3'>
           <Input
-            className='!rounded-none py-2 !border-[1px] !text-sm border-gray-400 bg-darkBlue text-white !w-[500px] !placeholder-white'
+            className='!rounded-none py-2 !border-[1px] !text-sm border-gray-400 bg-darkBlue text-white md:!w-[500px] !placeholder-white'
             isLabel={false}
             type='text'
             id='quoteNameGe'
@@ -86,9 +94,9 @@ const AddQuoteFromMovie: React.FC<MovieProp> = ({ movie }) => {
             <span className='flex items-center space-x-2'>
               <CameraIcon className='w-5 h-5 text-white' />
               <span className='text-sm text-white'>
-                Drag & drop your image here or
+                {t('drag')}
                 <span className='text-white text-xs py-1 px-2 ml-1 bg-purple-600'>
-                  Choose file
+                  {t('chooseFile')}
                 </span>
               </span>
             </span>
@@ -108,7 +116,7 @@ const AddQuoteFromMovie: React.FC<MovieProp> = ({ movie }) => {
           </label>
         </div>
 
-        <RedButton className='w-full mt-3 text-white' name='Add quote' />
+        <RedButton className='w-full mt-3 text-white' name={t('addQuote')} />
       </form>
     </div>
   );

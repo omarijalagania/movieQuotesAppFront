@@ -51,7 +51,7 @@ const PasswordRecover: React.FC = () => {
         />
       </form>
 
-      <div className='flex mt-10'>
+      <div className='flex cursor-pointer mt-10'>
         <Image width={20} height={7} src='/assets/arrow-left.png' alt='arrow' />
         <p className='ml-4 text-gray-500'>{t('back')}</p>
       </div>

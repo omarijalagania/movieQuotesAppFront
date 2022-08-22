@@ -14,7 +14,7 @@ const usePost = (
 ) => {
   const dispatch = useDispatch();
   const [isLiked, setIsLiked] = useState(false);
-  const { userId } = useHeader();
+  const { userId, userDetails } = useHeader();
   const socket = useSelector((state: RootState) => state.quotes.socket);
 
   useEffect(() => {
@@ -49,6 +49,7 @@ const usePost = (
     userId,
     socket,
     setIsLiked,
+    userDetails,
   };
 };
 

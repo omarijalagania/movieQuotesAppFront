@@ -11,7 +11,7 @@ import { onModalClose, RootState } from 'state';
 
 export const useEditQuote = () => {
   const [file, setFile] = useState<File | null>(null);
-  const { userId } = useHeader();
+  const { userId, userDetails } = useHeader();
   const [movies, setMovies] = useState([]);
   const [selectMovies, setSelectMovies] = useState('');
   const dispatch = useDispatch();
@@ -75,16 +75,16 @@ export const useEditQuote = () => {
       try {
         const response = await editQuoteHandler(formData, singleMovie._id);
         if (response.status === 200 || response.status === 201) {
-          toast.success(t('Quote added successfully'));
+          toast.success(t('editedQuote'));
           dispatch(onModalClose(true));
         }
 
         if (response.status === 422) {
-          toast.error('Error editing quote');
+          toast.error(t('editingError'));
           dispatch(onModalClose(false));
         }
       } catch (error) {
-        toast.error('Server Error');
+        toast.error(t('serverError'));
         dispatch(onModalClose(false));
       }
     },
@@ -102,5 +102,6 @@ export const useEditQuote = () => {
     posterUrl,
     handleChange,
     currentQuotes,
+    userDetails,
   };
 };

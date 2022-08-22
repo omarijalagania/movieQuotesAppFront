@@ -1,8 +1,10 @@
 import React from 'react';
 import { PencilAltIcon } from '@heroicons/react/solid';
 import { WriteQUoteProps } from 'components';
+import { useTranslate } from 'hooks';
 
 const WriteQuote: React.FC<WriteQUoteProps> = ({ setOpenAddQuote }) => {
+  const { t } = useTranslate();
   return (
     <div
       onClick={() => setOpenAddQuote(true)}
@@ -11,7 +13,8 @@ const WriteQuote: React.FC<WriteQUoteProps> = ({ setOpenAddQuote }) => {
       <input
         className='py-2 w-[100%] pl-10 rounded-md text-white bg-lightBlue placeholder-white'
         type='text'
-        placeholder='Write new quote'
+        disabled
+        placeholder={t('writeQuote')}
       />
       <PencilAltIcon className='w-4 h-4 ml-2 absolute top-[30%] text-white' />
     </div>

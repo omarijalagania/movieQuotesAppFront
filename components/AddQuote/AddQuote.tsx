@@ -5,18 +5,27 @@ import { Input, RedButton, useAddQuote } from 'components';
 import { CameraIcon } from '@heroicons/react/outline';
 
 const AddQuote: React.FC = () => {
-  const { formik, setFile, newMovie, handleChange } = useAddQuote();
+  const { formik, setFile, newMovie, handleChange, userDetails, t } =
+    useAddQuote();
 
   return (
-    <div className='w-full p-5'>
+    <div className='w-full h-screen md:h-full md:p-5'>
       <div className='flex relative border-b-[1px] pb-2 border-gray-500'>
-        <h1 className='text-white mx-auto'>Add Quote</h1>
+        <h1 className='text-white mx-auto'>{t('addQuote')}</h1>
         <XIcon className='w-5 h-5 cursor-pointer text-white absolute right-0' />
       </div>
       <div className='mt-5'>
         <div className='flex items-center mb-2'>
-          <div className='w-8 h-8 rounded-full bg-yellow-600' />
-          <p className='ml-3 text-white'>Sirius Black</p>
+          <img
+            className='w-8 h-8 rounded-full'
+            src={
+              userDetails?.image
+                ? userDetails?.image
+                : process.env.NEXT_PUBLIC_RANDOM_AVATAR
+            }
+            alt='avatar'
+          />
+          <p className='ml-3 text-white'>{userDetails?.userName}</p>
         </div>
       </div>
       <form
@@ -26,7 +35,7 @@ const AddQuote: React.FC = () => {
       >
         <div className='relative mb-3'>
           <Input
-            className='!rounded-none py-1 !border-[1px] !text-sm border-gray-400 bg-darkBlue text-white !w-[500px] !placeholder-white'
+            className='!rounded-none py-1 !border-[1px] !text-sm border-gray-400 bg-darkBlue text-white md:!w-[500px] !placeholder-white'
             isLabel={false}
             type='text'
             id='quoteNameEng'
@@ -40,7 +49,7 @@ const AddQuote: React.FC = () => {
         </div>
         <div className='relative mb-3'>
           <Input
-            className='!rounded-none py-1 !border-[1px] !text-sm border-gray-400 bg-darkBlue text-white !w-[500px] !placeholder-white'
+            className='!rounded-none py-1 !border-[1px] !text-sm border-gray-400 bg-darkBlue text-white md:!w-[500px] !placeholder-white'
             isLabel={false}
             type='text'
             id='quoteNameGe'
@@ -58,9 +67,9 @@ const AddQuote: React.FC = () => {
             <span className='flex items-center space-x-2'>
               <CameraIcon className='w-5 h-5 text-white' />
               <span className='text-sm text-white'>
-                Drag & drop your image here or
+                {t('drag')}
                 <span className='text-white text-xs py-1 px-2 ml-1 bg-purple-600'>
-                  Choose file
+                  {t('chooseFile')}
                 </span>
               </span>
             </span>
@@ -86,7 +95,7 @@ const AddQuote: React.FC = () => {
           onChange={handleChange}
         >
           <option value='' disabled selected>
-            Select your option
+            {t('selectMovie')}
           </option>
           {newMovie.map((movie) => {
             return (
@@ -97,7 +106,7 @@ const AddQuote: React.FC = () => {
           })}
         </select>
 
-        <RedButton className='w-full mt-3 text-white' name='Add quote' />
+        <RedButton className='w-full mt-3 text-white' name={t('addQuote')} />
       </form>
     </div>
   );

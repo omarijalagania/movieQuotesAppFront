@@ -10,9 +10,10 @@ import { onModalClose } from 'state';
 
 export const useAddQuote = () => {
   const [file, setFile] = useState<File | null>(null);
-  const { userId } = useHeader();
+  const { userId, userDetails } = useHeader();
   const [movies, setMovies] = useState([]);
   const [selectMovies, setSelectMovies] = useState('');
+  const { t } = useTranslate();
   const dispatch = useDispatch();
 
   const handleChange = (event: {
@@ -44,7 +45,6 @@ export const useAddQuote = () => {
     }
   }, [userId]);
 
-  const { t } = useTranslate();
   const formik = useFormik({
     initialValues: getQuoteFormInitialValue(),
 
@@ -59,15 +59,15 @@ export const useAddQuote = () => {
       try {
         const response = await addQuoteHandler(formData as FormData);
         if (response.status === 200 || response.status === 201) {
-          toast.success(t('Quote added successfully'));
+          toast.success(t('quoteAdded'));
           dispatch(onModalClose(true));
         }
         if (response.status === 422) {
-          toast.error('Error adding quote');
+          toast.error(t('addingError'));
           dispatch(onModalClose(true));
         }
       } catch (error) {
-        toast.error('Server Error');
+        toast.error(t('serverError'));
         dispatch(onModalClose(false));
       }
     },
@@ -75,5 +75,5 @@ export const useAddQuote = () => {
     validationSchema: quoteSchema,
   });
 
-  return { formik, t, setFile, newMovie, handleChange };
+  return { formik, t, setFile, newMovie, handleChange, userDetails };
 };
