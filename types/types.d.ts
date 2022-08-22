@@ -141,6 +141,8 @@ export type ItemProps = {
   userId: string;
   user: [
     {
+      image: any;
+      provider: string;
       _id: string;
       userName: string;
       email: string;

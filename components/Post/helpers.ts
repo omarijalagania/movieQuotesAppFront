@@ -1,5 +1,6 @@
 import { SetStateAction } from 'react';
 import { addLikeHandler, removeLikeHandler } from 'services';
+import { ItemProps } from 'types';
 
 export const addLike = async (
   quoteId: string,
@@ -29,4 +30,12 @@ export const removeLike = async (
   if (response.status === 200) {
     setIsLiked(false);
   }
+};
+
+export const imageUrl = (item: ItemProps) => {
+  return item?.user[0]?.provider === 'email'
+    ? item?.user[0]?.image
+      ? item?.user[0]?.image
+      : process.env.NEXT_PUBLIC_RANDOM_AVATAR
+    : item?.user[0]?.image;
 };
