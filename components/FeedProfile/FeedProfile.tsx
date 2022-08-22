@@ -6,7 +6,7 @@ import Link from 'next/link';
 import { useHeader } from 'components';
 
 const FeedProfile: React.FC = () => {
-  const { userDetails, t } = useHeader();
+  const { userDetails, t, router } = useHeader();
 
   return (
     <div className='pt-8 pl-10'>
@@ -26,7 +26,12 @@ const FeedProfile: React.FC = () => {
             <h3 className='text-xl mb-1 overflow-hidden text-white'>
               {userDetails?.userName}
             </h3>
-            <p className='text-xs text-gray-300'>{t('editProfile')}</p>
+            <p
+              onClick={() => router.push('/feed/profile')}
+              className='text-xs text-gray-300 cursor-pointer'
+            >
+              {t('editProfile')}
+            </p>
           </div>
         </div>
         <ul className='flex ml-2 space-y-7 flex-col'>

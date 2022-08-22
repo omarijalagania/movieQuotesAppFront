@@ -4,8 +4,12 @@ export interface Props {
 }
 
 export type UserProps = {
+  email: any;
   image: string | undefined;
   _id: React.Key | null | undefined;
+  userName: string;
+  provider: string;
+
   userName:
     | string
     | number

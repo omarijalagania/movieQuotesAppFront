@@ -1,6 +1,7 @@
 export type UserDetails = {
   userName: string;
   provider: string;
+  email: string;
   image: string;
 };
 

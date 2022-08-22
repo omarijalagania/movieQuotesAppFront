@@ -9,6 +9,7 @@ type InputProps = {
   value?: string;
   isLabel?: boolean;
   defaultValue?: string;
+  disabled?: boolean;
 };
 
 export default InputProps;
