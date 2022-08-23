@@ -85,7 +85,7 @@ const Header: React.FC = () => {
                     />
                   </Menu.Button>
                   {open && (
-                    <div className='bg-darkBlue absolute w-[368px] md:w-[500px] overflow-y-auto md:h-[400px] -left-[147px] md:-right-[100px] top-12 p-3'>
+                    <div className='bg-darkBlue absolute w-[368px] md:w-[500px] overflow-y-auto md:h-[400px] -left-[147px] md:-left-[400px] md:-right-[100px] top-12 p-3'>
                       <div className='flex justify-between  bg-darkBlue items-center my-5'>
                         <h2 className='text-xl'>Notifications</h2>
                         <p>mark all as read</p>

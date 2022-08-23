@@ -7,12 +7,14 @@ import {
 } from 'components';
 import { googleSchema } from 'schema';
 import { useTranslate } from 'hooks';
-import { useState } from 'react';
+import { useState, useRef } from 'react';
 import { updateGoogleUserHandler } from 'services';
 import { toast } from 'react-toastify';
 
 const useGoogleProfile = () => {
   const [isEditable, setIsEditable] = useState(false);
+  const [file, setFile] = useState(null as File | null);
+  const hiddenFileInput = useRef(null);
   const { userDetails } = useHeader();
   const { t } = useTranslate();
   const formik = useFormik({
@@ -43,7 +45,16 @@ const useGoogleProfile = () => {
     validationSchema: googleSchema,
   });
 
-  return { userDetails, t, formik, isEditable, setIsEditable };
+  return {
+    userDetails,
+    t,
+    formik,
+    isEditable,
+    setIsEditable,
+    file,
+    setFile,
+    hiddenFileInput,
+  };
 };
 
 export default useGoogleProfile;

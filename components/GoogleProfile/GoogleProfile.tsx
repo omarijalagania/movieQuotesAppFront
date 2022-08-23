@@ -1,22 +1,43 @@
 import React from 'react';
 import { Input, useGoogleProfile, RedButton } from 'components';
 import { CheckIcon, ExclamationCircleIcon } from '@heroicons/react/solid';
+import { handleChange, imagePreview, openFIlePicker } from 'helpers';
 
-const GoogleProfile = () => {
-  const { formik, t, userDetails, isEditable, setIsEditable } =
-    useGoogleProfile();
+const GoogleProfile: React.FC = () => {
+  const {
+    formik,
+    t,
+    userDetails,
+    isEditable,
+    setIsEditable,
+    file,
+    setFile,
+    hiddenFileInput,
+  } = useGoogleProfile();
 
   return (
     <div className='w-[650px] relative'>
       <p className='text-white mt-5 mb-20'>My profile</p>
       <div className='w-[650px] flex flex-col justify-center items-center rounded-lg relative bg-darkBlue h-[500px]'>
         <img
-          src={userDetails?.image}
+          src={file === null ? userDetails?.image : imagePreview(file as File)}
           alt='avatar'
-          className='w-32 h-32 rounded-full  absolute -top-16 left-1/2 -translate-x-1/2'
+          className='w-32 h-32 object-cover rounded-full  absolute -top-16 left-1/2 -translate-x-1/2'
         />
-        <p className='absolute cursor-pointer text-white top-20 left-1/2 -translate-x-1/2'>
-          Upload new photo
+        <input
+          ref={hiddenFileInput}
+          type='file'
+          className='hidden'
+          placeholder='Upload new photo'
+          accept='.png, .jpg, .jpeg'
+          id='poster'
+          onChange={(e) => handleChange(e, setFile)}
+        />
+        <p
+          className='text-white absolute left-1/2 top-24 -translate-x-1/2 cursor-pointer'
+          onClick={() => openFIlePicker(hiddenFileInput)}
+        >
+          Upload photo
         </p>
         <form id='update' onSubmit={formik.handleSubmit}>
           <div className='relative'>

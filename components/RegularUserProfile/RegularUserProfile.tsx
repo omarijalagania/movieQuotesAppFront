@@ -1,14 +1,7 @@
 import React from 'react';
-import {
-  Input,
-  useRegularUserProfile,
-  Button,
-  RedButton,
-  handleChange,
-  imagePreview,
-  openFIlePicker,
-} from 'components';
+import { Input, useRegularUserProfile, Button, RedButton } from 'components';
 import { CheckIcon, ExclamationCircleIcon } from '@heroicons/react/solid';
+import { handleChange, imagePreview, openFIlePicker } from 'helpers';
 
 const RegularUserProfile: React.FC = () => {
   const {
