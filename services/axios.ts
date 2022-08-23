@@ -169,3 +169,11 @@ export const updateNotificationHandler = async () => {
   const response = await request.post(`/notifications/update`);
   return response;
 };
+
+export const updateGoogleUserHandler = async (
+  data: { userName: string },
+  userId: string
+) => {
+  const response = await request.put(`/user/update/${userId}`, data);
+  return response;
+};

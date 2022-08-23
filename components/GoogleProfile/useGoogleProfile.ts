@@ -8,6 +8,8 @@ import {
 import { googleSchema } from 'schema';
 import { useTranslate } from 'hooks';
 import { useState } from 'react';
+import { updateGoogleUserHandler } from 'services';
+import { toast } from 'react-toastify';
 
 const useGoogleProfile = () => {
   const [isEditable, setIsEditable] = useState(false);
@@ -22,12 +24,19 @@ const useGoogleProfile = () => {
     onSubmit: async (values) => {
       const data = {
         userName: values.userName,
-        email: values.email,
       };
       try {
-        //call
+        const response = await updateGoogleUserHandler(
+          data,
+          userDetails?._id as string
+        );
+
+        if (response.status === 200) {
+          setIsEditable(false);
+          toast.success(t('updated'));
+        }
       } catch (error) {
-        //errors
+        toast.error(t('error'));
       }
     },
 

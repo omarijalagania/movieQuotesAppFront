@@ -144,7 +144,6 @@ const RegularUserProfile: React.FC = () => {
                       ) : (
                         ''
                       )}
-
                       <div className='absolute -right-56 flex top-1/2 cursor-pointer translate-y-[20%]'>
                         <p className='text-white'>Make this primary</p>
                         <p
@@ -200,13 +199,6 @@ const RegularUserProfile: React.FC = () => {
             <p className='text-red-500 mt-1'>{t(formik.errors.password)}</p>
           )}
 
-          {/* {error ? (
-          <p className='text-red-500 mt-1'>{t(error)}</p>
-        ) : formik.errors.email ? (
-          <p className='text-red-500 mt-1'>{t(formik.errors.email)}</p>
-        ) : (
-          ''
-        )} */}
           <RedButton name='submit' />
         </form>
       </div>

@@ -5,7 +5,6 @@ import { CheckIcon, ExclamationCircleIcon } from '@heroicons/react/solid';
 const GoogleProfile = () => {
   const { formik, t, userDetails, isEditable, setIsEditable } =
     useGoogleProfile();
-  console.log(userDetails);
 
   return (
     <div className='w-[650px] relative'>
@@ -19,7 +18,7 @@ const GoogleProfile = () => {
         <p className='absolute cursor-pointer text-white top-20 left-1/2 -translate-x-1/2'>
           Upload new photo
         </p>
-        <form onSubmit={formik.handleSubmit}>
+        <form id='update' onSubmit={formik.handleSubmit}>
           <div className='relative'>
             <Input
               disabled={!isEditable}
@@ -81,7 +80,12 @@ const GoogleProfile = () => {
           >
             Cancel
           </p>
-          <RedButton className='text-white' name='Save changes' />
+          <RedButton
+            form='update'
+            type='submit'
+            className='text-white'
+            name='Save changes'
+          />
         </div>
       )}
     </div>

@@ -35,8 +35,8 @@ const Post: React.FC<Props> = ({ item, setGetLike }) => {
       <h4 className='mt-3'>{item.quoteNameEng}</h4>
       <div className='mt-6'>
         <Image
-          width={900}
-          height={500}
+          width={1100}
+          height={600}
           src={process.env.NEXT_PUBLIC_BACKEND_URL + '/' + item.poster}
           alt='children'
         />

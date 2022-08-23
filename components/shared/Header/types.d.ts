@@ -3,6 +3,7 @@ export type UserDetails = {
   provider: string;
   email: string;
   image: string;
+  _id: string;
 };
 
 export type NotificationProps = {
