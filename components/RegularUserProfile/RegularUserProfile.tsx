@@ -1,4 +1,4 @@
-import React, { LegacyRef } from 'react';
+import React from 'react';
 import {
   Input,
   useRegularUserProfile,
@@ -10,19 +10,13 @@ import {
 } from 'components';
 import { CheckIcon, ExclamationCircleIcon } from '@heroicons/react/solid';
 
-type Props = {
-  hiddenFileInput: LegacyRef<HTMLInputElement> | undefined;
-};
-
-const RegularUserProfile: React.FC<Props> = () => {
+const RegularUserProfile: React.FC = () => {
   const {
     formik,
     userDetails,
     t,
-    handleChangeInputs,
-    addInput,
-    inputsArray,
-    removeEmail,
+    FieldArray,
+    FormikProvider,
     setFile,
     file,
     hiddenFileInput,
@@ -54,7 +48,7 @@ const RegularUserProfile: React.FC<Props> = () => {
         >
           Upload photo
         </p>
-        <form className='mt-20'>
+        <form onSubmit={formik.handleSubmit} className='mt-20'>
           <div className='relative'>
             <Input
               isLabel={true}
@@ -113,59 +107,65 @@ const RegularUserProfile: React.FC<Props> = () => {
               Primary email
             </p>
           </div>
-          {inputsArray.map(
-            (
-              input: { secondaryEmail: string | undefined },
-              i: { toString: () => string }
-            ) => (
-              <div className='relative'>
-                <Input
-                  isLabel={true}
-                  id={i.toString()}
-                  type='email'
-                  placeholder={t('emailPlaceholder')}
-                  label={t('email')}
-                  name='secondaryEmail'
-                  onChange={(e) => {
-                    formik.handleChange(e);
-                    handleChangeInputs(e);
-                  }}
-                  value={input.secondaryEmail}
-                  className={`border-2 ${
-                    formik.errors.secondaryEmail //|| error
-                      ? 'border-red-500 '
-                      : input.secondaryEmail
-                      ? 'border-green-500  '
-                      : ''
-                  }`}
-                />
-                {!formik.errors.secondaryEmail &&
-                input.secondaryEmail !== '' ? (
-                  <CheckIcon className='w-6 h-6 absolute text-green-500 right-2 top-[58%]' />
-                ) : input.secondaryEmail ? (
-                  <ExclamationCircleIcon className='w-6 h-6 absolute text-red-500 right-2 top-[58%]' />
-                ) : (
-                  ''
-                )}
-                <div className='absolute -right-56 flex top-1/2 cursor-pointer translate-y-[20%]'>
-                  <p className='text-white'>Make this primary</p>
-                  <p
-                    onClick={(e) => removeEmail(e)}
-                    className='text-white ml-2'
-                  >
-                    Remove
-                  </p>
-                </div>
-              </div>
-            )
-          )}
+          <FormikProvider value={formik}>
+            <FieldArray
+              name='secondaryEmails'
+              render={(arrayHelpers) => (
+                <>
+                  {formik.values.secondaryEmails.map((email, index) => (
+                    <div key={index} className='relative'>
+                      <Input
+                        isLabel={true}
+                        type='email'
+                        id={`secondaryEmails.${index}.secondaryEmail`}
+                        placeholder={t('emailPlaceholder')}
+                        label={t('email')}
+                        name={`secondaryEmails.${index}.secondaryEmail`}
+                        onChange={formik.handleChange}
+                        value={
+                          formik.values.secondaryEmails[index].secondaryEmail
+                        }
+                        className={`border-2 ${
+                          formik.errors?.secondaryEmails //|| error
+                            ? 'border-red-500 '
+                            : formik.values.secondaryEmails[index]
+                                .secondaryEmail
+                            ? 'border-green-500  '
+                            : ''
+                        }`}
+                      />
+                      {!formik.errors.secondaryEmails &&
+                      formik.values.secondaryEmails[index].secondaryEmail !==
+                        '' ? (
+                        <CheckIcon className='w-6 h-6 absolute text-green-500 right-2 top-[58%]' />
+                      ) : formik.values.secondaryEmails[index]
+                          .secondaryEmail ? (
+                        <ExclamationCircleIcon className='w-6 h-6 absolute text-red-500 right-2 top-[58%]' />
+                      ) : (
+                        ''
+                      )}
 
-          <Button
-            type='button'
-            onClick={addInput}
-            className='mt-10'
-            name='Add new email'
-          />
+                      <div className='absolute -right-56 flex top-1/2 cursor-pointer translate-y-[20%]'>
+                        <p className='text-white'>Make this primary</p>
+                        <p
+                          onClick={() => arrayHelpers.remove(index)}
+                          className='text-white ml-2'
+                        >
+                          Remove
+                        </p>
+                      </div>
+                    </div>
+                  ))}
+                  <Button
+                    type='button'
+                    onClick={() => arrayHelpers.push({ secondaryEmail: '' })}
+                    className='mt-10'
+                    name='Add new email'
+                  />
+                </>
+              )}
+            />
+          </FormikProvider>
 
           <div className='w-full md:w-96 h-0.5 mt-10 mb-8 bg-gray-700' />
 
@@ -177,7 +177,7 @@ const RegularUserProfile: React.FC<Props> = () => {
               placeholder={t('passwordPlaceholder')}
               label={t('password')}
               name='password'
-              onChange={(e) => handleChangeInputs(e)}
+              onChange={formik.handleChange}
               value={formik.values.password}
               className={`border-2 ${
                 formik.errors.password

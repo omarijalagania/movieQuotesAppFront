@@ -7,7 +7,16 @@ const userProfileSchema = Yup.object().shape({
     .max(15, 'max15Chars')
     .required('requiredName'),
   email: Yup.string().email('invalidEmail').required('invalidEmail'),
-  secondaryEmail: Yup.string().email('invalidEmail').required('invalidEmail'),
+
+  secondaryEmails: Yup.array().of(
+    Yup.object().shape({
+      secondaryEmail: Yup.string()
+        .email('invalidEmail')
+        .required('invalidEmail'),
+      secondary: Yup.boolean(),
+      isVerified: Yup.boolean(),
+    })
+  ),
   password: Yup.string()
     .lowercase()
     .min(8, 'min8Chars')
