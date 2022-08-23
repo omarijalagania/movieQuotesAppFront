@@ -1,5 +1,5 @@
 import React from 'react';
-import { GoogleProfile, useHeader } from 'components';
+import { GoogleProfile, RegularUserProfile, useHeader } from 'components';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 
 const Profile: React.FC = () => {
@@ -7,7 +7,11 @@ const Profile: React.FC = () => {
 
   return (
     <div className='mx-auto'>
-      {userDetails?.provider === 'google' ? <GoogleProfile /> : ''}
+      {userDetails?.provider === 'google' ? (
+        <GoogleProfile />
+      ) : (
+        <RegularUserProfile />
+      )}
     </div>
   );
 };

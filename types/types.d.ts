@@ -2,6 +2,7 @@ export type ButtonProps = {
   name: string;
   className?: string;
   onClick?: () => void;
+  type?: 'submit' | 'reset' | 'button';
 };
 
 export type User = {
