@@ -26,9 +26,9 @@ export const openFIlePicker = (hiddenFileInput: RefObject<HTMLLinkElement>) => {
 };
 
 export const showInAvatar = (
-  imagePreview: string,
-  memberAvatar: string,
-  Member: string
+  imagePreview: string | undefined,
+  memberAvatar?: string,
+  Member?: string
 ) => {
   if (imagePreview) {
     return imagePreview;

@@ -19,6 +19,7 @@ export const usePersonalInformationForm = () => {
         email: values.email,
         password: values.password,
         repeatPassword: values.repeatPassword,
+        poster: '',
       };
       try {
         const response = await registerHandler(data);

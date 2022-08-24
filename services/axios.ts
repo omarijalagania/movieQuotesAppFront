@@ -5,6 +5,7 @@ export const registerHandler = async (data: {
   password: string;
   userName: string;
   repeatPassword: string;
+  poster: string;
 }) => {
   const response = await request.post(`/user/register`, data);
   return response;
@@ -177,6 +178,18 @@ export const updateGoogleUserHandler = async (
   userId: string
 ) => {
   const response = await request.put(`/user/update/${userId}`, data, {
+    headers: {
+      'Content-Type': 'multipart/form-data',
+    },
+  });
+  return response;
+};
+
+export const updateRegularUserHandler = async (
+  data: FormData,
+  userId: string
+) => {
+  const response = await request.put(`/user/update/regular/${userId}`, data, {
     headers: {
       'Content-Type': 'multipart/form-data',
     },

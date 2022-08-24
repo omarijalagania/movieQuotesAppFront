@@ -8,6 +8,8 @@ import {
 import { userProfileSchema } from 'schema';
 import { useHeader } from 'components';
 import { useTranslate } from 'hooks';
+import { updateRegularUserHandler } from 'services';
+import { toast } from 'react-toastify';
 
 const useRegularUserProfile = () => {
   const [inputsArray, setInputsArray] = useState([] as InputArrayProps[]);
@@ -31,10 +33,21 @@ const useRegularUserProfile = () => {
       //   password: values.password,
       //   secondaryEmail: values.secondaryEmails,
       // };
+      const formData = new FormData();
+      formData.append('userName', values.userName as string);
+      formData.append('email', values.email as string);
+      // formData.append('password', values.password as string);
+      formData.append('poster', file as File);
       try {
-        //call
+        const response = await updateRegularUserHandler(
+          formData,
+          userDetails?._id as string
+        );
+        if (response.status === 200) {
+          toast.success(t('updated'));
+        }
       } catch (error) {
-        //catch errors
+        toast.error(t('error'));
       }
     },
 
