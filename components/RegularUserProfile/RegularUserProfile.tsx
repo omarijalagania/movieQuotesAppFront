@@ -49,7 +49,7 @@ const RegularUserProfile: React.FC = () => {
           >
             Upload photo
           </p>
-          <div className='mt-20'>
+          <div className='mt-36'>
             <div className='relative'>
               <Input
                 isLabel={true}
@@ -108,6 +108,43 @@ const RegularUserProfile: React.FC = () => {
                 Primary email
               </p>
             </div>
+            {userDetails?.secondaryEmails.map((email, index) => (
+              <div key={index} className='relative'>
+                <Input
+                  disabled={true}
+                  isLabel={true}
+                  type='email'
+                  placeholder={t('emailPlaceholder')}
+                  label={t('email')}
+                  name={`secondaryEmails.${index}.secondaryEmail`}
+                  onChange={formik.handleChange}
+                  defaultValue={email.secondaryEmail}
+                  className={`border-2 ${
+                    //|| error
+                    'border-inputYellow  bg-inputYellow text-white'
+                  }`}
+                />
+                {/* {!formik.errors.secondaryEmails &&
+                formik.values.secondaryEmails[index].secondaryEmail !== '' ? (
+                  <CheckIcon className='w-6 h-6 absolute text-green-500 right-2 top-[58%]' />
+                ) : formik.values.secondaryEmails[index].secondaryEmail ? (
+                  <ExclamationCircleIcon className='w-6 h-6 absolute text-red-500 right-2 top-[58%]' />
+                ) : (
+                  ''
+                )} */}
+                <div className='absolute -right-44 flex top-1/2 cursor-pointer translate-y-[20%]'>
+                  <p className='text-white'>
+                    {email.isVerified ? 'Verified' : 'Not verified'}
+                  </p>
+                  <p
+                    onClick={() => console.log('remove')}
+                    className='text-white ml-2'
+                  >
+                    Remove
+                  </p>
+                </div>
+              </div>
+            ))}
             <FormikProvider value={formik}>
               <FieldArray
                 name='secondaryEmails'

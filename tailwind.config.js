@@ -15,6 +15,7 @@ module.exports = {
         lightBlue: '#24222F',
         darkBlue: '#11101A',
         headerBg: '#222030',
+        inputYellow: '#EC9524',
       },
     },
   },
