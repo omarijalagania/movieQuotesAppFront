@@ -14,6 +14,7 @@ export const handleChange = (
 export const imagePreview = (file: File) => {
   let imageUrl = '';
   if (file) {
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     return (imageUrl = URL.createObjectURL(file));
   }
 };
@@ -21,5 +22,19 @@ export const imagePreview = (file: File) => {
 export const openFIlePicker = (hiddenFileInput: RefObject<HTMLLinkElement>) => {
   if (hiddenFileInput.current) {
     hiddenFileInput.current.click();
+  }
+};
+
+export const showInAvatar = (
+  imagePreview: string,
+  memberAvatar: string,
+  Member: string
+) => {
+  if (imagePreview) {
+    return imagePreview;
+  } else if (!imagePreview && !memberAvatar) {
+    return Member;
+  } else {
+    return process.env.NEXT_PUBLIC_BACKEND_URL + '/' + Member;
   }
 };

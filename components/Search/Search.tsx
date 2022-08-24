@@ -1,9 +1,9 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { SearchIcon } from '@heroicons/react/solid';
 import { useTranslate } from 'hooks';
 
 const Search: React.FC<any> = ({ handleSearch }) => {
-  const [grow, setGrow] = useState(false);
+  //const [grow, setGrow] = useState(false);
   const { t } = useTranslate();
 
   return (

@@ -62,6 +62,7 @@ export default NextAuth({
           userName: user.name,
           email: user.email,
           image: user.image,
+          poster: '',
         };
         googleLoginHandler(data);
       }

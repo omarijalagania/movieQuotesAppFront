@@ -1,7 +1,12 @@
 import React from 'react';
 import { Input, useGoogleProfile, RedButton } from 'components';
 import { CheckIcon, ExclamationCircleIcon } from '@heroicons/react/solid';
-import { handleChange, imagePreview, openFIlePicker } from 'helpers';
+import {
+  handleChange,
+  imagePreview,
+  openFIlePicker,
+  showInAvatar,
+} from 'helpers';
 
 const GoogleProfile: React.FC = () => {
   const {
@@ -20,7 +25,11 @@ const GoogleProfile: React.FC = () => {
       <p className='text-white mt-5 mb-20'>My profile</p>
       <div className='w-[650px] flex flex-col justify-center items-center rounded-lg relative bg-darkBlue h-[500px]'>
         <img
-          src={file === null ? userDetails?.image : imagePreview(file as File)}
+          src={showInAvatar(
+            imagePreview(file as File),
+            userDetails?.image,
+            userDetails?.poster
+          )}
           alt='avatar'
           className='w-32 h-32 object-cover rounded-full  absolute -top-16 left-1/2 -translate-x-1/2'
         />
@@ -30,8 +39,9 @@ const GoogleProfile: React.FC = () => {
           className='hidden'
           placeholder='Upload new photo'
           accept='.png, .jpg, .jpeg'
+          name='poster'
           id='poster'
-          onChange={(e) => handleChange(e, setFile)}
+          onChange={(event) => handleChange(event, setFile)}
         />
         <p
           className='text-white absolute left-1/2 top-24 -translate-x-1/2 cursor-pointer'
@@ -39,7 +49,11 @@ const GoogleProfile: React.FC = () => {
         >
           Upload photo
         </p>
-        <form id='update' onSubmit={formik.handleSubmit}>
+        <form
+          id='update'
+          encType='multipart/form-data'
+          onSubmit={formik.handleSubmit}
+        >
           <div className='relative'>
             <Input
               disabled={!isEditable}

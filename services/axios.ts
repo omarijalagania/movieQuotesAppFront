@@ -13,6 +13,8 @@ export const registerHandler = async (data: {
 export const googleLoginHandler = async (data: {
   userName: string | null | undefined;
   email: string | null | undefined;
+  poster: string | null | undefined;
+  image: string | null | undefined;
 }) => {
   const response = await request.post(`/user/register/google`, data);
 
@@ -171,9 +173,13 @@ export const updateNotificationHandler = async () => {
 };
 
 export const updateGoogleUserHandler = async (
-  data: { userName: string },
+  data: FormData,
   userId: string
 ) => {
-  const response = await request.put(`/user/update/${userId}`, data);
+  const response = await request.put(`/user/update/${userId}`, data, {
+    headers: {
+      'Content-Type': 'multipart/form-data',
+    },
+  });
   return response;
 };

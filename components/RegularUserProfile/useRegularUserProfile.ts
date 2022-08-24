@@ -25,12 +25,12 @@ const useRegularUserProfile = () => {
 
     onSubmit: async (values) => {
       console.log(values);
-      const data = {
-        userName: values.userName,
-        email: values.email,
-        password: values.password,
-        secondaryEmail: values.secondaryEmails,
-      };
+      // const data = {
+      //   userName: values.userName,
+      //   email: values.email,
+      //   password: values.password,
+      //   secondaryEmail: values.secondaryEmails,
+      // };
       try {
         //call
       } catch (error) {

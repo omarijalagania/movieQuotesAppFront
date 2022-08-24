@@ -1,5 +1,4 @@
 import { UserDetails } from 'components/shared';
-import { ChangeEvent, RefObject } from 'react';
 
 export const getRegularUserFormInitialValue = () => {
   let userName = '';

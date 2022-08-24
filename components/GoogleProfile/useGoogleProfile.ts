@@ -7,7 +7,7 @@ import {
 } from 'components';
 import { googleSchema } from 'schema';
 import { useTranslate } from 'hooks';
-import { useState, useRef } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import { updateGoogleUserHandler } from 'services';
 import { toast } from 'react-toastify';
 
@@ -24,12 +24,13 @@ const useGoogleProfile = () => {
       getGoogleEmptyFormInitialValue(),
 
     onSubmit: async (values) => {
-      const data = {
-        userName: values.userName,
-      };
+      const formData = new FormData();
+      formData.append('userName', values.userName);
+      formData.append('poster', file as File);
+
       try {
         const response = await updateGoogleUserHandler(
-          data,
+          formData as FormData,
           userDetails?._id as string
         );
 
@@ -44,6 +45,15 @@ const useGoogleProfile = () => {
 
     validationSchema: googleSchema,
   });
+
+  console.log(userDetails);
+  console.log(file);
+
+  useEffect(() => {
+    if (file !== null) {
+      setIsEditable(true);
+    }
+  }, [file]);
 
   return {
     userDetails,

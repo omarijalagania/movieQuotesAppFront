@@ -3,6 +3,7 @@ export type UserDetails = {
   provider: string;
   email: string;
   image: string;
+  poster: string;
   _id: string;
 };
 
