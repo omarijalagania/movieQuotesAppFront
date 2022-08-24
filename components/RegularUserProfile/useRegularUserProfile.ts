@@ -38,6 +38,16 @@ const useRegularUserProfile = () => {
       formData.append('email', values.email as string);
       // formData.append('password', values.password as string);
       formData.append('poster', file as File);
+      formData.append(
+        'secondaryEmails',
+        JSON.stringify(
+          values.secondaryEmails as Array<{
+            secondary: boolean;
+            isVerified: boolean;
+            secondaryEmail: string;
+          }>
+        )
+      );
       try {
         const response = await updateRegularUserHandler(
           formData,

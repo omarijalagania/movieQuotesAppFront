@@ -10,18 +10,12 @@ const userProfileSchema = Yup.object().shape({
 
   secondaryEmails: Yup.array().of(
     Yup.object().shape({
-      secondaryEmail: Yup.string()
-        .email('invalidEmail')
-        .required('invalidEmail'),
+      secondaryEmail: Yup.string().email('invalidEmail'),
       secondary: Yup.boolean(),
       isVerified: Yup.boolean(),
     })
   ),
-  password: Yup.string()
-    .lowercase()
-    .min(8, 'min8Chars')
-    .max(15, 'max15Chars')
-    .required('requiredPassword'),
+  password: Yup.string().lowercase().min(8, 'min8Chars').max(15, 'max15Chars'),
 });
 
 export default userProfileSchema;

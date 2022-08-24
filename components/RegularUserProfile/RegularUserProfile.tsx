@@ -25,14 +25,11 @@ const RegularUserProfile: React.FC = () => {
 
       <div className='w-[800px] flex flex-col justify-center items-start px-10  rounded-lg relative bg-darkBlue min-h-[80vh]'>
         <img
-          src={
-            //userDetails?.image ? userDetails.image : imagePreview(file as File)
-            showInAvatar(
-              imagePreview(file as File),
-              process.env.NEXT_PUBLIC_RANDOM_AVATAR,
-              userDetails?.poster
-            )
-          }
+          src={showInAvatar(
+            imagePreview(file as File),
+            process.env.NEXT_PUBLIC_RANDOM_AVATAR,
+            userDetails?.poster
+          )}
           alt='avatar'
           className='w-32 h-32 rounded-full object-cover absolute -top-16 left-1/2 -translate-x-1/2'
         />
@@ -116,7 +113,7 @@ const RegularUserProfile: React.FC = () => {
                 name='secondaryEmails'
                 render={(arrayHelpers) => (
                   <>
-                    {formik.values.secondaryEmails.map((email, index) => (
+                    {formik.values.secondaryEmails.map((_email, index) => (
                       <div key={index} className='relative'>
                         <Input
                           isLabel={true}

@@ -5,6 +5,13 @@ export type UserDetails = {
   image: string;
   poster: string;
   _id: string;
+  secondaryEmails: [
+    {
+      secondaryEmail: string;
+      secondary: boolean;
+      isVerified: boolean;
+    }
+  ];
 };
 
 export type NotificationProps = {
