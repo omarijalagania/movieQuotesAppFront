@@ -18,9 +18,16 @@ const RegularUserProfile: React.FC = () => {
     setFile,
     file,
     hiddenFileInput,
+    editUsername,
+    setEditUsername,
+    editPassword,
+    setEditPassword,
   } = useRegularUserProfile();
+
+  console.log(formik.errors);
+
   return (
-    <div className='w-[750px]'>
+    <div className='w-[750px] relative'>
       <p className='text-white mt-5 mb-20'>My profile</p>
 
       <div className='w-[800px] flex flex-col justify-center items-start px-10  rounded-lg relative bg-darkBlue min-h-[80vh]'>
@@ -54,6 +61,7 @@ const RegularUserProfile: React.FC = () => {
               <Input
                 isLabel={true}
                 id='userName'
+                disabled={!editUsername}
                 type='text'
                 placeholder={t('namePlaceholder')}
                 label='Username'
@@ -76,6 +84,12 @@ const RegularUserProfile: React.FC = () => {
               ) : (
                 ''
               )}
+              <p
+                onClick={() => setEditUsername(!editUsername)}
+                className='text-white absolute -right-12 top-1/2 cursor-pointer translate-y-[20%]'
+              >
+                Edit
+              </p>
             </div>
             <div className='w-full md:w-96 h-0.5 mt-10 mb-8 bg-gray-700' />
 
@@ -87,6 +101,7 @@ const RegularUserProfile: React.FC = () => {
                 placeholder={t('emailPlaceholder')}
                 label={t('email')}
                 name='email'
+                disabled={true}
                 onChange={formik.handleChange}
                 value={formik.values.email}
                 className={`border-2 ${
@@ -124,14 +139,9 @@ const RegularUserProfile: React.FC = () => {
                     'border-inputYellow  bg-inputYellow text-white'
                   }`}
                 />
-                {/* {!formik.errors.secondaryEmails &&
-                formik.values.secondaryEmails[index].secondaryEmail !== '' ? (
-                  <CheckIcon className='w-6 h-6 absolute text-green-500 right-2 top-[58%]' />
-                ) : formik.values.secondaryEmails[index].secondaryEmail ? (
-                  <ExclamationCircleIcon className='w-6 h-6 absolute text-red-500 right-2 top-[58%]' />
-                ) : (
-                  ''
-                )} */}
+
+                <ExclamationCircleIcon className='w-6 h-6 absolute text-yellow-700 right-2 top-[58%]' />
+
                 <div className='absolute -right-44 flex top-1/2 cursor-pointer translate-y-[20%]'>
                   <p className='text-white'>
                     {email.isVerified ? 'Verified' : 'Not verified'}
@@ -164,6 +174,8 @@ const RegularUserProfile: React.FC = () => {
                             formik.values.secondaryEmails[index].secondaryEmail
                           }
                           className={`border-2 ${
+                            //@ts-ignore
+
                             formik.errors?.secondaryEmails //|| error
                               ? 'border-red-500 '
                               : formik.values.secondaryEmails[index]
@@ -209,13 +221,14 @@ const RegularUserProfile: React.FC = () => {
             <div className='relative'>
               <Input
                 isLabel={true}
-                id='password'
+                disabled={!editPassword}
+                id='oldPassword'
                 type='password'
                 placeholder={t('passwordPlaceholder')}
                 label={t('password')}
-                name='password'
+                name='oldPassword'
                 onChange={formik.handleChange}
-                value={formik.values.password}
+                defaultValue={userDetails?.password}
                 className={`border-2 ${
                   formik.errors.password
                     ? 'border-red-500'
@@ -224,23 +237,111 @@ const RegularUserProfile: React.FC = () => {
                     : ''
                 }`}
               />
-              {!formik.errors.password && formik.values.password !== '' ? (
+              {!formik.errors.oldPassword &&
+              formik.values.oldPassword !== '' ? (
                 <CheckIcon className='w-6 h-6 absolute text-green-500 right-2 top-[58%]' />
-              ) : formik.values.password ? (
+              ) : formik.values.oldPassword ? (
                 <ExclamationCircleIcon className='w-6 h-6 absolute text-red-500 right-2 top-[58%]' />
               ) : (
                 ''
               )}
+              <p
+                onClick={() => setEditPassword(!editPassword)}
+                className='text-white absolute -right-12 top-1/2 cursor-pointer translate-y-[20%]'
+              >
+                Edit
+              </p>
             </div>
-
-            {formik.errors.password && (
-              <p className='text-red-500 mt-1'>{t(formik.errors.password)}</p>
+            {formik.errors.oldPassword && (
+              <p className='text-red-500 mt-1'>
+                {t(formik.errors.oldPassword)}
+              </p>
             )}
-
-            <RedButton name='submit' />
+            {editPassword && (
+              <>
+                {' '}
+                <div className='border-[1px] flex flex-col justify-center mt-10 border-gray-500 rounded-lg p-5'>
+                  <p className='text-white'>Passwords should contain:</p>
+                  <ul className='p-5'>
+                    <li className='text-gray-400 mb-2 list-disc'>
+                      8 or more characters
+                    </li>
+                    <li className='text-white list-disc'>
+                      15 lowercase character
+                    </li>
+                  </ul>
+                </div>
+                <div className='relative my-10'>
+                  <Input
+                    isLabel={true}
+                    id='password'
+                    type='password'
+                    placeholder={t('passwordPlaceholder')}
+                    label={t('password')}
+                    name='password'
+                    onChange={formik.handleChange}
+                    value={formik.values.password}
+                    className={`border-2 ${
+                      formik.errors.password
+                        ? 'border-red-500'
+                        : formik.values.password
+                        ? 'border-green-500'
+                        : ''
+                    }`}
+                  />
+                  {!formik.errors.password && formik.values.password !== '' ? (
+                    <CheckIcon className='w-6 h-6 absolute text-green-500 right-2 top-[58%]' />
+                  ) : formik.values.password ? (
+                    <ExclamationCircleIcon className='w-6 h-6 absolute text-red-500 right-2 top-[58%]' />
+                  ) : (
+                    ''
+                  )}
+                </div>
+                {formik.errors.password && (
+                  <p className='text-red-500 mt-1'>
+                    {t(formik.errors.password)}
+                  </p>
+                )}
+                <div className='relative'>
+                  <Input
+                    isLabel={true}
+                    id='repeatPassword'
+                    type='password'
+                    placeholder={t('repeatPassword')}
+                    label={t('repeatPassword')}
+                    name='repeatPassword'
+                    onChange={formik.handleChange}
+                    value={formik.values.repeatPassword}
+                    className={`border-2 ${
+                      formik.errors.repeatPassword
+                        ? 'border-red-500'
+                        : formik.values.repeatPassword
+                        ? 'border-green-500'
+                        : ''
+                    }`}
+                  />
+                  {!formik.errors.repeatPassword &&
+                  formik.values.repeatPassword !== '' ? (
+                    <CheckIcon className='w-6 h-6 absolute text-green-500 right-2 top-[58%]' />
+                  ) : formik.values.repeatPassword ? (
+                    <ExclamationCircleIcon className='w-6 h-6 absolute text-red-500 right-2 top-[58%]' />
+                  ) : (
+                    ''
+                  )}
+                </div>{' '}
+              </>
+            )}
           </div>
         </form>
       </div>
+      {editUsername && (
+        <div className='mt-7 flex absolute -right-10 space-x-3 items-center'>
+          <div className='flex space-x-3'>
+            <Button className='text-white' name='Cancel' />
+            <RedButton className='text-white' name='submit' />
+          </div>
+        </div>
+      )}
     </div>
   );
 };

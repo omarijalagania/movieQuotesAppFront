@@ -5,6 +5,7 @@ export type UserDetails = {
   image: string;
   poster: string;
   _id: string;
+  password: string;
   secondaryEmails: [
     {
       secondaryEmail: string;

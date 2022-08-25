@@ -4,6 +4,7 @@ export const getRegularUserFormInitialValue = () => {
   let userName = '';
   let password = '';
   let email = '';
+  let repeatPassword = '';
   let secondaryEmails = [
     {
       secondary: true,
@@ -11,12 +12,14 @@ export const getRegularUserFormInitialValue = () => {
       secondaryEmail: '',
     },
   ];
-
+  let oldPassword = '';
   return {
     userName,
     password,
     email,
     secondaryEmails,
+    repeatPassword,
+    oldPassword,
   };
 };
 
@@ -33,11 +36,15 @@ export const getRegularUserFullFormInitialValue = (
       secondaryEmail: '',
     },
   ];
+  let repeatPassword = '';
+  let oldPassword = '';
 
   return {
     userName,
     password,
     email,
     secondaryEmails,
+    repeatPassword,
+    oldPassword,
   };
 };

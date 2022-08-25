@@ -15,6 +15,8 @@ const useRegularUserProfile = () => {
   const [inputsArray, setInputsArray] = useState([] as InputArrayProps[]);
   const [file, setFile] = useState(null as File | null);
   const hiddenFileInput = useRef(null);
+  const [editUsername, setEditUsername] = useState(false);
+  const [editPassword, setEditPassword] = useState(false);
 
   const { userDetails } = useHeader();
   const { t } = useTranslate();
@@ -75,6 +77,10 @@ const useRegularUserProfile = () => {
     hiddenFileInput,
     FieldArray,
     FormikProvider,
+    editUsername,
+    setEditUsername,
+    editPassword,
+    setEditPassword,
   };
 };
 
