@@ -24,8 +24,6 @@ const RegularUserProfile: React.FC = () => {
     setEditPassword,
   } = useRegularUserProfile();
 
-  console.log(formik.errors);
-
   return (
     <div className='w-[750px] relative'>
       <p className='text-white mt-5 mb-20'>My profile</p>
@@ -40,7 +38,11 @@ const RegularUserProfile: React.FC = () => {
           alt='avatar'
           className='w-32 h-32 rounded-full object-cover absolute -top-16 left-1/2 -translate-x-1/2'
         />
-        <form encType='multipart/form-data' onSubmit={formik.handleSubmit}>
+        <form
+          id='update'
+          encType='multipart/form-data'
+          onSubmit={formik.handleSubmit}
+        >
           <input
             ref={hiddenFileInput}
             type='file'
@@ -160,51 +162,56 @@ const RegularUserProfile: React.FC = () => {
                 name='secondaryEmails'
                 render={(arrayHelpers) => (
                   <>
-                    {formik.values.secondaryEmails.map((_email, index) => (
-                      <div key={index} className='relative'>
-                        <Input
-                          isLabel={true}
-                          type='email'
-                          id={`secondaryEmails.${index}.secondaryEmail`}
-                          placeholder={t('emailPlaceholder')}
-                          label={t('email')}
-                          name={`secondaryEmails.${index}.secondaryEmail`}
-                          onChange={formik.handleChange}
-                          value={
-                            formik.values.secondaryEmails[index].secondaryEmail
-                          }
-                          className={`border-2 ${
-                            //@ts-ignore
-
-                            formik.errors?.secondaryEmails //|| error
-                              ? 'border-red-500 '
-                              : formik.values.secondaryEmails[index]
+                    {formik?.values?.secondaryEmails.length !== 0 ? (
+                      formik?.values?.secondaryEmails.map(
+                        (_email: any, index: any) => (
+                          <div key={index} className='relative'>
+                            <Input
+                              isLabel={true}
+                              type='email'
+                              id={`secondaryEmails.${index}.secondaryEmail`}
+                              placeholder={t('emailPlaceholder')}
+                              label={t('email')}
+                              name={`secondaryEmails.${index}.secondaryEmail`}
+                              onChange={formik.handleChange}
+                              value={
+                                formik.values.secondaryEmails[index]
                                   .secondaryEmail
-                              ? 'border-green-500  '
-                              : ''
-                          }`}
-                        />
-                        {!formik.errors.secondaryEmails &&
-                        formik.values.secondaryEmails[index].secondaryEmail !==
-                          '' ? (
-                          <CheckIcon className='w-6 h-6 absolute text-green-500 right-2 top-[58%]' />
-                        ) : formik.values.secondaryEmails[index]
-                            .secondaryEmail ? (
-                          <ExclamationCircleIcon className='w-6 h-6 absolute text-red-500 right-2 top-[58%]' />
-                        ) : (
-                          ''
-                        )}
-                        <div className='absolute -right-56 flex top-1/2 cursor-pointer translate-y-[20%]'>
-                          <p className='text-white'>Make this primary</p>
-                          <p
-                            onClick={() => arrayHelpers.remove(index)}
-                            className='text-white ml-2'
-                          >
-                            Remove
-                          </p>
-                        </div>
-                      </div>
-                    ))}
+                              }
+                              className={`border-2 ${
+                                formik.errors?.secondaryEmails //|| error
+                                  ? 'border-red-500 '
+                                  : formik.values.secondaryEmails[index]
+                                      .secondaryEmail
+                                  ? 'border-green-500  '
+                                  : ''
+                              }`}
+                            />
+                            {!formik.errors.secondaryEmails &&
+                            formik.values.secondaryEmails[index]
+                              .secondaryEmail !== '' ? (
+                              <CheckIcon className='w-6 h-6 absolute text-green-500 right-2 top-[58%]' />
+                            ) : formik.values.secondaryEmails[index]
+                                .secondaryEmail ? (
+                              <ExclamationCircleIcon className='w-6 h-6 absolute text-red-500 right-2 top-[58%]' />
+                            ) : (
+                              ''
+                            )}
+                            <div className='absolute -right-56 flex top-1/2 cursor-pointer translate-y-[20%]'>
+                              <p className='text-white'>Make this primary</p>
+                              <p
+                                onClick={() => arrayHelpers.remove(index)}
+                                className='text-white ml-2'
+                              >
+                                Remove
+                              </p>
+                            </div>
+                          </div>
+                        )
+                      )
+                    ) : (
+                      <></>
+                    )}
                     <Button
                       type='button'
                       onClick={() => arrayHelpers.push({ secondaryEmail: '' })}
@@ -338,7 +345,12 @@ const RegularUserProfile: React.FC = () => {
         <div className='mt-7 flex absolute -right-10 space-x-3 items-center'>
           <div className='flex space-x-3'>
             <Button className='text-white' name='Cancel' />
-            <RedButton className='text-white' name='submit' />
+            <RedButton
+              form='update'
+              type='submit'
+              className='text-white'
+              name='submit'
+            />
           </div>
         </div>
       )}

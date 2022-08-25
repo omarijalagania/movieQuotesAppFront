@@ -24,21 +24,13 @@ const useRegularUserProfile = () => {
   const formik = useFormik({
     enableReinitialize: true,
     initialValues:
-      getRegularUserFullFormInitialValue(userDetails) ||
+      getRegularUserFullFormInitialValue(userDetails as any) ||
       getRegularUserFormInitialValue(),
 
     onSubmit: async (values) => {
-      console.log(values);
-      // const data = {
-      //   userName: values.userName,
-      //   email: values.email,
-      //   password: values.password,
-      //   secondaryEmail: values.secondaryEmails,
-      // };
       const formData = new FormData();
       formData.append('userName', values.userName as string);
       formData.append('email', values.email as string);
-      // formData.append('password', values.password as string);
       formData.append('poster', file as File);
       formData.append(
         'secondaryEmails',
