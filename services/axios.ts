@@ -204,3 +204,8 @@ export const removeUserEMailHandler = async (
   const response = await request.post(`/user/remove/email/${userId}`, data);
   return response;
 };
+
+export const confirmUserEmailHandler = async (data) => {
+  const response = await request.post(`/user/verify/`, data);
+  return response;
+};
