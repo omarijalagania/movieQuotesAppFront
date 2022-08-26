@@ -22,6 +22,7 @@ const RegularUserProfile: React.FC = () => {
     setEditUsername,
     editPassword,
     setEditPassword,
+    removeUserEmail,
   } = useRegularUserProfile();
 
   return (
@@ -149,7 +150,7 @@ const RegularUserProfile: React.FC = () => {
                     {email.isVerified ? 'Verified' : 'Not verified'}
                   </p>
                   <p
-                    onClick={() => console.log('remove')}
+                    onClick={() => removeUserEmail(email.secondaryEmail)}
                     className='text-white ml-2'
                   >
                     Remove
@@ -266,7 +267,6 @@ const RegularUserProfile: React.FC = () => {
             )}
             {editPassword && (
               <>
-                {' '}
                 <div className='border-[1px] flex flex-col justify-center mt-10 border-gray-500 rounded-lg p-5'>
                   <p className='text-white'>Passwords should contain:</p>
                   <ul className='p-5'>
@@ -335,25 +335,24 @@ const RegularUserProfile: React.FC = () => {
                   ) : (
                     ''
                   )}
-                </div>{' '}
+                </div>
               </>
             )}
           </div>
         </form>
       </div>
-      {editUsername && (
-        <div className='mt-7 flex absolute -right-10 space-x-3 items-center'>
-          <div className='flex space-x-3'>
-            <Button className='text-white' name='Cancel' />
-            <RedButton
-              form='update'
-              type='submit'
-              className='text-white'
-              name='submit'
-            />
-          </div>
+
+      <div className='mt-7 flex absolute -right-10 space-x-3 items-center'>
+        <div className='flex space-x-3'>
+          <Button className='text-white' name='Cancel' />
+          <RedButton
+            form='update'
+            type='submit'
+            className='text-white'
+            name='submit'
+          />
         </div>
-      )}
+      </div>
     </div>
   );
 };

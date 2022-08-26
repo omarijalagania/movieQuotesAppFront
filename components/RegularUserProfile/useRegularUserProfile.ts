@@ -8,7 +8,7 @@ import {
 import { userProfileSchema } from 'schema';
 import { useHeader } from 'components';
 import { useTranslate } from 'hooks';
-import { updateRegularUserHandler } from 'services';
+import { removeUserEMailHandler, updateRegularUserHandler } from 'services';
 import { toast } from 'react-toastify';
 
 const useRegularUserProfile = () => {
@@ -42,6 +42,8 @@ const useRegularUserProfile = () => {
           }>
         )
       );
+      formData.append('password', values.password as string);
+      formData.append('oldPassword', values.oldPassword as string);
       try {
         const response = await updateRegularUserHandler(
           formData,
@@ -58,6 +60,23 @@ const useRegularUserProfile = () => {
     validationSchema: userProfileSchema,
   });
 
+  const removeUserEmail = async (email: string) => {
+    const data = {
+      email: email,
+    };
+    try {
+      const response = await removeUserEMailHandler(
+        data,
+        userDetails?._id as string
+      );
+      if (response.status === 200) {
+        toast.success(t('emailRemoved'));
+      }
+    } catch (error) {
+      toast.error(t('error'));
+    }
+  };
+
   return {
     formik,
     userDetails,
@@ -73,6 +92,7 @@ const useRegularUserProfile = () => {
     setEditUsername,
     editPassword,
     setEditPassword,
+    removeUserEmail,
   };
 };
 

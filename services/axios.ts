@@ -196,3 +196,11 @@ export const updateRegularUserHandler = async (
   });
   return response;
 };
+
+export const removeUserEMailHandler = async (
+  data: { email: string },
+  userId: string
+) => {
+  const response = await request.post(`/user/remove/email/${userId}`, data);
+  return response;
+};
