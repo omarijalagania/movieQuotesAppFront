@@ -205,7 +205,11 @@ export const removeUserEMailHandler = async (
   return response;
 };
 
-export const confirmUserEmailHandler = async (data) => {
+export const confirmUserEmailHandler = async (data: {
+  token: string;
+  userName: string | undefined;
+  email: never[];
+}) => {
   const response = await request.post(`/user/verify/`, data);
   return response;
 };

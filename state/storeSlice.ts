@@ -17,6 +17,7 @@ const initialState: GlobalState = {
   notifications: {},
   likeNotification: {},
   closeModal: false,
+  secondaryEmails: [],
 };
 
 export const storeSlice = createSlice({
@@ -68,6 +69,9 @@ export const storeSlice = createSlice({
     saveLikeNotification: (state, action) => {
       state.likeNotification = action.payload;
     },
+    saveSecondaryEmails: (state, action) => {
+      state.secondaryEmails = action.payload;
+    },
   },
 });
 
@@ -87,6 +91,7 @@ export const {
   saveNotification,
   onModalClose,
   saveLikeNotification,
+  saveSecondaryEmails,
 } = storeSlice.actions;
 
 export default storeSlice.reducer;

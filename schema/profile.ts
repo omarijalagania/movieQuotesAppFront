@@ -15,6 +15,7 @@ const userProfileSchema = Yup.object().shape({
       isVerified: Yup.boolean(),
     })
   ),
+  token: Yup.string(),
   password: Yup.string().lowercase().min(8, 'min8Chars').max(15, 'max15Chars'),
   oldPassword: Yup.string()
     .lowercase()

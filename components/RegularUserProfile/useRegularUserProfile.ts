@@ -4,12 +4,13 @@ import {
   getRegularUserFormInitialValue,
   getRegularUserFullFormInitialValue,
   InputArrayProps,
+  useHeader,
 } from 'components';
 import { userProfileSchema } from 'schema';
-import { useHeader } from 'components';
 import { useTranslate } from 'hooks';
 import { removeUserEMailHandler, updateRegularUserHandler } from 'services';
 import { toast } from 'react-toastify';
+import { useSession } from 'next-auth/react';
 
 const useRegularUserProfile = () => {
   const [inputsArray, setInputsArray] = useState([] as InputArrayProps[]);
@@ -17,9 +18,11 @@ const useRegularUserProfile = () => {
   const hiddenFileInput = useRef(null);
   const [editUsername, setEditUsername] = useState(false);
   const [editPassword, setEditPassword] = useState(false);
-
   const { userDetails } = useHeader();
+  const { data: session } = useSession();
   const { t } = useTranslate();
+
+  let token = session?.user.user.token;
 
   const formik = useFormik({
     enableReinitialize: true,
@@ -28,6 +31,11 @@ const useRegularUserProfile = () => {
       getRegularUserFormInitialValue(),
 
     onSubmit: async (values) => {
+      localStorage.setItem(
+        'secondaryEmails',
+        JSON.stringify(values.secondaryEmails)
+      );
+
       const formData = new FormData();
       formData.append('userName', values.userName as string);
       formData.append('email', values.email as string);
@@ -44,6 +52,7 @@ const useRegularUserProfile = () => {
       );
       formData.append('password', values.password as string);
       formData.append('oldPassword', values.oldPassword as string);
+      formData.append('token', token as string);
       try {
         const response = await updateRegularUserHandler(
           formData,
