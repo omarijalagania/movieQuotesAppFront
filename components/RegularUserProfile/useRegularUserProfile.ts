@@ -8,9 +8,13 @@ import {
 } from 'components';
 import { userProfileSchema } from 'schema';
 import { useTranslate } from 'hooks';
-import { removeUserEMailHandler, updateRegularUserHandler } from 'services';
+import {
+  makeEmailPrimaryHandler,
+  removeUserEMailHandler,
+  updateRegularUserHandler,
+} from 'services';
 import { toast } from 'react-toastify';
-import { useSession } from 'next-auth/react';
+import { useSession, signOut } from 'next-auth/react';
 
 const useRegularUserProfile = () => {
   const [inputsArray, setInputsArray] = useState([] as InputArrayProps[]);
@@ -86,6 +90,24 @@ const useRegularUserProfile = () => {
     }
   };
 
+  const primaryEmail = async (email: string) => {
+    const data = {
+      primaryEmail: userDetails?.email,
+      secondaryEmail: email,
+    };
+    try {
+      const response = await makeEmailPrimaryHandler(
+        data,
+        userDetails?._id as string
+      );
+      if (response.status === 200) {
+        signOut();
+      }
+    } catch (error) {
+      toast.error(t('error'));
+    }
+  };
+
   return {
     formik,
     userDetails,
@@ -102,6 +124,7 @@ const useRegularUserProfile = () => {
     editPassword,
     setEditPassword,
     removeUserEmail,
+    primaryEmail,
   };
 };
 

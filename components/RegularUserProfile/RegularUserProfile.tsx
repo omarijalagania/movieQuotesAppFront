@@ -23,6 +23,7 @@ const RegularUserProfile: React.FC = () => {
     editPassword,
     setEditPassword,
     removeUserEmail,
+    primaryEmail,
   } = useRegularUserProfile();
 
   return (
@@ -146,9 +147,17 @@ const RegularUserProfile: React.FC = () => {
                 <ExclamationCircleIcon className='w-6 h-6 absolute text-yellow-700 right-2 top-[58%]' />
 
                 <div className='absolute -right-44 flex top-1/2 cursor-pointer translate-y-[20%]'>
-                  <p className='text-white'>
-                    {email.isVerified ? 'Verified' : 'Not verified'}
-                  </p>
+                  {email.isVerified ? (
+                    <p
+                      onClick={() => primaryEmail(email.secondaryEmail)}
+                      className='text-white'
+                    >
+                      Make primary
+                    </p>
+                  ) : (
+                    <p className='text-white'>Not verified</p>
+                  )}
+
                   <p
                     onClick={() => removeUserEmail(email.secondaryEmail)}
                     className='text-white ml-2'

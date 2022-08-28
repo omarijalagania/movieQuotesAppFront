@@ -213,3 +213,11 @@ export const confirmUserEmailHandler = async (data: {
   const response = await request.post(`/user/verify/`, data);
   return response;
 };
+
+export const makeEmailPrimaryHandler = async (
+  data: { primaryEmail: string | undefined; secondaryEmail: string },
+  userId: string
+) => {
+  const response = await request.put(`/user/primary/email/${userId}`, data);
+  return response;
+};
