@@ -11,6 +11,6 @@ interface CommentProps {
 export default CommentProps;
 
 export interface UserProps {
-  email: any;
+  email: string;
   userName: string;
 }
