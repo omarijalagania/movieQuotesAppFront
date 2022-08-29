@@ -46,9 +46,6 @@ const useGoogleProfile = () => {
     validationSchema: googleSchema,
   });
 
-  console.log(userDetails);
-  console.log(file);
-
   useEffect(() => {
     if (file !== null) {
       setIsEditable(true);

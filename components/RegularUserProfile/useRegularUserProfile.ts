@@ -22,11 +22,15 @@ const useRegularUserProfile = () => {
   const hiddenFileInput = useRef(null);
   const [editUsername, setEditUsername] = useState(false);
   const [editPassword, setEditPassword] = useState(false);
-  const { userDetails } = useHeader();
+  const { userDetails, router } = useHeader();
   const { data: session } = useSession();
   const { t } = useTranslate();
 
-  let token = session?.user.user.token;
+  let token: string | undefined = '';
+
+  if (userDetails?.provider !== 'google') {
+    token = session?.user?.user?.token;
+  }
 
   const formik = useFormik({
     enableReinitialize: true,
@@ -102,6 +106,7 @@ const useRegularUserProfile = () => {
       );
       if (response.status === 200) {
         signOut();
+        router.push('/');
       }
     } catch (error) {
       toast.error(t('error'));

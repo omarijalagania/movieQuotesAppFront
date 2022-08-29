@@ -17,7 +17,12 @@ export type UserDetails = {
 
 export type NotificationProps = {
   notificationFor: string;
-  user: { userName: string };
+  user: {
+    poster: string | undefined;
+    image: string | undefined;
+    provider: string;
+    userName: string;
+  };
   createdAt: string;
   isRead: boolean;
   notificationType: string;

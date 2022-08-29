@@ -146,11 +146,11 @@ const RegularUserProfile: React.FC = () => {
 
                 <ExclamationCircleIcon className='w-6 h-6 absolute text-yellow-700 right-2 top-[58%]' />
 
-                <div className='absolute -right-44 flex top-1/2 cursor-pointer translate-y-[20%]'>
+                <div className='absolute -right-48 flex top-1/2 cursor-pointer translate-y-[20%]'>
                   {email.isVerified ? (
                     <p
                       onClick={() => primaryEmail(email.secondaryEmail)}
-                      className='text-white'
+                      className='text-white '
                     >
                       Make primary
                     </p>

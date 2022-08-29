@@ -17,7 +17,11 @@ import {
 import { useSession, signOut } from 'next-auth/react';
 import moment from 'moment';
 import { Menu, Transition } from '@headlessui/react';
-import { ChevronDownIcon } from '@heroicons/react/solid';
+import {
+  AnnotationIcon,
+  ChevronDownIcon,
+  HeartIcon,
+} from '@heroicons/react/solid';
 import { BellIcon, MenuIcon } from '@heroicons/react/outline';
 import { updateNotificationHandler } from 'services';
 
@@ -86,7 +90,7 @@ const Header: React.FC = () => {
                   </Menu.Button>
                   {open && (
                     <div className='bg-darkBlue absolute w-[368px] md:w-[500px] overflow-y-auto md:h-[400px] -left-[147px] md:-left-[400px] md:-right-[100px] top-12 p-3'>
-                      <div className='flex justify-between  bg-darkBlue items-center my-5'>
+                      <div className='flex justify-between p-1 bg-darkBlue items-center my-5'>
                         <h2 className='text-xl'>Notifications</h2>
                         <p>mark all as read</p>
                       </div>
@@ -98,11 +102,20 @@ const Header: React.FC = () => {
                                 {notification.notificationFor === userId && (
                                   <Menu.Item>
                                     {({}) => (
-                                      <div className='mb-3 border-[1px] border-gray-700'>
+                                      <div className='mb-3 border-[1px] p-1 border-gray-700'>
                                         <div>
                                           <div className='flex justify-between items-center'>
                                             <div className='flex justify-between items-center'>
-                                              <div className='w-10 h-10 bg-red-500 rounded-full'></div>
+                                              <img
+                                                className='w-10 h-10 rounded-full object-cover'
+                                                src={
+                                                  notification.user
+                                                    ?.provider === 'google'
+                                                    ? notification.user?.image
+                                                    : notification.user?.poster
+                                                }
+                                                alt='image'
+                                              />
 
                                               <div className='ml-3'>
                                                 <p>
@@ -110,9 +123,17 @@ const Header: React.FC = () => {
                                                 </p>
                                                 {notification.notificationType ===
                                                 'commented' ? (
-                                                  <p>Commented on your quote</p>
+                                                  <div className='flex items-center space-x-1'>
+                                                    <AnnotationIcon className='w-4 h-4' />
+                                                    <p>
+                                                      Commented on your quote
+                                                    </p>
+                                                  </div>
                                                 ) : (
-                                                  <p>Liked on your quote</p>
+                                                  <div className='flex items-center space-x-1'>
+                                                    <HeartIcon className='w-4 h-4 text-red-500' />
+                                                    <p>Liked on your quote</p>
+                                                  </div>
                                                 )}
                                               </div>
                                             </div>

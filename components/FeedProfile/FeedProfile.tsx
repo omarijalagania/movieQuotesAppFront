@@ -13,10 +13,13 @@ const FeedProfile: React.FC = () => {
       <div className='flex flex-col space-y-7'>
         <div className='flex'>
           <img
-            className='w-10 h-10 rounded-full'
+            className='w-10 h-10 rounded-full object-cover'
             src={
-              userDetails?.image
-                ? userDetails?.image
+              userDetails?.image || userDetails?.poster
+                ? userDetails?.image ||
+                  process.env.NEXT_PUBLIC_BACKEND_URL +
+                    '/' +
+                    userDetails?.poster
                 : process.env.NEXT_PUBLIC_RANDOM_AVATAR
             }
             alt='avatar'
