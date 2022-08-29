@@ -16,6 +16,7 @@ export type UserDetails = {
 };
 
 export type NotificationProps = {
+  _id: Key | null | undefined;
   notificationFor: string;
   user: {
     poster: string | undefined;

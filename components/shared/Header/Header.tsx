@@ -98,7 +98,7 @@ const Header: React.FC = () => {
                         {notifications?.map(
                           (notification: NotificationProps) => {
                             return (
-                              <>
+                              <div key={notification._id}>
                                 {notification.notificationFor === userId && (
                                   <Menu.Item>
                                     {({}) => (
@@ -157,7 +157,7 @@ const Header: React.FC = () => {
                                     )}
                                   </Menu.Item>
                                 )}
-                              </>
+                              </div>
                             );
                           }
                         )}
