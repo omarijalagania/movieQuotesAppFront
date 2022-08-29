@@ -109,7 +109,7 @@ const RegularUserProfile: React.FC = () => {
                 onChange={formik.handleChange}
                 value={formik.values.email}
                 className={`border-2 ${
-                  formik.errors.email //|| error
+                  formik.errors.email
                     ? 'border-red-500 bg-red-900'
                     : formik.values.email
                     ? 'border-green-500 bg-green-900 text-white'
@@ -138,10 +138,7 @@ const RegularUserProfile: React.FC = () => {
                   name={`secondaryEmails.${index}.secondaryEmail`}
                   onChange={formik.handleChange}
                   defaultValue={email.secondaryEmail}
-                  className={`border-2 ${
-                    //|| error
-                    'border-inputYellow  bg-inputYellow text-white'
-                  }`}
+                  className={`border-2 ${'border-inputYellow  bg-inputYellow text-white'}`}
                 />
 
                 <ExclamationCircleIcon className='w-6 h-6 absolute text-yellow-700 right-2 top-[58%]' />
@@ -174,7 +171,7 @@ const RegularUserProfile: React.FC = () => {
                   <>
                     {formik?.values?.secondaryEmails.length !== 0 ? (
                       formik?.values?.secondaryEmails.map(
-                        (_email: any, index: any) => (
+                        (_email: string, index: number) => (
                           <div key={index} className='relative'>
                             <Input
                               isLabel={true}
@@ -189,7 +186,7 @@ const RegularUserProfile: React.FC = () => {
                                   .secondaryEmail
                               }
                               className={`border-2 ${
-                                formik.errors?.secondaryEmails //|| error
+                                formik.errors?.secondaryEmails
                                   ? 'border-red-500 '
                                   : formik.values.secondaryEmails[index]
                                       .secondaryEmail
