@@ -228,7 +228,10 @@ const Header: React.FC = () => {
       )}
       {isOpenLogin && (
         <Modal open={isOpenLogin} setOpen={setIsOpenLogin}>
-          <Login setOpenRecoverModal={setOpenRecoverModal} />
+          <Login
+            setOpenRecoverModal={setOpenRecoverModal}
+            setIsOpen={setIsOpen}
+          />
         </Modal>
       )}
 
