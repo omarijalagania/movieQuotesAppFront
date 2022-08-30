@@ -90,5 +90,6 @@
   "quoteAdded": "Quote added successfully",
   "addingError": "Error Adding...",
   "editingError": "Error editing...",
-  "editedQuote": "Quote added successfully"
+  "editedQuote": "Quote added successfully",
+  "copyright": "movie quotes. All rights reserved."
 }
