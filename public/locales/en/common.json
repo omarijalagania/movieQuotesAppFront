@@ -91,5 +91,7 @@
   "addingError": "Error Adding...",
   "editingError": "Error editing...",
   "editedQuote": "Quote added successfully",
-  "copyright": "movie quotes. All rights reserved."
+  "copyright": "movie quotes. All rights reserved.",
+  "dontHaveAccount": " Not registered?",
+  "registered": "register"
 }

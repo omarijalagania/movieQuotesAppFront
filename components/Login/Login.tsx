@@ -3,7 +3,7 @@ import { Button, Input, RedButton, useLoginForm, LoginProps } from 'components';
 import { signIn } from 'next-auth/react';
 import { CheckIcon, ExclamationCircleIcon } from '@heroicons/react/solid';
 
-const Login: React.FC<LoginProps> = ({ setOpenRecoverModal }) => {
+const Login: React.FC<LoginProps> = ({ setOpenRecoverModal, setIsOpen }) => {
   const { formik, error, t } = useLoginForm();
 
   return (
@@ -102,6 +102,15 @@ const Login: React.FC<LoginProps> = ({ setOpenRecoverModal }) => {
         className='w-96 h-10 mt-2'
         name={t('google')}
       />
+      <p className='text-center mt-4 text-gray-400'>
+        {t('dontHaveAccount')}
+        <span
+          onClick={() => setIsOpen(true)}
+          className='text-blue-600 ml-1 cursor-pointer'
+        >
+          {t('registered')}
+        </span>
+      </p>
     </div>
   );
 };
