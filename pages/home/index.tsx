@@ -68,6 +68,11 @@ const HomePage: React.FC = () => {
           alt='cover'
         />
       </div>
+      <footer className='pl-10 bg-darkBlue z-50'>
+        <p className='text-primaryGold py-3'>
+          © {new Date().getFullYear() + ' ' + t('copyright')}
+        </p>
+      </footer>
     </>
   );
 };
