@@ -1,10 +1,13 @@
 import React from 'react';
 import { RedButton, useRecoverForm, Input } from 'components';
-import Image from 'next/image';
-import { CheckIcon, ExclamationCircleIcon } from '@heroicons/react/solid';
+import {
+  ArrowLeftIcon,
+  CheckIcon,
+  ExclamationCircleIcon,
+} from '@heroicons/react/solid';
 
 const PasswordRecover: React.FC = () => {
-  const { formik, error, t } = useRecoverForm();
+  const { formik, error, t, router } = useRecoverForm();
 
   return (
     <div className='flex flex-col p-10 items-center justify-center'>
@@ -31,9 +34,9 @@ const PasswordRecover: React.FC = () => {
             }`}
           />
           {!formik.errors.email && !error && formik.values.email !== '' ? (
-            <CheckIcon className='w-6 h-6 absolute text-green-500 right-2 top-[58%]' />
+            <CheckIcon className='w-6 h-6 absolute text-green-500 right-2 top-[20%]' />
           ) : formik.values.email ? (
-            <ExclamationCircleIcon className='w-6 h-6 absolute text-red-500 right-2 top-[58%]' />
+            <ExclamationCircleIcon className='w-6 h-6 absolute text-red-500 right-2 top-[20%]' />
           ) : (
             ''
           )}
@@ -51,8 +54,11 @@ const PasswordRecover: React.FC = () => {
         />
       </form>
 
-      <div className='flex cursor-pointer mt-10'>
-        <Image width={20} height={7} src='/assets/arrow-left.png' alt='arrow' />
+      <div
+        onClick={() => router.reload()}
+        className='flex cursor-pointer items-center mt-10'
+      >
+        <ArrowLeftIcon className='w-8 h-7 text-gray-400' />
         <p className='ml-4 text-gray-500'>{t('back')}</p>
       </div>
     </div>
