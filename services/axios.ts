@@ -5,6 +5,7 @@ export const registerHandler = async (data: {
   password: string;
   userName: string;
   repeatPassword: string;
+  poster: string;
 }) => {
   const response = await request.post(`/user/register`, data);
   return response;
@@ -13,6 +14,8 @@ export const registerHandler = async (data: {
 export const googleLoginHandler = async (data: {
   userName: string | null | undefined;
   email: string | null | undefined;
+  poster: string | null | undefined;
+  image: string | null | undefined;
 }) => {
   const response = await request.post(`/user/register/google`, data);
 
@@ -167,5 +170,54 @@ export const getNotificationsHandler = async () => {
 
 export const updateNotificationHandler = async () => {
   const response = await request.post(`/notifications/update`);
+  return response;
+};
+
+export const updateGoogleUserHandler = async (
+  data: FormData,
+  userId: string
+) => {
+  const response = await request.put(`/user/update/${userId}`, data, {
+    headers: {
+      'Content-Type': 'multipart/form-data',
+    },
+  });
+  return response;
+};
+
+export const updateRegularUserHandler = async (
+  data: FormData,
+  userId: string
+) => {
+  const response = await request.put(`/user/update/regular/${userId}`, data, {
+    headers: {
+      'Content-Type': 'multipart/form-data',
+    },
+  });
+  return response;
+};
+
+export const removeUserEMailHandler = async (
+  data: { email: string },
+  userId: string
+) => {
+  const response = await request.post(`/user/remove/email/${userId}`, data);
+  return response;
+};
+
+export const confirmUserEmailHandler = async (data: {
+  token: string;
+  userName: string | undefined;
+  email: never[];
+}) => {
+  const response = await request.post(`/user/verify/`, data);
+  return response;
+};
+
+export const makeEmailPrimaryHandler = async (
+  data: { primaryEmail: string | undefined; secondaryEmail: string },
+  userId: string
+) => {
+  const response = await request.put(`/user/primary/email/${userId}`, data);
   return response;
 };

@@ -6,17 +6,20 @@ import Link from 'next/link';
 import { useHeader } from 'components';
 
 const FeedProfile: React.FC = () => {
-  const { userDetails, t } = useHeader();
+  const { userDetails, t, router } = useHeader();
 
   return (
     <div className='pt-8 pl-10'>
       <div className='flex flex-col space-y-7'>
         <div className='flex'>
           <img
-            className='w-10 h-10 rounded-full'
+            className='w-10 h-10 rounded-full object-cover'
             src={
-              userDetails?.image
-                ? userDetails?.image
+              userDetails?.image || userDetails?.poster
+                ? userDetails?.image ||
+                  process.env.NEXT_PUBLIC_BACKEND_URL +
+                    '/' +
+                    userDetails?.poster
                 : process.env.NEXT_PUBLIC_RANDOM_AVATAR
             }
             alt='avatar'
@@ -26,7 +29,12 @@ const FeedProfile: React.FC = () => {
             <h3 className='text-xl mb-1 overflow-hidden text-white'>
               {userDetails?.userName}
             </h3>
-            <p className='text-xs text-gray-300'>{t('editProfile')}</p>
+            <p
+              onClick={() => router.push('/feed/profile')}
+              className='text-xs text-gray-300 cursor-pointer'
+            >
+              {t('editProfile')}
+            </p>
           </div>
         </div>
         <ul className='flex ml-2 space-y-7 flex-col'>

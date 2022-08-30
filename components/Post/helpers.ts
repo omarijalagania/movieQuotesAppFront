@@ -32,7 +32,7 @@ export const removeLike = async (
   }
 };
 
-export const imageUrl = (item: ItemProps) => {
+export const avatarImageUrl = (item: ItemProps) => {
   return item?.user[0]?.provider === 'email'
     ? item?.user[0]?.image
       ? item?.user[0]?.image

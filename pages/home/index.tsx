@@ -36,7 +36,7 @@ const HomePage: React.FC = () => {
         />
       </div>
 
-      <Parallax translateY={[-50, 50]}>
+      <Parallax translateY={[-30, 30]}>
         <div className='relative z-30 vertical-gradient'>
           <div className='absolute w-[300px] md:w-[800px] z-30 bottom-1/2 left-10 md:left-20 text-white'>
             <h2 className='text-sm md:text-4xl  lg:text-6xl z-50'>

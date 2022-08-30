@@ -5,3 +5,5 @@ export { default as newPasswordSchema } from './passwords';
 export { default as movieSchema } from './movie';
 export { default as quoteSchema } from './quotes';
 export { default as commentSchema } from './comments';
+export { default as googleSchema } from './google';
+export { default as userProfileSchema } from './profile';

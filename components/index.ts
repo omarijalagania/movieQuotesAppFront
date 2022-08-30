@@ -21,3 +21,5 @@ export * from './MovieEditDialog';
 export * from './AddQuote';
 export * from './EditQuote';
 export * from './AddQuoteFromMovie';
+export * from './GoogleProfile';
+export * from './RegularUserProfile';

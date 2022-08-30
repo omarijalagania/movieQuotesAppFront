@@ -52,7 +52,6 @@ export default NextAuth({
 
     session: async ({ session, token }) => {
       session.user = token.user as User;
-
       return session;
     },
 
@@ -62,6 +61,7 @@ export default NextAuth({
           userName: user.name,
           email: user.email,
           image: user.image,
+          poster: '',
         };
         googleLoginHandler(data);
       }

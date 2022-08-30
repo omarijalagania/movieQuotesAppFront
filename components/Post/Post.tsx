@@ -10,7 +10,7 @@ import {
   usePost,
   Props,
   UserProps,
-  imageUrl,
+  avatarImageUrl,
 } from 'components';
 import { addNotificationHandler } from 'services';
 import { CommentProp } from 'types';
@@ -23,7 +23,7 @@ const Post: React.FC<Props> = ({ item, setGetLike }) => {
       <div className='flex  items-center'>
         <img
           className='w-10 h-10 rounded-full'
-          src={imageUrl(item)}
+          src={avatarImageUrl(item)}
           alt='avatar'
         />
         {item?.user?.map((user: UserProps) => (
@@ -35,8 +35,8 @@ const Post: React.FC<Props> = ({ item, setGetLike }) => {
       <h4 className='mt-3'>{item.quoteNameEng}</h4>
       <div className='mt-6'>
         <Image
-          width={900}
-          height={500}
+          width={1100}
+          height={600}
           src={process.env.NEXT_PUBLIC_BACKEND_URL + '/' + item.poster}
           alt='children'
         />
