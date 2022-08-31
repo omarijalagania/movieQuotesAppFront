@@ -146,6 +146,7 @@ const Register: React.FC = () => {
         />
       </form>
       <Button
+        hadIcon={true}
         onClick={() =>
           signIn('google', {
             redirect: true,
