@@ -23,3 +23,4 @@ export * from './EditQuote';
 export * from './AddQuoteFromMovie';
 export * from './GoogleProfile';
 export * from './RegularUserProfile';
+export * from './GoogleIcon';
