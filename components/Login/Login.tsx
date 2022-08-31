@@ -90,7 +90,7 @@ const Login: React.FC<LoginProps> = ({ setOpenRecoverModal, setIsOpen }) => {
             {t('forgotPassword')}
           </p>
         </div>
-        <RedButton className='w-96 text-white h-10 my-5' name='Sign in' />
+        <RedButton className='w-96 text-white h-10 my-5' name={t('login')} />
       </form>
       <Button
         onClick={() =>
