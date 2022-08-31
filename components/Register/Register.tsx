@@ -3,6 +3,7 @@ import { Input, RedButton, Button } from 'components';
 import { CheckIcon, ExclamationCircleIcon } from '@heroicons/react/solid';
 import { signIn } from 'next-auth/react';
 import { usePersonalInformationForm } from 'components';
+import { googleIcon } from 'public';
 
 const Register: React.FC = () => {
   const { formik, error, t } = usePersonalInformationForm();
@@ -146,7 +147,7 @@ const Register: React.FC = () => {
         />
       </form>
       <Button
-        hasIcon={true}
+        icon={googleIcon.src}
         onClick={() =>
           signIn('google', {
             redirect: true,
