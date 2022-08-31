@@ -2,7 +2,6 @@ import React from 'react';
 import { Button, Input, RedButton, useLoginForm, LoginProps } from 'components';
 import { signIn } from 'next-auth/react';
 import { CheckIcon, ExclamationCircleIcon } from '@heroicons/react/solid';
-import { googleIcon } from 'public';
 
 const Login: React.FC<LoginProps> = ({ setOpenRecoverModal, setIsOpen }) => {
   const { formik, error, t } = useLoginForm();
@@ -94,7 +93,7 @@ const Login: React.FC<LoginProps> = ({ setOpenRecoverModal, setIsOpen }) => {
         <RedButton className='w-96 text-white h-10 my-5' name={t('login')} />
       </form>
       <Button
-        icon={googleIcon}
+        hadIcon={true}
         onClick={() =>
           signIn('google', {
             redirect: true,

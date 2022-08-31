@@ -7,7 +7,7 @@ const Button: React.FC<ButtonProps> = ({
   className,
   onClick,
   type,
-  icon,
+  hadIcon,
 }) => {
   return (
     <button
@@ -15,7 +15,7 @@ const Button: React.FC<ButtonProps> = ({
       onClick={onClick}
       className={`bg-transparent flex justify-center items-center px-5 py-1 border-white text-white border-[1px] rounded-md ${className}`}
     >
-      {icon ? <GoogleIcon icon={icon} /> : null}
+      {hadIcon && <GoogleIcon />}
       {name}
     </button>
   );

@@ -1,10 +1,10 @@
 import React from 'react';
-import { GoogleIconProps } from './types';
+import google from './google.svg';
 
-const GoogleIcon: React.FC<GoogleIconProps> = ({ icon }) => {
+const GoogleIcon: React.FC = () => {
   return (
     <>
-      <img className='mr-2' src={icon?.src} alt='' />
+      <img className='mr-2' src={google.src} alt='' />
     </>
   );
 };
