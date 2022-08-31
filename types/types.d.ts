@@ -4,6 +4,7 @@ export type ButtonProps = {
   onClick?: () => void;
   type?: 'submit' | 'reset' | 'button';
   form?: string;
+  hasIcon?: boolean;
 };
 
 export type User = {
