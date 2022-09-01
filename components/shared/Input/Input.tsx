@@ -5,6 +5,7 @@ const Input: React.FC<InputProps> = ({
   label,
   type,
   onChange,
+  onBlur,
   placeholder,
   className,
   id,
@@ -30,6 +31,7 @@ const Input: React.FC<InputProps> = ({
         id={id}
         className={`w-full md:w-96 border-2 p-2 rounded-md ${className}`}
         onChange={onChange}
+        onBlur={onBlur}
         type={type}
         placeholder={placeholder}
       />

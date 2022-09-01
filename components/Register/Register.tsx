@@ -21,25 +21,28 @@ const Register: React.FC = () => {
             label={t('name')}
             name='userName'
             onChange={formik.handleChange}
+            onBlur={formik.handleBlur}
             value={formik.values.userName}
             className={`border-2 ${
-              formik.errors.userName
+              formik.errors.userName && formik.touched.userName
                 ? 'border-red-500'
-                : formik.values.userName
+                : formik.values.userName && formik.touched.userName
                 ? 'border-green-500'
                 : ''
             }`}
           />
-          {!formik.errors.userName && formik.values.userName !== '' ? (
+          {!formik.errors.userName &&
+          formik.touched.userName &&
+          formik.values.userName !== '' ? (
             <CheckIcon className='w-6 h-6 absolute text-green-500 right-2 top-[58%]' />
-          ) : formik.values.userName ? (
+          ) : formik.values.userName && formik.touched.userName ? (
             <ExclamationCircleIcon className='w-6 h-6 absolute text-red-500 right-2 top-[58%]' />
           ) : (
             ''
           )}
         </div>
 
-        {formik.errors.userName && (
+        {formik.errors.userName && formik.touched.userName && (
           <p className='text-red-500 mt-1'>{t(formik.errors.userName)}</p>
         )}
 
@@ -52,18 +55,22 @@ const Register: React.FC = () => {
             label={t('email')}
             name='email'
             onChange={formik.handleChange}
+            onBlur={formik.handleBlur}
             value={formik.values.email}
             className={`border-2 ${
-              formik.errors.email || error
+              (formik.errors.email && formik.touched.email) || error
                 ? 'border-red-500'
-                : formik.values.email
+                : formik.values.email && formik.touched.email
                 ? 'border-green-500'
                 : ''
             }`}
           />
-          {!formik.errors.email && !error && formik.values.email !== '' ? (
+          {!formik.errors.email &&
+          formik.touched.email &&
+          !error &&
+          formik.values.email !== '' ? (
             <CheckIcon className='w-6 h-6 absolute text-green-500 right-2 top-[58%]' />
-          ) : formik.values.email ? (
+          ) : formik.values.email && formik.touched.email ? (
             <ExclamationCircleIcon className='w-6 h-6 absolute text-red-500 right-2 top-[58%]' />
           ) : (
             ''
@@ -72,7 +79,7 @@ const Register: React.FC = () => {
 
         {error ? (
           <p className='text-red-500 mt-1'>{t(error)}</p>
-        ) : formik.errors.email ? (
+        ) : formik.errors.email && formik.touched.email ? (
           <p className='text-red-500 mt-1'>{t(formik.errors.email)}</p>
         ) : (
           ''
@@ -86,25 +93,28 @@ const Register: React.FC = () => {
             label={t('password')}
             name='password'
             onChange={formik.handleChange}
+            onBlur={formik.handleBlur}
             value={formik.values.password}
             className={`border-2 ${
-              formik.errors.password
+              formik.errors.password && formik.touched.password
                 ? 'border-red-500'
-                : formik.values.password
+                : formik.values.password && formik.touched.password
                 ? 'border-green-500'
                 : ''
             }`}
           />
-          {!formik.errors.password && formik.values.password !== '' ? (
+          {!formik.errors.password &&
+          formik.touched.password &&
+          formik.values.password !== '' ? (
             <CheckIcon className='w-6 h-6 absolute text-green-500 right-2 top-[58%]' />
-          ) : formik.values.password ? (
+          ) : formik.values.password && formik.touched.password ? (
             <ExclamationCircleIcon className='w-6 h-6 absolute text-red-500 right-2 top-[58%]' />
           ) : (
             ''
           )}
         </div>
 
-        {formik.errors.password && (
+        {formik.errors.password && formik.touched.password && (
           <p className='text-red-500 mt-1'>{t(formik.errors.password)}</p>
         )}
 
@@ -117,26 +127,28 @@ const Register: React.FC = () => {
             label={t('repeatPassword')}
             name='repeatPassword'
             onChange={formik.handleChange}
+            onBlur={formik.handleBlur}
             value={formik.values.repeatPassword}
             className={`border-2 ${
-              formik.errors.repeatPassword
+              formik.errors.repeatPassword && formik.touched.repeatPassword
                 ? 'border-red-500'
-                : formik.values.repeatPassword
+                : formik.values.repeatPassword && formik.touched.repeatPassword
                 ? 'border-green-500'
                 : ''
             }`}
           />
           {!formik.errors.repeatPassword &&
+          formik.touched.repeatPassword &&
           formik.values.repeatPassword !== '' ? (
             <CheckIcon className='w-6 h-6 absolute text-green-500 right-2 top-[58%]' />
-          ) : formik.values.repeatPassword ? (
+          ) : formik.values.repeatPassword && formik.touched.repeatPassword ? (
             <ExclamationCircleIcon className='w-6 h-6 absolute text-red-500 right-2 top-[58%]' />
           ) : (
             ''
           )}
         </div>
 
-        {formik.errors.repeatPassword && (
+        {formik.errors.repeatPassword && formik.touched.repeatPassword && (
           <p className='text-red-500 mt-1'>{t(formik.errors.repeatPassword)}</p>
         )}
 
