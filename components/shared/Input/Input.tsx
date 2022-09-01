@@ -12,6 +12,7 @@ const Input: React.FC<InputProps> = ({
   isLabel,
   defaultValue,
   disabled,
+  name,
 }) => {
   return (
     <div className='flex my-2 flex-col'>
@@ -22,6 +23,7 @@ const Input: React.FC<InputProps> = ({
         </label>
       )}
       <input
+        name={name}
         disabled={disabled}
         value={value}
         defaultValue={defaultValue}
