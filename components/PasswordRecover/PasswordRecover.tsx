@@ -24,6 +24,7 @@ const PasswordRecover: React.FC = () => {
             label={t('email')}
             name='email'
             onChange={formik.handleChange}
+            onBlur={formik.handleBlur}
             value={formik.values.email}
             className={`border-2 ${
               formik.errors.email || error
@@ -33,7 +34,10 @@ const PasswordRecover: React.FC = () => {
                 : ''
             }`}
           />
-          {!formik.errors.email && !error && formik.values.email !== '' ? (
+          {!formik.errors.email &&
+          formik.touched.email &&
+          !error &&
+          formik.values.email !== '' ? (
             <CheckIcon className='w-6 h-6 absolute text-green-500 right-2 top-[20%]' />
           ) : formik.values.email ? (
             <ExclamationCircleIcon className='w-6 h-6 absolute text-red-500 right-2 top-[20%]' />

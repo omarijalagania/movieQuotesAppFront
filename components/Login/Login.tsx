@@ -22,19 +22,23 @@ const Login: React.FC<LoginProps> = ({ setOpenRecoverModal, setIsOpen }) => {
             label={t('email')}
             name='email'
             onChange={formik.handleChange}
+            onBlur={formik.handleBlur}
             value={formik.values.email}
             className={`border-2  md:!full ${
-              formik.errors.email || error
+              (formik.touched.email && formik.errors.email) || error
                 ? 'border-red-500'
-                : formik.values.email
+                : formik.values.email && formik.touched.email
                 ? 'border-green-500'
                 : ''
             }`}
           />
 
-          {!formik.errors.email && !error && formik.values.email !== '' ? (
+          {!formik.errors.email &&
+          !error &&
+          formik.touched.email &&
+          formik.values.email !== '' ? (
             <CheckIcon className='w-6 h-6 absolute text-green-500 right-2 top-[58%]' />
-          ) : formik.values.email ? (
+          ) : formik.values.email && formik.touched.email ? (
             <ExclamationCircleIcon className='w-6 h-6 absolute text-red-500 right-2 top-[58%]' />
           ) : (
             ''
@@ -42,7 +46,7 @@ const Login: React.FC<LoginProps> = ({ setOpenRecoverModal, setIsOpen }) => {
         </div>
         {error ? (
           <p className='text-red-500 mt-1'>{t(error)}</p>
-        ) : formik.errors.email ? (
+        ) : formik.errors.email && formik.touched.email ? (
           <p className='text-red-500 mt-1'>{t(formik.errors.email)}</p>
         ) : (
           ''
@@ -56,17 +60,20 @@ const Login: React.FC<LoginProps> = ({ setOpenRecoverModal, setIsOpen }) => {
             label={t('password')}
             name='password'
             onChange={formik.handleChange}
+            onBlur={formik.handleBlur}
             value={formik.values.password}
             className={`border-2 ${
-              formik.errors.password
+              formik.errors.password && formik.touched.password
                 ? 'border-red-500'
-                : formik.values.password
+                : formik.values.password && formik.touched.password
                 ? 'border-green-500'
                 : ''
             }`}
           />
 
-          {!formik.errors.password && formik.values.password !== '' ? (
+          {!formik.errors.password &&
+          formik.touched.password &&
+          formik.values.password !== '' ? (
             <CheckIcon className='w-6 h-6 absolute text-green-500 right-2 top-[58%]' />
           ) : formik.values.password ? (
             <ExclamationCircleIcon className='w-6 h-6 absolute text-red-500 right-2 top-[58%]' />
@@ -75,7 +82,7 @@ const Login: React.FC<LoginProps> = ({ setOpenRecoverModal, setIsOpen }) => {
           )}
         </div>
 
-        {formik.errors.password && (
+        {formik.errors.password && formik.touched.password && (
           <p className='text-red-500 mt-1'>{t(formik.errors.password)}</p>
         )}
         <div className='flex justify-between mt-2 items-center'>
@@ -90,9 +97,14 @@ const Login: React.FC<LoginProps> = ({ setOpenRecoverModal, setIsOpen }) => {
             {t('forgotPassword')}
           </p>
         </div>
-        <RedButton className='w-96 text-white h-10 my-5' name={t('login')} />
+        <RedButton
+          type='submit'
+          className='w-96 text-white h-10 my-5'
+          name={t('login')}
+        />
       </form>
       <Button
+        type='button'
         hadIcon={true}
         onClick={() =>
           signIn('google', {
