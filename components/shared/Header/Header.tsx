@@ -13,6 +13,7 @@ import {
   useHeader,
   LangToggler,
   NotificationProps,
+  MobileMenu,
 } from 'components';
 import { useSession, signOut } from 'next-auth/react';
 import moment from 'moment';
@@ -48,6 +49,9 @@ const Header: React.FC = () => {
     width,
     notifications,
     userId,
+    openMobileMenu,
+    setOpenMobileMenu,
+    menuRef,
   } = useHeader();
 
   const newNotifications = notifications.filter(
@@ -56,15 +60,20 @@ const Header: React.FC = () => {
 
   return (
     <div
-      className={`fixed top-0 z-50 flex text-white w-full items-center ${
+      className={`fixed top-0 z-50 flex  text-white w-full items-center ${
         router.pathname.includes('/feed') ? 'bg-headerBg' : 'bg-black'
       } justify-between py-5 px-10`}
     >
       {(width as number) < 768 && router.pathname.includes('/feed') ? (
-        <MenuIcon className='cursor-pointer w-5 h-5' />
+        <MenuIcon
+          ref={menuRef}
+          onClick={() => setOpenMobileMenu(!openMobileMenu)}
+          className='cursor-pointer w-5 h-5'
+        />
       ) : (
         <div className='text-primaryGold uppercase'>{t('quotes')}</div>
       )}
+      <MobileMenu openMobileMenu={openMobileMenu} />
       <div className='flex items-center justify-center space-x-5'>
         {router.pathname.includes('/feed') ? (
           <div className='relative'>

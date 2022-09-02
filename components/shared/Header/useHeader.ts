@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { RootState, saveNotification, saveSocket } from 'state';
 import { useTranslate, useMediaSize } from 'hooks';
@@ -8,6 +8,7 @@ import jwtDecode from 'jwt-decode';
 import { JwDecode, UserDetails } from 'components';
 import { toast } from 'react-toastify';
 import { io } from 'socket.io-client';
+import listenForOutsideClicks from '../MobileMenu/helpers';
 
 export const useHeader = () => {
   const {
@@ -18,10 +19,13 @@ export const useHeader = () => {
   } = useSelector((state: RootState) => state.quotes);
   const { t, router } = useTranslate();
   const { width } = useMediaSize();
+  const menuRef = useRef(null);
   const [userId, setUserId] = useState<string>('');
   const [isOpen, setIsOpen] = useState(false);
   const [isOpenLogin, setIsOpenLogin] = useState(false);
   const [isOpenThanks, setIsOpenThanks] = useState(false);
+  const [openMobileMenu, setOpenMobileMenu] = useState(false);
+  const [listening, setListening] = useState(false);
   const [openRecoverModal, setOpenRecoverModal] = useState(false);
   const [openCheckEmailModal, setOpenCheckEmailModal] = useState(false);
   const [openNewPasswordModal, setOpenNewPasswordModal] = useState(false);
@@ -133,6 +137,10 @@ export const useHeader = () => {
     });
   }, [dispatch, socket]);
 
+  useEffect(() => {
+    listenForOutsideClicks(listening, setListening, menuRef, setOpenMobileMenu);
+  }, [listening, setListening, menuRef, setOpenMobileMenu]);
+
   return {
     isOpen,
     setIsOpen,
@@ -155,5 +163,8 @@ export const useHeader = () => {
     userDetails,
     socket,
     notifications,
+    openMobileMenu,
+    setOpenMobileMenu,
+    menuRef,
   };
 };
