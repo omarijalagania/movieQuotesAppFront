@@ -25,6 +25,7 @@ import {
 } from '@heroicons/react/solid';
 import { BellIcon, MenuIcon } from '@heroicons/react/outline';
 import { updateNotificationHandler } from 'services';
+import { useOutsideClick } from 'hooks';
 
 const Header: React.FC = () => {
   const { data: session } = useSession();
@@ -50,9 +51,10 @@ const Header: React.FC = () => {
     notifications,
     userId,
     openMobileMenu,
-    setOpenMobileMenu,
-    menuRef,
+    handleClick,
+    handleClickOutside,
   } = useHeader();
+  const ref = useOutsideClick(handleClickOutside);
 
   const newNotifications = notifications.filter(
     (notification: { isRead: boolean }) => notification.isRead === false
@@ -66,8 +68,8 @@ const Header: React.FC = () => {
     >
       {(width as number) < 768 && router.pathname.includes('/feed') ? (
         <MenuIcon
-          ref={menuRef}
-          onClick={() => setOpenMobileMenu(!openMobileMenu)}
+          ref={ref}
+          onClick={handleClick}
           className='cursor-pointer w-5 h-5'
         />
       ) : (
