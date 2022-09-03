@@ -16,7 +16,7 @@ const useGoogleProfile = () => {
   const [file, setFile] = useState(null as File | null);
   const hiddenFileInput = useRef(null);
   const { userDetails } = useHeader();
-  const { t } = useTranslate();
+  const { t, router } = useTranslate();
   const formik = useFormik({
     enableReinitialize: true,
     initialValues:
@@ -60,6 +60,7 @@ const useGoogleProfile = () => {
     setIsEditable,
     file,
     setFile,
+    router,
     hiddenFileInput,
   };
 };

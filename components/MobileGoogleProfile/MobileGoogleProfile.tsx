@@ -17,11 +17,15 @@ const MobileGoogleProfile: React.FC = () => {
     file,
     setFile,
     hiddenFileInput,
+    router,
   } = useGoogleProfile();
 
   return (
     <div className='relative'>
-      <ArrowLeftIcon className='w-5 h-5 text-gray-400 mb-3 cursor-pointer' />
+      <ArrowLeftIcon
+        onClick={() => router.push('/feed')}
+        className='w-6 h-6 text-gray-400 mb-3 cursor-pointer'
+      />
       <div className='w-[350px] flex flex-col  items-center rounded-lg relative bg-lightBlue h-screen'>
         <img
           src={showInAvatar(
