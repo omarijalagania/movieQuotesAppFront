@@ -32,8 +32,8 @@ export const showInAvatar = (
 ) => {
   if (imagePreview) {
     return imagePreview;
-  } else if (!imagePreview && !memberAvatar) {
-    return Member;
+  } else if (!imagePreview && !Member) {
+    return memberAvatar;
   } else {
     return process.env.NEXT_PUBLIC_BACKEND_URL + '/' + Member;
   }
