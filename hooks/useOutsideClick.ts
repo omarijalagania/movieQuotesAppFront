@@ -1,11 +1,11 @@
 import { useEffect, useRef } from 'react';
 
-const useOutsideClick = (callback: any) => {
-  const ref = useRef(null);
+const useOutsideClick = (callback: () => void) => {
+  const ref = useRef<SVGSVGElement>(null);
 
   useEffect(() => {
-    const handleClick = (event: { target: any }) => {
-      if (ref.current && !ref.current.contains(event.target)) {
+    const handleClick = (event: { target: Node | any }) => {
+      if (ref.current && !ref.current?.contains(event.target)) {
         callback();
       }
     };
