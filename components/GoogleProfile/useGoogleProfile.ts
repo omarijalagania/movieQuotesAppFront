@@ -14,6 +14,7 @@ import { toast } from 'react-toastify';
 const useGoogleProfile = () => {
   const [isEditable, setIsEditable] = useState(false);
   const [isOpenInputModal, setIsOpenInputModal] = useState(false);
+  const [isOpenUploadModal, setIsOpenUploadModal] = useState(false);
   const [isChangeNameDialogOpen, setIsChangeNameDialogOpen] = useState(false);
   const [isConfirmDialogOpen, setIsConfirmDialogOpen] = useState(false);
   const [newName, setNewName] = useState('');
@@ -55,6 +56,7 @@ const useGoogleProfile = () => {
   useEffect(() => {
     if (file !== null) {
       setIsEditable(true);
+      setIsOpenUploadModal(true);
     }
   }, [file]);
 
@@ -86,6 +88,8 @@ const useGoogleProfile = () => {
     setIsSubmit,
     newName,
     setNewName,
+    isOpenUploadModal,
+    setIsOpenUploadModal,
   };
 };
 

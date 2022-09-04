@@ -23,7 +23,8 @@ const MobileGoogleProfile: React.FC = () => {
     setIsChangeNameDialogOpen,
     setIsOpenInputModal,
     setIsConfirmDialogOpen,
-
+    isOpenUploadModal,
+    setIsOpenUploadModal,
     newName,
   } = useGoogleProfile();
 
@@ -151,6 +152,34 @@ const MobileGoogleProfile: React.FC = () => {
             <p
               className='text-white cursor-pointer'
               onClick={() => setIsChangeNameDialogOpen(false)}
+            >
+              Cancel
+            </p>
+            <RedButton
+              className='text-white'
+              onClick={() => {
+                setIsConfirmDialogOpen(true);
+                formik.handleSubmit();
+              }}
+              name='Confirm'
+            />
+          </div>
+        </div>
+      </Modal>
+      <Modal
+        classes='!items-start !mt-24'
+        open={isOpenUploadModal}
+        setOpen={setIsOpenUploadModal}
+      >
+        <div className='flex justify-between flex-col items-center w-[330px] p-2'>
+          <div>
+            <p className='text-white'>Are you sure to change avatar ?</p>
+            <div className='w-full h-0.5 mt-10 mb-8 bg-gray-700' />
+          </div>
+          <div className='flex mt-4 w-[330px] justify-between items-center'>
+            <p
+              className='text-white cursor-pointer'
+              onClick={() => setIsOpenUploadModal(false)}
             >
               Cancel
             </p>
