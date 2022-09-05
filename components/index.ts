@@ -25,3 +25,4 @@ export * from './GoogleProfile';
 export * from './RegularUserProfile';
 export * from './GoogleIcon';
 export * from './MobileGoogleProfile';
+export * from './MobileRegularUserProfile';

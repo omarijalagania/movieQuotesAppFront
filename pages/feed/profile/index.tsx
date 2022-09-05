@@ -2,6 +2,7 @@ import React from 'react';
 import {
   GoogleProfile,
   MobileGoogleProfile,
+  MobileRegularUserProfile,
   RegularUserProfile,
   useHeader,
 } from 'components';
@@ -20,6 +21,8 @@ const Profile: React.FC = () => {
         ) : (
           <GoogleProfile />
         )
+      ) : (width as number) < 768 ? (
+        <MobileRegularUserProfile />
       ) : (
         <RegularUserProfile />
       )}
