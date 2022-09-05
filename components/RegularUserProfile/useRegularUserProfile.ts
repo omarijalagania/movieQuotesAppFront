@@ -1,4 +1,4 @@
-import { useState, useRef } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import { useFormik, FieldArray, FormikProvider } from 'formik';
 import {
   getRegularUserFormInitialValue,
@@ -22,6 +22,12 @@ const useRegularUserProfile = () => {
   const hiddenFileInput = useRef(null);
   const [editUsername, setEditUsername] = useState(false);
   const [editPassword, setEditPassword] = useState(false);
+  const [isOpenInputModal, setIsOpenInputModal] = useState(false);
+  const [isOpenUploadModal, setIsOpenUploadModal] = useState(false);
+  const [isChangeNameDialogOpen, setIsChangeNameDialogOpen] = useState(false);
+  const [isConfirmDialogOpen, setIsConfirmDialogOpen] = useState(false);
+  const [isEditable, setIsEditable] = useState(false);
+  const [newName, setNewName] = useState('');
   const { userDetails, router } = useHeader();
   const { data: session } = useSession();
   const { t } = useTranslate();
@@ -113,6 +119,13 @@ const useRegularUserProfile = () => {
     }
   };
 
+  useEffect(() => {
+    if (file !== null) {
+      setIsEditable(true);
+      setIsOpenUploadModal(true);
+    }
+  }, [file]);
+
   return {
     formik,
     userDetails,
@@ -130,6 +143,19 @@ const useRegularUserProfile = () => {
     setEditPassword,
     removeUserEmail,
     primaryEmail,
+    newName,
+    setNewName,
+    isOpenInputModal,
+    setIsOpenInputModal,
+    isOpenUploadModal,
+    setIsOpenUploadModal,
+    isChangeNameDialogOpen,
+    setIsChangeNameDialogOpen,
+    isConfirmDialogOpen,
+    setIsConfirmDialogOpen,
+    isEditable,
+    setIsEditable,
+    router,
   };
 };
 
