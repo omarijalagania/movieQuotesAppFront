@@ -30,7 +30,6 @@ const useGoogleProfile = () => {
       getGoogleEmptyFormInitialValue(),
 
     onSubmit: async (values) => {
-      console.log(values);
       const formData = new FormData();
       formData.append('userName', values.userName);
       formData.append('poster', file as File);
