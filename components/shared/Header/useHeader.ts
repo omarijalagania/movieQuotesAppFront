@@ -22,6 +22,7 @@ export const useHeader = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [isOpenLogin, setIsOpenLogin] = useState(false);
   const [isOpenThanks, setIsOpenThanks] = useState(false);
+  const [openMobileMenu, setOpenMobileMenu] = useState(false);
   const [openRecoverModal, setOpenRecoverModal] = useState(false);
   const [openCheckEmailModal, setOpenCheckEmailModal] = useState(false);
   const [openNewPasswordModal, setOpenNewPasswordModal] = useState(false);
@@ -38,6 +39,14 @@ export const useHeader = () => {
   );
   const [notifications, setNotifications] = useState([]);
   const dispatch = useDispatch();
+
+  const handleClick = () => {
+    setOpenMobileMenu(!openMobileMenu);
+  };
+
+  const handleClickOutside = () => {
+    setOpenMobileMenu(false);
+  };
 
   useEffect(() => {
     if (registerResponse.status === 200) {
@@ -155,5 +164,8 @@ export const useHeader = () => {
     userDetails,
     socket,
     notifications,
+    openMobileMenu,
+    handleClick,
+    handleClickOutside,
   };
 };

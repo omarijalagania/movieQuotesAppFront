@@ -3,3 +3,4 @@ export * from './Modal';
 export * from './Input';
 export * from './Button';
 export * from './RedButton';
+export * from './MobileMenu';

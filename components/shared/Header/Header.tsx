@@ -13,6 +13,7 @@ import {
   useHeader,
   LangToggler,
   NotificationProps,
+  MobileMenu,
 } from 'components';
 import { useSession, signOut } from 'next-auth/react';
 import moment from 'moment';
@@ -24,6 +25,7 @@ import {
 } from '@heroicons/react/solid';
 import { BellIcon, MenuIcon } from '@heroicons/react/outline';
 import { updateNotificationHandler } from 'services';
+import { useOutsideClick } from 'hooks';
 
 const Header: React.FC = () => {
   const { data: session } = useSession();
@@ -48,7 +50,11 @@ const Header: React.FC = () => {
     width,
     notifications,
     userId,
+    openMobileMenu,
+    handleClick,
+    handleClickOutside,
   } = useHeader();
+  const ref = useOutsideClick(handleClickOutside);
 
   const newNotifications = notifications.filter(
     (notification: { isRead: boolean }) => notification.isRead === false
@@ -56,15 +62,20 @@ const Header: React.FC = () => {
 
   return (
     <div
-      className={`fixed top-0 z-50 flex text-white w-full items-center ${
+      className={`fixed top-0 z-50 flex  text-white w-full items-center ${
         router.pathname.includes('/feed') ? 'bg-headerBg' : 'bg-black'
       } justify-between py-5 px-10`}
     >
       {(width as number) < 768 && router.pathname.includes('/feed') ? (
-        <MenuIcon className='cursor-pointer w-5 h-5' />
+        <MenuIcon
+          ref={ref}
+          onClick={handleClick}
+          className='cursor-pointer w-5 h-5'
+        />
       ) : (
         <div className='text-primaryGold uppercase'>{t('quotes')}</div>
       )}
+      <MobileMenu openMobileMenu={openMobileMenu} />
       <div className='flex items-center justify-center space-x-5'>
         {router.pathname.includes('/feed') ? (
           <div className='relative'>
