@@ -22,10 +22,13 @@ const useRegularUserProfile = () => {
   const hiddenFileInput = useRef(null);
   const [editUsername, setEditUsername] = useState(false);
   const [editPassword, setEditPassword] = useState(false);
+  const [updateStatus, setUpdateStatus] = useState(false);
   const [isOpenInputModal, setIsOpenInputModal] = useState(false);
   const [isOpenUploadModal, setIsOpenUploadModal] = useState(false);
   const [isChangeNameDialogOpen, setIsChangeNameDialogOpen] = useState(false);
   const [isConfirmDialogOpen, setIsConfirmDialogOpen] = useState(false);
+  const [openEmailModal, setOpenEmailModal] = useState(false);
+  const [makeChanges, setMakeChanges] = useState(false);
   const [isEditable, setIsEditable] = useState(false);
   const [newName, setNewName] = useState('');
   const { userDetails, router } = useHeader();
@@ -74,9 +77,11 @@ const useRegularUserProfile = () => {
         );
         if (response.status === 200) {
           toast.success(t('updated'));
+          setUpdateStatus(true);
         }
       } catch (error) {
         toast.error(t('error'));
+        setUpdateStatus(false);
       }
     },
 
@@ -126,6 +131,13 @@ const useRegularUserProfile = () => {
     }
   }, [file]);
 
+  useEffect(() => {
+    if (updateStatus) {
+      setMakeChanges(false);
+      setOpenEmailModal(false);
+    }
+  }, [updateStatus]);
+
   return {
     formik,
     userDetails,
@@ -156,6 +168,10 @@ const useRegularUserProfile = () => {
     isEditable,
     setIsEditable,
     router,
+    openEmailModal,
+    setOpenEmailModal,
+    makeChanges,
+    setMakeChanges,
   };
 };
 
