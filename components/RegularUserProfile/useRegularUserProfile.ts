@@ -23,6 +23,7 @@ const useRegularUserProfile = () => {
   const [editUsername, setEditUsername] = useState(false);
   const [editPassword, setEditPassword] = useState(false);
   const [updateStatus, setUpdateStatus] = useState(false);
+  const [changePasswordModal, setChangePasswordModal] = useState(false);
   const [isOpenInputModal, setIsOpenInputModal] = useState(false);
   const [isOpenUploadModal, setIsOpenUploadModal] = useState(false);
   const [isChangeNameDialogOpen, setIsChangeNameDialogOpen] = useState(false);
@@ -172,6 +173,8 @@ const useRegularUserProfile = () => {
     setOpenEmailModal,
     makeChanges,
     setMakeChanges,
+    changePasswordModal,
+    setChangePasswordModal,
   };
 };
 

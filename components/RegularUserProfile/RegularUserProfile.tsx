@@ -235,13 +235,14 @@ const RegularUserProfile: React.FC = () => {
             <div className='relative'>
               <Input
                 isLabel={true}
-                disabled={!editPassword}
+                disabled={true}
                 id='oldPassword'
                 type='password'
                 placeholder={t('passwordPlaceholder')}
                 label={t('password')}
                 name='oldPassword'
                 onChange={formik.handleChange}
+                value='password'
                 defaultValue={userDetails?.password}
                 className={`border-2 ${
                   formik.errors.password

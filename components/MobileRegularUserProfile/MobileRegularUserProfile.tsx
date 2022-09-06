@@ -13,18 +13,10 @@ const MobileRegularUserProfile: React.FC = () => {
     formik,
     userDetails,
     t,
-    // FieldArray,
-    //FormikProvider,
     setFile,
     file,
     hiddenFileInput,
-    //editUsername,
     router,
-    // setEditUsername,
-    editPassword,
-    setEditPassword,
-    // removeUserEmail,
-    // primaryEmail,
     isOpenInputModal,
     setIsOpenInputModal,
     isOpenUploadModal,
@@ -105,7 +97,9 @@ const MobileRegularUserProfile: React.FC = () => {
             />
 
             <p
-              onClick={() => setEditPassword(!editPassword)}
+              onClick={() =>
+                router.push('/feed/profile/password-change-mobile')
+              }
               className='text-white absolute right-0 cursor-pointer top-[38%]'
             >
               Edit
