@@ -75,5 +75,5 @@ export const useAddQuote = () => {
     validationSchema: quoteSchema,
   });
 
-  return { formik, t, setFile, newMovie, handleChange, userDetails };
+  return { formik, t, setFile, newMovie, handleChange, userDetails, file };
 };

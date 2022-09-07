@@ -9,7 +9,7 @@ const AddQuoteFromMovie: React.FC<MovieProp> = ({
   movie,
   setOpenAddQuoteDialog,
 }) => {
-  const { formik, setFile } = useAddQuoteFromMovie(movie);
+  const { formik, setFile, file } = useAddQuoteFromMovie(movie);
   const { userDetails, t } = useHeader();
   return (
     <div className='w-screen h-screen md:w-full p-5'>
@@ -99,6 +99,9 @@ const AddQuoteFromMovie: React.FC<MovieProp> = ({
                   {t('chooseFile')}
                 </span>
               </span>
+              <p className='text-white w-14 text-xs'>
+                {file !== null ? file.name : ''}
+              </p>
             </span>
             <input
               onChange={(event) => {

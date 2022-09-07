@@ -5,7 +5,7 @@ import { Input, RedButton, useAddQuote } from 'components';
 import { CameraIcon } from '@heroicons/react/outline';
 
 const AddQuote: React.FC = () => {
-  const { formik, setFile, newMovie, handleChange, userDetails, t } =
+  const { formik, setFile, newMovie, handleChange, userDetails, t, file } =
     useAddQuote();
 
   return (
@@ -72,6 +72,9 @@ const AddQuote: React.FC = () => {
                   {t('chooseFile')}
                 </span>
               </span>
+              <p className='text-white w-14 text-xs'>
+                {file !== null ? file.name : ''}
+              </p>
             </span>
             <input
               onChange={(event) => {

@@ -5,7 +5,7 @@ import { Input, RedButton, useAddMovie, customStyles } from 'components';
 import { CameraIcon } from '@heroicons/react/outline';
 
 const AddMovie: React.FC = () => {
-  const { formik, setFile, newGenre, handleChange, userDetails, t } =
+  const { formik, setFile, newGenre, handleChange, userDetails, t, file } =
     useAddMovie();
 
   return (
@@ -122,6 +122,9 @@ const AddMovie: React.FC = () => {
                   {t('chooseFile')}
                 </span>
               </span>
+              <p className='text-white w-14 text-xs'>
+                {file !== null ? file.name : ''}
+              </p>
             </span>
             <input
               onChange={(event) => {
