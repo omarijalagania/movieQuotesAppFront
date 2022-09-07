@@ -56,6 +56,7 @@ const AddMovie: React.FC = () => {
         <Select
           styles={customStyles}
           onChange={handleChange}
+          closeMenuOnSelect={false}
           isMulti
           options={newGenre}
           placeholder={t('selectGenre')}
