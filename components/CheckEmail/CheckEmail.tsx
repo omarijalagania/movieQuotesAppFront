@@ -1,4 +1,4 @@
-import { RedButton } from 'components';
+import { RedButton, openInNewTab } from 'components';
 import React from 'react';
 import Image from 'next/image';
 import { useTranslate } from 'hooks';
@@ -15,6 +15,7 @@ const CheckEmail: React.FC = () => {
         {t('checkMailText')}
       </p>
       <RedButton
+        onClick={() => openInNewTab('https://mail.google.com')}
         className='text-white w-full py-2 mt-7'
         name={t('checkMailButton')}
       />
