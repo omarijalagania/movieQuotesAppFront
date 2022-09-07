@@ -4,6 +4,7 @@ type ModalProps = {
   children: React.ReactNode;
   className?: string;
   classes?: string;
+  dialogClass?: string;
 };
 
 export default ModalProps;

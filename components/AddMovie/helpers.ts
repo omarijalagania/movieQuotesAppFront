@@ -36,6 +36,7 @@ export const customStyles = {
     ...provided,
     backgroundColor: '#11101A',
     color: 'white',
+    borderColor: 'gray',
   }),
   placeholder: (provided: any) => {
     return {
