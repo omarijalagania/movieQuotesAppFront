@@ -35,7 +35,8 @@ const Register: React.FC = () => {
           formik.touched.userName &&
           formik.values.userName !== '' ? (
             <CheckIcon className='w-6 h-6 absolute text-green-500 right-2 top-[58%]' />
-          ) : formik.values.userName && formik.touched.userName ? (
+          ) : formik.values.userName ||
+            (formik.errors.userName && formik.touched.userName) ? (
             <ExclamationCircleIcon className='w-6 h-6 absolute text-red-500 right-2 top-[58%]' />
           ) : (
             ''
@@ -70,7 +71,8 @@ const Register: React.FC = () => {
           !error &&
           formik.values.email !== '' ? (
             <CheckIcon className='w-6 h-6 absolute text-green-500 right-2 top-[58%]' />
-          ) : formik.values.email && formik.touched.email ? (
+          ) : formik.values.email ||
+            (formik.errors.email && formik.touched.email) ? (
             <ExclamationCircleIcon className='w-6 h-6 absolute text-red-500 right-2 top-[58%]' />
           ) : (
             ''
@@ -107,7 +109,8 @@ const Register: React.FC = () => {
           formik.touched.password &&
           formik.values.password !== '' ? (
             <CheckIcon className='w-6 h-6 absolute text-green-500 right-2 top-[58%]' />
-          ) : formik.values.password && formik.touched.password ? (
+          ) : formik.values.password ||
+            (formik.errors.password && formik.touched.password) ? (
             <ExclamationCircleIcon className='w-6 h-6 absolute text-red-500 right-2 top-[58%]' />
           ) : (
             ''
@@ -141,7 +144,8 @@ const Register: React.FC = () => {
           formik.touched.repeatPassword &&
           formik.values.repeatPassword !== '' ? (
             <CheckIcon className='w-6 h-6 absolute text-green-500 right-2 top-[58%]' />
-          ) : formik.values.repeatPassword && formik.touched.repeatPassword ? (
+          ) : formik.values.repeatPassword ||
+            (formik.errors.repeatPassword && formik.touched.repeatPassword) ? (
             <ExclamationCircleIcon className='w-6 h-6 absolute text-red-500 right-2 top-[58%]' />
           ) : (
             ''

@@ -39,7 +39,7 @@ const PasswordRecover: React.FC = () => {
           !error &&
           formik.values.email !== '' ? (
             <CheckIcon className='w-6 h-6 absolute text-green-500 right-2 top-[20%]' />
-          ) : formik.values.email ? (
+          ) : formik.values.email || formik.errors.email ? (
             <ExclamationCircleIcon className='w-6 h-6 absolute text-red-500 right-2 top-[20%]' />
           ) : (
             ''
