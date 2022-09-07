@@ -14,7 +14,11 @@ const nextConfig = {
   reactStrictMode: true,
   i18n,
   images: {
-    domains: ['localhost'],
+    domains: [
+      'localhost',
+      'movie-quotes.omar.redberryinternship.ge',
+      'movie-quotes-api.omar.redberryinternship.ge',
+    ],
   },
 };
 
