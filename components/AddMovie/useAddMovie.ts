@@ -84,5 +84,6 @@ export const useAddMovie = () => {
     handleChange,
     selectedGenres,
     userDetails,
+    file,
   };
 };

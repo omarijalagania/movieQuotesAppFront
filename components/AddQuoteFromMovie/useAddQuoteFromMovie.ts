@@ -47,5 +47,5 @@ export const useAddQuoteFromMovie = (movie: SingleMovieProps) => {
     setSelectMovies(movie._id);
   }, [movie._id]);
 
-  return { formik, t, setFile, setSelectMovies };
+  return { formik, t, setFile, setSelectMovies, file };
 };
