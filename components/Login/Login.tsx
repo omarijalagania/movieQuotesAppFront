@@ -87,8 +87,10 @@ const Login: React.FC<LoginProps> = ({ setOpenRecoverModal, setIsOpen }) => {
         )}
         <div className='flex justify-between mt-2 items-center'>
           <div className='flex text-white justify-between items-center'>
-            <input type='checkbox' />
-            <p className='ml-1'>{t('remember')}</p>
+            <input id='remember' type='checkbox' />
+            <label htmlFor='remember' className='ml-1'>
+              {t('remember')}
+            </label>
           </div>
           <p
             className='text-white cursor-pointer'
