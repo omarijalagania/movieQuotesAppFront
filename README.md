@@ -30,7 +30,6 @@
 - [Formik ](https://formik.org) - easy form validation
 - [React-Toastify](https://www.npmjs.com/package/react-toastify) - cool notifications
 - [Redux Toolkit](https://redux-toolkit.js.org) - global state management
-- [React Scroll Parallax](https://react-scroll-parallax.damnthat.tv/docs/intro) - parallax effects
 - [React Select](https://react-select.com/home) - select Input control
 - [Axios](https://axios-http.com/docs/intro) - promise-based HTTP client
 - [Headless UI](https://headlessui.com) - UI components, designed to integrate beautifully with Tailwind CSS.
