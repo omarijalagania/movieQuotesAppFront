@@ -1,6 +1,5 @@
 import '../styles/globals.css';
 import type { AppProps } from 'next/app';
-import { ParallaxProvider } from 'react-scroll-parallax';
 import { SessionProvider } from 'next-auth/react';
 import { appWithTranslation } from 'next-i18next';
 import { useTranslate } from 'hooks';
@@ -35,12 +34,10 @@ function MyApp({ Component, pageProps: { session, ...pageProps } }: AppProps) {
 
   return (
     <SessionProvider session={session}>
-      <ParallaxProvider>
-        <Provider store={store}>
-          <Component {...pageProps} />
-          <ToastContainer autoClose={1500} limit={1} />
-        </Provider>
-      </ParallaxProvider>
+      <Provider store={store}>
+        <Component {...pageProps} />
+        <ToastContainer autoClose={1500} limit={1} />
+      </Provider>
     </SessionProvider>
   );
 }

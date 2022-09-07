@@ -4,7 +4,7 @@ import React from 'react';
 import { useTranslate } from 'hooks';
 
 const ConfirmToken: React.FC = () => {
-  const { t } = useTranslate();
+  const { t, router } = useTranslate();
   return (
     <div className='flex flex-col p-10 items-center justify-center'>
       <div className='mb-10'>
@@ -14,7 +14,11 @@ const ConfirmToken: React.FC = () => {
       <p className='text-center text-md w-96 mt-2 text-white'>
         {t('accountActivated')}
       </p>
-      <RedButton className='text-white w-72 mt-7' name={t('goToFeed')} />
+      <RedButton
+        onClick={() => router.push('/feed')}
+        className='text-white w-72 mt-7'
+        name={t('goToFeed')}
+      />
     </div>
   );
 };
