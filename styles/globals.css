@@ -28,4 +28,40 @@
   span[style^='box-sizing:border-box;display:inline-block'] {
     display: block !important;
   }
+  .section {
+    align-items: center;
+    background: url('/assets/interstellar.png') no-repeat center / cover;
+    bottom: 0;
+    display: flex;
+    justify-content: center;
+    height: 100vh;
+    padding: 1rem;
+    position: sticky;
+    width: 100%;
+    z-index: -1;
+  }
+
+  .section:nth-child(2) {
+    background-image: url('/assets/tenen.png');
+    z-index: -2;
+  }
+
+  .section:last-child {
+    background-image: url('/assets/lord.png');
+    z-index: -3;
+  }
+
+  .title {
+    color: #fff;
+    font-size: 5rem;
+    text-stroke: 0.1px #000;
+    -webkit-text-stroke: 1px #000;
+  }
+
+  @supports not (-webkit-text-stroke: 1px #000) {
+    .title {
+      text-shadow: 3px 3px 0 #000, -1px -1px 0 #000, 1px -1px 0 #000,
+        -1px 1px 0 #000, 1px 1px 0 #000;
+    }
+  }
 }
