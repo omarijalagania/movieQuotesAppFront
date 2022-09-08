@@ -54,6 +54,9 @@ const AddMovie: React.FC<AddMovieProp> = ({ setOpenAddMovieModal }) => {
             Eng
           </p>
         </div>
+        {formik.errors.movieNameEn && formik.touched.movieNameEn && (
+          <p className='text-red-500 mt-1'>{t(formik.errors.movieNameEn)}</p>
+        )}
         <div className='relative mb-3'>
           <Input
             className='!rounded-none py-1 !border-[1px] !text-sm border-gray-500 bg-darkBlue text-white md:!w-[500px] !placeholder-white'
@@ -68,6 +71,9 @@ const AddMovie: React.FC<AddMovieProp> = ({ setOpenAddMovieModal }) => {
             ქართ
           </p>
         </div>
+        {formik.errors.movieNameGe && formik.touched.movieNameGe && (
+          <p className='text-red-500 mt-1'>{t(formik.errors.movieNameGe)}</p>
+        )}
         <Select
           styles={customStyles}
           onChange={handleChange}
@@ -91,6 +97,9 @@ const AddMovie: React.FC<AddMovieProp> = ({ setOpenAddMovieModal }) => {
             Eng
           </p>
         </div>
+        {formik.errors.directorEn && formik.touched.directorEn && (
+          <p className='text-red-500 mt-1'>{t(formik.errors.directorEn)}</p>
+        )}
         <div className='relative mb-1'>
           <Input
             className='!rounded-none py-1 !mb-1 !border-[1px] !text-sm border-gray-500 bg-darkBlue text-white md:!w-[500px] !placeholder-white'
@@ -105,6 +114,9 @@ const AddMovie: React.FC<AddMovieProp> = ({ setOpenAddMovieModal }) => {
             ქართ
           </p>
         </div>
+        {formik.errors.directorGe && formik.touched.directorGe && (
+          <p className='text-red-500 mt-1'>{t(formik.errors.directorGe)}</p>
+        )}
         <div className='relative mb-1'>
           <textarea
             onChange={formik.handleChange}
@@ -116,6 +128,9 @@ const AddMovie: React.FC<AddMovieProp> = ({ setOpenAddMovieModal }) => {
             Eng
           </p>
         </div>
+        {formik.errors.descriptionEn && formik.touched.descriptionEn && (
+          <p className='text-red-500 mt-1'>{t(formik.errors.descriptionEn)}</p>
+        )}
         <div className='relative mb-1'>
           <textarea
             onChange={formik.handleChange}
@@ -127,7 +142,9 @@ const AddMovie: React.FC<AddMovieProp> = ({ setOpenAddMovieModal }) => {
             ქართ
           </p>
         </div>
-
+        {formik.errors.descriptionGe && formik.touched.descriptionGe && (
+          <p className='text-red-500 mt-1'>{t(formik.errors.descriptionGe)}</p>
+        )}
         <div className='mb-3'>
           <label className='flex px-2 w-full py-3 transition bg-darkBlue border-[1px] border-gray-500  cursor-pointer  focus:outline-none'>
             <span className='flex items-center space-x-2'>
@@ -156,6 +173,7 @@ const AddMovie: React.FC<AddMovieProp> = ({ setOpenAddMovieModal }) => {
               accept='.png, .jpg, .jpeg'
             />
           </label>
+          {!file && <p className='text-red-500 mt-1'>select file</p>}
         </div>
 
         <RedButton className='w-full text-white' name={t('addMovie')} />
