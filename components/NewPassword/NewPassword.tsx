@@ -33,7 +33,7 @@ const NewPassword: React.FC = () => {
           />
           {!formik.errors.password && formik.values.password !== '' ? (
             <CheckIcon className='w-6 h-6 absolute text-green-500 right-2 top-[58%]' />
-          ) : formik.values.password ? (
+          ) : formik.values.password || formik.errors.password ? (
             <ExclamationCircleIcon className='w-6 h-6 absolute text-red-500 right-2 top-[58%]' />
           ) : (
             ''
@@ -62,7 +62,7 @@ const NewPassword: React.FC = () => {
           {!formik.errors.repeatPassword &&
           formik.values.repeatPassword !== '' ? (
             <CheckIcon className='w-6 h-6 absolute text-green-500 right-2 top-[58%]' />
-          ) : formik.values.repeatPassword ? (
+          ) : formik.values.repeatPassword || formik.errors.repeatPassword ? (
             <ExclamationCircleIcon className='w-6 h-6 absolute text-red-500 right-2 top-[58%]' />
           ) : (
             ''

@@ -38,7 +38,8 @@ const Login: React.FC<LoginProps> = ({ setOpenRecoverModal, setIsOpen }) => {
           formik.touched.email &&
           formik.values.email !== '' ? (
             <CheckIcon className='w-6 h-6 absolute text-green-500 right-2 top-[58%]' />
-          ) : formik.values.email && formik.touched.email ? (
+          ) : formik.values.email ||
+            (formik.errors.email && formik.touched.email) ? (
             <ExclamationCircleIcon className='w-6 h-6 absolute text-red-500 right-2 top-[58%]' />
           ) : (
             ''
@@ -75,7 +76,7 @@ const Login: React.FC<LoginProps> = ({ setOpenRecoverModal, setIsOpen }) => {
           formik.touched.password &&
           formik.values.password !== '' ? (
             <CheckIcon className='w-6 h-6 absolute text-green-500 right-2 top-[58%]' />
-          ) : formik.values.password ? (
+          ) : formik.values.password || formik.errors.password ? (
             <ExclamationCircleIcon className='w-6 h-6 absolute text-red-500 right-2 top-[58%]' />
           ) : (
             ''
