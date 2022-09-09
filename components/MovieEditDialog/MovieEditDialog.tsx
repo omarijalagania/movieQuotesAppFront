@@ -1,12 +1,18 @@
 import React from 'react';
 import { XIcon } from '@heroicons/react/solid';
 import Select from 'react-select';
-import { Input, RedButton, useEditMovie, customStyles } from 'components';
+import {
+  Input,
+  RedButton,
+  useEditMovie,
+  customStyles,
+  MovieEditProps,
+} from 'components';
 import { CameraIcon } from '@heroicons/react/outline';
 
 import Image from 'next/image';
 
-const MovieEditDialog: React.FC = () => {
+const MovieEditDialog: React.FC<MovieEditProps> = ({ setOpenEditDialog }) => {
   const {
     formik,
     setFile,
@@ -22,7 +28,10 @@ const MovieEditDialog: React.FC = () => {
 
   return (
     <div className='w-full'>
-      <div className='flex relative border-b-[1px] pb-2 border-gray-500'>
+      <div
+        onClick={() => setOpenEditDialog(false)}
+        className='flex relative border-b-[1px] pb-2 border-gray-500'
+      >
         <h1 className='text-white mx-auto'>{t('movieEdit')}</h1>
         <XIcon className='w-5 h-5 cursor-pointer text-white absolute right-0' />
       </div>
@@ -60,6 +69,9 @@ const MovieEditDialog: React.FC = () => {
             Eng
           </p>
         </div>
+        {formik.errors.movieNameEn && formik.touched.movieNameEn && (
+          <p className='text-red-500 mt-1'>{t(formik.errors.movieNameEn)}</p>
+        )}
         <div className='relative mb-3'>
           <Input
             className='!rounded-none py-1 !border-[1px] !text-sm border-gray-400 bg-darkBlue text-white !w-[500px] !placeholder-white'
@@ -75,6 +87,9 @@ const MovieEditDialog: React.FC = () => {
             ქართ
           </p>
         </div>
+        {formik.errors.movieNameGe && formik.touched.movieNameGe && (
+          <p className='text-red-500 mt-1'>{t(formik.errors.movieNameGe)}</p>
+        )}
         <Select
           styles={customStyles}
           onChange={handleChange}
@@ -99,6 +114,9 @@ const MovieEditDialog: React.FC = () => {
             Eng
           </p>
         </div>
+        {formik.errors.directorEn && formik.touched.directorEn && (
+          <p className='text-red-500 mt-1'>{t(formik.errors.directorEn)}</p>
+        )}
         <div className='relative mb-1'>
           <Input
             className='!rounded-none py-1 !mb-1 !border-[1px] !text-sm border-gray-400 bg-darkBlue text-white !w-[500px] !placeholder-white'
@@ -114,6 +132,9 @@ const MovieEditDialog: React.FC = () => {
             ქართ
           </p>
         </div>
+        {formik.errors.directorGe && formik.touched.directorGe && (
+          <p className='text-red-500 mt-1'>{t(formik.errors.directorGe)}</p>
+        )}
         <div className='relative mb-1'>
           <textarea
             onChange={formik.handleChange}
@@ -126,6 +147,9 @@ const MovieEditDialog: React.FC = () => {
             Eng
           </p>
         </div>
+        {formik.errors.descriptionEn && formik.touched.descriptionEn && (
+          <p className='text-red-500 mt-1'>{t(formik.errors.descriptionEn)}</p>
+        )}
         <div className='relative mb-1'>
           <textarea
             onChange={formik.handleChange}
@@ -138,7 +162,9 @@ const MovieEditDialog: React.FC = () => {
             ქართ
           </p>
         </div>
-
+        {formik.errors.descriptionGe && formik.touched.descriptionGe && (
+          <p className='text-red-500 mt-1'>{t(formik.errors.descriptionGe)}</p>
+        )}
         <div className='mb-3 relative'>
           <label className='flex px-2  w-full py-3 transition bg-darkBlue border-[1px] border-gray-300  cursor-pointer  focus:outline-none'>
             <CameraIcon className='w-5 h-5 z-20 absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 text-white' />
