@@ -65,7 +65,7 @@ const AddQuoteFromMovie: React.FC<MovieProp> = ({
         </div>
         <div className='relative mb-3'>
           <Input
-            className='!rounded-none py-2 !border-[1px] !text-sm border-gray-400 bg-darkBlue text-white md:!w-[500px] !placeholder-white'
+            className='!rounded-none py-2 !border-[1px] !text-sm border-gray-400 bg-darkBlue text-white md:!w-[500px] !placeholder-gray-500'
             isLabel={false}
             type='text'
             id='quoteNameEng'
@@ -79,7 +79,7 @@ const AddQuoteFromMovie: React.FC<MovieProp> = ({
         </div>
         <div className='relative mb-3'>
           <Input
-            className='!rounded-none py-2 !border-[1px] !text-sm border-gray-400 bg-darkBlue text-white md:!w-[500px] !placeholder-white'
+            className='!rounded-none py-2 !border-[1px] !text-sm border-gray-400 bg-darkBlue text-white md:!w-[500px] !placeholder-gray-500'
             isLabel={false}
             type='text'
             id='quoteNameGe'
