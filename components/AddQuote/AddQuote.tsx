@@ -35,7 +35,7 @@ const AddQuote: React.FC = () => {
       >
         <div className='relative mb-3'>
           <Input
-            className='!rounded-none py-1 !border-[1px] !text-sm border-gray-400 bg-darkBlue text-white md:!w-[500px] !placeholder-white'
+            className='!rounded-none py-1 !border-[1px] !text-sm border-gray-400 bg-darkBlue text-white md:!w-[500px] !placeholder-gray-500'
             isLabel={false}
             type='text'
             id='quoteNameEng'
@@ -49,7 +49,7 @@ const AddQuote: React.FC = () => {
         </div>
         <div className='relative mb-3'>
           <Input
-            className='!rounded-none py-1 !border-[1px] !text-sm border-gray-400 bg-darkBlue text-white md:!w-[500px] !placeholder-white'
+            className='!rounded-none py-1 !border-[1px] !text-sm border-gray-400 bg-darkBlue text-white md:!w-[500px] !placeholder-gray-500'
             isLabel={false}
             type='text'
             id='quoteNameGe'
@@ -93,7 +93,7 @@ const AddQuote: React.FC = () => {
         </div>
 
         <select
-          className='rounded-none  w-full border-[1px] text-sm border-gray-400 p-2 bg-darkBlue text-white placeholder-white'
+          className='rounded-none  w-full border-[1px] text-sm border-gray-400 p-2 bg-darkBlue text-white placeholder-gray-500'
           placeholder='Choose movie'
           onChange={handleChange}
         >
