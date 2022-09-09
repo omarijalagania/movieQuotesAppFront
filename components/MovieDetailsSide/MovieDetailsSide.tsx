@@ -38,8 +38,12 @@ const MovieDetailsSide: React.FC = () => {
       <p className='text-xs'>{movie.descriptionEn}</p>
 
       {openEditDialog && (
-        <Modal open={openEditDialog} setOpen={setOpenEditDialog}>
-          <MovieEditDialog />
+        <Modal
+          dialogClass='!bg-darkBlue'
+          open={openEditDialog}
+          setOpen={setOpenEditDialog}
+        >
+          <MovieEditDialog setOpenEditDialog={setOpenEditDialog} />
         </Modal>
       )}
     </div>
