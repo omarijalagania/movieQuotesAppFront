@@ -77,7 +77,7 @@ const RegularUserProfile: React.FC = () => {
                   formik.errors.userName
                     ? 'border-red-500'
                     : formik.values.userName
-                    ? 'border-green-500'
+                    ? 'border-green-700'
                     : ''
                 }`}
               />
@@ -112,7 +112,7 @@ const RegularUserProfile: React.FC = () => {
                   formik.errors.email
                     ? 'border-red-500 bg-red-900'
                     : formik.values.email
-                    ? 'border-green-500 bg-green-900 text-white'
+                    ? 'border-green-700 bg-darkGreen  text-white'
                     : ''
                 }`}
               />
