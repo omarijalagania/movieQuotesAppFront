@@ -8,16 +8,16 @@ import { quoteSchema } from 'schema';
 import { toast } from 'react-toastify';
 import { addQuoteHandler } from 'services';
 import { useTranslate } from 'hooks';
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
-export const useAddQuoteFromMovie = (movie: SingleMovieProps) => {
+export const useAddQuoteFromMovie = (
+  movie: SingleMovieProps,
+  setOpenAddQuoteDialog: React.Dispatch<React.SetStateAction<boolean>>
+) => {
   const [file, setFile] = useState<File | null>(null);
   const { userId } = useHeader();
-
   const [selectMovies, setSelectMovies] = useState('');
-
   const { t } = useTranslate();
-
   const formik = useFormik({
     initialValues: getQuoteFormInitialValue(),
 
@@ -28,7 +28,7 @@ export const useAddQuoteFromMovie = (movie: SingleMovieProps) => {
       formData.append('movieId', selectMovies);
       formData.append('poster', file as File);
       formData.append('userId', userId);
-
+      setOpenAddQuoteDialog(false);
       try {
         const response = await addQuoteHandler(formData as FormData);
 
@@ -39,7 +39,6 @@ export const useAddQuoteFromMovie = (movie: SingleMovieProps) => {
         toast.error('Server Error');
       }
     },
-
     validationSchema: quoteSchema,
   });
 

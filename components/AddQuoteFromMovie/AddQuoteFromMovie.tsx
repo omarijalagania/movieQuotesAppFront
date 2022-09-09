@@ -9,7 +9,10 @@ const AddQuoteFromMovie: React.FC<MovieProp> = ({
   movie,
   setOpenAddQuoteDialog,
 }) => {
-  const { formik, setFile, file } = useAddQuoteFromMovie(movie);
+  const { formik, setFile, file } = useAddQuoteFromMovie(
+    movie,
+    setOpenAddQuoteDialog
+  );
   const { userDetails, t } = useHeader();
   return (
     <div className='w-screen h-screen md:w-full p-5'>
