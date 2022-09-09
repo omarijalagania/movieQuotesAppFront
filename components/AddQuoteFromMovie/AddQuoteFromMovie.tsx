@@ -15,7 +15,7 @@ const AddQuoteFromMovie: React.FC<MovieProp> = ({
   );
   const { userDetails, t } = useHeader();
   return (
-    <div className='w-screen h-screen md:w-full p-5'>
+    <div className='w-screen  md:w-full p-5'>
       <div className='flex relative border-b-[1px] pb-2 border-gray-500'>
         <h1 className='text-white mx-auto'>{t('addQuote')}</h1>
         <XIcon
@@ -25,7 +25,17 @@ const AddQuoteFromMovie: React.FC<MovieProp> = ({
       </div>
       <div className='mt-5'>
         <div className='flex items-center mb-2'>
-          <div className='w-8 h-8 rounded-full bg-yellow-600' />
+          <img
+            className='w-8 h-8 object-cover rounded-full'
+            src={
+              userDetails?.poster
+                ? process.env.NEXT_PUBLIC_BACKEND_URL +
+                  '/' +
+                  userDetails?.poster
+                : process.env.NEXT_PUBLIC_RANDOM_AVATAR
+            }
+            alt='image'
+          />
           <p className='ml-3 text-white'>{userDetails?.userName}</p>
         </div>
       </div>
@@ -44,11 +54,11 @@ const AddQuoteFromMovie: React.FC<MovieProp> = ({
               alt='img'
             />
           </div>
-          <div className='flex flex-col space-y-5'>
+          <div className='flex md:w-80 flex-col space-y-5'>
             <div>
               <h2 className='text-primaryGold text-2xl'>{movie.movieNameEn}</h2>
             </div>
-            <div>
+            <div className='grid grid-cols-3 gap-y-3'>
               {movie?.genre?.map((genre: { genre: string; label: string }) => (
                 <p
                   key={genre.label + Math.random()}
@@ -65,7 +75,7 @@ const AddQuoteFromMovie: React.FC<MovieProp> = ({
         </div>
         <div className='relative mb-3'>
           <Input
-            className='!rounded-none py-2 !border-[1px] !text-sm border-gray-400 bg-darkBlue text-white md:!w-[500px] !placeholder-gray-500'
+            className='!rounded-none py-2 !border-[1px] !text-sm border-gray-400 bg-darkBlue text-white md:!w-[550px] !placeholder-gray-500'
             isLabel={false}
             type='text'
             id='quoteNameEng'
@@ -79,7 +89,7 @@ const AddQuoteFromMovie: React.FC<MovieProp> = ({
         </div>
         <div className='relative mb-3'>
           <Input
-            className='!rounded-none py-2 !border-[1px] !text-sm border-gray-400 bg-darkBlue text-white md:!w-[500px] !placeholder-gray-500'
+            className='!rounded-none py-2 !border-[1px] !text-sm border-gray-400 bg-darkBlue text-white md:!w-[550px] !placeholder-gray-500'
             isLabel={false}
             type='text'
             id='quoteNameGe'
