@@ -34,8 +34,8 @@ export const removeLike = async (
 
 export const avatarImageUrl = (item: ItemProps) => {
   return item?.user[0]?.provider === 'email'
-    ? item?.user[0]?.image
-      ? item?.user[0]?.image
+    ? item?.user[0]?.poster
+      ? process.env.NEXT_PUBLIC_BACKEND_URL + '/' + item?.user[0]?.poster
       : process.env.NEXT_PUBLIC_RANDOM_AVATAR
-    : item?.user[0]?.image;
+    : process.env.NEXT_PUBLIC_BACKEND_URL + '/' + item?.user[0]?.poster;
 };
