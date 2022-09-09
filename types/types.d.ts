@@ -127,7 +127,7 @@ export type ItemProps = {
       }
     ];
   };
-  key: string;
+  key?: string;
 
   _id: string;
   comments: Array<{
@@ -144,7 +144,8 @@ export type ItemProps = {
   userId: string;
   user: [
     {
-      image: any;
+      poster: string;
+      image: string;
       provider: string;
       _id: string;
       userName: string;
