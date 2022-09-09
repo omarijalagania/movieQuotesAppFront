@@ -3,6 +3,9 @@ import { AnnotationIcon, HeartIcon } from '@heroicons/react/outline';
 import {
   DotsHorizontalIcon,
   HeartIcon as HeartIconFull,
+  EyeIcon,
+  PencilIcon,
+  TrashIcon,
 } from '@heroicons/react/solid';
 import Image from 'next/image';
 import {
@@ -37,32 +40,38 @@ const QuoteMovieDetails: React.FC<QuotePropsItem> = ({ item }) => {
                 <DotsHorizontalIcon className='w-5 h-5 cursor-pointer text-white absolute -top-1 right-3' />
               </Menu.Button>
               {open && (
-                <div className='bg-lightBlue p-10'>
+                <div className='bg-lightBlue rounded-md pl-10 pr-20 py-7'>
                   <Menu.Items>
                     <Menu.Item>
                       {({}) => (
                         <div
-                          className='mb-3 cursor-pointer'
+                          className='mb-7 flex space-x-2 cursor-pointer'
                           onClick={() => setOpenEditQUoteDialog(true)}
                         >
-                          {t('viewPost')}
+                          <EyeIcon className='w-6 h-6' />
+                          <p>{t('viewPost')}</p>
                         </div>
                       )}
                     </Menu.Item>
                     <Menu.Item>
                       {({}) => (
                         <div
-                          className='mb-3 cursor-pointer'
+                          className='mb-7 flex space-x-2 cursor-pointer'
                           onClick={() => setOpenEditQUoteDialog(true)}
                         >
-                          {t('editPost')}
+                          <PencilIcon className='w-6 h-6' />
+                          <p>{t('editPost')}</p>
                         </div>
                       )}
                     </Menu.Item>
                     <Menu.Item>
                       {({}) => (
-                        <div className='cursor-pointer' onClick={deleteQuote}>
-                          {t('deletePost')}
+                        <div
+                          className='flex space-x-2 cursor-pointer'
+                          onClick={deleteQuote}
+                        >
+                          <TrashIcon className='w-6 h-6' />
+                          <p>{t('deletePost')}</p>
                         </div>
                       )}
                     </Menu.Item>
