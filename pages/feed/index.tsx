@@ -9,7 +9,7 @@ const Feed: React.FC = () => {
 
   return (
     <div className='flex flex-col w-full'>
-      <div className='flex justify-between md:w-[90%] space-x-2'>
+      <div className='flex justify-between md:w-[90%] overflow-hidden space-x-2'>
         <WriteQuote setOpenAddQuote={setOpenAddQuote} />
         <Search handleSearch={handleSearch} />
       </div>

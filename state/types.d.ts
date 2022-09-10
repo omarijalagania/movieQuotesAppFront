@@ -15,4 +15,5 @@ export interface GlobalState {
   likeNotification: LikeNotification;
   closeModal: boolean;
   secondaryEmails: secondaryEmails;
+  growSearch: boolean;
 }
