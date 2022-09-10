@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import { useRouter } from 'next/router';
 import { useDispatch } from 'react-redux';
 import { saveToken } from 'state';
+import Head from 'next/head';
 
 const PasswordRecover = () => {
   const router = useRouter();
@@ -16,7 +17,15 @@ const PasswordRecover = () => {
     }
   }, [dispatch, router]);
 
-  return <div></div>;
+  return (
+    <div>
+      <Head>
+        <title>Password confirm</title>
+        <meta name='description' content='Home Page' />
+        <link rel='icon' href='/favicon.ico' />
+      </Head>
+    </div>
+  );
 };
 
 export default PasswordRecover;
