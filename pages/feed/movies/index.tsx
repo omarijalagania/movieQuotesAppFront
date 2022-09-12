@@ -4,6 +4,7 @@ import { ChatIcon } from '@heroicons/react/outline';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { AddMovie, Modal, RedButton } from 'components';
 import { useMovie } from 'hooks';
+import Head from 'next/head';
 
 const Movies: React.FC = () => {
   const { movie, openAddMovieModal, setOpenAddMovieModal, router, t } =
@@ -41,6 +42,11 @@ const Movies: React.FC = () => {
 
   return (
     <>
+      <Head>
+        <title>Movies</title>
+        <meta name='description' content='Home Page' />
+        <link rel='icon' href='/favicon.ico' />
+      </Head>
       <div className='flex justify-between  text-white mb-5'>
         <p>
           {t('myMovieList')} ({movie.length})

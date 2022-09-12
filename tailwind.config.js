@@ -16,6 +16,7 @@ module.exports = {
         darkBlue: '#11101A',
         headerBg: '#222030',
         inputYellow: '#EC9524',
+        darkGreen: '#0b3b24',
       },
     },
   },

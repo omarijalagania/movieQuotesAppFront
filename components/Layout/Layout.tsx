@@ -39,7 +39,13 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
               : 'md:col-span-3'
           }  `}
         >
-          <div className={`flex flex-col  md:h-screen  pt-8 p-5 md:p-10 `}>
+          <div
+            className={`flex flex-col  md:h-screen md:w-auto ${
+              !router.pathname.includes('/feed/movies') &&
+              !router.pathname.includes('/feed/movies/[id]') &&
+              'lg:w-[85rem]'
+            }  pt-8 p-5 md:p-10 `}
+          >
             {children}
           </div>
         </div>

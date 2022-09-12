@@ -1,11 +1,17 @@
 import React from 'react';
 import { RedButton } from 'components';
 import { useTranslate } from 'hooks';
+import Head from 'next/head';
 
 const HomePage: React.FC = () => {
   const { t } = useTranslate();
   return (
     <>
+      <Head>
+        <title>Home</title>
+        <meta name='description' content='Home Page' />
+        <link rel='icon' href='/favicon.ico' />
+      </Head>
       <div className='w-full h-screen bg-black flex justify-center items-center'>
         <div className='w-[250px] md:w-[500px] flex flex-col justify-center'>
           <h1 className='text-primaryGold text-2xl md:text-5xl text-center'>
