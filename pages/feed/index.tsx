@@ -16,7 +16,7 @@ const Feed: React.FC = () => {
         <link rel='icon' href='/favicon.ico' />
       </Head>
       <div className='flex flex-col w-full'>
-        <div className='flex justify-between md:w-[90%] space-x-2'>
+        <div className='flex justify-between overflow-hidden md:w-[90%] space-x-2'>
           <WriteQuote setOpenAddQuote={setOpenAddQuote} />
           <Search handleSearch={handleSearch} />
         </div>
