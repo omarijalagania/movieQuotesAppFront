@@ -8,25 +8,33 @@ import {
 } from 'components';
 import { useMediaSize } from 'hooks';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
+import Head from 'next/head';
 
 const Profile: React.FC = () => {
   const { userDetails } = useHeader();
   const { width } = useMediaSize();
 
   return (
-    <div className='mx-auto'>
-      {userDetails?.provider === 'google' ? (
-        (width as number) < 768 ? (
-          <MobileGoogleProfile />
+    <>
+      <Head>
+        <title>Profile</title>
+        <meta name='description' content='Home Page' />
+        <link rel='icon' href='/favicon.ico' />
+      </Head>
+      <div className='mx-auto'>
+        {userDetails?.provider === 'google' ? (
+          (width as number) < 768 ? (
+            <MobileGoogleProfile />
+          ) : (
+            <GoogleProfile />
+          )
+        ) : (width as number) < 768 ? (
+          <MobileRegularUserProfile />
         ) : (
-          <GoogleProfile />
-        )
-      ) : (width as number) < 768 ? (
-        <MobileRegularUserProfile />
-      ) : (
-        <RegularUserProfile />
-      )}
-    </div>
+          <RegularUserProfile />
+        )}
+      </div>
+    </>
   );
 };
 
