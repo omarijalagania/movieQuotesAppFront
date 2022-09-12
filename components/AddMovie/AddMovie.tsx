@@ -15,10 +15,10 @@ const AddMovie: React.FC<AddMovieProp> = ({ setOpenAddMovieModal }) => {
     useAddMovie();
 
   return (
-    <div className='w-screen bg-darkBlue md:w-[700px] md:h-full px-5 md:px-0 overflow-hidden h-screen'>
+    <div className='w-screen bg-darkBlue md:w-[700px] md:h-full mx-auto px-5 md:px-0 h-screen'>
       <div
         onClick={() => setOpenAddMovieModal(false)}
-        className='flex relative border-b-[1px] pb-2 border-gray-500'
+        className='flex relative border-b-[1px] pb-2 border-gray-700'
       >
         <h1 className='text-white mx-auto'>{t('addMovie')}</h1>
         <XIcon className='w-5 h-5 cursor-pointer text-white absolute right-0' />
@@ -42,7 +42,7 @@ const AddMovie: React.FC<AddMovieProp> = ({ setOpenAddMovieModal }) => {
       >
         <div className='relative mb-3'>
           <Input
-            className='!rounded-none py-1 !border-[1px] !text-sm border-gray-500 bg-darkBlue text-white  md:!w-[700px] !placeholder-white'
+            className='!rounded-none py-1 !border-[1px] !text-sm border-gray-700 bg-darkBlue text-white  md:!w-[700px] !placeholder-white'
             isLabel={false}
             type='text'
             id='movieNameEn'
@@ -59,7 +59,7 @@ const AddMovie: React.FC<AddMovieProp> = ({ setOpenAddMovieModal }) => {
         )}
         <div className='relative mb-3'>
           <Input
-            className='!rounded-none py-1 !border-[1px] !text-sm border-gray-500 bg-darkBlue text-white md:!w-[700px] !placeholder-white'
+            className='!rounded-none py-1 !border-[1px] !text-sm border-gray-700 bg-darkBlue text-white md:!w-[700px] !placeholder-white'
             isLabel={false}
             type='text'
             id='movieNameGe'
@@ -85,7 +85,7 @@ const AddMovie: React.FC<AddMovieProp> = ({ setOpenAddMovieModal }) => {
 
         <div className='relative mb-3'>
           <Input
-            className='!rounded-none py-1 !border-[1px] !text-sm border-gray-500 bg-darkBlue text-white md:!w-[700px] !placeholder-white'
+            className='!rounded-none py-1 !border-[1px] !text-sm border-gray-700 bg-darkBlue text-white md:!w-[700px] !placeholder-white'
             isLabel={false}
             type='text'
             id='directorEn'
@@ -102,7 +102,7 @@ const AddMovie: React.FC<AddMovieProp> = ({ setOpenAddMovieModal }) => {
         )}
         <div className='relative mb-1'>
           <Input
-            className='!rounded-none py-1 !mb-1 !border-[1px] !text-sm border-gray-500 bg-darkBlue text-white md:!w-[700px] !placeholder-white'
+            className='!rounded-none py-1 !mb-1 !border-[1px] !text-sm border-gray-700 bg-darkBlue text-white md:!w-[700px] !placeholder-white'
             isLabel={false}
             type='text'
             id='directorGe'
@@ -120,7 +120,7 @@ const AddMovie: React.FC<AddMovieProp> = ({ setOpenAddMovieModal }) => {
         <div className='relative mb-1'>
           <textarea
             onChange={formik.handleChange}
-            className='border-[1px] p-1 text-sm border-gray-500 bg-darkBlue text-white w-full  md:w-[700px] placeholder-white'
+            className='border-[1px] p-1 text-sm border-gray-700 bg-darkBlue text-white w-full  md:w-[700px] placeholder-white'
             name='descriptionEn'
             placeholder='Movie description'
           />
@@ -134,7 +134,7 @@ const AddMovie: React.FC<AddMovieProp> = ({ setOpenAddMovieModal }) => {
         <div className='relative mb-1'>
           <textarea
             onChange={formik.handleChange}
-            className='border-[1px] p-1 text-sm border-gray-500 bg-darkBlue text-white w-full md:w-[700px] placeholder-white'
+            className='border-[1px] p-1 text-sm border-gray-700 bg-darkBlue text-white w-full md:w-[700px] placeholder-white'
             name='descriptionGe'
             placeholder='ფილმის აღწერა'
           />
@@ -146,7 +146,7 @@ const AddMovie: React.FC<AddMovieProp> = ({ setOpenAddMovieModal }) => {
           <p className='text-red-500 mt-1'>{t(formik.errors.descriptionGe)}</p>
         )}
         <div className='mb-3'>
-          <label className='flex px-2 w-full py-3 transition bg-darkBlue border-[1px] border-gray-500  cursor-pointer  focus:outline-none'>
+          <label className='flex px-2 w-full py-3 transition bg-darkBlue border-[1px] border-gray-700  cursor-pointer  focus:outline-none'>
             <span className='flex items-center space-x-2'>
               <CameraIcon className='w-5 h-5 text-white' />
               <span className='text-sm text-white'>

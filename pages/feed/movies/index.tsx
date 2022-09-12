@@ -65,7 +65,7 @@ const Movies: React.FC = () => {
       </div>
       {openAddMovieModal && (
         <Modal
-          dialogClass='!bg-darkBlue'
+          dialogClass='!bg-darkBlue !p-10 '
           open={openAddMovieModal}
           setOpen={setOpenAddMovieModal}
         >
