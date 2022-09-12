@@ -9,6 +9,7 @@ import {
   AddMovieProp,
 } from 'components';
 import { CameraIcon } from '@heroicons/react/outline';
+import { imagePreview } from 'helpers';
 
 const AddMovie: React.FC<AddMovieProp> = ({ setOpenAddMovieModal }) => {
   const { formik, setFile, newGenre, handleChange, userDetails, t, file } =
@@ -155,9 +156,14 @@ const AddMovie: React.FC<AddMovieProp> = ({ setOpenAddMovieModal }) => {
                   {t('chooseFile')}
                 </span>
               </span>
-              <p className='text-white w-14 text-xs'>
-                {file !== null ? file.name : ''}
-              </p>
+
+              {file && (
+                <img
+                  src={imagePreview(file as File)}
+                  alt=''
+                  className='w-6 h-4'
+                />
+              )}
             </span>
             <input
               onChange={(event) => {

@@ -3,6 +3,7 @@ import { XIcon } from '@heroicons/react/solid';
 
 import { Input, RedButton, useAddQuote } from 'components';
 import { CameraIcon } from '@heroicons/react/outline';
+import { imagePreview } from 'helpers';
 
 const AddQuote: React.FC = () => {
   const { formik, setFile, newMovie, handleChange, userDetails, t, file } =
@@ -72,9 +73,13 @@ const AddQuote: React.FC = () => {
                   {t('chooseFile')}
                 </span>
               </span>
-              <p className='text-white w-14 text-xs'>
-                {file !== null ? file.name : ''}
-              </p>
+              {file && (
+                <img
+                  src={imagePreview(file as File)}
+                  alt=''
+                  className='w-6 h-4'
+                />
+              )}
             </span>
             <input
               onChange={(event) => {
