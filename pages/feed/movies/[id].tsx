@@ -22,8 +22,8 @@ const MovieDetails: React.FC = () => {
       <div className='mt-3 w-full'>
         <Image
           className='rounded-lg object-cover'
-          width={1100}
-          height={800}
+          width={750}
+          height={400}
           src={`${process.env.NEXT_PUBLIC_BACKEND_URL}/${movie?.poster}`}
           alt={movie?.movieNameEn}
         />
