@@ -6,7 +6,7 @@ const quoteSchema = Yup.object().shape({
     .matches(/[Ⴀ-\u10fe]$/, 'შეიყვანეთ მხოლოდ ქართული ასოები')
     .required(),
   movieId: Yup.string().notRequired(),
-  poster: Yup.mixed().notRequired(),
+  poster: Yup.mixed().required(),
 });
 
 export default quoteSchema;
