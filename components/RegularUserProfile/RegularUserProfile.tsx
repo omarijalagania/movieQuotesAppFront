@@ -24,11 +24,12 @@ const RegularUserProfile: React.FC = () => {
     setEditPassword,
     removeUserEmail,
     primaryEmail,
+    router,
   } = useRegularUserProfile();
 
   return (
     <div className='w-[750px] relative'>
-      <p className='text-white mt-5 mb-20'>My profile</p>
+      <p className='text-white mt-5 mb-20'>{t('myProfile')}</p>
 
       <div className='w-[800px] flex flex-col justify-center items-start px-10  rounded-lg relative bg-darkBlue min-h-[80vh]'>
         <img
@@ -58,7 +59,7 @@ const RegularUserProfile: React.FC = () => {
             className='text-white absolute left-1/2 top-24 -translate-x-1/2 cursor-pointer'
             onClick={() => openFIlePicker(hiddenFileInput)}
           >
-            Upload photo
+            {t('uploadPhoto')}
           </p>
           <div className='mt-36'>
             <div className='relative'>
@@ -68,7 +69,7 @@ const RegularUserProfile: React.FC = () => {
                 disabled={!editUsername}
                 type='text'
                 placeholder={t('namePlaceholder')}
-                label='Username'
+                label={t('username')}
                 name='userName'
                 value={formik.values.userName}
                 defaultValue={userDetails?.userName}
@@ -90,9 +91,11 @@ const RegularUserProfile: React.FC = () => {
               )}
               <p
                 onClick={() => setEditUsername(!editUsername)}
-                className='text-white absolute -right-12 top-1/2 cursor-pointer translate-y-[20%]'
+                className={`text-white absolute ${
+                  router.locale === 'en' ? '-right-12' : '-right-32'
+                } top-1/2 cursor-pointer translate-y-[20%]`}
               >
-                Edit
+                {t('edit')}
               </p>
             </div>
             <div className='w-full md:w-96 h-0.5 mt-10 mb-8 bg-gray-700' />
@@ -123,8 +126,12 @@ const RegularUserProfile: React.FC = () => {
               ) : (
                 ''
               )}
-              <p className='text-white absolute -right-32 top-1/2 cursor-pointer translate-y-[20%]'>
-                Primary email
+              <p
+                className={`text-white absolute ${
+                  router.locale === 'en' ? '-right-32' : '-right-48'
+                }  top-1/2 cursor-pointer translate-y-[20%]`}
+              >
+                {t('primary')}
               </p>
             </div>
             {userDetails?.secondaryEmails.map((email, index) => (
@@ -143,23 +150,27 @@ const RegularUserProfile: React.FC = () => {
 
                 <ExclamationCircleIcon className='w-6 h-6 absolute text-yellow-700 right-2 top-[58%]' />
 
-                <div className='absolute -right-48 flex top-1/2 cursor-pointer translate-y-[20%]'>
+                <div
+                  className={`absolute ${
+                    router.locale === 'en' ? '-right-48' : '-right-56'
+                  } flex top-1/2 cursor-pointer translate-y-[20%]`}
+                >
                   {email.isVerified ? (
                     <p
                       onClick={() => primaryEmail(email.secondaryEmail)}
                       className='text-white '
                     >
-                      Make primary
+                      {t('makePrimary')}
                     </p>
                   ) : (
-                    <p className='text-white'>Not verified</p>
+                    <p className='text-white'>{t('notVerified')}</p>
                   )}
 
                   <p
                     onClick={() => removeUserEmail(email.secondaryEmail)}
                     className='text-white ml-2'
                   >
-                    Remove
+                    {t('remove')}
                   </p>
                 </div>
               </div>
@@ -205,12 +216,12 @@ const RegularUserProfile: React.FC = () => {
                               ''
                             )}
                             <div className='absolute -right-56 flex top-1/2 cursor-pointer translate-y-[20%]'>
-                              <p className='text-white'>Make this primary</p>
+                              <p className='text-white'>{t('makePrimary')}</p>
                               <p
                                 onClick={() => arrayHelpers.remove(index)}
                                 className='text-white ml-2'
                               >
-                                Remove
+                                {t('remove')}
                               </p>
                             </div>
                           </div>
@@ -223,7 +234,7 @@ const RegularUserProfile: React.FC = () => {
                       type='button'
                       onClick={() => arrayHelpers.push({ secondaryEmail: '' })}
                       className='mt-10'
-                      name='Add new email'
+                      name={t('addNew')}
                     />
                   </>
                 )}
@@ -262,9 +273,11 @@ const RegularUserProfile: React.FC = () => {
               )}
               <p
                 onClick={() => setEditPassword(!editPassword)}
-                className='text-white absolute -right-12 top-1/2 cursor-pointer translate-y-[20%]'
+                className={`text-white absolute ${
+                  router.locale === 'en' ? '-right-12' : '-right-32'
+                }  top-1/2 cursor-pointer translate-y-[20%]`}
               >
-                Edit
+                {t('edit')}
               </p>
             </div>
             {formik.errors.oldPassword && (
@@ -275,14 +288,12 @@ const RegularUserProfile: React.FC = () => {
             {editPassword && (
               <>
                 <div className='border-[1px] flex flex-col justify-center mt-10 border-gray-500 rounded-lg p-5'>
-                  <p className='text-white'>Passwords should contain:</p>
+                  <p className='text-white'>{t('passwordsContain')}</p>
                   <ul className='p-5'>
                     <li className='text-gray-400 mb-2 list-disc'>
-                      8 or more characters
+                      {t('eightChars')}
                     </li>
-                    <li className='text-white list-disc'>
-                      15 lowercase character
-                    </li>
+                    <li className='text-white list-disc'>{t('lowerChars')}</li>
                   </ul>
                 </div>
                 <div className='relative my-10'>
@@ -351,12 +362,12 @@ const RegularUserProfile: React.FC = () => {
 
       <div className='mt-7 flex absolute -right-10 space-x-3 items-center'>
         <div className='flex space-x-3'>
-          <Button className='text-white' name='Cancel' />
+          <Button className='text-white' name={t('cancel')} />
           <RedButton
             form='update'
             type='submit'
             className='text-white'
-            name='submit'
+            name={t('submit')}
           />
         </div>
       </div>
