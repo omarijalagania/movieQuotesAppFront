@@ -18,6 +18,7 @@ export const useNewPasswordFrom = () => {
         repeatPassword: values.repeatPassword,
         token: token,
       };
+      formik.resetForm();
       try {
         const response = await newUserPasswordHandler(data);
         dispatch(saveNewPasswordResponse(response));

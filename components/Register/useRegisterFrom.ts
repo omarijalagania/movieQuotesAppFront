@@ -21,9 +21,11 @@ export const usePersonalInformationForm = () => {
         repeatPassword: values.repeatPassword,
         poster: '',
       };
+
       try {
         const response = await registerHandler(data);
         dispatch(saveRegisterResponse(response));
+        formik.resetForm();
       } catch (error) {
         setError('wrongCreds');
       }
