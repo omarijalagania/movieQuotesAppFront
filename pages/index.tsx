@@ -20,7 +20,13 @@ const Home: React.FC = () => {
   }, [confirmResponse]);
 
   useEffect(() => {
-    dispatch(saveSocket(io(process.env.NEXT_PUBLIC_SOCKET_URL)));
+    dispatch(
+      saveSocket(
+        io(process.env.NEXT_PUBLIC_SOCKET_URL, {
+          transports: ['websocket', 'polling'],
+        })
+      )
+    );
   }, [dispatch]);
 
   return (
