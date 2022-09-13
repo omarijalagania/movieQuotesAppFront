@@ -72,6 +72,7 @@ const useRegularUserProfile = () => {
       formData.append('oldPassword', values.oldPassword as string);
       formData.append('token', token as string);
       try {
+        formik.resetForm();
         const response = await updateRegularUserHandler(
           formData,
           userDetails?._id as string

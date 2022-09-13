@@ -24,6 +24,7 @@ const WriteComment: React.FC<SIngleItemProps> = ({ item }) => {
         className='bg-lightBlue w-full rounded-md p-2 ml-4'
         type='text'
         placeholder={t('writeComment')}
+        value={formik.values.comment}
       />
     </form>
   );
