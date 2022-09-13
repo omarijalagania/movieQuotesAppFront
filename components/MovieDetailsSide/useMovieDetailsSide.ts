@@ -21,7 +21,7 @@ const useMovieDetailsSide = () => {
     }
   };
 
-  return { movie, openEditDialog, setOpenEditDialog, deleteMovie, t };
+  return { movie, openEditDialog, setOpenEditDialog, deleteMovie, t, router };
 };
 
 export default useMovieDetailsSide;
