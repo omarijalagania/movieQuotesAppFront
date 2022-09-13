@@ -9,6 +9,8 @@ const useFeed = () => {
   const [quotes, setQuotes] = useState<WriteQUoteProps[]>([]);
   const [forSearch, setForSearch] = useState<WriteQUoteProps[]>([]);
   const [feedMovies, setFeedMovies] = useState<any[]>([]);
+  const [hasMore, setHasMore] = useState(true);
+  const [page, setPage] = useState(1);
   const [searchTerm, setSearchTerm] = useState('');
   const [openAddQuote, setOpenAddQuote] = useState(false);
   const [getLike, setGetLike] = useState([]);
@@ -28,7 +30,7 @@ const useFeed = () => {
   useEffect(() => {
     try {
       const getAllQuotes = async () => {
-        const response = await getQuoteHandler();
+        const response = await getQuoteHandler(page, 5);
 
         if (response.status === 200) {
           dispatch(onModalClose(true));
@@ -44,7 +46,7 @@ const useFeed = () => {
 
       getAllQuotes();
     } catch (error) {}
-  }, [getLike, updateComment, closeModal, dispatch]);
+  }, [getLike, updateComment, closeModal, dispatch, page]);
 
   useEffect(() => {
     if (closeModal) {
@@ -88,7 +90,18 @@ const useFeed = () => {
     if (searchTerm === '') {
       setQuotes(forSearch);
     }
-  }, [searchTerm]);
+  }, [feedMovies, forSearch, searchTerm]);
+
+  const loadFunc = async () => {
+    const response = await getQuoteHandler(page, 5);
+    setQuotes([...quotes, ...response.data]);
+
+    if (response.data.length === 0 || response.data.length < 5) {
+      setHasMore(false);
+    }
+
+    setPage(page + 1);
+  };
 
   return {
     quotes,
@@ -100,6 +113,8 @@ const useFeed = () => {
     setSearchTerm,
     setQuotes,
     handleSearch,
+    loadFunc,
+    hasMore,
   };
 };
 
