@@ -126,6 +126,9 @@ export const useHeader = () => {
         socketId: socket?.id,
       });
     }
+    return () => {
+      socket?.off('disconnect');
+    };
   }, [socket, userId]);
 
   useEffect(() => {

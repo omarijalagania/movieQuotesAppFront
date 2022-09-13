@@ -1,13 +1,22 @@
 import React from 'react';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
+import InfiniteScroll from 'react-infinite-scroll-component';
 import { AddQuote, Modal, Post, Search, WriteQuote } from 'components';
 import { useFeed } from 'hooks';
 import Head from 'next/head';
 
 const Feed: React.FC = () => {
-  const { quotes, openAddQuote, setOpenAddQuote, setGetLike, handleSearch } =
-    useFeed();
+  const {
+    quotes,
+    openAddQuote,
+    setOpenAddQuote,
+    setGetLike,
+    handleSearch,
+    loadFunc,
+    hasMore,
+  } = useFeed();
 
+  console.log(quotes);
   return (
     <>
       <Head>
@@ -20,9 +29,18 @@ const Feed: React.FC = () => {
           <WriteQuote setOpenAddQuote={setOpenAddQuote} />
           <Search handleSearch={handleSearch} />
         </div>
-        {quotes?.map((item) => (
-          <Post setGetLike={setGetLike} item={item} key={item._id} />
-        ))}
+
+        <InfiniteScroll
+          dataLength={quotes?.length} //This is important field to render the next data
+          next={loadFunc}
+          hasMore={hasMore}
+          loader={<h4 className='text-white'>Loading...</h4>}
+        >
+          {quotes?.map((item) => (
+            <Post setGetLike={setGetLike} item={item} key={item._id} />
+          ))}
+        </InfiniteScroll>
+
         {openAddQuote && (
           <Modal open={openAddQuote} setOpen={setOpenAddQuote}>
             <AddQuote />

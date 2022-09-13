@@ -113,8 +113,8 @@ export const editQuoteHandler = async (data: FormData, id: string) => {
   return response;
 };
 
-export const getQuoteHandler = async () => {
-  const response = await request.get(`/quotes/get`);
+export const getQuoteHandler = async (page: number, limit: number) => {
+  const response = await request.get(`/quotes/get?page=${page}&limit=${limit}`);
   return response;
 };
 

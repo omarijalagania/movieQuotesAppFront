@@ -36,12 +36,18 @@ const usePost = (
         setGetLike(gotLike);
       }
     );
+    return () => {
+      socket?.off('disconnect');
+    };
   }, [dispatch, setGetLike, socket]);
 
   useEffect(() => {
     socket?.on('gotNotificationLike', (data: any) => {
       dispatch(saveLikeNotification(data));
     });
+    return () => {
+      socket?.off('disconnect');
+    };
   }, [dispatch, socket]);
 
   return {
