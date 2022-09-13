@@ -93,5 +93,19 @@
   "editedQuote": "Quote added successfully",
   "copyright": "movie quotes. All rights reserved.",
   "dontHaveAccount": " Not registered?",
-  "registered": "register"
+  "registered": "register",
+  "myProfile": "My profile",
+  "uploadPhoto": "Upload photo",
+  "edit": "Edit",
+  "primary": "Primary email",
+  "makePrimary": "Make primary",
+  "notVerified": "Not verified",
+  "remove": "Remove",
+  "username": "Username",
+  "addNew": "Add new email",
+  "passwordsContain": "Passwords should contain:",
+  "eightChars": "8 or more characters",
+  "lowerChars": "15 lowercase character",
+  "cancel": "Cancel",
+  "submit": "Submit"
 }
