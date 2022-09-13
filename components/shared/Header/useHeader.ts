@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, SetStateAction } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { RootState, saveNotification, saveSocket } from 'state';
 import { useTranslate, useMediaSize } from 'hooks';
@@ -26,6 +26,8 @@ export const useHeader = () => {
   const [openRecoverModal, setOpenRecoverModal] = useState(false);
   const [openCheckEmailModal, setOpenCheckEmailModal] = useState(false);
   const [openNewPasswordModal, setOpenNewPasswordModal] = useState(false);
+  const [comments, setComments] =
+    useState<SetStateAction<{ userId: string }>>();
   const [openSuccessPasswordChangeModal, setOpenSuccessPasswordChangeModal] =
     useState(false);
   const [userDetails, setUserDetails] = useState<UserDetails>();
@@ -127,7 +129,7 @@ export const useHeader = () => {
       });
     }
     return () => {
-      socket?.off('disconnect');
+      socket?.off('newUser');
     };
   }, [socket, userId]);
 
@@ -137,11 +139,12 @@ export const useHeader = () => {
       setNotifications(response.data);
     };
     getNotifications();
-  }, [getNotifications, likeNotification]);
+  }, [getNotifications, comments, likeNotification]);
 
   useEffect(() => {
     socket?.on('gotNotification', (data: { userId: string }) => {
       dispatch(saveNotification(data));
+      setComments(data);
     });
   }, [dispatch, socket]);
 

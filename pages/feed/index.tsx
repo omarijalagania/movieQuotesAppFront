@@ -16,7 +16,6 @@ const Feed: React.FC = () => {
     hasMore,
   } = useFeed();
 
-  console.log(quotes);
   return (
     <>
       <Head>
