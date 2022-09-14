@@ -10,8 +10,8 @@ import { toast } from 'react-toastify';
 import { io } from 'socket.io-client';
 
 export const useHeader = (
-  emailRemoveResponse: boolean,
-  updateStatus: boolean
+  emailRemoveResponse?: boolean,
+  updateStatus?: boolean
 ) => {
   const {
     registerResponse,
