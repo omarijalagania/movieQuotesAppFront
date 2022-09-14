@@ -23,6 +23,7 @@ const useRegularUserProfile = () => {
   const [editUsername, setEditUsername] = useState(false);
   const [editPassword, setEditPassword] = useState(false);
   const [updateStatus, setUpdateStatus] = useState(false);
+  const [emailRemoveResponse, setEmailRemoveResponse] = useState(false);
   const [changePasswordModal, setChangePasswordModal] = useState(false);
   const [isOpenInputModal, setIsOpenInputModal] = useState(false);
   const [isOpenUploadModal, setIsOpenUploadModal] = useState(false);
@@ -32,7 +33,7 @@ const useRegularUserProfile = () => {
   const [makeChanges, setMakeChanges] = useState(false);
   const [isEditable, setIsEditable] = useState(false);
   const [newName, setNewName] = useState('');
-  const { userDetails, router } = useHeader();
+  const { userDetails, router } = useHeader(emailRemoveResponse, updateStatus);
   const { data: session } = useSession();
   const { t } = useTranslate();
 
@@ -101,11 +102,25 @@ const useRegularUserProfile = () => {
       );
       if (response.status === 200) {
         toast.success(t('emailRemoved'));
+        setEmailRemoveResponse(true);
       }
     } catch (error) {
       toast.error(t('error'));
+      setEmailRemoveResponse(false);
     }
   };
+
+  useEffect(() => {
+    if (updateStatus) {
+      setUpdateStatus(false);
+    }
+  }, [updateStatus]);
+
+  useEffect(() => {
+    if (emailRemoveResponse) {
+      setEmailRemoveResponse(false);
+    }
+  }, [emailRemoveResponse]);
 
   const primaryEmail = async (email: string) => {
     const data = {
@@ -176,6 +191,7 @@ const useRegularUserProfile = () => {
     setMakeChanges,
     changePasswordModal,
     setChangePasswordModal,
+    emailRemoveResponse,
   };
 };
 
