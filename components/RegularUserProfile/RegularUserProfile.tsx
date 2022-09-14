@@ -1,7 +1,7 @@
 import React from 'react';
 import { Input, useRegularUserProfile, Button, RedButton } from 'components';
 import { CheckIcon, ExclamationCircleIcon } from '@heroicons/react/solid';
-import { RemoveScrollBar } from 'react-remove-scroll-bar';
+
 import {
   handleChange,
   imagePreview,
@@ -29,8 +29,7 @@ const RegularUserProfile: React.FC = () => {
   } = useRegularUserProfile();
 
   return (
-    <div className='w-[750px] relative'>
-      <RemoveScrollBar />
+    <div className='w-[750px]  relative'>
       <p className='text-white mt-5 mb-20'>{t('myProfile')}</p>
 
       <div className='w-[800px] flex flex-col justify-center items-start px-10  rounded-lg relative bg-darkBlue min-h-[80vh]'>

@@ -9,7 +9,10 @@ import { JwDecode, UserDetails } from 'components';
 import { toast } from 'react-toastify';
 import { io } from 'socket.io-client';
 
-export const useHeader = () => {
+export const useHeader = (
+  emailRemoveResponse: boolean,
+  updateStatus: boolean
+) => {
   const {
     registerResponse,
     passwordRecoveryResponse,
@@ -119,7 +122,7 @@ export const useHeader = () => {
       }
     };
     getUserEmail();
-  }, [session]);
+  }, [session, emailRemoveResponse, updateStatus]);
 
   useEffect(() => {
     if (userId) {

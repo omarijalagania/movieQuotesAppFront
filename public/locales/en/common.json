@@ -107,5 +107,6 @@
   "eightChars": "8 or more characters",
   "lowerChars": "15 lowercase character",
   "cancel": "Cancel",
-  "submit": "Submit"
+  "submit": "Submit",
+  "emailRemoved": "Email removed"
 }
