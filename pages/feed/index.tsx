@@ -1,6 +1,7 @@
 import React from 'react';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import InfiniteScroll from 'react-infinite-scroll-component';
+import { RemoveScrollBar } from 'react-remove-scroll-bar';
 import { AddQuote, Modal, Post, Search, WriteQuote } from 'components';
 import { useFeed } from 'hooks';
 import Head from 'next/head';
@@ -24,6 +25,7 @@ const Feed: React.FC = () => {
         <link rel='icon' href='/favicon.ico' />
       </Head>
       <div className='flex flex-col w-full'>
+        <RemoveScrollBar />
         <div className='flex justify-between overflow-hidden md:w-[90%] space-x-2'>
           <WriteQuote setOpenAddQuote={setOpenAddQuote} />
           <Search handleSearch={handleSearch} />
