@@ -1,6 +1,6 @@
 import React from 'react';
 import { Input, useGoogleProfile, RedButton } from 'components';
-import { CheckIcon, ExclamationCircleIcon } from '@heroicons/react/solid';
+
 import {
   handleChange,
   imagePreview,
@@ -66,21 +66,8 @@ const GoogleProfile: React.FC = () => {
               value={formik.values.userName}
               defaultValue={userDetails?.userName}
               onChange={formik.handleChange}
-              className={`border-2 ${
-                formik.errors.userName
-                  ? 'border-red-500'
-                  : formik.values.userName
-                  ? 'border-green-500'
-                  : ''
-              }`}
             />
-            {!formik.errors.userName && formik.values.userName !== '' ? (
-              <CheckIcon className='w-6 h-6 absolute text-green-500 right-2 top-[58%]' />
-            ) : formik.values.userName ? (
-              <ExclamationCircleIcon className='w-6 h-6 absolute text-red-500 right-2 top-[58%]' />
-            ) : (
-              ''
-            )}
+
             {!isEditable && (
               <p
                 onClick={() => setIsEditable(!isEditable)}
