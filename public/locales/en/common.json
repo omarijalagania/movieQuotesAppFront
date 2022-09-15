@@ -108,5 +108,6 @@
   "lowerChars": "15 lowercase character",
   "cancel": "Cancel",
   "submit": "Submit",
-  "emailRemoved": "Email removed"
+  "emailRemoved": "Email removed",
+  "searchText": "Enter @ to search movies, Enter # to search quotes"
 }
