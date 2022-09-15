@@ -9,6 +9,8 @@ const AddQuote: React.FC = () => {
   const { formik, setFile, newMovie, handleChange, userDetails, t, file } =
     useAddQuote();
 
+  console.log(formik.errors);
+
   return (
     <div className='w-full h-screen md:w-[700px] mx-auto  md:h-full p-5 md:p-0'>
       <div className='flex relative border-b-[1px] md:!w-[700px] pb-2 border-gray-500'>
@@ -47,6 +49,9 @@ const AddQuote: React.FC = () => {
           <p className='text-sm text-gray-400 absolute top-[20%] right-1'>
             Eng
           </p>
+          {formik.errors.quoteNameEng && formik.touched.quoteNameEng && (
+            <p className='text-red-500 mt-1'>{t(formik.errors.quoteNameEng)}</p>
+          )}
         </div>
         <div className='relative mb-3'>
           <Input
@@ -61,6 +66,9 @@ const AddQuote: React.FC = () => {
           <p className='text-sm text-gray-400 absolute top-[20%] right-1'>
             ქართ
           </p>
+          {formik.errors.quoteNameGe && formik.touched.quoteNameGe && (
+            <p className='text-red-500 mt-1'>{t(formik.errors.quoteNameGe)}</p>
+          )}
         </div>
 
         <div className='mb-3 md:!w-[700px]'>
@@ -95,6 +103,13 @@ const AddQuote: React.FC = () => {
               accept='.png, .jpg, .jpeg'
             />
           </label>
+          {file ? (
+            <></>
+          ) : (
+            JSON.stringify(formik.errors) !== '{}' && (
+              <p className='text-red-500 mt-1'>{t('requiredPoster')}</p>
+            )
+          )}
         </div>
 
         <select

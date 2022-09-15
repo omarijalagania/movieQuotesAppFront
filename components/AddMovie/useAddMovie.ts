@@ -29,8 +29,6 @@ export const useAddMovie = () => {
     setSelectedGenres(selectedGenresVal);
   };
 
-  console.log(selectError);
-
   const newGenre = genres.map((genre: { genre: string; label: string }) => ({
     value: genre.genre,
     label: genre.label,
@@ -66,13 +64,15 @@ export const useAddMovie = () => {
       formData.append('userId', userId);
 
       try {
-        const response = await addMovieHandler(formData);
-        dispatch(saveAddMovie(response));
-        if (response.status === 200 || response.status === 201) {
-          toast.success(t('successMovieAdd'));
-        }
-        if (response.status === 422) {
-          toast.error(t('movieAddError'));
+        if (file) {
+          const response = await addMovieHandler(formData);
+          dispatch(saveAddMovie(response));
+          if (response.status === 200 || response.status === 201) {
+            toast.success(t('successMovieAdd'));
+          }
+          if (response.status === 422) {
+            toast.error(t('movieAddError'));
+          }
         }
       } catch (error) {
         toast.error(t('serverError'));

@@ -193,8 +193,12 @@ const AddMovie: React.FC<AddMovieProp> = ({ setOpenAddMovieModal }) => {
             />
           </label>
 
-          {formik.errors.poster && formik.touched.poster && (
-            <p className='text-red-500 mt-1'>{t('requiredPoster')}</p>
+          {file ? (
+            <></>
+          ) : (
+            JSON.stringify(formik.errors) !== '{}' && (
+              <p className='text-red-500 mt-1'>{t('requiredPoster')}</p>
+            )
           )}
         </div>
 
