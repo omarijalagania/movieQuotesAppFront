@@ -116,5 +116,6 @@
   "shallPass": "You shall not pass!",
   "noAccess": "Sorry, but you don’t have permission to access this page",
   "homeReturn": "Return home",
-  "cantSee": "We can't see the page you are looking for"
+  "cantSee": "We can't see the page you are looking for",
+  "updated": "Information successfully updated"
 }
