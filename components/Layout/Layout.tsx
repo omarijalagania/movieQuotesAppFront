@@ -5,6 +5,7 @@ import {
   Header,
   MovieDetailsSide,
   useLayout,
+  Forbidden,
 } from 'components';
 
 const Layout: React.FC<LayoutProps> = ({ children }) => {
@@ -15,7 +16,7 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
   }
 
   if (status === 'unauthenticated') {
-    return <p>Access Denied</p>;
+    return <Forbidden />;
   }
 
   return (
