@@ -54,7 +54,8 @@ const useRegularUserProfile = () => {
         'secondaryEmails',
         JSON.stringify(values.secondaryEmails)
       );
-
+      setEditUsername(false);
+      setEditPassword(false);
       const formData = new FormData();
       formData.append('userName', values.userName as string);
       formData.append('email', values.email as string);
