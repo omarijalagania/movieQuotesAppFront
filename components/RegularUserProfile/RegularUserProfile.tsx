@@ -408,27 +408,28 @@ const RegularUserProfile: React.FC = () => {
         </div>
       </Modal>
 
-      {editUsername ||
-        (editPassword && (
-          <div className='mt-7 flex absolute -right-10 space-x-3 items-center'>
-            <div className='flex space-x-3'>
-              <Button
-                onClick={() => {
-                  setEditUsername(false);
-                  setEditPassword(false);
-                }}
-                className='text-white'
-                name={t('cancel')}
-              />
-              <RedButton
-                form='update'
-                type='submit'
-                className='text-white'
-                name={t('submit')}
-              />
-            </div>
+      {editUsername || editPassword ? (
+        <div className='mt-7 flex absolute -right-10 space-x-3 items-center'>
+          <div className='flex space-x-3'>
+            <Button
+              onClick={() => {
+                setEditUsername(false);
+                setEditPassword(false);
+              }}
+              className='text-white'
+              name={t('cancel')}
+            />
+            <RedButton
+              form='update'
+              type='submit'
+              className='text-white'
+              name={t('submit')}
+            />
           </div>
-        ))}
+        </div>
+      ) : (
+        <></>
+      )}
     </div>
   );
 };

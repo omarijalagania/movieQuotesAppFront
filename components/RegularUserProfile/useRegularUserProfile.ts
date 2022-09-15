@@ -79,7 +79,12 @@ const useRegularUserProfile = () => {
           userDetails?._id as string
         );
         if (response.status === 200) {
-          toast.success(t('updated'));
+          toast.success(t('updated'), {
+            className: 'toastify',
+            bodyClassName: 'toastify__body',
+            hideProgressBar: true,
+          });
+
           setUpdateStatus(true);
         }
       } catch (error) {
