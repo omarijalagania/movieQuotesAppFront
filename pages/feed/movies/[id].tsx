@@ -15,7 +15,7 @@ const MovieDetails: React.FC = () => {
   const { router, t } = useTranslate();
   const { id } = router.query;
   const [openAddQuoteDialog, setOpenAddQuoteDialog] = useState(false);
-  const { movie } = useSingleMovie(id as string);
+  const { movie, setRefreshQuote } = useSingleMovie(id as string);
 
   return (
     <>
@@ -38,6 +38,7 @@ const MovieDetails: React.FC = () => {
         {openAddQuoteDialog && (
           <Modal open={openAddQuoteDialog} setOpen={setOpenAddQuoteDialog}>
             <AddQuoteFromMovie
+              setRefreshQuote={setRefreshQuote}
               setOpenAddQuoteDialog={setOpenAddQuoteDialog}
               movie={movie}
               _id={function () {
