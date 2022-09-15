@@ -112,5 +112,9 @@
   "searchText": "Enter @ to search movies, Enter # to search quotes",
   "requiredDirector": "Director is required",
   "descriptionRequired": "Description is required",
-  "requiredPoster": "Poster is required"
+  "requiredPoster": "Poster is required",
+  "shallPass": "You shall not pass!",
+  "noAccess": "Sorry, but you don’t have permission to access this page",
+  "homeReturn": "Return home",
+  "cantSee": "We can't see the page you are looking for"
 }
