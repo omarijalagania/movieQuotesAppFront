@@ -30,11 +30,7 @@ const Search: React.FC<any> = ({ handleSearch }) => {
           }`}
           id='search'
           name='search'
-          placeholder={
-            growSearch
-              ? `Enter @ to search movies, Enter # to search quotes`
-              : t('searchBy')
-          }
+          placeholder={growSearch ? t('searchText') : t('searchBy')}
           onChange={(e) => handleSearch(e)}
         />
       </div>
