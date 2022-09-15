@@ -1,5 +1,11 @@
 import React from 'react';
-import { Input, useRegularUserProfile, Button, RedButton } from 'components';
+import {
+  Input,
+  useRegularUserProfile,
+  Button,
+  RedButton,
+  Modal,
+} from 'components';
 import { CheckIcon, ExclamationCircleIcon } from '@heroicons/react/solid';
 
 import {
@@ -26,6 +32,10 @@ const RegularUserProfile: React.FC = () => {
     removeUserEmail,
     primaryEmail,
     router,
+    openEmailModal,
+    setOpenEmailModal,
+    makeChanges,
+    setMakeChanges,
   } = useRegularUserProfile();
 
   return (
@@ -90,14 +100,26 @@ const RegularUserProfile: React.FC = () => {
               ) : (
                 ''
               )}
-              <p
-                onClick={() => setEditUsername(!editUsername)}
-                className={`text-white absolute ${
-                  router.locale === 'en' ? '-right-12' : '-right-32'
-                } top-1/2 cursor-pointer translate-y-[20%]`}
-              >
-                {t('edit')}
-              </p>
+
+              {!editUsername ? (
+                <p
+                  onClick={() => setEditUsername(!editUsername)}
+                  className={`text-white absolute ${
+                    router.locale === 'en' ? '-right-12' : '-right-32'
+                  } top-1/2 cursor-pointer translate-y-[20%]`}
+                >
+                  {t('edit')}
+                </p>
+              ) : (
+                <p
+                  onClick={() => setEditUsername(!editUsername)}
+                  className={`text-white absolute ${
+                    router.locale === 'en' ? '-right-16' : '-right-32'
+                  } top-1/2 cursor-pointer translate-y-[20%]`}
+                >
+                  {t('cancel')}
+                </p>
+              )}
             </div>
             <div className='w-full md:w-96 h-0.5 mt-10 mb-8 bg-gray-700' />
 
@@ -184,47 +206,56 @@ const RegularUserProfile: React.FC = () => {
                     {formik?.values?.secondaryEmails.length !== 0 ? (
                       formik?.values?.secondaryEmails.map(
                         (_email: string, index: number) => (
-                          <div key={index} className='relative'>
-                            <Input
-                              isLabel={true}
-                              type='email'
-                              id={`secondaryEmails.${index}.secondaryEmail`}
-                              placeholder={t('emailPlaceholder')}
-                              label={t('email')}
-                              name={`secondaryEmails.${index}.secondaryEmail`}
-                              onChange={formik.handleChange}
-                              value={
-                                formik.values.secondaryEmails[index]
-                                  .secondaryEmail
-                              }
-                              className={`border-2 ${
-                                formik.errors?.secondaryEmails
-                                  ? 'border-red-500 '
-                                  : formik.values.secondaryEmails[index]
-                                      .secondaryEmail
-                                  ? 'border-green-500  '
-                                  : ''
-                              }`}
-                            />
-                            {!formik.errors.secondaryEmails &&
-                            formik.values.secondaryEmails[index]
-                              .secondaryEmail !== '' ? (
-                              <CheckIcon className='w-6 h-6 absolute text-green-500 right-2 top-[58%]' />
-                            ) : formik.values.secondaryEmails[index]
-                                .secondaryEmail ? (
-                              <ExclamationCircleIcon className='w-6 h-6 absolute text-red-500 right-2 top-[58%]' />
-                            ) : (
-                              ''
-                            )}
-                            <div className='absolute -right-56 flex top-1/2 cursor-pointer translate-y-[20%]'>
-                              <p className='text-white'>{t('makePrimary')}</p>
-                              <p
-                                onClick={() => arrayHelpers.remove(index)}
-                                className='text-white ml-2'
-                              >
-                                {t('remove')}
-                              </p>
-                            </div>
+                          <div key={index}>
+                            <Modal
+                              classes='!items-start !mt-24'
+                              open={openEmailModal}
+                              setOpen={setOpenEmailModal}
+                            >
+                              <div>
+                                <div className='relative mb-20'>
+                                  <Input
+                                    isLabel={true}
+                                    type='email'
+                                    id={`secondaryEmails.${index}.secondaryEmail`}
+                                    placeholder={t('emailPlaceholder')}
+                                    label='Add new email'
+                                    name={`secondaryEmails.${index}.secondaryEmail`}
+                                    onChange={formik.handleChange}
+                                    value={
+                                      formik.values.secondaryEmails[index]
+                                        .secondaryEmail
+                                    }
+                                    className='border-none   w-[330px] '
+                                  />
+                                  {!formik.errors.secondaryEmails &&
+                                  formik.values.secondaryEmails[index]
+                                    .secondaryEmail !== '' ? (
+                                    <CheckIcon className='w-6 h-6 absolute text-green-500 right-2 top-[58%]' />
+                                  ) : formik.values.secondaryEmails[index]
+                                      .secondaryEmail ? (
+                                    <ExclamationCircleIcon className='w-6 h-6 absolute text-red-500 right-2 top-[58%]' />
+                                  ) : (
+                                    ''
+                                  )}
+                                </div>
+                                <div className='flex justify-between items-center'>
+                                  <p
+                                    onClick={() => setOpenEmailModal(false)}
+                                    className='text-white cursor-pointer'
+                                  >
+                                    Cancel
+                                  </p>
+                                  <RedButton
+                                    onClick={() => {
+                                      setMakeChanges(true);
+                                    }}
+                                    className='text-white'
+                                    name='Add'
+                                  />
+                                </div>
+                              </div>
+                            </Modal>
                           </div>
                         )
                       )
@@ -233,9 +264,12 @@ const RegularUserProfile: React.FC = () => {
                     )}
                     <Button
                       type='button'
-                      onClick={() => arrayHelpers.push({ secondaryEmail: '' })}
-                      className='mt-10'
-                      name={t('addNew')}
+                      onClick={() => {
+                        arrayHelpers.push({ secondaryEmail: '' });
+                        setOpenEmailModal(true);
+                      }}
+                      className='w-full mt-10'
+                      name='Add'
                     />
                   </>
                 )}
@@ -361,17 +395,53 @@ const RegularUserProfile: React.FC = () => {
         </form>
       </div>
 
-      <div className='mt-7 flex absolute -right-10 space-x-3 items-center'>
-        <div className='flex space-x-3'>
-          <Button className='text-white' name={t('cancel')} />
-          <RedButton
-            form='update'
-            type='submit'
-            className='text-white'
-            name={t('submit')}
-          />
+      <Modal
+        classes='!items-start !mt-24'
+        open={makeChanges}
+        setOpen={setMakeChanges}
+      >
+        <div className='flex flex-col mt-4 w-[330px] justify-between items-center'>
+          <p className='text-white'>Are you sure to make changes ?</p>
+          <div className='w-full h-0.5 mt-10 mb-8 bg-gray-700' />
+          <div className='flex justify-between w-[330px] items-center'>
+            <p
+              onClick={() => setMakeChanges(false)}
+              className='text-white cursor-pointer'
+            >
+              Cancel
+            </p>
+            <RedButton
+              className='text-white'
+              onClick={() => {
+                formik.handleSubmit();
+              }}
+              name='Confirm'
+            />
+          </div>
         </div>
-      </div>
+      </Modal>
+
+      {editUsername ||
+        (editPassword && (
+          <div className='mt-7 flex absolute -right-10 space-x-3 items-center'>
+            <div className='flex space-x-3'>
+              <Button
+                onClick={() => {
+                  setEditUsername(false);
+                  setEditPassword(false);
+                }}
+                className='text-white'
+                name={t('cancel')}
+              />
+              <RedButton
+                form='update'
+                type='submit'
+                className='text-white'
+                name={t('submit')}
+              />
+            </div>
+          </div>
+        ))}
     </div>
   );
 };
