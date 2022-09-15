@@ -17,10 +17,7 @@ const userProfileSchema = Yup.object().shape({
   ),
   token: Yup.string(),
   password: Yup.string().lowercase().min(8, 'min8Chars').max(15, 'max15Chars'),
-  oldPassword: Yup.string()
-    .lowercase()
-    .min(8, 'min8Chars')
-    .max(15, 'max15Chars'),
+  oldPassword: Yup.string().oneOf([Yup.ref('password'), null], 'mustMatch'),
 });
 
 export default userProfileSchema;
