@@ -286,26 +286,12 @@ const RegularUserProfile: React.FC = () => {
                 type='password'
                 placeholder={t('passwordPlaceholder')}
                 label={t('password')}
-                name='oldPassword'
+                name='testPassword'
                 onChange={formik.handleChange}
                 value='password'
-                defaultValue={userDetails?.password}
-                className={`border-2 ${
-                  formik.errors.password
-                    ? 'border-red-500'
-                    : formik.values.password
-                    ? 'border-green-500'
-                    : ''
-                }`}
+                defaultValue='password'
               />
-              {!formik.errors.oldPassword &&
-              formik.values.oldPassword !== '' ? (
-                <CheckIcon className='w-6 h-6 absolute text-green-500 right-2 top-[58%]' />
-              ) : formik.values.oldPassword ? (
-                <ExclamationCircleIcon className='w-6 h-6 absolute text-red-500 right-2 top-[58%]' />
-              ) : (
-                ''
-              )}
+
               <p
                 onClick={() => setEditPassword(!editPassword)}
                 className={`text-white absolute ${
@@ -315,11 +301,7 @@ const RegularUserProfile: React.FC = () => {
                 {t('edit')}
               </p>
             </div>
-            {formik.errors.oldPassword && (
-              <p className='text-red-500 mt-1'>
-                {t(formik.errors.oldPassword)}
-              </p>
-            )}
+
             {editPassword && (
               <>
                 <div className='border-[1px] flex flex-col justify-center mt-10 border-gray-500 rounded-lg p-5'>
@@ -369,26 +351,31 @@ const RegularUserProfile: React.FC = () => {
                     type='password'
                     placeholder={t('repeatPassword')}
                     label={t('repeatPassword')}
-                    name='repeatPassword'
+                    name='oldPassword'
                     onChange={formik.handleChange}
-                    value={formik.values.repeatPassword}
+                    value={formik.values.oldPassword}
                     className={`border-2 ${
-                      formik.errors.repeatPassword
+                      formik.errors.oldPassword
                         ? 'border-red-500'
-                        : formik.values.repeatPassword
+                        : formik.values.oldPassword
                         ? 'border-green-500'
                         : ''
                     }`}
                   />
-                  {!formik.errors.repeatPassword &&
-                  formik.values.repeatPassword !== '' ? (
+                  {!formik.errors.oldPassword &&
+                  formik.values.oldPassword !== '' ? (
                     <CheckIcon className='w-6 h-6 absolute text-green-500 right-2 top-[58%]' />
-                  ) : formik.values.repeatPassword ? (
+                  ) : formik.values.oldPassword ? (
                     <ExclamationCircleIcon className='w-6 h-6 absolute text-red-500 right-2 top-[58%]' />
                   ) : (
                     ''
                   )}
                 </div>
+                {formik.errors.oldPassword && (
+                  <p className='text-red-500 mt-1'>
+                    {t(formik.errors.oldPassword)}
+                  </p>
+                )}
               </>
             )}
           </div>
