@@ -12,7 +12,8 @@ import React, { useEffect, useState } from 'react';
 
 export const useAddQuoteFromMovie = (
   movie: SingleMovieProps,
-  setOpenAddQuoteDialog: React.Dispatch<React.SetStateAction<boolean>>
+  setOpenAddQuoteDialog: React.Dispatch<React.SetStateAction<boolean>>,
+  setRefreshQuote: React.Dispatch<React.SetStateAction<boolean>>
 ) => {
   const [file, setFile] = useState<File | null>(null);
   const { userId } = useHeader();
@@ -31,7 +32,9 @@ export const useAddQuoteFromMovie = (
       setOpenAddQuoteDialog(false);
       try {
         const response = await addQuoteHandler(formData as FormData);
-
+        if (response.status === 200) {
+          setRefreshQuote(true);
+        }
         if (response.status === 422) {
           toast.error('Error adding quote');
         }

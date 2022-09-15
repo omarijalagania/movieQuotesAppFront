@@ -2,6 +2,7 @@ import React from 'react';
 
 export type MovieProp = {
   _id(_id: any);
+  setRefreshQuote: React.Dispatch<React.SetStateAction<boolean>>;
   movie: {
     _id: string;
     movieNameEn: string;
