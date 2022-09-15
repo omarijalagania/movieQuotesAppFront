@@ -14,7 +14,7 @@ const movieSchema = Yup.object().shape({
   descriptionGe: Yup.string()
     .matches(/[Ⴀ-\u10fe]$/, 'შეიყვანეთ მხოლოდ ქართული ასოები')
     .required('descriptionRequired'),
-  poster: Yup.mixed().required('requiredPoster'),
+  poster: Yup.mixed().notRequired(),
 });
 
 export default movieSchema;
