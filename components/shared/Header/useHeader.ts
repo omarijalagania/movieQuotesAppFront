@@ -54,6 +54,12 @@ export const useHeader = (
   };
 
   useEffect(() => {
+    if (session && router.pathname === '/') {
+      router.push('/feed');
+    }
+  }, [router, session]);
+
+  useEffect(() => {
     if (registerResponse.status === 200) {
       setIsOpenThanks(true);
       setIsOpen(false);
