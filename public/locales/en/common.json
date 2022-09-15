@@ -109,5 +109,8 @@
   "cancel": "Cancel",
   "submit": "Submit",
   "emailRemoved": "Email removed",
-  "searchText": "Enter @ to search movies, Enter # to search quotes"
+  "searchText": "Enter @ to search movies, Enter # to search quotes",
+  "requiredDirector": "Director is required",
+  "descriptionRequired": "Description is required",
+  "requiredPoster": "Poster is required"
 }

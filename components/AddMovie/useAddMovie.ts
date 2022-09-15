@@ -10,6 +10,7 @@ import { saveAddMovie } from 'state';
 
 export const useAddMovie = () => {
   const [file, setFile] = useState<File | null>(null);
+  const [selectError, setSelectError] = useState(false);
   const { userId, userDetails } = useHeader();
   const [genres, setGenres] = useState([]);
   const [selectedGenres, setSelectedGenres] = useState<string[]>([]);
@@ -17,14 +18,18 @@ export const useAddMovie = () => {
   const dispatch = useDispatch();
 
   const handleChange = (selectedOption: any) => {
+    setSelectError(false);
     const selectedGenresVal = selectedOption.map(
       (option: { value: string; label: string }) => ({
         genre: option.value,
         label: option.label,
       })
     );
+
     setSelectedGenres(selectedGenresVal);
   };
+
+  console.log(selectError);
 
   const newGenre = genres.map((genre: { genre: string; label: string }) => ({
     value: genre.genre,
@@ -49,6 +54,7 @@ export const useAddMovie = () => {
 
     onSubmit: async (values) => {
       const formData = new FormData();
+
       formData.append('movieNameGe', values.movieNameGe);
       formData.append('movieNameEn', values.movieNameEn);
       formData.append('genre', JSON.stringify(selectedGenres));
@@ -76,6 +82,14 @@ export const useAddMovie = () => {
     validationSchema: movieSchema,
   });
 
+  useEffect(() => {
+    if (JSON.stringify(formik.errors) === '{}' || newGenre.length === 0) {
+      setSelectError(false);
+    } else {
+      setSelectError(true);
+    }
+  }, [formik.errors, newGenre.length]);
+
   return {
     formik,
     t,
@@ -85,5 +99,6 @@ export const useAddMovie = () => {
     selectedGenres,
     userDetails,
     file,
+    selectError,
   };
 };

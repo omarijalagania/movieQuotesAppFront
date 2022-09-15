@@ -12,8 +12,16 @@ import { CameraIcon } from '@heroicons/react/outline';
 import { imagePreview } from 'helpers';
 
 const AddMovie: React.FC<AddMovieProp> = ({ setOpenAddMovieModal }) => {
-  const { formik, setFile, newGenre, handleChange, userDetails, t, file } =
-    useAddMovie();
+  const {
+    formik,
+    setFile,
+    newGenre,
+    handleChange,
+    userDetails,
+    t,
+    file,
+    selectError,
+  } = useAddMovie();
 
   return (
     <div className='w-screen bg-darkBlue md:w-[700px] md:h-full mx-auto px-5 md:px-0 h-screen'>
@@ -83,6 +91,11 @@ const AddMovie: React.FC<AddMovieProp> = ({ setOpenAddMovieModal }) => {
           options={newGenre}
           placeholder={t('selectGenre')}
         />
+        {selectError ? (
+          <p className='text-red-500 mt-1'>{t('required')}</p>
+        ) : (
+          <></>
+        )}
 
         <div className='relative mb-3'>
           <Input
@@ -179,7 +192,10 @@ const AddMovie: React.FC<AddMovieProp> = ({ setOpenAddMovieModal }) => {
               accept='.png, .jpg, .jpeg'
             />
           </label>
-          {!file && <p className='text-red-500 mt-1'>select file</p>}
+
+          {formik.errors.poster && formik.touched.poster && (
+            <p className='text-red-500 mt-1'>{t('requiredPoster')}</p>
+          )}
         </div>
 
         <RedButton className='w-full text-white' name={t('addMovie')} />
