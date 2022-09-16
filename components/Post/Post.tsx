@@ -16,7 +16,10 @@ import { addNotificationHandler } from 'services';
 import { CommentProp } from 'types';
 
 const Post: React.FC<Props> = ({ item, setGetLike }) => {
-  const { isLiked, socket, userId, setIsLiked } = usePost(item, setGetLike);
+  const { isLiked, socket, userId, setIsLiked, router } = usePost(
+    item,
+    setGetLike
+  );
 
   return (
     <div className='bg-darkBlue p-5 text-white md:w-[90%] rounded-md mt-5'>
@@ -32,7 +35,15 @@ const Post: React.FC<Props> = ({ item, setGetLike }) => {
           </h3>
         ))}
       </div>
-      <h4 className='mt-3'>{item.quoteNameEng}</h4>
+      <h4 className='mt-3 italic'>{`${
+        router.locale === 'en'
+          ? "'" + item.quoteNameEng + "'"
+          : "'" + item.quoteNameGe + "'"
+      } - ${
+        router.locale === 'en'
+          ? item.movie[0].movieNameEn
+          : item.movie[0].movieNameGe
+      }`}</h4>
       <div className='mt-6'>
         <Image
           width={1100}
