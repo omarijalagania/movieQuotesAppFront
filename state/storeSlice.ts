@@ -18,6 +18,7 @@ const initialState: GlobalState = {
   likeNotification: {},
   closeModal: false,
   secondaryEmails: [],
+  growSearch: false,
 };
 
 export const storeSlice = createSlice({
@@ -72,6 +73,9 @@ export const storeSlice = createSlice({
     saveSecondaryEmails: (state, action) => {
       state.secondaryEmails = action.payload;
     },
+    changeSearchWidth: (state, action) => {
+      state.growSearch = action.payload;
+    },
   },
 });
 
@@ -92,6 +96,7 @@ export const {
   onModalClose,
   saveLikeNotification,
   saveSecondaryEmails,
+  changeSearchWidth,
 } = storeSlice.actions;
 
 export default storeSlice.reducer;

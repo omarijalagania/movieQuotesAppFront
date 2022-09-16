@@ -4,13 +4,18 @@ import { PencilIcon, TrashIcon } from '@heroicons/react/outline';
 import { Modal, MovieEditDialog, useMovieDetailsSide } from 'components';
 
 const MovieDetailsSide: React.FC = () => {
-  const { movie, openEditDialog, setOpenEditDialog, deleteMovie, t } =
+  const { movie, openEditDialog, setOpenEditDialog, deleteMovie, t, router } =
     useMovieDetailsSide();
+
+  console.log(t);
 
   return (
     <div className='mt-10 space-y-6 flex flex-col justify-start'>
       <div className='flex justify-between items-center'>
-        <h2 className='text-primaryGold text-3xl'> {movie?.movieNameEn}</h2>
+        <h2 className='text-primaryGold text-3xl'>
+          {' '}
+          {router.locale === 'en' ? movie?.movieNameEn : movie?.movieNameGe}
+        </h2>
         <div className='flex'>
           <PencilIcon
             onClick={() => setOpenEditDialog(true)}
@@ -33,9 +38,12 @@ const MovieDetailsSide: React.FC = () => {
         ))}
       </div>
       <p className='text-xs'>
-        {t('director')}: {movie.directorEn}
+        {t('director')}:{' '}
+        {router.locale === 'en' ? movie?.directorEn : movie?.directorGe}
       </p>
-      <p className='text-xs'>{movie.descriptionEn}</p>
+      <p className='text-xs'>
+        {router.locale === 'en' ? movie?.descriptionEn : movie?.descriptionGe}
+      </p>
 
       {openEditDialog && (
         <Modal

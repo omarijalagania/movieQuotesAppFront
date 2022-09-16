@@ -3,15 +3,18 @@ import { XIcon } from '@heroicons/react/solid';
 
 import { Input, RedButton, useAddQuote } from 'components';
 import { CameraIcon } from '@heroicons/react/outline';
+import { imagePreview } from 'helpers';
 
 const AddQuote: React.FC = () => {
   const { formik, setFile, newMovie, handleChange, userDetails, t, file } =
     useAddQuote();
 
+  console.log(formik.errors);
+
   return (
-    <div className='w-full h-screen md:h-full md:p-5'>
-      <div className='flex relative border-b-[1px] pb-2 border-gray-500'>
-        <h1 className='text-white mx-auto'>{t('addQuote')}</h1>
+    <div className='w-full h-screen md:w-[700px] mx-auto  md:h-full p-5 md:p-0'>
+      <div className='flex relative border-b-[1px] md:!w-[700px] pb-2 border-gray-500'>
+        <h1 className='text-white  mx-auto'>{t('addQuote')}</h1>
         <XIcon className='w-5 h-5 cursor-pointer text-white absolute right-0' />
       </div>
       <div className='mt-5'>
@@ -30,12 +33,12 @@ const AddQuote: React.FC = () => {
       </div>
       <form
         onSubmit={formik.handleSubmit}
-        className='mt-5'
+        className='mt-5 md:w-[700px] mx-auto'
         encType='multipart/form-data'
       >
         <div className='relative mb-3'>
           <Input
-            className='!rounded-none py-1 !border-[1px] !text-sm border-gray-400 bg-darkBlue text-white md:!w-[500px] !placeholder-gray-500'
+            className='!rounded-none py-1 !border-[1px] !text-sm border-gray-400 bg-darkBlue text-white md:!w-[700px] !placeholder-gray-500'
             isLabel={false}
             type='text'
             id='quoteNameEng'
@@ -43,13 +46,16 @@ const AddQuote: React.FC = () => {
             placeholder='Quote name'
             onChange={formik.handleChange}
           />
-          <p className='text-sm text-gray-400 absolute top-[20%] right-2'>
+          <p className='text-sm text-gray-400 absolute top-[20%] right-1'>
             Eng
           </p>
+          {formik.errors.quoteNameEng && formik.touched.quoteNameEng && (
+            <p className='text-red-500 mt-1'>{t(formik.errors.quoteNameEng)}</p>
+          )}
         </div>
         <div className='relative mb-3'>
           <Input
-            className='!rounded-none py-1 !border-[1px] !text-sm border-gray-400 bg-darkBlue text-white md:!w-[500px] !placeholder-gray-500'
+            className='!rounded-none py-1 !border-[1px] !text-sm border-gray-400 bg-darkBlue text-white md:!w-[700px] !placeholder-gray-500'
             isLabel={false}
             type='text'
             id='quoteNameGe'
@@ -57,12 +63,15 @@ const AddQuote: React.FC = () => {
             placeholder='ციტატის სახელი'
             onChange={formik.handleChange}
           />
-          <p className='text-sm text-gray-400 absolute top-[20%] right-2'>
+          <p className='text-sm text-gray-400 absolute top-[20%] right-1'>
             ქართ
           </p>
+          {formik.errors.quoteNameGe && formik.touched.quoteNameGe && (
+            <p className='text-red-500 mt-1'>{t(formik.errors.quoteNameGe)}</p>
+          )}
         </div>
 
-        <div className='mb-3'>
+        <div className='mb-3 md:!w-[700px]'>
           <label className='flex px-2 w-full py-3 transition bg-darkBlue border-[1px] border-gray-300  cursor-pointer  focus:outline-none'>
             <span className='flex items-center space-x-2'>
               <CameraIcon className='w-5 h-5 text-white' />
@@ -72,9 +81,13 @@ const AddQuote: React.FC = () => {
                   {t('chooseFile')}
                 </span>
               </span>
-              <p className='text-white w-14 text-xs'>
-                {file !== null ? file.name : ''}
-              </p>
+              {file && (
+                <img
+                  src={imagePreview(file as File)}
+                  alt=''
+                  className='w-6 h-4'
+                />
+              )}
             </span>
             <input
               onChange={(event) => {
@@ -90,10 +103,17 @@ const AddQuote: React.FC = () => {
               accept='.png, .jpg, .jpeg'
             />
           </label>
+          {file ? (
+            <></>
+          ) : (
+            JSON.stringify(formik.errors) !== '{}' && (
+              <p className='text-red-500 mt-1'>{t('requiredPoster')}</p>
+            )
+          )}
         </div>
 
         <select
-          className='rounded-none  w-full border-[1px] text-sm border-gray-400 p-2 bg-darkBlue text-white placeholder-gray-500'
+          className='rounded-none  w-full md:!w-[700px] border-[1px] text-sm border-gray-400 p-2 bg-darkBlue text-white placeholder-gray-500'
           placeholder='Choose movie'
           onChange={handleChange}
         >
@@ -109,7 +129,10 @@ const AddQuote: React.FC = () => {
           })}
         </select>
 
-        <RedButton className='w-full mt-3 text-white' name={t('addQuote')} />
+        <RedButton
+          className='w-full md:!w-[700px] mt-3 text-white'
+          name={t('addQuote')}
+        />
       </form>
     </div>
   );

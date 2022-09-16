@@ -3,6 +3,7 @@ import React, { useEffect } from 'react';
 import { userConfirmHandler } from 'services';
 import { useDispatch } from 'react-redux';
 import { saveConfirmResponse } from 'state';
+import Head from 'next/head';
 const Confirm = () => {
   const router = useRouter();
   const dispatch = useDispatch();
@@ -31,7 +32,15 @@ const Confirm = () => {
     }
   }, [dispatch, router]);
 
-  return <div></div>;
+  return (
+    <div>
+      <Head>
+        <title>Confirm</title>
+        <meta name='description' content='Home Page' />
+        <link rel='icon' href='/favicon.ico' />
+      </Head>
+    </div>
+  );
 };
 
 export default Confirm;

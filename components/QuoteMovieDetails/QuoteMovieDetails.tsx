@@ -40,7 +40,7 @@ const QuoteMovieDetails: React.FC<QuotePropsItem> = ({ item }) => {
                 <DotsHorizontalIcon className='w-5 h-5 cursor-pointer text-white absolute -top-1 right-3' />
               </Menu.Button>
               {open && (
-                <div className='bg-lightBlue rounded-md pl-10 pr-20 py-7'>
+                <div className='bg-lightBlue rounded-md outline-none pl-5 pr-10 py-5'>
                   <Menu.Items>
                     <Menu.Item>
                       {({}) => (

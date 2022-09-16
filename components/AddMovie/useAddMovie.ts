@@ -10,6 +10,7 @@ import { saveAddMovie } from 'state';
 
 export const useAddMovie = () => {
   const [file, setFile] = useState<File | null>(null);
+  const [selectError, setSelectError] = useState(false);
   const { userId, userDetails } = useHeader();
   const [genres, setGenres] = useState([]);
   const [selectedGenres, setSelectedGenres] = useState<string[]>([]);
@@ -17,12 +18,14 @@ export const useAddMovie = () => {
   const dispatch = useDispatch();
 
   const handleChange = (selectedOption: any) => {
+    setSelectError(false);
     const selectedGenresVal = selectedOption.map(
       (option: { value: string; label: string }) => ({
         genre: option.value,
         label: option.label,
       })
     );
+
     setSelectedGenres(selectedGenresVal);
   };
 
@@ -49,6 +52,7 @@ export const useAddMovie = () => {
 
     onSubmit: async (values) => {
       const formData = new FormData();
+
       formData.append('movieNameGe', values.movieNameGe);
       formData.append('movieNameEn', values.movieNameEn);
       formData.append('genre', JSON.stringify(selectedGenres));
@@ -60,13 +64,15 @@ export const useAddMovie = () => {
       formData.append('userId', userId);
 
       try {
-        const response = await addMovieHandler(formData);
-        dispatch(saveAddMovie(response));
-        if (response.status === 200 || response.status === 201) {
-          toast.success(t('successMovieAdd'));
-        }
-        if (response.status === 422) {
-          toast.error(t('movieAddError'));
+        if (file) {
+          const response = await addMovieHandler(formData);
+          dispatch(saveAddMovie(response));
+          if (response.status === 200 || response.status === 201) {
+            toast.success(t('successMovieAdd'));
+          }
+          if (response.status === 422) {
+            toast.error(t('movieAddError'));
+          }
         }
       } catch (error) {
         toast.error(t('serverError'));
@@ -75,6 +81,14 @@ export const useAddMovie = () => {
 
     validationSchema: movieSchema,
   });
+
+  useEffect(() => {
+    if (JSON.stringify(formik.errors) === '{}' || newGenre.length === 0) {
+      setSelectError(false);
+    } else {
+      setSelectError(true);
+    }
+  }, [formik.errors, newGenre.length]);
 
   return {
     formik,
@@ -85,5 +99,6 @@ export const useAddMovie = () => {
     selectedGenres,
     userDetails,
     file,
+    selectError,
   };
 };

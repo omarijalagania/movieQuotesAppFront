@@ -9,6 +9,7 @@ export type UserProps = {
   _id: React.Key | null | undefined;
   userName: string;
   provider: string;
+  poster: string;
 
   userName:
     | string

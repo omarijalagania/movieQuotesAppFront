@@ -28,19 +28,25 @@ const useAddComment = () => {
         quoteId: fieldId,
         receiver: userId,
       });
+
       socket?.emit('notification', {
         userId: receiverId,
       });
+
+      socket?.off('like');
+      socket?.off('notification');
+
       const dataNotification = {
         userId: userId,
         notificationType: 'commented',
         isRead: false,
         notificationFor: receiverId,
       };
-
+      formik.resetForm();
       try {
         const response = await addCommentsHandler(data);
         addNotificationHandler(dataNotification);
+
         if (response.status === 422) {
           toast.error('Error adding comment');
         }
@@ -48,7 +54,6 @@ const useAddComment = () => {
         toast.error('Server Error');
       }
     },
-
     validationSchema: commentSchema,
   });
 

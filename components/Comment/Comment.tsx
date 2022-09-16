@@ -10,7 +10,11 @@ const Comment: React.FC<SingleCommentProps> = ({ comment }) => {
       <div className='flex items-center mb-2'>
         <img
           className='w-8 h-8 rounded-full'
-          src={user?.image ? user?.image : 'https://i.pravatar.cc/50'}
+          src={
+            user?.poster
+              ? process.env.NEXT_PUBLIC_BACKEND_URL + '/' + user?.poster
+              : 'https://i.pravatar.cc/50'
+          }
           alt='avatar'
         />
         <p className='ml-4'>{user?.userName}</p>

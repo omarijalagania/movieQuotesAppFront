@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { getSingleMovieHandler } from 'services';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState, saveSingleMovie } from 'state';
@@ -6,6 +6,7 @@ import { RootState, saveSingleMovie } from 'state';
 const useSingleMovie = (id: string) => {
   const dispatch = useDispatch();
   const movie = useSelector((state: RootState) => state.quotes.singleMovie);
+  const [refreshQuote, setRefreshQuote] = useState(false);
   const closeModal = useSelector((state: RootState) => state.quotes.closeModal);
   useEffect(() => {
     try {
@@ -17,10 +18,17 @@ const useSingleMovie = (id: string) => {
         getOneMovie();
       }
     } catch (error) {}
-  }, [dispatch, id, closeModal]);
+  }, [dispatch, id, refreshQuote, closeModal]);
+
+  useEffect(() => {
+    if (refreshQuote) {
+      setRefreshQuote(false);
+    }
+  }, [refreshQuote]);
 
   return {
     movie,
+    setRefreshQuote,
   };
 };
 

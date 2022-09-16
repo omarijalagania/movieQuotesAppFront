@@ -57,14 +57,16 @@ export const useAddQuote = () => {
       formData.append('userId', userId);
 
       try {
-        const response = await addQuoteHandler(formData as FormData);
-        if (response.status === 200 || response.status === 201) {
-          toast.success(t('quoteAdded'));
-          dispatch(onModalClose(true));
-        }
-        if (response.status === 422) {
-          toast.error(t('addingError'));
-          dispatch(onModalClose(true));
+        if (file) {
+          const response = await addQuoteHandler(formData as FormData);
+          if (response.status === 200 || response.status === 201) {
+            toast.success(t('quoteAdded'));
+            dispatch(onModalClose(true));
+          }
+          if (response.status === 422) {
+            toast.error(t('addingError'));
+            dispatch(onModalClose(true));
+          }
         }
       } catch (error) {
         toast.error(t('serverError'));

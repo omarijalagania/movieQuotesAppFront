@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, SetStateAction } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { RootState, saveNotification, saveSocket } from 'state';
 import { useTranslate, useMediaSize } from 'hooks';
@@ -9,7 +9,10 @@ import { JwDecode, UserDetails } from 'components';
 import { toast } from 'react-toastify';
 import { io } from 'socket.io-client';
 
-export const useHeader = () => {
+export const useHeader = (
+  emailRemoveResponse?: boolean,
+  updateStatus?: boolean
+) => {
   const {
     registerResponse,
     passwordRecoveryResponse,
@@ -26,6 +29,8 @@ export const useHeader = () => {
   const [openRecoverModal, setOpenRecoverModal] = useState(false);
   const [openCheckEmailModal, setOpenCheckEmailModal] = useState(false);
   const [openNewPasswordModal, setOpenNewPasswordModal] = useState(false);
+  const [comments, setComments] =
+    useState<SetStateAction<{ userId: string }>>();
   const [openSuccessPasswordChangeModal, setOpenSuccessPasswordChangeModal] =
     useState(false);
   const [userDetails, setUserDetails] = useState<UserDetails>();
@@ -47,6 +52,12 @@ export const useHeader = () => {
   const handleClickOutside = () => {
     setOpenMobileMenu(false);
   };
+
+  useEffect(() => {
+    if (session && router.pathname === '/') {
+      router.push('/feed');
+    }
+  }, [router, session]);
 
   useEffect(() => {
     if (registerResponse.status === 200) {
@@ -73,6 +84,12 @@ export const useHeader = () => {
       setOpenNewPasswordModal(true);
     }
   }, [tokens]);
+
+  useEffect(() => {
+    if (isOpenThanks) {
+      setIsOpen(false);
+    }
+  }, [isOpenThanks]);
 
   useEffect(() => {
     dispatch(saveSocket(io(process.env.NEXT_PUBLIC_SOCKET_URL)));
@@ -117,7 +134,7 @@ export const useHeader = () => {
       }
     };
     getUserEmail();
-  }, [session]);
+  }, [session, emailRemoveResponse, updateStatus]);
 
   useEffect(() => {
     if (userId) {
@@ -126,6 +143,9 @@ export const useHeader = () => {
         socketId: socket?.id,
       });
     }
+    return () => {
+      socket?.off('newUser');
+    };
   }, [socket, userId]);
 
   useEffect(() => {
@@ -134,11 +154,12 @@ export const useHeader = () => {
       setNotifications(response.data);
     };
     getNotifications();
-  }, [getNotifications, likeNotification]);
+  }, [getNotifications, comments, likeNotification]);
 
   useEffect(() => {
     socket?.on('gotNotification', (data: { userId: string }) => {
       dispatch(saveNotification(data));
+      setComments(data);
     });
   }, [dispatch, socket]);
 

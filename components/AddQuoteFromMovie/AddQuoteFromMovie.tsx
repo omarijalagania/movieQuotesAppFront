@@ -8,10 +8,12 @@ import Image from 'next/image';
 const AddQuoteFromMovie: React.FC<MovieProp> = ({
   movie,
   setOpenAddQuoteDialog,
+  setRefreshQuote,
 }) => {
   const { formik, setFile, file } = useAddQuoteFromMovie(
     movie,
-    setOpenAddQuoteDialog
+    setOpenAddQuoteDialog,
+    setRefreshQuote
   );
   const { userDetails, t } = useHeader();
   return (
