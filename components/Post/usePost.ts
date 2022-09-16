@@ -2,6 +2,7 @@ import { useHeader } from 'components';
 import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState, saveLikeNotification, savePostItem } from 'state';
+import { useTranslate } from 'hooks';
 import { ItemProps } from 'types';
 
 const usePost = (
@@ -16,6 +17,7 @@ const usePost = (
   const [isLiked, setIsLiked] = useState(false);
   const { userId, userDetails } = useHeader();
   const socket = useSelector((state: RootState) => state.quotes.socket);
+  const { t, router } = useTranslate();
 
   useEffect(() => {
     dispatch(savePostItem(item));
@@ -56,6 +58,8 @@ const usePost = (
     socket,
     setIsLiked,
     userDetails,
+    t,
+    router,
   };
 };
 
