@@ -38,7 +38,7 @@ const AddQuote: React.FC = () => {
       >
         <div className='relative mb-3'>
           <Input
-            className='!rounded-none py-1 !border-[1px] !text-sm border-gray-400 bg-darkBlue text-white md:!w-[700px] !placeholder-gray-500'
+            className='!rounded-none py-1 !border-[1px] italic font-extralight !text-sm border-gray-400 bg-darkBlue text-white md:!w-[700px] !placeholder-gray-500'
             isLabel={false}
             type='text'
             id='quoteNameEng'
@@ -55,7 +55,7 @@ const AddQuote: React.FC = () => {
         </div>
         <div className='relative mb-3'>
           <Input
-            className='!rounded-none py-1 !border-[1px] !text-sm border-gray-400 bg-darkBlue text-white md:!w-[700px] !placeholder-gray-500'
+            className='!rounded-none py-1 !border-[1px] italic font-extralight !text-sm border-gray-400 bg-darkBlue text-white md:!w-[700px] !placeholder-gray-500'
             isLabel={false}
             type='text'
             id='quoteNameGe'
