@@ -21,9 +21,9 @@ const GoogleProfile: React.FC = () => {
   } = useGoogleProfile();
 
   return (
-    <div className='w-[650px] relative'>
+    <div className='w-[900px] relative'>
       <p className='text-white mt-5 mb-20'>My profile</p>
-      <div className='w-[650px] flex flex-col justify-center items-center rounded-lg relative bg-darkBlue h-[500px]'>
+      <div className='w-[900px] flex flex-col justify-center items-center rounded-lg relative bg-darkBlue h-[500px]'>
         <img
           src={showInAvatar(
             imagePreview(file as File),
@@ -66,6 +66,7 @@ const GoogleProfile: React.FC = () => {
               value={formik.values.userName}
               defaultValue={userDetails?.userName}
               onChange={formik.handleChange}
+              className={`w-full md:!w-[500px]`}
             />
 
             {!isEditable && (
@@ -90,6 +91,7 @@ const GoogleProfile: React.FC = () => {
               onChange={formik.handleChange}
               value={formik.values.email}
               defaultValue={userDetails?.email}
+              className={`w-full md:!w-[500px]`}
             />
           </div>
         </form>
