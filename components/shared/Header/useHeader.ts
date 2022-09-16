@@ -86,6 +86,12 @@ export const useHeader = (
   }, [tokens]);
 
   useEffect(() => {
+    if (isOpenThanks) {
+      setIsOpen(false);
+    }
+  }, [isOpenThanks]);
+
+  useEffect(() => {
     dispatch(saveSocket(io(process.env.NEXT_PUBLIC_SOCKET_URL)));
   }, [dispatch]);
 
