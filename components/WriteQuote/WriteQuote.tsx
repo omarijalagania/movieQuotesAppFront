@@ -11,7 +11,7 @@ const WriteQuote: React.FC<WriteQUoteProps> = ({ setOpenAddQuote }) => {
   return (
     <div
       onClick={() => setOpenAddQuote(true)}
-      className='relative w-full transition-all md:w-[790px]'
+      className='relative w-full md:h-[47px] transition-all md:w-[790px]'
     >
       <input
         className={`py-2 ${
@@ -21,7 +21,7 @@ const WriteQuote: React.FC<WriteQUoteProps> = ({ setOpenAddQuote }) => {
         disabled
         placeholder={t('writeQuote')}
       />
-      <PencilAltIcon className='w-4 h-4 ml-2 absolute top-[30%] text-white' />
+      <PencilAltIcon className='w-4 h-4 ml-2 absolute top-[20%] text-white' />
     </div>
   );
 };
