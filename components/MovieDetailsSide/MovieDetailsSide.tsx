@@ -7,8 +7,6 @@ const MovieDetailsSide: React.FC = () => {
   const { movie, openEditDialog, setOpenEditDialog, deleteMovie, t, router } =
     useMovieDetailsSide();
 
-  console.log(t);
-
   return (
     <div className='mt-10 space-y-6 flex flex-col justify-start'>
       <div className='flex justify-between items-center'>
@@ -16,15 +14,20 @@ const MovieDetailsSide: React.FC = () => {
           {' '}
           {router.locale === 'en' ? movie?.movieNameEn : movie?.movieNameGe}
         </h2>
-        <div className='flex'>
-          <PencilIcon
-            onClick={() => setOpenEditDialog(true)}
-            className='w-5 h-5 cursor-pointer text-white'
-          />
-          <TrashIcon
-            onClick={() => deleteMovie(movie?._id)}
-            className='w-5 h-5 ml-2 cursor-pointer text-white'
-          />
+        <div className='flex relative'>
+          <div className='w-[72px] h-[40px] rounded-tl-md rounded-bl-md bg-lightBlue flex justify-center items-center'>
+            <PencilIcon
+              onClick={() => setOpenEditDialog(true)}
+              className='w-5 h-5 cursor-pointer text-white'
+            />
+            <div className='h-[15px] w-[1px] absolute left-1/2 bg-gray-500' />
+          </div>
+          <div className='w-[72px] h-[40px] rounded-tr-md rounded-br-md bg-lightBlue flex justify-center items-center'>
+            <TrashIcon
+              onClick={() => deleteMovie(movie?._id)}
+              className='w-5 h-5 ml-2 cursor-pointer text-white'
+            />
+          </div>
         </div>
       </div>
       <div className='flex space-x-2'>

@@ -21,9 +21,9 @@ const GoogleProfile: React.FC = () => {
   } = useGoogleProfile();
 
   return (
-    <div className='w-[900px] relative'>
+    <div className='w-[998px] relative'>
       <p className='text-white mt-5 mb-20'>My profile</p>
-      <div className='w-[900px] flex flex-col justify-center items-center rounded-lg relative bg-darkBlue h-[500px]'>
+      <div className='w-[998px] flex flex-col justify-center items-center rounded-lg relative bg-darkBlue h-[535px]'>
         <img
           src={showInAvatar(
             imagePreview(file as File),

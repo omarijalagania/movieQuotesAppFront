@@ -6,13 +6,14 @@ import {
   MovieDetailsSide,
   useLayout,
   Forbidden,
+  Loader,
 } from 'components';
 
 const Layout: React.FC<LayoutProps> = ({ children }) => {
   const { router, status } = useLayout();
 
   if (status === 'loading') {
-    return <p>Loading...</p>;
+    return <Loader />;
   }
 
   if (status === 'unauthenticated') {
@@ -41,11 +42,12 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
           }  `}
         >
           <div
-            className={`flex flex-col  md:h-screen md:w-auto ${
+            className={`flex flex-col mx-auto  md:h-screen md:w-auto ${
               !router.pathname.includes('/feed/movies') &&
               !router.pathname.includes('/feed/movies/[id]') &&
-              'lg:w-[85rem]'
-            }  pt-8 p-5 md:p-10 `}
+              !router.pathname.includes('/feed/profile') &&
+              'lg:w-[85rem] '
+            }  pt-8 p-5 md:p-10`}
           >
             {children}
           </div>

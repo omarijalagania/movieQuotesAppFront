@@ -44,10 +44,10 @@ const RegularUserProfile: React.FC = () => {
   }
 
   return (
-    <div className='w-[750px]  relative'>
+    <div className='w-[998px]  relative'>
       <p className='text-white mt-5 mb-20'>{t('myProfile')}</p>
 
-      <div className='w-[800px] flex flex-col justify-center items-start px-10  rounded-lg relative bg-darkBlue min-h-[80vh]'>
+      <div className='w-[998px] flex flex-col justify-center items-start px-10  rounded-lg relative bg-darkBlue min-h-[80vh]'>
         <img
           src={showInAvatar(
             imagePreview(file as File),
@@ -251,6 +251,7 @@ const RegularUserProfile: React.FC = () => {
                                   >
                                     Cancel
                                   </p>
+
                                   <RedButton
                                     onClick={() => {
                                       setMakeChanges(true);
@@ -269,12 +270,14 @@ const RegularUserProfile: React.FC = () => {
                     )}
                     <Button
                       type='button'
+                      hadIcon={true}
+                      icon='plus'
                       onClick={() => {
                         arrayHelpers.push({ secondaryEmail: '' });
                         setOpenEmailModal(true);
                       }}
-                      className='w-full mt-10'
-                      name='Add'
+                      className='w-[191px] py-2 mt-10'
+                      name='Add new email'
                     />
                   </>
                 )}

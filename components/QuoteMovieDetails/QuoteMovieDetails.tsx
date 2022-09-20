@@ -31,7 +31,7 @@ const QuoteMovieDetails: React.FC<QuotePropsItem> = ({ item }) => {
   } = useQuoteMovieDetails(item);
 
   return (
-    <div className='bg-darkBlue rounded-md p-5 mt-10 relative'>
+    <div className='bg-darkBlue md:w-[1200px]  rounded-md p-5 mt-10 relative'>
       <div className='absolute  right-0'>
         <Menu>
           {({ open }) => (

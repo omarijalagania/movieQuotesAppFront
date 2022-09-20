@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useTranslate, useSingleMovie } from 'hooks';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
-import Image from 'next/image';
+
 import {
   AddQuoteFromMovie,
   Loader,
@@ -32,10 +32,8 @@ const MovieDetails: React.FC = () => {
       <div className='text-white w-full'>
         <h3>{t('movieDesc')}</h3>
         <div className='mt-3 w-full'>
-          <Image
-            className='rounded-lg object-cover'
-            width={700}
-            height={450}
+          <img
+            className='rounded-lg md:w-[1200px] md:h-auto  object-cover'
             src={`${process.env.NEXT_PUBLIC_BACKEND_URL}/${movie?.poster}`}
             alt={movie?.movieNameEn}
           />
