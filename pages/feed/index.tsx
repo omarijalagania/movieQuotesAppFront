@@ -40,7 +40,11 @@ const Feed: React.FC = () => {
         </InfiniteScroll>
 
         {openAddQuote && (
-          <Modal open={openAddQuote} setOpen={setOpenAddQuote}>
+          <Modal
+            dialogClass='!bg-darkBlue'
+            open={openAddQuote}
+            setOpen={setOpenAddQuote}
+          >
             <AddQuote />
           </Modal>
         )}
