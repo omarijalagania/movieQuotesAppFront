@@ -5,6 +5,7 @@ import {
   Button,
   RedButton,
   Modal,
+  Loader,
 } from 'components';
 import { CheckIcon, ExclamationCircleIcon } from '@heroicons/react/solid';
 
@@ -37,6 +38,10 @@ const RegularUserProfile: React.FC = () => {
     makeChanges,
     setMakeChanges,
   } = useRegularUserProfile();
+
+  if (userDetails === null || userDetails === undefined) {
+    return <Loader />;
+  }
 
   return (
     <div className='w-[750px]  relative'>
