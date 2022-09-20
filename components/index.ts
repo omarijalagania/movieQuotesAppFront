@@ -27,3 +27,4 @@ export * from './GoogleIcon';
 export * from './MobileGoogleProfile';
 export * from './MobileRegularUserProfile';
 export * from './Forbidden';
+export * from './Loader';

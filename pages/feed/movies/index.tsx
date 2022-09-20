@@ -2,7 +2,7 @@ import React from 'react';
 import Image from 'next/image';
 import { ChatIcon } from '@heroicons/react/outline';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
-import { AddMovie, Modal, RedButton } from 'components';
+import { AddMovie, Loader, Modal, RedButton } from 'components';
 import { useMovie } from 'hooks';
 import Head from 'next/head';
 
@@ -39,6 +39,10 @@ const Movies: React.FC = () => {
       )
     );
   };
+
+  if (movie.length === 0) {
+    return <Loader />;
+  }
 
   return (
     <>

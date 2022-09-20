@@ -4,6 +4,7 @@ import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import Image from 'next/image';
 import {
   AddQuoteFromMovie,
+  Loader,
   Modal,
   QuoteMovieDetails,
   RedButton,
@@ -16,6 +17,10 @@ const MovieDetails: React.FC = () => {
   const { id } = router.query;
   const [openAddQuoteDialog, setOpenAddQuoteDialog] = useState(false);
   const { movie, setRefreshQuote } = useSingleMovie(id as string);
+
+  if (movie.length === 0) {
+    return <Loader />;
+  }
 
   return (
     <>

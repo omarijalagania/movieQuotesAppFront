@@ -2,7 +2,7 @@ import React from 'react';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import InfiniteScroll from 'react-infinite-scroll-component';
 import { RemoveScrollBar } from 'react-remove-scroll-bar';
-import { AddQuote, Modal, Post, Search, WriteQuote } from 'components';
+import { AddQuote, Loader, Modal, Post, Search, WriteQuote } from 'components';
 import { useFeed } from 'hooks';
 import Head from 'next/head';
 
@@ -16,6 +16,10 @@ const Feed: React.FC = () => {
     loadFunc,
     hasMore,
   } = useFeed();
+
+  if (quotes.length === 0) {
+    return <Loader />;
+  }
 
   return (
     <>

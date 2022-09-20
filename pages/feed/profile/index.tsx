@@ -1,6 +1,7 @@
 import React from 'react';
 import {
   GoogleProfile,
+  Loader,
   MobileGoogleProfile,
   MobileRegularUserProfile,
   RegularUserProfile,
@@ -13,6 +14,10 @@ import Head from 'next/head';
 const Profile: React.FC = () => {
   const { userDetails } = useHeader();
   const { width } = useMediaSize();
+
+  if (userDetails === null || userDetails === undefined) {
+    return <Loader />;
+  }
 
   return (
     <>
