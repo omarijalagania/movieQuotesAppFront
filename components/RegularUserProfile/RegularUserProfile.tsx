@@ -44,7 +44,7 @@ const RegularUserProfile: React.FC = () => {
   }
 
   return (
-    <div className='w-[998px]  relative'>
+    <div className='w-[998px] relative'>
       <p className='text-white mt-5 mb-20'>{t('myProfile')}</p>
 
       <div className='w-[998px] flex flex-col justify-center items-start px-10  rounded-lg relative bg-darkBlue min-h-[80vh]'>
@@ -417,7 +417,7 @@ const RegularUserProfile: React.FC = () => {
       </Modal>
 
       {editUsername || editPassword ? (
-        <div className='mt-7 flex absolute -right-10 space-x-3 items-center'>
+        <div className='mt-7 flex absolute -right-0 space-x-3 items-center'>
           <div className='flex space-x-3'>
             <Button
               onClick={() => {
