@@ -16,11 +16,11 @@ const Search: React.FC<any> = ({ handleSearch }) => {
     <div
       onClick={() => dispatch(changeSearchWidth(!growSearch))}
       className={`hidden cursor-pointer transition-all text-gray-300  ${
-        growSearch ? 'w-[40%]' : 'w-[20%]'
+        growSearch ? 'flex-grow' : 'w-[131px]'
       } md:flex items-center`}
     >
-      <div className='flex  items-center'>
-        <SearchIcon className='w-5 h-5 text-gray-300' />
+      <div className='flex transition-all items-center'>
+        <SearchIcon className='w-5 h-5  text-gray-300' />
         <input
           ref={ref}
           className={`ml-2 bg-[#181623] outline-none ${

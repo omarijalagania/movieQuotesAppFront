@@ -9,7 +9,7 @@ const FeedProfile: React.FC = () => {
   const { userDetails, t, router } = useHeader();
 
   return (
-    <div className='pt-8 pl-10'>
+    <div className='pt-14 pl-14'>
       <div className='flex flex-col space-y-7'>
         <div className='flex'>
           <img

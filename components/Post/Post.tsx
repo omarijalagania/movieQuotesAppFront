@@ -22,7 +22,7 @@ const Post: React.FC<Props> = ({ item, setGetLike }) => {
   );
 
   return (
-    <div className='bg-darkBlue p-5 text-white md:w-[90%] rounded-md mt-5'>
+    <div className='bg-darkBlue p-5 text-white md:w-[938px] mx-auto  rounded-md mt-5'>
       <div className='flex  items-center'>
         <img
           className='w-10 h-10 rounded-full'

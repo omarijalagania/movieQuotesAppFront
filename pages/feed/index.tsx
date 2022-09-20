@@ -1,7 +1,7 @@
 import React from 'react';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import InfiniteScroll from 'react-infinite-scroll-component';
-import { AddQuote, Loader, Modal, Post, Search, WriteQuote } from 'components';
+import { AddQuote, Modal, Post, Search, WriteQuote } from 'components';
 import { useFeed } from 'hooks';
 import Head from 'next/head';
 
@@ -16,10 +16,6 @@ const Feed: React.FC = () => {
     hasMore,
   } = useFeed();
 
-  if (quotes.length === 0) {
-    return <Loader />;
-  }
-
   return (
     <>
       <Head>
@@ -27,12 +23,11 @@ const Feed: React.FC = () => {
         <meta name='description' content='Home Page' />
         <link rel='icon' href='/favicon.ico' />
       </Head>
-      <div className='flex flex-col w-full'>
-        <div className='flex justify-between overflow-hidden md:w-[90%] space-x-2'>
+      <div className='flex flex-col  w-full'>
+        <div className='flex justify-between mx-auto overflow-hidden md:w-[938px] space-x-2'>
           <WriteQuote setOpenAddQuote={setOpenAddQuote} />
           <Search handleSearch={handleSearch} />
         </div>
-
         <InfiniteScroll
           dataLength={quotes?.length}
           next={loadFunc}
