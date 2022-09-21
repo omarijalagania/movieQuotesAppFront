@@ -248,7 +248,14 @@ const RegularUserProfile: React.FC = () => {
                                   </p>
                                   <RedButton
                                     onClick={() => {
-                                      setMakeChanges(true);
+                                      if (
+                                        formik.errors?.secondaryEmails
+                                          ?.length !== 0 &&
+                                        formik.values.secondaryEmails[index]
+                                          .secondaryEmail
+                                      ) {
+                                        setMakeChanges(true);
+                                      }
                                     }}
                                     className='text-white'
                                     name='Add'
