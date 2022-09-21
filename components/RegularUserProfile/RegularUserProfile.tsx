@@ -203,7 +203,7 @@ const RegularUserProfile: React.FC = () => {
                 {!email.isVerified && (
                   <div
                     className={`absolute ${
-                      router.locale === 'en' ? '-right-44' : '-right-[185px]'
+                      router.locale === 'en' ? '-right-44' : '-right-[250px]'
                     } flex top-1/2 cursor-pointer translate-y-[20%]`}
                   >
                     <p className='text-white'>{t('notVerified')}</p>
