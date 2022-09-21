@@ -10,41 +10,6 @@ const Movies: React.FC = () => {
   const { movie, openAddMovieModal, setOpenAddMovieModal, router, t } =
     useMovie();
 
-  const renderMovies = () => {
-    return movie?.map(
-      (item: {
-        quotes: string[];
-        poster: string;
-        movieNameEn: string;
-        _id: string;
-      }) => (
-        <div
-          className='cursor-pointer w-full md:w-[440px]'
-          onClick={() => router.push(`/feed/movies/${item._id}`)}
-          key={item._id}
-        >
-          <Image
-            className='rounded-lg object-cover'
-            width={440}
-            height={350}
-            src={`${process.env.NEXT_PUBLIC_BACKEND_URL}/${item.poster}`}
-            alt='movie'
-          />
-
-          <p className='text-white mt-3 text-xl'>{item.movieNameEn}</p>
-          <div className='flex items-center mt-4'>
-            <div className='text-white'>{item.quotes.length}</div>
-            <ChatIcon className='w-8 h-8 text-white ml-3' />
-          </div>
-        </div>
-      )
-    );
-  };
-
-  if (movie.length === 0) {
-    return <p className='text-white text-center text-3xl'>{t('noMovies')}</p>;
-  }
-
   if (movie === null || movie === undefined) {
     return <Loader />;
   }
@@ -70,7 +35,38 @@ const Movies: React.FC = () => {
         </div>
       </div>
       <div className='grid grid-cols-1 w-[1420px] md:grid-cols-3 '>
-        {renderMovies()}
+        {movie.length !== 0 ? (
+          movie?.map(
+            (item: {
+              quotes: string[];
+              poster: string;
+              movieNameEn: string;
+              _id: string;
+            }) => (
+              <div
+                className='cursor-pointer w-full md:w-[440px]'
+                onClick={() => router.push(`/feed/movies/${item._id}`)}
+                key={item._id}
+              >
+                <Image
+                  className='rounded-lg object-cover'
+                  width={440}
+                  height={350}
+                  src={`${process.env.NEXT_PUBLIC_BACKEND_URL}/${item.poster}`}
+                  alt='movie'
+                />
+
+                <p className='text-white mt-3 text-xl'>{item.movieNameEn}</p>
+                <div className='flex items-center mt-4'>
+                  <div className='text-white'>{item.quotes.length}</div>
+                  <ChatIcon className='w-8 h-8 text-white ml-3' />
+                </div>
+              </div>
+            )
+          )
+        ) : (
+          <p className='text-white  text-3xl'>{t('noMovies')}</p>
+        )}
       </div>
       {openAddMovieModal && (
         <Modal

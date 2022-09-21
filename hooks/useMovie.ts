@@ -19,6 +19,9 @@ const useMovie = () => {
   useEffect(() => {
     const getAllMovies = async () => {
       const response = await getAllMoviesHandler(userId);
+      if (response.status === 201) {
+        setOpenAddMovieModal(false);
+      }
       setMovie(response.data);
     };
     if (addMovieResponse.status === 200) {
