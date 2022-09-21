@@ -42,6 +42,10 @@ const Movies: React.FC = () => {
   };
 
   if (movie.length === 0) {
+    return <p className='text-white text-center text-3xl'>{t('noMovies')}</p>;
+  }
+
+  if (movie === null || movie === undefined) {
     return <Loader />;
   }
 
