@@ -87,7 +87,7 @@ const AddQuote: React.FC<AddQuoteProp> = ({ setOpenAddQuote }) => {
                 <img
                   src={imagePreview(file as File)}
                   alt=''
-                  className='w-6 h-4'
+                  className='w-20 h-10'
                 />
               )}
             </span>
