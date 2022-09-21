@@ -12,6 +12,7 @@ const useMovie = () => {
     (state: RootState) => state.quotes.addMovie
   );
   const closeModal = useSelector((state: RootState) => state.quotes.closeModal);
+
   const { userId } = useHeader();
   const { router, t } = useTranslate();
 

@@ -217,11 +217,16 @@ const Header: React.FC = () => {
 
             {(width as number) < 768 &&
             router.pathname.includes('/feed') ? null : (
-              <Button onClick={() => setIsOpenLogin(true)} name={t('login')} />
+              <Button
+                hadIcon={false}
+                onClick={() => setIsOpenLogin(true)}
+                name={t('login')}
+              />
             )}
           </>
         ) : (
           <Button
+            hadIcon={false}
             onClick={() =>
               signOut({
                 redirect: true,

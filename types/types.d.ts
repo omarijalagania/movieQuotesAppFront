@@ -5,6 +5,7 @@ export type ButtonProps = {
   type?: 'submit' | 'reset' | 'button';
   form?: string;
   hadIcon?: boolean;
+  icon?: 'plus' | 'google' | '';
 };
 
 export type User = {

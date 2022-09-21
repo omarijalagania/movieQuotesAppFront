@@ -5,7 +5,7 @@ import { ItemProps, SIngleItemProps } from 'types';
 const WriteComment: React.FC<SIngleItemProps> = ({ item }) => {
   const { formik, setFieldId, setReceiverId, t } = useAddComment();
   return (
-    <form onSubmit={formik.handleSubmit} className='flex items-center mt-3'>
+    <form onSubmit={formik.handleSubmit} className='flex items-center mt-4'>
       <img
         className='w-10 h-10 rounded-full'
         src={avatarImageUrl(item as ItemProps)}
@@ -21,7 +21,7 @@ const WriteComment: React.FC<SIngleItemProps> = ({ item }) => {
         data-tag={item.userId}
         name='comment'
         id={item._id}
-        className='bg-lightBlue w-full rounded-md p-2 ml-4'
+        className='bg-lightBlue w-full md:h-[52px] rounded-md p-2 ml-4'
         type='text'
         placeholder={t('writeComment')}
         value={formik.values.comment}

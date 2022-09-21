@@ -19,17 +19,18 @@ const Movies: React.FC = () => {
         _id: string;
       }) => (
         <div
-          className='cursor-pointer'
+          className='cursor-pointer w-full md:w-[440px]'
           onClick={() => router.push(`/feed/movies/${item._id}`)}
           key={item._id}
         >
           <Image
             className='rounded-lg object-cover'
-            width={450}
+            width={440}
             height={350}
             src={`${process.env.NEXT_PUBLIC_BACKEND_URL}/${item.poster}`}
             alt='movie'
           />
+
           <p className='text-white mt-3 text-xl'>{item.movieNameEn}</p>
           <div className='flex items-center mt-4'>
             <div className='text-white'>{item.quotes.length}</div>
@@ -51,7 +52,7 @@ const Movies: React.FC = () => {
         <meta name='description' content='Home Page' />
         <link rel='icon' href='/favicon.ico' />
       </Head>
-      <div className='flex justify-between  text-white mb-5'>
+      <div className='flex justify-between w-full md:w-[1420px]  text-white mb-5'>
         <p>
           {t('myMovieList')} ({movie.length})
         </p>
@@ -64,7 +65,7 @@ const Movies: React.FC = () => {
           />
         </div>
       </div>
-      <div className='grid grid-cols-1 md:grid-cols-3 gap-5'>
+      <div className='grid grid-cols-1 w-[1420px] md:grid-cols-3 '>
         {renderMovies()}
       </div>
       {openAddMovieModal && (

@@ -1,4 +1,4 @@
-import { GoogleIcon } from 'components';
+import { GoogleIcon, PlusIcon } from 'components';
 import React from 'react';
 import { ButtonProps } from 'types';
 
@@ -8,14 +8,23 @@ const Button: React.FC<ButtonProps> = ({
   onClick,
   type,
   hadIcon,
+  icon,
 }) => {
   return (
     <button
       type={type}
       onClick={onClick}
-      className={`bg-transparent flex justify-center items-center px-5 py-1 border-white text-white border-[1px] rounded-md ${className}`}
+      className={`bg-transparent flex ${
+        icon === 'google' ? 'justify-center' : 'justify-around'
+      } items-center px-5 py-1 border-white text-white border-[1px] rounded-md ${className}`}
     >
-      {hadIcon && <GoogleIcon />}
+      {hadIcon && icon === 'google' ? (
+        <GoogleIcon />
+      ) : hadIcon && icon === 'plus' ? (
+        <PlusIcon />
+      ) : (
+        ''
+      )}
       {name}
     </button>
   );

@@ -110,6 +110,7 @@ const Login: React.FC<LoginProps> = ({ setOpenRecoverModal, setIsOpen }) => {
       <Button
         type='button'
         hadIcon={true}
+        icon='google'
         onClick={() =>
           signIn('google', {
             redirect: true,
