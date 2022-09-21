@@ -4,14 +4,18 @@ import { XIcon } from '@heroicons/react/solid';
 import { Input, RedButton, useAddQuote } from 'components';
 import { CameraIcon } from '@heroicons/react/outline';
 import { imagePreview } from 'helpers';
+import { AddQuoteProp } from 'types';
 
-const AddQuote: React.FC = () => {
+const AddQuote: React.FC<AddQuoteProp> = ({ setOpenAddQuote }) => {
   const { formik, setFile, newMovie, handleChange, userDetails, t, file } =
     useAddQuote();
 
   return (
     <div className='w-full h-screen md:w-[961px] md:h-[670px] mx-auto  p-5 md:p-0'>
-      <div className='flex relative border-b-[1px] md:!w-[961px] pb-2 border-gray-500'>
+      <div
+        onClick={() => setOpenAddQuote(false)}
+        className='flex relative border-b-[1px] md:!w-[961px] pb-2 border-gray-500'
+      >
         <h1 className='text-white text-2xl  mx-auto'>{t('addQuote')}</h1>
         <XIcon className='w-5 h-5 cursor-pointer text-white absolute right-0' />
       </div>
@@ -109,24 +113,29 @@ const AddQuote: React.FC = () => {
             )
           )}
         </div>
-
-        <select
-          className='rounded-none md:mb-10  w-full md:h-[86px] md:!w-[961px] border-[1px] text-sm border-gray-400 p-2 bg-darkBlue text-white placeholder-gray-500'
-          placeholder='Choose movie'
-          onChange={handleChange}
-        >
-          <option value='' disabled selected>
-            {t('selectMovie')}
-          </option>
-          {newMovie.map((movie) => {
-            return (
-              <option key={movie.value} value={movie.value}>
-                {movie.label}
-              </option>
-            );
-          })}
-        </select>
-
+        <div className='relative  md:h-[86px]'>
+          <select
+            className='rounded-none md:mb-10 md:text-lg px-10 pb-2 w-full md:h-[86px] md:!w-[961px] border-[1px]  border-gray-400 p-2 bg-darkBlue text-white placeholder-gray-500'
+            placeholder='Choose movie'
+            onChange={handleChange}
+          >
+            <option value='' disabled selected>
+              {t('selectMovie')}
+            </option>
+            {newMovie.map((movie) => {
+              return (
+                <option key={movie.value} value={movie.value}>
+                  {movie.label}
+                </option>
+              );
+            })}
+          </select>
+          <img
+            className='w-5 h-5 absolute top-1/2 transform -translate-y-1/2 left-2'
+            src='/assets/camera.png'
+            alt='camera'
+          />
+        </div>
         <RedButton
           className='w-full md:!w-[961px] md:h-[48px] mt-3 text-white'
           name={t('addQuote')}

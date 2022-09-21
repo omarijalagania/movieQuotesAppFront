@@ -43,6 +43,8 @@ const RegularUserProfile: React.FC = () => {
     return <Loader />;
   }
 
+  console.log(formik.errors?.secondaryEmails);
+
   return (
     <div className='w-[998px] relative'>
       <p className='text-white mt-5 mb-20'>{t('myProfile')}</p>
