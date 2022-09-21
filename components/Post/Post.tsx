@@ -41,8 +41,8 @@ const Post: React.FC<Props> = ({ item, setGetLike }) => {
           : "'" + item.quoteNameGe + "'"
       } - ${
         router.locale === 'en'
-          ? item.movie[0].movieNameEn
-          : item.movie[0].movieNameGe
+          ? item.movie[0]?.movieNameEn
+          : item.movie[0]?.movieNameGe
       }`}</h4>
       <div className='mt-6'>
         <Image
