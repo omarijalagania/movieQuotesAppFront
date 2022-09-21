@@ -45,7 +45,7 @@ const Feed: React.FC = () => {
             open={openAddQuote}
             setOpen={setOpenAddQuote}
           >
-            <AddQuote />
+            <AddQuote setOpenAddQuote={setOpenAddQuote} />
           </Modal>
         )}
       </div>

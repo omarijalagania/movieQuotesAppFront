@@ -203,3 +203,7 @@ export type SIngleItemProps = {
     ];
   };
 };
+
+export type AddQuoteProp = {
+  setOpenAddQuote: Dispatch<SetStateAction<boolean>>;
+};
