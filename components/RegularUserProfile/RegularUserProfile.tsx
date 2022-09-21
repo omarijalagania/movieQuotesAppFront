@@ -175,32 +175,47 @@ const RegularUserProfile: React.FC = () => {
                   defaultValue={email.secondaryEmail}
                   className={`border-2 ${'border-inputYellow  bg-inputYellow text-white'}`}
                 />
+                {/* <p className='text-white'>{t('notVerified')}</p> */}
 
                 <ExclamationCircleIcon className='w-6 h-6 absolute text-yellow-700 right-2 top-[58%]' />
 
-                <div
-                  className={`absolute ${
-                    router.locale === 'en' ? '-right-48' : '-right-56'
-                  } flex top-1/2 cursor-pointer translate-y-[20%]`}
-                >
-                  {email.isVerified ? (
+                {email.isVerified && (
+                  <div
+                    className={`absolute ${
+                      router.locale === 'en' ? '-right-48' : '-right-56'
+                    } flex top-1/2 cursor-pointer translate-y-[20%]`}
+                  >
                     <p
                       onClick={() => primaryEmail(email.secondaryEmail)}
                       className='text-white '
                     >
                       {t('makePrimary')}
                     </p>
-                  ) : (
-                    <p className='text-white'>{t('notVerified')}</p>
-                  )}
 
-                  <p
-                    onClick={() => removeUserEmail(email.secondaryEmail)}
-                    className='text-white ml-2'
+                    <p
+                      onClick={() => removeUserEmail(email.secondaryEmail)}
+                      className='text-white ml-2'
+                    >
+                      {t('remove')}
+                    </p>
+                  </div>
+                )}
+                {!email.isVerified && (
+                  <div
+                    className={`absolute ${
+                      router.locale === 'en' ? '-right-44' : '-right-[185px]'
+                    } flex top-1/2 cursor-pointer translate-y-[20%]`}
                   >
-                    {t('remove')}
-                  </p>
-                </div>
+                    <p className='text-white'>{t('notVerified')}</p>
+
+                    <p
+                      onClick={() => removeUserEmail(email.secondaryEmail)}
+                      className='text-white ml-2'
+                    >
+                      {t('remove')}
+                    </p>
+                  </div>
+                )}
               </div>
             ))}
             <FormikProvider value={formik}>
