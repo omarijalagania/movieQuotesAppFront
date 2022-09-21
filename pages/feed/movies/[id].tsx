@@ -39,7 +39,11 @@ const MovieDetails: React.FC = () => {
           />
         </div>
         {openAddQuoteDialog && (
-          <Modal open={openAddQuoteDialog} setOpen={setOpenAddQuoteDialog}>
+          <Modal
+            dialogClass='!min-w-full md:!min-w-[1010px] !bg-darkBlue'
+            open={openAddQuoteDialog}
+            setOpen={setOpenAddQuoteDialog}
+          >
             <AddQuoteFromMovie
               setRefreshQuote={setRefreshQuote}
               setOpenAddQuoteDialog={setOpenAddQuoteDialog}
