@@ -61,6 +61,7 @@ const RegularUserProfile: React.FC = () => {
           id='update'
           encType='multipart/form-data'
           onSubmit={formik.handleSubmit}
+          className='md:ml-20'
         >
           <input
             ref={hiddenFileInput}
@@ -90,7 +91,7 @@ const RegularUserProfile: React.FC = () => {
                 value={formik.values.userName}
                 defaultValue={userDetails?.userName}
                 onChange={formik.handleChange}
-                className={`border-2 ${
+                className={`border-2 md:!w-[528px] ${
                   formik.errors.userName
                     ? 'border-red-500'
                     : formik.values.userName
@@ -126,7 +127,7 @@ const RegularUserProfile: React.FC = () => {
                 </p>
               )}
             </div>
-            <div className='w-full md:w-96 h-0.5 mt-10 mb-8 bg-gray-700' />
+            <div className='w-full md:!w-[528px] h-0.5 mt-10 mb-8 bg-gray-700' />
 
             <div className='relative mb-5'>
               <Input
@@ -139,7 +140,7 @@ const RegularUserProfile: React.FC = () => {
                 disabled={true}
                 onChange={formik.handleChange}
                 value={formik.values.email}
-                className={`border-2 ${
+                className={`border-2 md:!w-[528px] ${
                   formik.errors.email
                     ? 'border-red-500 bg-red-900'
                     : formik.values.email
@@ -173,9 +174,8 @@ const RegularUserProfile: React.FC = () => {
                   name={`secondaryEmails.${index}.secondaryEmail`}
                   onChange={formik.handleChange}
                   defaultValue={email.secondaryEmail}
-                  className={`border-2 ${'border-inputYellow  bg-inputYellow text-white'}`}
+                  className={`border-2 md:!w-[528px] ${'border-inputYellow  bg-inputYellow text-white'}`}
                 />
-                {/* <p className='text-white'>{t('notVerified')}</p> */}
 
                 <ExclamationCircleIcon className='w-6 h-6 absolute text-yellow-700 right-2 top-[58%]' />
 
@@ -313,6 +313,7 @@ const RegularUserProfile: React.FC = () => {
                 onChange={formik.handleChange}
                 value='password'
                 defaultValue='password'
+                className='md:!w-[528px]'
               />
 
               <p
@@ -346,7 +347,7 @@ const RegularUserProfile: React.FC = () => {
                     name='password'
                     onChange={formik.handleChange}
                     value={formik.values.password}
-                    className={`border-2 ${
+                    className={`border-2 md:!w-[528px] ${
                       formik.errors.password
                         ? 'border-red-500'
                         : formik.values.password
@@ -377,7 +378,7 @@ const RegularUserProfile: React.FC = () => {
                     name='oldPassword'
                     onChange={formik.handleChange}
                     value={formik.values.oldPassword}
-                    className={`border-2 ${
+                    className={`border-2 md:!w-[528px] ${
                       formik.errors.oldPassword
                         ? 'border-red-500'
                         : formik.values.oldPassword
