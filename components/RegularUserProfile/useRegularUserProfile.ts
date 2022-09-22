@@ -85,7 +85,7 @@ const useRegularUserProfile = () => {
             bodyClassName: 'toastify__body',
             hideProgressBar: true,
           });
-
+          setIsOpenUploadModal(false);
           setUpdateStatus(true);
         }
       } catch (error) {
