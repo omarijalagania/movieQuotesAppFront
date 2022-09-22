@@ -23,7 +23,7 @@ const Feed: React.FC = () => {
         <meta name='description' content='Home Page' />
         <link rel='icon' href='/favicon.ico' />
       </Head>
-      <div className='flex flex-col  w-full'>
+      <div className='flex flex-col mt-12 w-full'>
         <div className='flex justify-between items-center mx-auto overflow-hidden md:w-[938px] space-x-2'>
           <WriteQuote setOpenAddQuote={setOpenAddQuote} />
           <Search handleSearch={handleSearch} />

@@ -22,7 +22,7 @@ const Post: React.FC<Props> = ({ item, setGetLike }) => {
   );
 
   return (
-    <div className='bg-darkBlue p-5 text-white md:w-[938px] mx-auto  rounded-md mt-5'>
+    <div className='bg-darkBlue !p-5 text-white md:w-[938px] mx-auto  rounded-md mt-5'>
       <div className='flex  items-center'>
         <img
           className='w-10 h-10 rounded-full'
@@ -52,7 +52,7 @@ const Post: React.FC<Props> = ({ item, setGetLike }) => {
           alt='children'
         />
       </div>
-      <div className='flex py-3 mb-3 border-b-[1px] border-gray-600 space-x-3'>
+      <div className='flex !py-3 mb-3 border-b-[1px] border-gray-600 space-x-3'>
         <div className='flex'>
           <p className='pr-2'>{item.comments.length}</p>
           <AnnotationIcon className='w-6 h-6' />

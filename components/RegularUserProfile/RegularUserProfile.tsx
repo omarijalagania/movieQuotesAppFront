@@ -47,7 +47,7 @@ const RegularUserProfile: React.FC = () => {
 
   return (
     <div className='w-[998px] relative'>
-      <p className='text-white mt-5 mb-20'>{t('myProfile')}</p>
+      <p className='text-white mt-10 mb-20'>{t('myProfile')}</p>
 
       <div className='w-[998px] flex flex-col justify-center items-start px-10  rounded-lg relative bg-darkBlue min-h-[80vh]'>
         <img

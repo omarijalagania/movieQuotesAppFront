@@ -13,7 +13,7 @@ const RedButton: React.FC<ButtonProps> = ({
       type={type}
       form={form}
       onClick={onClick}
-      className={`bg-rocketRed px-5 py-1 hover:bg-rocketHover rounded-md ${className}`}
+      className={`bg-rocketRed px-5 !py-1 hover:bg-rocketHover rounded-md ${className}`}
     >
       {name}
     </button>

@@ -135,7 +135,7 @@ const AddMovie: React.FC<AddMovieProp> = ({ setOpenAddMovieModal }) => {
         <div className='relative mb-1'>
           <textarea
             onChange={formik.handleChange}
-            className='border-[1px] p-1 text-sm h-[86px] border-gray-700 bg-darkBlue text-white w-full  md:w-[961px] placeholder-white'
+            className='border-[1px] !p-1 text-sm h-[86px] border-gray-700 bg-darkBlue text-white w-full  md:w-[961px] placeholder-white'
             name='descriptionEn'
             placeholder='Movie description'
           />
@@ -149,7 +149,7 @@ const AddMovie: React.FC<AddMovieProp> = ({ setOpenAddMovieModal }) => {
         <div className='relative mb-1'>
           <textarea
             onChange={formik.handleChange}
-            className='border-[1px] p-1 text-sm h-[86px] border-gray-700 bg-darkBlue text-white w-full md:w-[961px] placeholder-white'
+            className='border-[1px] !p-1 text-sm h-[86px] border-gray-700 bg-darkBlue text-white w-full md:w-[961px] placeholder-white'
             name='descriptionGe'
             placeholder='ფილმის აღწერა'
           />

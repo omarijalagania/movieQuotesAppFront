@@ -11,10 +11,10 @@ const AddQuote: React.FC<AddQuoteProp> = ({ setOpenAddQuote }) => {
     useAddQuote();
 
   return (
-    <div className='w-full h-screen md:w-[961px] md:h-[670px] mx-auto  p-5 md:p-0'>
+    <div className='w-full h-screen md:w-[961px] md:h-[670px] mx-auto  !py-5 md:p-0'>
       <div
         onClick={() => setOpenAddQuote(false)}
-        className='flex relative border-b-[1px] md:!w-[961px] pb-2 border-gray-500'
+        className='flex relative border-b-[1px] md:!w-[961px] !pb-2 border-gray-500'
       >
         <h1 className='text-white text-2xl  mx-auto'>{t('addQuote')}</h1>
         <XIcon className='w-5 h-5 cursor-pointer text-white absolute right-0' />
@@ -137,7 +137,7 @@ const AddQuote: React.FC<AddQuoteProp> = ({ setOpenAddQuote }) => {
           />
         </div>
         <RedButton
-          className='w-full md:!w-[961px] md:h-[48px] mt-3 text-white'
+          className='w-full md:!w-[961px] md:h-[48px] mt-5 text-white'
           name={t('addQuote')}
         />
       </form>
