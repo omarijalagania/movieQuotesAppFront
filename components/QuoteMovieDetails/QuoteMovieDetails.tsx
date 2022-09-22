@@ -111,8 +111,15 @@ const QuoteMovieDetails: React.FC<QuotePropsItem> = ({ item }) => {
           )}
         </div>
         {openEditQUoteDialog && (
-          <Modal open={openEditQUoteDialog} setOpen={setOpenEditQUoteDialog}>
-            <EditQuote item={item} />
+          <Modal
+            dialogClass='!bg-darkBlue !p-10 '
+            open={openEditQUoteDialog}
+            setOpen={setOpenEditQUoteDialog}
+          >
+            <EditQuote
+              setOpenEditQUoteDialog={setOpenEditQUoteDialog}
+              item={item}
+            />
           </Modal>
         )}
       </div>

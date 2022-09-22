@@ -7,11 +7,19 @@ import { imagePreview } from 'helpers';
 import { AddQuoteProp } from 'types';
 
 const AddQuote: React.FC<AddQuoteProp> = ({ setOpenAddQuote }) => {
-  const { formik, setFile, newMovie, handleChange, userDetails, t, file } =
-    useAddQuote();
+  const {
+    formik,
+    setFile,
+    newMovie,
+    handleChange,
+    userDetails,
+    t,
+    file,
+    width,
+  } = useAddQuote();
 
   return (
-    <div className='w-full h-screen md:w-[961px] md:h-[670px] mx-auto  !py-5 md:p-0'>
+    <div className='w-full h-screen md:w-[961px] md:h-[670px] mx-auto  !py-5 md:!p-0'>
       <div
         onClick={() => setOpenAddQuote(false)}
         className='flex relative border-b-[1px] md:!w-[961px] !pb-2 border-gray-500'
@@ -38,9 +46,9 @@ const AddQuote: React.FC<AddQuoteProp> = ({ setOpenAddQuote }) => {
         className='mt-5 md:w-[961px] mx-auto'
         encType='multipart/form-data'
       >
-        <div className='relative md:mb-6'>
+        <div className='relative mb-6'>
           <Input
-            className='!rounded-none py-1 !border-[1px] md:!h-[86px] italic font-extralight !text-sm border-gray-400 bg-darkBlue text-white md:!w-[961px] md:!pb-8 !placeholder-gray-500'
+            className='!rounded-none !border-[1px] !pb-12  !h-[86px] italic font-extralight !text-sm border-gray-400 bg-darkBlue text-white md:!w-[961px] md:!pb-8 !placeholder-gray-500'
             isLabel={false}
             type='text'
             id='quoteNameEng'
@@ -55,9 +63,9 @@ const AddQuote: React.FC<AddQuoteProp> = ({ setOpenAddQuote }) => {
             <p className='text-red-500 mt-1'>{t(formik.errors.quoteNameEng)}</p>
           )}
         </div>
-        <div className='relative md:mb-6'>
+        <div className='relative mb-6'>
           <Input
-            className='!rounded-none py-1 !border-[1px] md:!h-[86px] italic font-extralight !text-sm border-gray-400 bg-darkBlue text-white md:!pb-8 md:!w-[961px] !placeholder-gray-500'
+            className='!rounded-none  !border-[1px]  !pb-12  !h-[86px] italic font-extralight !text-sm border-gray-400 bg-darkBlue text-white md:!pb-8 md:!w-[961px] !placeholder-gray-500'
             isLabel={false}
             type='text'
             id='quoteNameGe'
@@ -73,13 +81,17 @@ const AddQuote: React.FC<AddQuoteProp> = ({ setOpenAddQuote }) => {
           )}
         </div>
 
-        <div className='md:mb-6 md:!w-[961px]'>
-          <label className='flex px-2 w-full py-3 transition bg-darkBlue border-[1px] md:!h-[84px] border-gray-300  cursor-pointer  focus:outline-none'>
-            <span className='flex items-center space-x-2'>
+        <div className='mb-6 w-[360px] md:!w-[961px]'>
+          <label className='flex !px-2 w-full !py-3 transition bg-darkBlue border-[1px] h-[84px] border-gray-300  cursor-pointer  focus:outline-none'>
+            <span className='flex items-center ml-1 space-x-2'>
               <CameraIcon className='w-5 h-5 text-white' />
-              <span className='text-sm text-white'>
-                {t('drag')}
-                <span className='text-white text-xs py-1 px-2 ml-1 bg-purple-600'>
+              <span className='text-sm flex items-center text-white'>
+                {(width.width as unknown as number) > 768 ? (
+                  <p>{t('drag')}</p>
+                ) : (
+                  <p>Upload image</p>
+                )}
+                <span className='text-white text-xs !py-1 px-2 ml-1 bg-purple-600'>
                   {t('chooseFile')}
                 </span>
               </span>
@@ -113,9 +125,9 @@ const AddQuote: React.FC<AddQuoteProp> = ({ setOpenAddQuote }) => {
             )
           )}
         </div>
-        <div className='relative  md:h-[86px]'>
+        <div className='relative h-[86px]'>
           <select
-            className='rounded-none md:mb-10 md:text-lg px-10 pb-2 w-full md:h-[86px] md:!w-[961px] border-[1px]  border-gray-400 p-2 bg-darkBlue text-white placeholder-gray-500'
+            className='rounded-none md:mb-10 md:text-lg px-10 !pt-2 w-full h-[86px] md:!w-[961px] border-[1px]  border-gray-400 p-2 bg-darkBlue text-white placeholder-gray-500'
             placeholder='Choose movie'
             onChange={handleChange}
           >
@@ -137,7 +149,7 @@ const AddQuote: React.FC<AddQuoteProp> = ({ setOpenAddQuote }) => {
           />
         </div>
         <RedButton
-          className='w-full md:!w-[961px] md:h-[48px] mt-5 text-white'
+          className='w-full md:!w-[961px] md:h-[48px] mt-9 text-white'
           name={t('addQuote')}
         />
       </form>
