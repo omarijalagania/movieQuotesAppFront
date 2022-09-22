@@ -8,7 +8,7 @@ const Register: React.FC = () => {
   const { formik, error, t } = usePersonalInformationForm();
 
   return (
-    <div className='flex flex-col md:w-[601px] h-screen md:h-auto md:p-10 justify-center md:justify-start'>
+    <div className='flex flex-col  md:w-[601px] h-screen md:h-auto md:!p-10 justify-center md:justify-start'>
       <h1 className='text-white text-center text-3xl'>{t('createAccount')}</h1>
       <p className='text-center text-xs mt-2 text-gray-500'>{t('journey')}</p>
       <form onSubmit={formik.handleSubmit} className='flex mx-auto flex-col'>

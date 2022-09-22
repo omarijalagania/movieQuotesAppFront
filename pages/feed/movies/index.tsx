@@ -21,7 +21,7 @@ const Movies: React.FC = () => {
         <meta name='description' content='Home Page' />
         <link rel='icon' href='/favicon.ico' />
       </Head>
-      <div className='flex justify-between w-full md:w-[1420px]  text-white mb-5'>
+      <div className='flex justify-between w-full md:w-[1420px] mt-12 text-white mb-5'>
         <p>
           {t('myMovieList')} ({movie.length})
         </p>
@@ -29,7 +29,7 @@ const Movies: React.FC = () => {
           <p>{t('search')}</p>
           <RedButton
             onClick={() => setOpenAddMovieModal(true)}
-            className='ml-3'
+            className='ml-3 !py-1'
             name={t('addMovie')}
           />
         </div>

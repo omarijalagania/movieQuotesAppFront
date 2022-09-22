@@ -18,9 +18,9 @@ const AddQuoteFromMovie: React.FC<MovieProp> = ({
   const { userDetails, t } = useHeader();
 
   return (
-    <div className='h-screen w-full md:w-[961px] md:h-[670px] mx-auto  px-5 md:p-0'>
-      <div className='flex relative border-b-[1px] pb-2 border-gray-500'>
-        <h1 className='text-white mx-auto'>{t('addQuote')}</h1>
+    <div className='h-screen w-full md:w-[961px] md:h-[670px] mx-auto  !py-10 md:p-0'>
+      <div className='flex relative border-b-[1px] !pb-2 border-gray-500'>
+        <h1 className='text-white text-2xl mx-auto'>{t('addQuote')}</h1>
         <XIcon
           onClick={() => setOpenAddQuoteDialog(false)}
           className='w-5 h-5 cursor-pointer text-white absolute right-0'
@@ -94,7 +94,7 @@ const AddQuoteFromMovie: React.FC<MovieProp> = ({
         <div className='flex md:flex-col flex-col-reverse'>
           <div className='relative mb-3'>
             <Input
-              className='!rounded-none pb-12 h-[86px] !border-[1px] !text-sm border-gray-500  bg-darkBlue italic text-white md:!w-[961px] !placeholder-gray-500'
+              className='!rounded-none !pb-12 h-[86px] !border-[1px] !text-sm border-gray-500  bg-darkBlue italic text-white md:!w-[961px] !placeholder-gray-500'
               isLabel={false}
               type='text'
               id='quoteNameEng'
@@ -108,7 +108,7 @@ const AddQuoteFromMovie: React.FC<MovieProp> = ({
           </div>
           <div className='relative mb-3'>
             <Input
-              className='!rounded-none pb-12 h-[86px] !border-[1px] !text-sm border-gray-500 italic bg-darkBlue text-white md:!w-[961px] !placeholder-gray-500'
+              className='!rounded-none !pb-12 h-[86px] !border-[1px] !text-sm border-gray-500 italic bg-darkBlue text-white md:!w-[961px] !placeholder-gray-500'
               isLabel={false}
               type='text'
               id='quoteNameGe'
@@ -122,7 +122,7 @@ const AddQuoteFromMovie: React.FC<MovieProp> = ({
           </div>
 
           <div className='mb-3'>
-            <label className='flex px-2 w-full h-[82px] py-3 transition bg-darkBlue border-[1px] border-gray-300  cursor-pointer  focus:outline-none'>
+            <label className='flex !px-2 w-full h-[82px] py-3 transition bg-darkBlue border-[1px] border-gray-300  cursor-pointer  focus:outline-none'>
               <span className='flex items-center  w-full space-x-2'>
                 <CameraIcon className='w-5 h-5 text-white' />
 
@@ -132,7 +132,7 @@ const AddQuoteFromMovie: React.FC<MovieProp> = ({
                   ) : (
                     <p>Upload image</p>
                   )}
-                  <span className='text-white text-xs py-1 px-2 ml-1  bg-purple-600'>
+                  <span className='text-white text-xs !py-1 !px-2 ml-1  bg-purple-600'>
                     {t('chooseFile')}
                   </span>
                 </span>
@@ -157,7 +157,10 @@ const AddQuoteFromMovie: React.FC<MovieProp> = ({
           </div>
         </div>
 
-        <RedButton className='w-full mt-3 text-white' name={t('addQuote')} />
+        <RedButton
+          className='w-full h-[38px] mt-3 text-white'
+          name={t('addQuote')}
+        />
       </form>
     </div>
   );

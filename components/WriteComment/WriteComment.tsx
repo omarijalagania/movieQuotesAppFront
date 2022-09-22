@@ -21,7 +21,7 @@ const WriteComment: React.FC<SIngleItemProps> = ({ item }) => {
         data-tag={item.userId}
         name='comment'
         id={item._id}
-        className='bg-lightBlue w-full md:h-[52px] rounded-md p-2 ml-4'
+        className='bg-lightBlue w-full md:h-[52px] rounded-md !p-2 ml-4'
         type='text'
         placeholder={t('writeComment')}
         value={formik.values.comment}

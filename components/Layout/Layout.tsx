@@ -57,7 +57,7 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
           ''
         ) : (
           <aside className={`hidden md:block h-screen`}>
-            <div className='text-white pt-6 px-10'>
+            <div className='text-white !pt-6 px-10'>
               {router.pathname.includes('/feed/movies/[id]') && (
                 <MovieDetailsSide />
               )}
