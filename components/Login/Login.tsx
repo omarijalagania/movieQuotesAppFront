@@ -7,12 +7,12 @@ const Login: React.FC<LoginProps> = ({ setOpenRecoverModal, setIsOpen }) => {
   const { formik, error, t } = useLoginForm();
 
   return (
-    <div className='flex flex-col  md:p-10 h-screen justify-start md:h-full md:justify-center'>
+    <div className='flex flex-col !pt-20  md:!p-10 h-screen  justify-start md:h-full md:justify-center'>
       <h1 className='text-white text-center text-3xl'>{t('accountLogin')}</h1>
       <p className='text-center text-xs mt-2 text-gray-500'>
         {t('welcomeBack')}
       </p>
-      <form onSubmit={formik.handleSubmit} className='flex flex-col'>
+      <form onSubmit={formik.handleSubmit} className='flex  flex-col'>
         <div className='relative'>
           <Input
             isLabel={true}
@@ -24,7 +24,7 @@ const Login: React.FC<LoginProps> = ({ setOpenRecoverModal, setIsOpen }) => {
             onChange={formik.handleChange}
             onBlur={formik.handleBlur}
             value={formik.values.email}
-            className={`border-2  md:!full ${
+            className={`border-2 w-[360px] h-[38px] ${
               (formik.touched.email && formik.errors.email) || error
                 ? 'border-red-500'
                 : formik.values.email && formik.touched.email
@@ -63,7 +63,7 @@ const Login: React.FC<LoginProps> = ({ setOpenRecoverModal, setIsOpen }) => {
             onChange={formik.handleChange}
             onBlur={formik.handleBlur}
             value={formik.values.password}
-            className={`border-2 ${
+            className={`border-2 w-[360px] h-[38px] ${
               formik.errors.password && formik.touched.password
                 ? 'border-red-500'
                 : formik.values.password && formik.touched.password
@@ -103,7 +103,7 @@ const Login: React.FC<LoginProps> = ({ setOpenRecoverModal, setIsOpen }) => {
         </div>
         <RedButton
           type='submit'
-          className='w-96 text-white h-10 my-5'
+          className='w-[360px] md:w-[385px] h-[38px] text-white  my-5'
           name={t('login')}
         />
       </form>
@@ -117,7 +117,7 @@ const Login: React.FC<LoginProps> = ({ setOpenRecoverModal, setIsOpen }) => {
             callbackUrl: '/feed',
           })
         }
-        className='w-96 h-10 mt-2'
+        className='w-[360px] md:w-[385px] h-[38px] mt-2'
         name={t('google')}
       />
       <p className='text-center mt-4 text-gray-400'>
