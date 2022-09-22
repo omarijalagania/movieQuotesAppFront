@@ -31,8 +31,8 @@ const QuoteMovieDetails: React.FC<QuotePropsItem> = ({ item }) => {
   } = useQuoteMovieDetails(item);
 
   return (
-    <div className='bg-darkBlue md:w-[1200px]  rounded-md p-5 mt-10 relative'>
-      <div className='absolute  right-0'>
+    <div className='bg-darkBlue md:w-[1200px]  rounded-md !p-5 mt-10 relative'>
+      <div className='absolute right-0'>
         <Menu>
           {({ open }) => (
             <>
@@ -40,7 +40,7 @@ const QuoteMovieDetails: React.FC<QuotePropsItem> = ({ item }) => {
                 <DotsHorizontalIcon className='w-5 h-5 cursor-pointer text-white absolute -top-1 right-3' />
               </Menu.Button>
               {open && (
-                <div className='bg-lightBlue rounded-md outline-none pl-5 pr-10 py-5'>
+                <div className='bg-lightBlue rounded-md z-50 outline-none !pl-5 !pr-10 !py-5'>
                   <Menu.Items>
                     <Menu.Item>
                       {({}) => (
@@ -91,13 +91,13 @@ const QuoteMovieDetails: React.FC<QuotePropsItem> = ({ item }) => {
         />
         <p className='ml-7 text-gray-300'>{item.quoteNameEng}</p>
       </div>
-      <div className='flex py-3 mb-4 border-t-[1px] mt-4 border-gray-500 space-x-3'>
+      <div className='flex !py-3 mb-4 border-t-[1px] mt-4 border-gray-500 space-x-3'>
         <div className='flex'>
           <p className='pr-2'>{item.comments.length}</p>
           <AnnotationIcon className='w-6 h-6' />
         </div>
         <div className='flex'>
-          <p className='pr-2'>{item.likes.length}</p>
+          <p className='!pr-2'>{item.likes.length}</p>
           {isLiked ? (
             <HeartIconFull
               onClick={() => removeLike(item._id, userId, setIsLiked)}

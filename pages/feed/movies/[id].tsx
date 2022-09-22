@@ -29,8 +29,8 @@ const MovieDetails: React.FC = () => {
         <meta name='description' content='Home Page' />
         <link rel='icon' href='/favicon.ico' />
       </Head>
-      <div className='text-white w-full'>
-        <h3>{t('movieDesc')}</h3>
+      <div className='text-white h-screen w-full'>
+        <h3 className='mt-10'>{t('movieDesc')}</h3>
         <div className='mt-3 w-full'>
           <img
             className='rounded-lg md:w-[1200px] md:h-auto mt-10 object-cover'
