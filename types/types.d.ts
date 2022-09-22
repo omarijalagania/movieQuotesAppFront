@@ -41,6 +41,7 @@ export type QuoteProps = {
 };
 
 export type QuotePropsItem = {
+  setOpenEditQUoteDialog: (value: boolean) => void;
   item: {
     _id: string;
     movie: string;

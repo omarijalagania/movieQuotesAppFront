@@ -3,7 +3,7 @@ import { getQuoteFormInitialValue, useHeader } from 'components';
 import { quoteSchema } from 'schema';
 import { toast } from 'react-toastify';
 import { addQuoteHandler, getAllMoviesHandler } from 'services';
-import { useTranslate } from 'hooks';
+import { useTranslate, useMediaSize } from 'hooks';
 import { SetStateAction, useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { onModalClose } from 'state';
@@ -15,7 +15,7 @@ export const useAddQuote = () => {
   const [selectMovies, setSelectMovies] = useState('');
   const { t } = useTranslate();
   const dispatch = useDispatch();
-
+  const width = useMediaSize();
   const handleChange = (event: {
     target: { value: SetStateAction<string> };
   }) => {
@@ -77,5 +77,14 @@ export const useAddQuote = () => {
     validationSchema: quoteSchema,
   });
 
-  return { formik, t, setFile, newMovie, handleChange, userDetails, file };
+  return {
+    formik,
+    t,
+    setFile,
+    newMovie,
+    handleChange,
+    userDetails,
+    file,
+    width,
+  };
 };
