@@ -8,10 +8,10 @@ const Register: React.FC = () => {
   const { formik, error, t } = usePersonalInformationForm();
 
   return (
-    <div className='flex flex-col p-10 justify-center'>
+    <div className='flex flex-col md:w-[601px] h-screen md:h-auto md:p-10 justify-center md:justify-start'>
       <h1 className='text-white text-center text-3xl'>{t('createAccount')}</h1>
       <p className='text-center text-xs mt-2 text-gray-500'>{t('journey')}</p>
-      <form onSubmit={formik.handleSubmit} className='flex flex-col'>
+      <form onSubmit={formik.handleSubmit} className='flex mx-auto flex-col'>
         <div className='relative'>
           <Input
             isLabel={true}
@@ -23,7 +23,7 @@ const Register: React.FC = () => {
             onChange={formik.handleChange}
             onBlur={formik.handleBlur}
             value={formik.values.userName}
-            className={`border-2 ${
+            className={`border-2 w-[360px]  ${
               formik.errors.userName && formik.touched.userName
                 ? 'border-red-500'
                 : formik.values.userName && formik.touched.userName
@@ -44,7 +44,7 @@ const Register: React.FC = () => {
         </div>
 
         {formik.errors.userName && formik.touched.userName && (
-          <p className='text-red-500 mt-1'>{t(formik.errors.userName)}</p>
+          <p className='text-red-500  mt-1'>{t(formik.errors.userName)}</p>
         )}
 
         <div className='relative'>
@@ -58,7 +58,7 @@ const Register: React.FC = () => {
             onChange={formik.handleChange}
             onBlur={formik.handleBlur}
             value={formik.values.email}
-            className={`border-2 ${
+            className={`border-2 w-[360px] ${
               (formik.errors.email && formik.touched.email) || error
                 ? 'border-red-500'
                 : formik.values.email && formik.touched.email
@@ -97,7 +97,7 @@ const Register: React.FC = () => {
             onChange={formik.handleChange}
             onBlur={formik.handleBlur}
             value={formik.values.password}
-            className={`border-2 ${
+            className={`border-2 w-[360px]  ${
               formik.errors.password && formik.touched.password
                 ? 'border-red-500'
                 : formik.values.password && formik.touched.password
@@ -132,7 +132,7 @@ const Register: React.FC = () => {
             onChange={formik.handleChange}
             onBlur={formik.handleBlur}
             value={formik.values.repeatPassword}
-            className={`border-2 ${
+            className={`border-2 w-[360px]  ${
               formik.errors.repeatPassword && formik.touched.repeatPassword
                 ? 'border-red-500'
                 : formik.values.repeatPassword && formik.touched.repeatPassword
@@ -157,7 +157,7 @@ const Register: React.FC = () => {
         )}
 
         <RedButton
-          className='w-96 h-10 my-5 text-white'
+          className='h-10 my-5 w-[358px] md:w-[385px]  text-white'
           name={t('getStarted')}
         />
       </form>
@@ -170,7 +170,7 @@ const Register: React.FC = () => {
             callbackUrl: '/feed',
           })
         }
-        className='w-96 h-10 mt-2'
+        className='md:w-[385px] w-[358px] h-10 mx-auto mt-2'
         name={t('google')}
       />
       <p className='text-gray-500 text-center mt-10'>
