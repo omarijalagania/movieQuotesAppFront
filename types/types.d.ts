@@ -207,3 +207,7 @@ export type SIngleItemProps = {
 export type AddQuoteProp = {
   setOpenAddQuote: Dispatch<SetStateAction<boolean>>;
 };
+
+export type RegisterProps = {
+  setIsOpenLogin: React.Dispatch<React.SetStateAction<boolean>>;
+};

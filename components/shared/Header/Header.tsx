@@ -240,7 +240,7 @@ const Header: React.FC = () => {
       </div>
       {isOpen && (
         <Modal open={isOpen} setOpen={setIsOpen}>
-          <Register />
+          <Register setIsOpenLogin={setIsOpenLogin} />
         </Modal>
       )}
       {isOpenLogin && (

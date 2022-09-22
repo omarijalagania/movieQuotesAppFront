@@ -54,6 +54,18 @@ export const useHeader = (
   };
 
   useEffect(() => {
+    if (isOpen) {
+      setIsOpenLogin(false);
+    }
+  }, [isOpen]);
+
+  useEffect(() => {
+    if (isOpenLogin) {
+      setIsOpen(false);
+    }
+  }, [isOpenLogin]);
+
+  useEffect(() => {
     if (session && router.pathname === '/') {
       router.push('/feed');
     }

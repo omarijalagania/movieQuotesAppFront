@@ -3,8 +3,9 @@ import { Input, RedButton, Button } from 'components';
 import { CheckIcon, ExclamationCircleIcon } from '@heroicons/react/solid';
 import { signIn } from 'next-auth/react';
 import { usePersonalInformationForm } from 'components';
+import { RegisterProps } from 'types';
 
-const Register: React.FC = () => {
+const Register: React.FC<RegisterProps> = ({ setIsOpenLogin }) => {
   const { formik, error, t } = usePersonalInformationForm();
 
   return (
@@ -175,7 +176,12 @@ const Register: React.FC = () => {
       />
       <p className='text-gray-500 text-center mt-10'>
         {t('haveAccount')}
-        <p className='text-blue-500 cursor-pointer ml-2'>{t('login')}</p>
+        <p
+          onClick={() => setIsOpenLogin(true)}
+          className='text-blue-500 cursor-pointer ml-2'
+        >
+          {t('login')}
+        </p>
       </p>
     </div>
   );
