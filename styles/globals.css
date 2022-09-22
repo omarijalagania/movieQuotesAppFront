@@ -5,6 +5,10 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;900&family=Montserrat:wght@400;700&family=Press+Start+2P&display=swap');
 
 @layer base {
+  * {
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
+  }
   body {
     font-family: 'Montserrat', sans-serif;
     background-color: #11101a;
