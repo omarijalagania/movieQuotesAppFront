@@ -3,7 +3,7 @@ import { getMovieFormInitialValue, useHeader } from 'components';
 import { movieSchema } from 'schema';
 import { toast } from 'react-toastify';
 import { addMovieHandler, getMovieGenresHandler } from 'services';
-import { useTranslate } from 'hooks';
+import { useTranslate, useMediaSize } from 'hooks';
 import { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { saveAddMovie } from 'state';
@@ -14,6 +14,7 @@ export const useAddMovie = () => {
   const { userId, userDetails } = useHeader();
   const [genres, setGenres] = useState([]);
   const [selectedGenres, setSelectedGenres] = useState<string[]>([]);
+  const width = useMediaSize();
 
   const dispatch = useDispatch();
 
@@ -100,5 +101,6 @@ export const useAddMovie = () => {
     userDetails,
     file,
     selectError,
+    width,
   };
 };
