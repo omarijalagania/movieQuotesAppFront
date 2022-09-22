@@ -11,12 +11,12 @@ const WriteQuote: React.FC<WriteQUoteProps> = ({ setOpenAddQuote }) => {
   return (
     <div
       onClick={() => setOpenAddQuote(true)}
-      className='relative w-full md:h-[47px] transition-all md:w-[790px]'
+      className='relative md:h-[47px] transition-all w-[180px] md:w-[790px]'
     >
       <input
         className={`!py-2 ${
           growSearch ? 'md:w-[500px]' : 'w-full md:w-[778px]'
-        } pl-10 rounded-md text-white bg-lightBlue placeholder-white`}
+        } pl-10 rounded-md text-white bg-transparent md:bg-lightBlue placeholder-white`}
         type='text'
         disabled
         placeholder={t('writeQuote')}
