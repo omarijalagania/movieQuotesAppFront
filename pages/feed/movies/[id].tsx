@@ -65,7 +65,11 @@ const MovieDetails: React.FC = () => {
           />
         </div>
         {movie?.quotes?.map((item: QuoteProps) => (
-          <QuoteMovieDetails item={item} key={item._id} />
+          <QuoteMovieDetails
+            item={item}
+            key={item._id}
+            setOpenEditQUoteDialog={() => {}}
+          />
         ))}
       </div>
     </>

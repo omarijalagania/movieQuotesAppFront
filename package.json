@@ -1,5 +1,6 @@
 {
   "name": "assignment5-client",
+  "sideEffects": false,
   "version": "0.1.0",
   "private": true,
   "scripts": {
