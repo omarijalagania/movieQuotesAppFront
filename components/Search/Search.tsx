@@ -15,7 +15,7 @@ const Search: React.FC<any> = ({ handleSearch }) => {
   return (
     <div
       onClick={() => dispatch(changeSearchWidth(!growSearch))}
-      className={`hidden cursor-pointer md:h-[50px] transition-all text-gray-300  ${
+      className={` cursor-pointer md:h-[50px] transition-all text-gray-300  ${
         growSearch ? 'flex-grow' : 'w-[150px]'
       } md:flex  items-center`}
     >
