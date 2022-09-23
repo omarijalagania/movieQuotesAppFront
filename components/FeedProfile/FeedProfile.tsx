@@ -43,15 +43,22 @@ const FeedProfile: React.FC = () => {
               className={`w-6 h-6 ${
                 router.pathname.includes('/feed') &&
                 !router.pathname.includes('/feed/movie')
-                  ? 'text-white'
-                  : 'text-red-400'
+                  ? ' text-red-400'
+                  : 'text-white'
               } mr-4 `}
             />
 
             <Link href='/feed'>{t('feed')}</Link>
           </li>
           <li className='flex text-white'>
-            <VideoCameraIcon className='w-6 h-6  mr-4' />
+            <VideoCameraIcon
+              className={`w-6 h-6  mr-4 ${
+                router.pathname.includes('/feed/movie') &&
+                router.pathname.length === 12
+                  ? ' text-red-400'
+                  : 'text-white'
+              }`}
+            />
             <Link href='/feed/movies'>{t('movieList')}</Link>
           </li>
         </ul>
