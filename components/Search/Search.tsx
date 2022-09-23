@@ -25,7 +25,7 @@ const Search: React.FC<any> = ({ handleSearch }) => {
           ref={ref}
           className={`ml-2 bg-[#181623] md:h-[50px] outline-none ${
             growSearch
-              ? 'md:w-[400px] border-b-[1px] border-gray-700 py-2 mr-4'
+              ? 'md:w-[688px] border-b-[1px] border-gray-700 py-2 mr-4'
               : 'w-full'
           }`}
           id='search'

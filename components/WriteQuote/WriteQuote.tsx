@@ -15,7 +15,7 @@ const WriteQuote: React.FC<WriteQUoteProps> = ({ setOpenAddQuote }) => {
     >
       <input
         className={`!py-2 ${
-          growSearch ? 'md:w-[500px]' : 'w-full md:w-[778px]'
+          growSearch ? 'md:w-[250px]' : 'w-full md:w-[778px]'
         } pl-10 rounded-md text-white bg-transparent md:bg-lightBlue placeholder-white`}
         type='text'
         disabled
