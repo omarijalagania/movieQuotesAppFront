@@ -20,10 +20,11 @@ const EditQuote: React.FC<QuotePropsItem> = ({
     posterUrl,
     userDetails,
     t,
+    width,
   } = useEditQuote();
 
   return (
-    <div className='mb-6 w-[360px] md:!w-[961px] !py-5'>
+    <div className='mb-32 md:mb-6 w-[360px] md:!w-[961px] !py-5'>
       <div
         onClick={() => setOpenEditQUoteDialog(false)}
         className='flex relative border-b-[1px] !pb-2  border-gray-500'
@@ -97,17 +98,31 @@ const EditQuote: React.FC<QuotePropsItem> = ({
               className='hidden z-20'
               accept='.png, .jpg, .jpeg'
             />
-            <Image
-              width={477}
-              height={300}
-              src={
-                file
-                  ? posterUrl
-                  : process.env.NEXT_PUBLIC_BACKEND_URL + '/' + item.poster
-              }
-              alt='d'
-              className='object-cover z-10 object-center'
-            />
+            {(width.width as unknown as number) > 768 ? (
+              <Image
+                width={961}
+                height={300}
+                src={
+                  file
+                    ? posterUrl
+                    : process.env.NEXT_PUBLIC_BACKEND_URL + '/' + item.poster
+                }
+                alt='d'
+                className='object-cover z-10 object-center'
+              />
+            ) : (
+              <Image
+                width={441}
+                height={300}
+                src={
+                  file
+                    ? posterUrl
+                    : process.env.NEXT_PUBLIC_BACKEND_URL + '/' + item.poster
+                }
+                alt='d'
+                className='object-cover z-10 object-center'
+              />
+            )}
           </label>
         </div>
         <div className='relative h-[86px]'>

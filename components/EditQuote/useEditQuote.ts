@@ -3,7 +3,7 @@ import { getQuoteFormInitialValue, useHeader, imageUrl } from 'components';
 import { quoteSchema } from 'schema';
 import { toast } from 'react-toastify';
 import { editQuoteHandler, getAllMoviesHandler } from 'services';
-import { useTranslate } from 'hooks';
+import { useTranslate, useMediaSize } from 'hooks';
 import { SetStateAction, useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { getEditQuoteFormInitialValue } from './helpers';
@@ -15,6 +15,7 @@ export const useEditQuote = () => {
   const [movies, setMovies] = useState([]);
   const [selectMovies, setSelectMovies] = useState('');
   const dispatch = useDispatch();
+  const width = useMediaSize();
   const singleMovie = useSelector(
     (state: RootState) => state.quotes.singleMovie
   );
@@ -103,5 +104,6 @@ export const useEditQuote = () => {
     handleChange,
     currentQuotes,
     userDetails,
+    width,
   };
 };
