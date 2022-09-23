@@ -8,10 +8,9 @@ const MovieDetailsSide: React.FC = () => {
     useMovieDetailsSide();
 
   return (
-    <div className='mt-10 space-y-6 flex flex-col justify-start'>
+    <div className='mt-16 space-y-6 flex flex-col justify-start'>
       <div className='flex justify-between items-center'>
-        <h2 className='text-primaryGold text-3xl'>
-          {' '}
+        <h2 className='text-primaryGold mr-2 text-3xl'>
           {router.locale === 'en' ? movie?.movieNameEn : movie?.movieNameGe}
         </h2>
         <div className='flex relative'>

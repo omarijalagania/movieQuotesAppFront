@@ -47,7 +47,7 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
               !router.pathname.includes('/feed/movies/[id]') &&
               !router.pathname.includes('/feed/profile') &&
               'lg:w-[85rem] '
-            }  pt-8 p-5 md:p-10`}
+            }  pt-8 p-5 md:!w-[809px] md:p-10`}
           >
             {children}
           </div>
