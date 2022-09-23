@@ -41,7 +41,8 @@ export type QuoteProps = {
 };
 
 export type QuotePropsItem = {
-  setOpenEditQUoteDialog: (value: boolean) => void;
+  setOpenEditQUoteDialog: React.Dispatch<React.SetStateAction<boolean>>;
+
   item: {
     _id: string;
     movie: string;
@@ -55,6 +56,7 @@ export type QuotePropsItem = {
       quoteId: string;
       userId: string;
     }>;
+
     user: {
       _id: string;
       userName: string;
@@ -63,6 +65,8 @@ export type QuotePropsItem = {
     };
     likes: { userId: string }[];
   };
+  key?: string;
+  setOpenEditQUoteDialog: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
 export type SingleCommentProps = {
