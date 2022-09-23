@@ -20,8 +20,6 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
     return <Forbidden />;
   }
 
-  console.log(router.pathname.length);
-
   return (
     <>
       <div className='mb-[58px]'>

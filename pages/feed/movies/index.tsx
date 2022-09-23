@@ -5,10 +5,17 @@ import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { AddMovie, Loader, Modal, RedButton } from 'components';
 import { useMovie } from 'hooks';
 import Head from 'next/head';
+import { SearchIcon } from '@heroicons/react/solid';
 
 const Movies: React.FC = () => {
-  const { movie, openAddMovieModal, setOpenAddMovieModal, router, t } =
-    useMovie();
+  const {
+    movie,
+    openAddMovieModal,
+    setOpenAddMovieModal,
+    router,
+    t,
+    handleSearch,
+  } = useMovie();
 
   if (movie === null || movie === undefined) {
     return <Loader />;
@@ -26,7 +33,20 @@ const Movies: React.FC = () => {
           {t('myMovieList')} ({movie.length})
         </p>
         <div className='flex items-center'>
-          <p>{t('search')}</p>
+          <div
+            className={` cursor-pointer md:h-[50px] transition-all text-gray-300 w-[75px] md:w-[150px] md:flex  items-center`}
+          >
+            <div className='flex transition-all  items-center'>
+              <SearchIcon className='w-5 h-5  text-gray-300' />
+              <input
+                className={`ml-2 bg-transparent md:h-[50px] outline-none w-full`}
+                id='search'
+                name='search'
+                placeholder={t('searchBy')}
+                onChange={(e) => handleSearch(e)}
+              />
+            </div>
+          </div>
           <RedButton
             onClick={() => setOpenAddMovieModal(true)}
             className='ml-3 !py-1'
