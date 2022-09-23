@@ -28,8 +28,8 @@ const Movies: React.FC = () => {
         <meta name='description' content='Home Page' />
         <link rel='icon' href='/favicon.ico' />
       </Head>
-      <div className='flex justify-between w-full mt-12 text-white mb-5'>
-        <p>
+      <div className='flex justify-between items-center  w-full mt-12 text-white mb-5'>
+        <p className='md:text-2xl'>
           {t('myMovieList')} ({movie.length})
         </p>
         <div className='flex items-center'>

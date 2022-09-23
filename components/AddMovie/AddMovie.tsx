@@ -7,9 +7,10 @@ import {
   useAddMovie,
   customStyles,
   AddMovieProp,
+  UserDetails,
 } from 'components';
 import { CameraIcon } from '@heroicons/react/outline';
-import { imagePreview } from 'helpers';
+import { imagePreview, showAvatarPicture } from 'helpers';
 
 const AddMovie: React.FC<AddMovieProp> = ({ setOpenAddMovieModal }) => {
   const {
@@ -36,11 +37,9 @@ const AddMovie: React.FC<AddMovieProp> = ({ setOpenAddMovieModal }) => {
       <div className='mt-5'>
         <div className='flex items-center mb-2'>
           <img
-            src={
-              process.env.NEXT_PUBLIC_BACKEND_URL + '/' + userDetails?.poster
-            }
+            src={showAvatarPicture(userDetails as UserDetails)}
             alt='avatar'
-            className='w-10 h-10 rounded-full object-cover'
+            className='w-14 h-14 rounded-full object-cover'
           />
           <p className='ml-3 text-white'>{userDetails?.userName}</p>
         </div>

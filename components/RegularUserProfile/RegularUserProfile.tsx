@@ -43,11 +43,9 @@ const RegularUserProfile: React.FC = () => {
     return <Loader />;
   }
 
-  console.log(formik.errors?.secondaryEmails);
-
   return (
     <div className='w-[998px] relative'>
-      <p className='text-white mt-10 mb-20'>{t('myProfile')}</p>
+      <p className='text-white text-2xl mt-10 mb-20'>{t('myProfile')}</p>
 
       <div className='w-[998px] flex flex-col justify-center items-start px-10  rounded-lg relative bg-darkBlue min-h-[80vh]'>
         <img
@@ -57,7 +55,7 @@ const RegularUserProfile: React.FC = () => {
             userDetails?.poster
           )}
           alt='avatar'
-          className='w-32 h-32 rounded-full object-cover absolute -top-16 left-1/2 -translate-x-1/2'
+          className='w-44 h-44 rounded-full object-cover absolute -top-16 left-1/2 -translate-x-1/2'
         />
         <form
           id='update'
@@ -75,7 +73,7 @@ const RegularUserProfile: React.FC = () => {
             onChange={(e) => handleChange(e, setFile)}
           />
           <p
-            className='text-white absolute left-1/2 top-24 -translate-x-1/2 cursor-pointer'
+            className='text-white absolute left-1/2 top-32 text-xl -translate-x-1/2 cursor-pointer'
             onClick={() => openFIlePicker(hiddenFileInput)}
           >
             {t('uploadPhoto')}
@@ -93,21 +91,8 @@ const RegularUserProfile: React.FC = () => {
                 value={formik.values.userName}
                 defaultValue={userDetails?.userName}
                 onChange={formik.handleChange}
-                className={`border-2 md:!w-[528px] ${
-                  formik.errors.userName
-                    ? 'border-red-500'
-                    : formik.values.userName
-                    ? 'border-green-700'
-                    : ''
-                }`}
+                className={`md:!w-[528px]`}
               />
-              {!formik.errors.userName && formik.values.userName !== '' ? (
-                <CheckIcon className='w-6 h-6 absolute text-green-500 right-2 top-[58%]' />
-              ) : formik.values.userName ? (
-                <ExclamationCircleIcon className='w-6 h-6 absolute text-red-500 right-2 top-[58%]' />
-              ) : (
-                ''
-              )}
 
               {!editUsername ? (
                 <p
@@ -308,7 +293,7 @@ const RegularUserProfile: React.FC = () => {
               />
             </FormikProvider>
 
-            <div className='w-full md:w-96 h-0.5 mt-10 mb-8 bg-gray-700' />
+            <div className='w-full md:!w-[528px] h-0.5 mt-10 mb-8 bg-gray-700' />
 
             <div className='relative'>
               <Input

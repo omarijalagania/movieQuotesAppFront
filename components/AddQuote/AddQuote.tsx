@@ -1,9 +1,9 @@
 import React from 'react';
 import { XIcon } from '@heroicons/react/solid';
 
-import { Input, RedButton, useAddQuote } from 'components';
+import { Input, RedButton, useAddQuote, UserDetails } from 'components';
 import { CameraIcon } from '@heroicons/react/outline';
-import { imagePreview } from 'helpers';
+import { imagePreview, showAvatarPicture } from 'helpers';
 import { AddQuoteProp } from 'types';
 
 const AddQuote: React.FC<AddQuoteProp> = ({ setOpenAddQuote }) => {
@@ -30,12 +30,8 @@ const AddQuote: React.FC<AddQuoteProp> = ({ setOpenAddQuote }) => {
       <div className='mt-5'>
         <div className='flex items-center mb-2'>
           <img
-            className='w-8 h-8 rounded-full'
-            src={
-              userDetails?.image
-                ? userDetails?.image
-                : process.env.NEXT_PUBLIC_RANDOM_AVATAR
-            }
+            className='w-14 h-14 rounded-full object-cover'
+            src={showAvatarPicture(userDetails as UserDetails)}
             alt='avatar'
           />
           <p className='ml-3 text-white'>{userDetails?.userName}</p>

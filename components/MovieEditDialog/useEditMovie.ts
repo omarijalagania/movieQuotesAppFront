@@ -2,7 +2,7 @@ import { useFormik } from 'formik';
 import { movieSchema } from 'schema';
 import { toast } from 'react-toastify';
 import { getMovieGenresHandler, updateMovieHandler } from 'services';
-import { useTranslate } from 'hooks';
+import { useTranslate, useMediaSize } from 'hooks';
 import { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { RootState } from 'state';
@@ -20,7 +20,7 @@ export const useEditMovie = () => {
   const [selectedGenres, setSelectedGenres] = useState<string[]>([]);
   const movie = useSelector((state: RootState) => state.quotes.singleMovie);
   const { router, t } = useTranslate();
-
+  const width = useMediaSize();
   const handleChange = (selectedOption: any) => {
     const selectedGenresVal = selectedOption.map(
       (option: { value: string; label: string }) => ({
@@ -113,5 +113,6 @@ export const useEditMovie = () => {
     defaultSelects,
     movie,
     userDetails,
+    width,
   };
 };
