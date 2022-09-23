@@ -20,6 +20,8 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
     return <Forbidden />;
   }
 
+  console.log(router.pathname.length);
+
   return (
     <>
       <div className='mb-[58px]'>
@@ -43,11 +45,14 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
         >
           <div
             className={`flex flex-col mx-auto  md:h-screen md:w-auto ${
-              !router.pathname.includes('/feed/movies') &&
               !router.pathname.includes('/feed/movies/[id]') &&
               !router.pathname.includes('/feed/profile') &&
               'lg:w-[85rem] '
-            }  pt-8 p-5 md:p-10`}
+            }  pt-8 p-5 ${
+              router.pathname.length > 5 || router.pathname.length < 12
+                ? ''
+                : 'md:!w-[809px]'
+            } md:p-10`}
           >
             {children}
           </div>
