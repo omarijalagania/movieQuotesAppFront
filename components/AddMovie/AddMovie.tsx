@@ -52,7 +52,7 @@ const AddMovie: React.FC<AddMovieProp> = ({ setOpenAddMovieModal }) => {
       >
         <div className='relative mb-3'>
           <Input
-            className='!rounded-none py-1 !border-[1px] h-[48px] !text-sm border-gray-700 bg-darkBlue text-white  md:!w-[961px] !placeholder-white'
+            className='!rounded-none py-1 font-normal !text-xl !border-[1px] h-[48px] border-gray-700 bg-darkBlue text-white  md:!w-[961px] !placeholder-white'
             isLabel={false}
             type='text'
             id='movieNameEn'
@@ -69,7 +69,7 @@ const AddMovie: React.FC<AddMovieProp> = ({ setOpenAddMovieModal }) => {
         )}
         <div className='relative mb-3'>
           <Input
-            className='!rounded-none py-1 !border-[1px] !text-sm h-[48px] border-gray-700 bg-darkBlue text-white md:!w-[961px] !placeholder-white'
+            className='!rounded-none py-1 !border-[1px] !text-xl h-[48px] border-gray-700 bg-darkBlue text-white md:!w-[961px] !placeholder-white'
             isLabel={false}
             type='text'
             id='movieNameGe'
@@ -100,7 +100,7 @@ const AddMovie: React.FC<AddMovieProp> = ({ setOpenAddMovieModal }) => {
 
         <div className='relative mb-3'>
           <Input
-            className='!rounded-none py-1 h-[48px] !border-[1px] !text-sm border-gray-700 bg-darkBlue text-white md:!w-[961px] !placeholder-white'
+            className='!rounded-none py-1 h-[48px] !border-[1px] !text-xl border-gray-700 bg-darkBlue text-white md:!w-[961px] !placeholder-white'
             isLabel={false}
             type='text'
             id='directorEn'
@@ -117,7 +117,7 @@ const AddMovie: React.FC<AddMovieProp> = ({ setOpenAddMovieModal }) => {
         )}
         <div className='relative mb-1'>
           <Input
-            className='!rounded-none h-[48px] py-1 !mb-1 !border-[1px] !text-sm border-gray-700 bg-darkBlue text-white md:!w-[961px] !placeholder-white'
+            className='!rounded-none h-[48px] py-1 !mb-1 !border-[1px] !text-xl border-gray-700 bg-darkBlue text-white md:!w-[961px] !placeholder-white'
             isLabel={false}
             type='text'
             id='directorGe'
@@ -135,7 +135,7 @@ const AddMovie: React.FC<AddMovieProp> = ({ setOpenAddMovieModal }) => {
         <div className='relative mb-1'>
           <textarea
             onChange={formik.handleChange}
-            className='border-[1px] !p-1 text-sm h-[86px] border-gray-700 bg-darkBlue text-white w-full  md:w-[961px] placeholder-white'
+            className='border-[1px] !p-1 text-xl h-[86px]  border-gray-700 bg-darkBlue text-white w-full  md:w-[961px] placeholder-white'
             name='descriptionEn'
             placeholder='Movie description'
           />
@@ -149,7 +149,7 @@ const AddMovie: React.FC<AddMovieProp> = ({ setOpenAddMovieModal }) => {
         <div className='relative mb-1'>
           <textarea
             onChange={formik.handleChange}
-            className='border-[1px] !p-1 text-sm h-[86px] border-gray-700 bg-darkBlue text-white w-full md:w-[961px] placeholder-white'
+            className='border-[1px] !p-1 text-xl h-[86px] border-gray-700 bg-darkBlue text-white w-full md:w-[961px] placeholder-white'
             name='descriptionGe'
             placeholder='ფილმის აღწერა'
           />
@@ -166,11 +166,11 @@ const AddMovie: React.FC<AddMovieProp> = ({ setOpenAddMovieModal }) => {
               <CameraIcon className='w-5 h-5 text-white' />
               <span className='text-sm flex text-white'>
                 {(width.width as unknown as number) > 768 ? (
-                  <p>{t('drag')}</p>
+                  <p className='text-xl'>{t('drag')}</p>
                 ) : (
-                  <p>Upload image</p>
+                  <p className='text-xl'>Upload image</p>
                 )}
-                <span className='text-white text-xs py-1 px-2 ml-1 bg-purple-700'>
+                <span className='text-white text-xl py-1 px-2 ml-1 bg-purple-700'>
                   {t('chooseFile')}
                 </span>
               </span>

@@ -22,13 +22,13 @@ const Movies: React.FC = () => {
   }
 
   return (
-    <>
+    <div className='h-screen'>
       <Head>
         <title>Movies</title>
         <meta name='description' content='Home Page' />
         <link rel='icon' href='/favicon.ico' />
       </Head>
-      <div className='flex justify-between w-full md:w-[1420px] mt-12 text-white mb-5'>
+      <div className='flex justify-between w-full mt-12 text-white mb-5'>
         <p>
           {t('myMovieList')} ({movie.length})
         </p>
@@ -97,7 +97,7 @@ const Movies: React.FC = () => {
           <AddMovie setOpenAddMovieModal={setOpenAddMovieModal} />
         </Modal>
       )}
-    </>
+    </div>
   );
 };
 
