@@ -34,7 +34,7 @@ const Movies: React.FC = () => {
           />
         </div>
       </div>
-      <div className='grid grid-cols-1 w-[1420px] md:grid-cols-3 '>
+      <div className='grid grid-cols-1 md:w-[1420px] md:grid-cols-3 '>
         {movie.length !== 0 ? (
           movie?.map(
             (item: {
