@@ -44,13 +44,17 @@ export const showAvatarPicture = (userDetails: {
   poster: string;
   image: string;
 }) => {
-  return userDetails?.provider === 'google'
-    ? userDetails?.poster
-      ? process.env.NEXT_PUBLIC_BACKEND_URL + '/' + userDetails?.poster
-      : userDetails?.image
-    : userDetails?.provider === 'email'
-    ? userDetails?.poster
-      ? process.env.NEXT_PUBLIC_BACKEND_URL + '/' + userDetails?.poster
-      : userDetails?.image
-    : process.env.NEXT_PUBLIC_RANDOM_AVATAR;
+  if (userDetails?.provider === 'google') {
+    if (userDetails?.poster) {
+      return process.env.NEXT_PUBLIC_BACKEND_URL + '/' + userDetails?.poster;
+    } else if (userDetails?.image) {
+      return userDetails?.image;
+    }
+  } else if (userDetails?.provider === 'email') {
+    if (userDetails?.poster) {
+      return process.env.NEXT_PUBLIC_BACKEND_URL + '/' + userDetails?.poster;
+    } else if (userDetails?.image) {
+      return userDetails?.image;
+    }
+  }
 };
