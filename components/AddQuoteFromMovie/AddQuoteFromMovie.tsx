@@ -1,9 +1,16 @@
 import React from 'react';
 import { XIcon } from '@heroicons/react/solid';
 import { useHeader } from 'components';
-import { Input, RedButton, useAddQuoteFromMovie, MovieProp } from 'components';
+import {
+  Input,
+  RedButton,
+  useAddQuoteFromMovie,
+  MovieProp,
+  UserDetails,
+} from 'components';
 import { CameraIcon } from '@heroicons/react/outline';
 import Image from 'next/image';
+import { imagePreview, showAvatarPicture } from 'helpers';
 
 const AddQuoteFromMovie: React.FC<MovieProp> = ({
   movie,
@@ -29,14 +36,8 @@ const AddQuoteFromMovie: React.FC<MovieProp> = ({
       <div className='mt-5'>
         <div className='flex items-center mb-2'>
           <img
-            className='w-8 h-8 object-cover rounded-full'
-            src={
-              userDetails?.poster
-                ? process.env.NEXT_PUBLIC_BACKEND_URL +
-                  '/' +
-                  userDetails?.poster
-                : process.env.NEXT_PUBLIC_RANDOM_AVATAR
-            }
+            className='w-14 h-14 object-cover rounded-full'
+            src={showAvatarPicture(userDetails as UserDetails)}
             alt='image'
           />
           <p className='ml-3 text-white'>{userDetails?.userName}</p>
@@ -136,9 +137,13 @@ const AddQuoteFromMovie: React.FC<MovieProp> = ({
                     {t('chooseFile')}
                   </span>
                 </span>
-                <p className='text-white w-14 text-xs'>
-                  {file !== null ? file.name : ''}
-                </p>
+                {file && (
+                  <img
+                    src={imagePreview(file as File)}
+                    alt=''
+                    className='w-20 h-10'
+                  />
+                )}
               </span>
               <input
                 onChange={(event) => {

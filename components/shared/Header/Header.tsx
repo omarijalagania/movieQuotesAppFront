@@ -14,6 +14,7 @@ import {
   LangToggler,
   NotificationProps,
   MobileMenu,
+  UserDetails,
 } from 'components';
 import { useSession, signOut } from 'next-auth/react';
 import moment from 'moment';
@@ -26,6 +27,7 @@ import {
 import { BellIcon, MenuIcon } from '@heroicons/react/outline';
 import { updateNotificationHandler } from 'services';
 import { useOutsideClick } from 'hooks';
+import { showAvatarPicture } from 'helpers';
 
 const Header: React.FC = () => {
   const { data: session } = useSession();
@@ -119,12 +121,9 @@ const Header: React.FC = () => {
                                             <div className='flex justify-between items-center'>
                                               <img
                                                 className='w-10 h-10 rounded-full object-cover'
-                                                src={
-                                                  notification.user
-                                                    ?.provider === 'google'
-                                                    ? notification.user?.image
-                                                    : notification.user?.poster
-                                                }
+                                                src={showAvatarPicture(
+                                                  notification.user as UserDetails
+                                                )}
                                                 alt='image'
                                               />
 

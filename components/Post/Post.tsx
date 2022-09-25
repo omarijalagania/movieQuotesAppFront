@@ -25,17 +25,17 @@ const Post: React.FC<Props> = ({ item, setGetLike }) => {
     <div className='bg-darkBlue !p-5 text-white md:w-[938px] mx-auto  rounded-md mt-5'>
       <div className='flex  items-center'>
         <img
-          className='w-10 h-10 rounded-full'
+          className='w-14 h-14 object-cover rounded-full'
           src={avatarImageUrl(item)}
           alt='avatar'
         />
         {item?.user?.map((user: UserProps) => (
-          <h3 key={user._id} className='ml-2'>
+          <h3 key={user._id} className='ml-2 text-xl'>
             {user?.userName}
           </h3>
         ))}
       </div>
-      <h4 className='mt-3 italic'>{`${
+      <h4 className='mt-3 text-xl italic'>{`${
         router.locale === 'en'
           ? "'" + item.quoteNameEng + "'"
           : "'" + item.quoteNameGe + "'"

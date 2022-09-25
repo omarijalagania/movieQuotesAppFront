@@ -30,7 +30,7 @@ const MovieDetails: React.FC = () => {
         <link rel='icon' href='/favicon.ico' />
       </Head>
       <div className='text-white h-screen w-full'>
-        <h3 className='mt-10'>{t('movieDesc')}</h3>
+        <h3 className='mt-10 text-2xl'>{t('movieDesc')}</h3>
         <div className='mt-3 w-full'>
           <img
             className='rounded-lg md:w-[809px] md:h-auto mt-10 object-cover'

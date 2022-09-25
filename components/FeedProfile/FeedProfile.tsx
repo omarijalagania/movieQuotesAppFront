@@ -4,6 +4,7 @@ import { VideoCameraIcon } from '@heroicons/react/outline';
 import Link from 'next/link';
 
 import { useHeader } from 'components';
+import { showAvatarPicture } from 'helpers';
 
 const FeedProfile: React.FC = () => {
   const { userDetails, t, router } = useHeader();
@@ -13,34 +14,27 @@ const FeedProfile: React.FC = () => {
       <div className='flex flex-col space-y-7'>
         <div className='flex'>
           <img
-            className='w-10 h-10 rounded-full object-cover'
-            src={
-              userDetails?.image || userDetails?.poster
-                ? userDetails?.image ||
-                  process.env.NEXT_PUBLIC_BACKEND_URL +
-                    '/' +
-                    userDetails?.poster
-                : process.env.NEXT_PUBLIC_RANDOM_AVATAR
-            }
+            className='w-10 h-10 md:w-14 md:h-14 rounded-full object-cover'
+            src={showAvatarPicture(userDetails as any)}
             alt='avatar'
           />
 
-          <div className='ml-2'>
-            <h3 className='text-xl mb-1 overflow-hidden text-white'>
+          <div className='ml-4'>
+            <h3 className='text-xl md:text-2xl mb-1 overflow-hidden text-white'>
               {userDetails?.userName}
             </h3>
             <p
               onClick={() => router.push('/feed/profile')}
-              className='text-xs text-gray-300 cursor-pointer'
+              className='text-base text-gray-300 cursor-pointer'
             >
               {t('editProfile')}
             </p>
           </div>
         </div>
-        <ul className='flex ml-2 space-y-7 flex-col'>
+        <ul className='flex ml-4 space-y-7 flex-col'>
           <li className='flex text-white'>
             <HomeIcon
-              className={`w-6 h-6 ${
+              className={`w-7 h-7 ${
                 router.pathname.includes('/feed') &&
                 !router.pathname.includes('/feed/movie')
                   ? ' text-red-400'
@@ -48,18 +42,22 @@ const FeedProfile: React.FC = () => {
               } mr-4 `}
             />
 
-            <Link href='/feed'>{t('feed')}</Link>
+            <Link href='/feed'>
+              <p className='md:text-2xl cursor-pointer'>{t('feed')}</p>
+            </Link>
           </li>
           <li className='flex text-white'>
             <VideoCameraIcon
-              className={`w-6 h-6  mr-4 ${
+              className={`w-7 h-7  mr-4 ${
                 router.pathname.includes('/feed/movie') &&
                 router.pathname.length === 12
                   ? ' text-red-400'
                   : 'text-white'
               }`}
             />
-            <Link href='/feed/movies'>{t('movieList')}</Link>
+            <Link href='/feed/movies'>
+              <p className='md:text-2xl cursor-pointer'>{t('movieList')}</p>
+            </Link>
           </li>
         </ul>
       </div>

@@ -23,7 +23,7 @@ const Search: React.FC<any> = ({ handleSearch }) => {
         <SearchIcon className='w-5 h-5  text-gray-300' />
         <input
           ref={ref}
-          className={`ml-2 bg-[#181623] md:h-[50px] outline-none ${
+          className={`ml-2 md:text-xl bg-transparent md:h-[50px] outline-none ${
             growSearch
               ? 'md:w-[688px] border-b-[1px] border-gray-700 py-2 mr-4'
               : 'w-full'

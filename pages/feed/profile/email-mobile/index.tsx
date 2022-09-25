@@ -29,7 +29,7 @@ const EmailMobile = () => {
     setMakeChanges,
   } = useRegularUserProfile();
   return (
-    <div className='relative mx-auto'>
+    <div className='relative mt-10 mx-auto'>
       <ArrowLeftIcon
         onClick={() => router.push('/feed/profile')}
         className='w-6 h-6 text-gray-400 mb-3 cursor-pointer'

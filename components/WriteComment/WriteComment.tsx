@@ -1,14 +1,15 @@
 import React from 'react';
-import { useAddComment, avatarImageUrl } from 'components';
-import { ItemProps, SIngleItemProps } from 'types';
+import { useAddComment, UserDetails } from 'components';
+import { SIngleItemProps } from 'types';
+import { showAvatarPicture } from 'helpers';
 
 const WriteComment: React.FC<SIngleItemProps> = ({ item }) => {
-  const { formik, setFieldId, setReceiverId, t } = useAddComment();
+  const { formik, setFieldId, setReceiverId, t, userDetails } = useAddComment();
   return (
     <form onSubmit={formik.handleSubmit} className='flex items-center mt-4'>
       <img
-        className='w-10 h-10 rounded-full'
-        src={avatarImageUrl(item as ItemProps)}
+        className='w-10 h-10 rounded-full object-cover'
+        src={showAvatarPicture(userDetails as UserDetails)}
         alt='avatar'
       />
       <input

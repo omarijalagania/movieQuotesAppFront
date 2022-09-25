@@ -3,14 +3,15 @@ import { HomeIcon } from '@heroicons/react/solid';
 import { VideoCameraIcon } from '@heroicons/react/outline';
 import Link from 'next/link';
 
-import { useHeader, MobileMenuProps } from 'components';
+import { useHeader, MobileMenuProps, UserDetails } from 'components';
+import { showAvatarPicture } from 'helpers';
 
 const MobileMenu: React.FC<MobileMenuProps> = ({ openMobileMenu }) => {
   const { userDetails, t, router } = useHeader();
 
   return (
     <div
-      className={`h-screen fixed top-14 left-0 transition ease-in-out delay-150 ${
+      className={`h-screen fixed top-20 left-0 transition ease-in-out delay-150 ${
         openMobileMenu ? '' : '-translate-x-[100vw] '
       }  bg-lightBlue w-64`}
     >
@@ -18,14 +19,7 @@ const MobileMenu: React.FC<MobileMenuProps> = ({ openMobileMenu }) => {
         <div className='flex'>
           <img
             className='w-10 h-10 rounded-full object-cover'
-            src={
-              userDetails?.image || userDetails?.poster
-                ? userDetails?.image ||
-                  process.env.NEXT_PUBLIC_BACKEND_URL +
-                    '/' +
-                    userDetails?.poster
-                : process.env.NEXT_PUBLIC_RANDOM_AVATAR
-            }
+            src={showAvatarPicture(userDetails as UserDetails)}
             alt='avatar'
           />
 
@@ -43,12 +37,26 @@ const MobileMenu: React.FC<MobileMenuProps> = ({ openMobileMenu }) => {
         </div>
         <ul className='flex ml-2 space-y-7 flex-col'>
           <li className='flex text-white'>
-            <HomeIcon className='w-6 h-6 text-red-400 mr-4' />
+            <HomeIcon
+              className={`w-6 h-6 ${
+                router.pathname.includes('/feed') &&
+                !router.pathname.includes('/feed/movie')
+                  ? ' text-red-400'
+                  : 'text-white'
+              } mr-4 `}
+            />
 
             <Link href='/feed'>{t('feed')}</Link>
           </li>
           <li className='flex text-white'>
-            <VideoCameraIcon className='w-6 h-6  mr-4' />
+            <VideoCameraIcon
+              className={`w-6 h-6  mr-4 ${
+                router.pathname.includes('/feed/movie') &&
+                router.pathname.length === 12
+                  ? ' text-red-400'
+                  : 'text-white'
+              }`}
+            />
             <Link href='/feed/movies'>{t('movieList')}</Link>
           </li>
         </ul>

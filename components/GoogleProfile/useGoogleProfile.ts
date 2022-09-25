@@ -43,6 +43,7 @@ const useGoogleProfile = () => {
         if (response.status === 200) {
           setIsEditable(false);
           toast.success(t('updated'));
+          setIsOpenUploadModal(false);
         }
       } catch (error) {
         toast.error(t('error'));

@@ -1,12 +1,7 @@
 import React from 'react';
 import { Input, useGoogleProfile, RedButton } from 'components';
 
-import {
-  handleChange,
-  imagePreview,
-  openFIlePicker,
-  showInAvatar,
-} from 'helpers';
+import { handleChange, imagePreview, openFIlePicker } from 'helpers';
 
 const GoogleProfile: React.FC = () => {
   const {
@@ -22,16 +17,18 @@ const GoogleProfile: React.FC = () => {
 
   return (
     <div className='w-[998px] relative'>
-      <p className='text-white mt-5 mb-20'>My profile</p>
+      <p className='text-white text-2xl mt-10 mb-20'>{t('myProfile')}</p>
       <div className='w-[998px] flex flex-col justify-center items-center rounded-lg relative bg-darkBlue h-[535px]'>
         <img
-          src={showInAvatar(
-            imagePreview(file as File),
-            userDetails?.image,
-            userDetails?.poster
-          )}
+          src={
+            file
+              ? imagePreview(file as File)
+              : userDetails?.poster
+              ? process.env.NEXT_PUBLIC_BACKEND_URL + '/' + userDetails?.poster
+              : userDetails?.image
+          }
           alt='avatar'
-          className='w-32 h-32 object-cover rounded-full  absolute -top-16 left-1/2 -translate-x-1/2'
+          className='w-44 h-44 object-cover rounded-full  absolute -top-16 left-1/2 -translate-x-1/2'
         />
         <input
           ref={hiddenFileInput}
@@ -44,15 +41,16 @@ const GoogleProfile: React.FC = () => {
           onChange={(event) => handleChange(event, setFile)}
         />
         <p
-          className='text-white absolute left-1/2 top-24 -translate-x-1/2 cursor-pointer'
+          className='text-white text-xl absolute left-1/2 top-32 -translate-x-1/2 cursor-pointer'
           onClick={() => openFIlePicker(hiddenFileInput)}
         >
-          Upload photo
+          {t('uploadPhoto')}
         </p>
         <form
           id='update'
           encType='multipart/form-data'
           onSubmit={formik.handleSubmit}
+          className='mt-7'
         >
           <div className='relative'>
             <Input

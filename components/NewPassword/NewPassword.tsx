@@ -7,7 +7,7 @@ const NewPassword: React.FC = () => {
   const { formik, t } = useNewPasswordFrom();
 
   return (
-    <div className='flex flex-col p-10 justify-center'>
+    <div className='flex flex-col !p-10 justify-center'>
       <h1 className='text-white text-center text-3xl'>{t('newPassword')}</h1>
       <p className='text-center text-xs mt-2 text-gray-500'>
         {t('differentPasswords')}

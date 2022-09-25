@@ -38,3 +38,23 @@ export const showInAvatar = (
     return process.env.NEXT_PUBLIC_BACKEND_URL + '/' + Member;
   }
 };
+
+export const showAvatarPicture = (userDetails: {
+  provider: string;
+  poster: string;
+  image: string;
+}) => {
+  if (userDetails?.provider === 'google') {
+    if (userDetails?.poster) {
+      return process.env.NEXT_PUBLIC_BACKEND_URL + '/' + userDetails?.poster;
+    } else if (userDetails?.image) {
+      return userDetails?.image;
+    }
+  } else if (userDetails?.provider === 'email') {
+    if (userDetails?.poster) {
+      return process.env.NEXT_PUBLIC_BACKEND_URL + '/' + userDetails?.poster;
+    } else if (userDetails?.image) {
+      return userDetails?.image;
+    }
+  }
+};

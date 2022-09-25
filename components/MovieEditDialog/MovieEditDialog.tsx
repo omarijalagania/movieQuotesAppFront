@@ -7,10 +7,12 @@ import {
   useEditMovie,
   customStyles,
   MovieEditProps,
+  UserDetails,
 } from 'components';
 import { CameraIcon } from '@heroicons/react/outline';
 
 import Image from 'next/image';
+import { showAvatarPicture } from 'helpers';
 
 const MovieEditDialog: React.FC<MovieEditProps> = ({ setOpenEditDialog }) => {
   const {
@@ -24,26 +26,23 @@ const MovieEditDialog: React.FC<MovieEditProps> = ({ setOpenEditDialog }) => {
     movie,
     t,
     userDetails,
+    width,
   } = useEditMovie();
 
   return (
-    <div className='w-full'>
+    <div className='w-screen bg-darkBlue md:w-[961px] md:h-full mx-auto px-7 md:px-0 h-screen'>
       <div
         onClick={() => setOpenEditDialog(false)}
-        className='flex relative border-b-[1px] pb-2 border-gray-500'
+        className='flex relative border-b-[1px] !pb-2 border-gray-500'
       >
-        <h1 className='text-white mx-auto'>{t('movieEdit')}</h1>
+        <h1 className='text-white text-2xl mx-auto'>{t('movieEdit')}</h1>
         <XIcon className='w-5 h-5 cursor-pointer text-white absolute right-0' />
       </div>
       <div className='mt-5'>
         <div className='flex items-center mb-2'>
           <img
-            className='w-10 h-10 rounded-full'
-            src={
-              userDetails?.image
-                ? userDetails?.image
-                : process.env.NEXT_PUBLIC_RANDOM_AVATAR
-            }
+            className='w-14 h-14 object-cover rounded-full'
+            src={showAvatarPicture(userDetails as UserDetails)}
             alt='avatar'
           />
           <p className='ml-3 text-white'>{userDetails?.userName}</p>
@@ -56,7 +55,7 @@ const MovieEditDialog: React.FC<MovieEditProps> = ({ setOpenEditDialog }) => {
       >
         <div className='relative mb-3'>
           <Input
-            className='!rounded-none py-1 !border-[1px] !text-sm border-gray-400 bg-darkBlue text-white !w-[500px] !placeholder-white'
+            className='!rounded-none py-1 font-normal !text-xl !border-[1px] h-[48px] border-gray-700 bg-darkBlue text-white  md:!w-[961px] !placeholder-white'
             isLabel={false}
             type='text'
             id='movieNameEn'
@@ -74,7 +73,7 @@ const MovieEditDialog: React.FC<MovieEditProps> = ({ setOpenEditDialog }) => {
         )}
         <div className='relative mb-3'>
           <Input
-            className='!rounded-none py-1 !border-[1px] !text-sm border-gray-400 bg-darkBlue text-white !w-[500px] !placeholder-white'
+            className='!rounded-none py-1 font-normal !text-xl !border-[1px] h-[48px] border-gray-700 bg-darkBlue text-white  md:!w-[961px] !placeholder-white'
             isLabel={false}
             type='text'
             id='movieNameGe'
@@ -101,7 +100,7 @@ const MovieEditDialog: React.FC<MovieEditProps> = ({ setOpenEditDialog }) => {
 
         <div className='relative mb-3'>
           <Input
-            className='!rounded-none py-1 !border-[1px] !text-sm border-gray-400 bg-darkBlue text-white !w-[500px] !placeholder-white'
+            className='!rounded-none py-1 font-normal !text-xl !border-[1px] h-[48px] border-gray-700 bg-darkBlue text-white  md:!w-[961px] !placeholder-white'
             isLabel={false}
             type='text'
             id='directorEn'
@@ -119,7 +118,7 @@ const MovieEditDialog: React.FC<MovieEditProps> = ({ setOpenEditDialog }) => {
         )}
         <div className='relative mb-1'>
           <Input
-            className='!rounded-none py-1 !mb-1 !border-[1px] !text-sm border-gray-400 bg-darkBlue text-white !w-[500px] !placeholder-white'
+            className='!rounded-none py-1 font-normal !text-xl !border-[1px] h-[48px] border-gray-700 bg-darkBlue text-white  md:!w-[961px] !placeholder-white'
             isLabel={false}
             type='text'
             id='directorGe'
@@ -138,7 +137,7 @@ const MovieEditDialog: React.FC<MovieEditProps> = ({ setOpenEditDialog }) => {
         <div className='relative mb-1'>
           <textarea
             onChange={formik.handleChange}
-            className='border-[1px] p-1 text-sm border-gray-400 bg-darkBlue text-white w-[500px] placeholder-white'
+            className='border-[1px] !p-1 text-xl h-[86px] border-gray-700 bg-darkBlue text-white w-full md:w-[961px] placeholder-white'
             name='descriptionEn'
             placeholder='Movie description'
             defaultValue={movie?.descriptionEn}
@@ -153,7 +152,7 @@ const MovieEditDialog: React.FC<MovieEditProps> = ({ setOpenEditDialog }) => {
         <div className='relative mb-1'>
           <textarea
             onChange={formik.handleChange}
-            className='border-[1px] p-1 text-sm border-gray-400 bg-darkBlue text-white w-[500px] placeholder-white'
+            className='border-[1px] !p-1 text-xl h-[86px] border-gray-700 bg-darkBlue text-white w-full md:w-[961px] placeholder-white'
             name='descriptionGe'
             placeholder='ფილმის აღწერა'
             defaultValue={movie?.descriptionGe}
@@ -165,8 +164,8 @@ const MovieEditDialog: React.FC<MovieEditProps> = ({ setOpenEditDialog }) => {
         {formik.errors.descriptionGe && formik.touched.descriptionGe && (
           <p className='text-red-500 mt-1'>{t(formik.errors.descriptionGe)}</p>
         )}
-        <div className='mb-3 relative'>
-          <label className='flex px-2  w-full py-3 transition bg-darkBlue border-[1px] border-gray-300  cursor-pointer  focus:outline-none'>
+        <div className='mb-3 md:mb-6 relative'>
+          <label className='flex px-2  w-full !py-3 transition bg-darkBlue border-[1px] border-gray-300  cursor-pointer  focus:outline-none'>
             <CameraIcon className='w-5 h-5 z-20 absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 text-white' />
             <input
               onChange={(event) => {
@@ -181,17 +180,32 @@ const MovieEditDialog: React.FC<MovieEditProps> = ({ setOpenEditDialog }) => {
               className='hidden z-20'
               accept='.png, .jpg, .jpeg'
             />
-            <Image
-              width={477}
-              height={300}
-              src={
-                file
-                  ? posterUrl
-                  : process.env.NEXT_PUBLIC_BACKEND_URL + '/' + movie.poster
-              }
-              alt='d'
-              className='object-cover z-10 object-center'
-            />
+
+            {(width.width as unknown as number) > 768 ? (
+              <Image
+                width={961}
+                height={300}
+                src={
+                  file
+                    ? posterUrl
+                    : process.env.NEXT_PUBLIC_BACKEND_URL + '/' + movie.poster
+                }
+                alt='d'
+                className='object-cover z-10 object-center'
+              />
+            ) : (
+              <Image
+                width={441}
+                height={300}
+                src={
+                  file
+                    ? posterUrl
+                    : process.env.NEXT_PUBLIC_BACKEND_URL + '/' + movie.poster
+                }
+                alt='d'
+                className='object-cover z-10 object-center'
+              />
+            )}
           </label>
         </div>
 

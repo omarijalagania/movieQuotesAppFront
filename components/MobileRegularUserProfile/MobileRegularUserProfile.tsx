@@ -28,7 +28,7 @@ const MobileRegularUserProfile: React.FC = () => {
     isEditable,
   } = useRegularUserProfile();
   return (
-    <div className='relative'>
+    <div className='relative mt-10'>
       <ArrowLeftIcon
         onClick={() => router.push('/feed')}
         className='w-6 h-6 text-gray-400 mb-3 cursor-pointer'
@@ -134,7 +134,7 @@ const MobileRegularUserProfile: React.FC = () => {
               <input
                 onChange={formik.handleChange}
                 id='userName'
-                className='w-[330px] mt-2 p-2'
+                className='w-[330px] mt-2 !p-2'
               />
             </div>
           </div>
@@ -163,7 +163,7 @@ const MobileRegularUserProfile: React.FC = () => {
         open={isChangeNameDialogOpen}
         setOpen={setIsChangeNameDialogOpen}
       >
-        <div className='flex justify-between flex-col items-center w-[330px] p-2'>
+        <div className='flex justify-between flex-col items-center w-[330px] !p-2'>
           <div>
             <p className='text-white'>Are you sure to make changes ?</p>
             <div className='w-full h-0.5 mt-10 mb-8 bg-gray-700' />
@@ -191,7 +191,7 @@ const MobileRegularUserProfile: React.FC = () => {
         open={isOpenUploadModal}
         setOpen={setIsOpenUploadModal}
       >
-        <div className='flex justify-between flex-col items-center w-[330px] p-2'>
+        <div className='flex justify-between flex-col items-center w-[330px] !p-2'>
           <div>
             <p className='text-white'>Are you sure to change avatar ?</p>
             <div className='w-full h-0.5 mt-10 mb-8 bg-gray-700' />

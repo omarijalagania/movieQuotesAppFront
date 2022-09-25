@@ -1,11 +1,6 @@
 import React from 'react';
 import { Input, RedButton, useGoogleProfile, Modal } from 'components';
-import {
-  handleChange,
-  imagePreview,
-  openFIlePicker,
-  showInAvatar,
-} from 'helpers';
+import { handleChange, imagePreview, openFIlePicker } from 'helpers';
 import { ArrowLeftIcon } from '@heroicons/react/solid';
 
 const MobileGoogleProfile: React.FC = () => {
@@ -29,18 +24,20 @@ const MobileGoogleProfile: React.FC = () => {
   } = useGoogleProfile();
 
   return (
-    <div className='relative'>
+    <div className='relative mt-10'>
       <ArrowLeftIcon
         onClick={() => router.push('/feed')}
         className='w-6 h-6 text-gray-400 mb-3 cursor-pointer'
       />
       <div className='w-[350px] flex flex-col  items-center rounded-lg relative bg-lightBlue h-screen'>
         <img
-          src={showInAvatar(
-            imagePreview(file as File),
-            userDetails?.image,
-            userDetails?.poster
-          )}
+          src={
+            file
+              ? imagePreview(file as File)
+              : userDetails?.poster
+              ? process.env.NEXT_PUBLIC_BACKEND_URL + '/' + userDetails?.poster
+              : userDetails?.image
+          }
           alt='avatar'
           className='w-32 h-32 mt-10 object-cover rounded-full'
         />
@@ -114,7 +111,7 @@ const MobileGoogleProfile: React.FC = () => {
               <input
                 onChange={formik.handleChange}
                 id='userName'
-                className='w-[330px] mt-2 p-2'
+                className='w-[330px] mt-2 !p-2'
               />
             </div>
           </div>
@@ -143,7 +140,7 @@ const MobileGoogleProfile: React.FC = () => {
         open={isChangeNameDialogOpen}
         setOpen={setIsChangeNameDialogOpen}
       >
-        <div className='flex justify-between flex-col items-center w-[330px] p-2'>
+        <div className='flex justify-between flex-col items-center w-[330px] !p-2'>
           <div>
             <p className='text-white'>Are you sure to make changes ?</p>
             <div className='w-full h-0.5 mt-10 mb-8 bg-gray-700' />
@@ -171,7 +168,7 @@ const MobileGoogleProfile: React.FC = () => {
         open={isOpenUploadModal}
         setOpen={setIsOpenUploadModal}
       >
-        <div className='flex justify-between flex-col items-center w-[330px] p-2'>
+        <div className='flex justify-between flex-col items-center w-[330px] !p-4'>
           <div>
             <p className='text-white'>Are you sure to change avatar ?</p>
             <div className='w-full h-0.5 mt-10 mb-8 bg-gray-700' />
