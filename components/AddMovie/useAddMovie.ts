@@ -50,6 +50,7 @@ export const useAddMovie = () => {
   const { t } = useTranslate();
   const formik = useFormik({
     initialValues: getMovieFormInitialValue(),
+    validateOnChange: false,
 
     onSubmit: async (values) => {
       const formData = new FormData();
@@ -84,12 +85,10 @@ export const useAddMovie = () => {
   });
 
   useEffect(() => {
-    if (JSON.stringify(formik.errors) === '{}' || newGenre.length === 0) {
-      setSelectError(false);
-    } else {
+    if (selectedGenres.length === 0 && JSON.stringify(formik.errors) !== '{}') {
       setSelectError(true);
     }
-  }, [formik.errors, newGenre.length]);
+  }, [formik.errors, selectedGenres.length]);
 
   return {
     formik,

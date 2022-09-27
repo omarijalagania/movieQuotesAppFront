@@ -207,6 +207,7 @@ const AddMovie: React.FC<AddMovieProp> = ({ setOpenAddMovieModal }) => {
         </div>
 
         <RedButton
+          type='submit'
           className='w-full text-white mt-3 h-[48px]'
           name={t('addMovie')}
         />
