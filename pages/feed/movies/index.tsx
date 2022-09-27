@@ -1,5 +1,4 @@
 import React from 'react';
-import Image from 'next/image';
 import { ChatIcon } from '@heroicons/react/outline';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { AddMovie, Loader, Modal, RedButton } from 'components';
@@ -28,11 +27,11 @@ const Movies: React.FC = () => {
         <meta name='description' content='Home Page' />
         <link rel='icon' href='/favicon.ico' />
       </Head>
-      <div className='flex justify-between items-center  w-full mt-12 text-white mb-5'>
+      <div className='flex justify-between items-center  w-full md:w-[72vw]  mt-12 text-white mb-5'>
         <p className='md:text-2xl'>
           {t('myMovieList')} ({movie.length})
         </p>
-        <div className='flex items-center'>
+        <div className='flex  items-center'>
           <div
             className={` cursor-pointer md:h-[50px] transition-all text-gray-300 w-[75px] md:w-[150px] md:flex  items-center`}
           >
@@ -54,7 +53,7 @@ const Movies: React.FC = () => {
           />
         </div>
       </div>
-      <div className='grid grid-cols-1 md:w-[1420px] md:grid-cols-3 '>
+      <div className='grid grid-cols-1 md:w-[72vw] gap-1 md:grid-cols-2 xl:grid-cols-3 '>
         {movie.length !== 0 ? (
           movie?.map(
             (item: {
@@ -68,10 +67,8 @@ const Movies: React.FC = () => {
                 onClick={() => router.push(`/feed/movies/${item._id}`)}
                 key={item._id}
               >
-                <Image
-                  className='rounded-lg object-cover'
-                  width={440}
-                  height={350}
+                <img
+                  className='rounded-lg w-[27.5rem] h-[21.87rem] md:w-[20.5rem] md:h-[14.87rem] xl:w-[27.5rem] xl:h-[21.87rem]  object-cover'
                   src={`${process.env.NEXT_PUBLIC_BACKEND_URL}/${item.poster}`}
                   alt='movie'
                 />
