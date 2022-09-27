@@ -33,7 +33,7 @@ const MovieDetails: React.FC = () => {
         <h3 className='mt-10 text-2xl'>{t('movieDesc')}</h3>
         <div className='mt-3 w-full'>
           <img
-            className='rounded-lg md:w-[809px] md:h-auto mt-10 object-cover'
+            className='rounded-lg md:w-[809px] md:h-[441px] mt-10 object-cover'
             src={`${process.env.NEXT_PUBLIC_BACKEND_URL}/${movie?.poster}`}
             alt={movie?.movieNameEn}
           />
