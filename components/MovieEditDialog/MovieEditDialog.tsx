@@ -94,6 +94,7 @@ const MovieEditDialog: React.FC<MovieEditProps> = ({ setOpenEditDialog }) => {
           onChange={handleChange}
           isMulti
           options={newGenre}
+          closeMenuOnSelect={false}
           placeholder={t('selectGenre')}
           defaultValue={defaultSelects?.map((el: any) => el)}
         />
