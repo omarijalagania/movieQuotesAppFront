@@ -81,7 +81,7 @@ const AddQuoteFromMovie: React.FC<MovieProp> = ({
               {movie?.genre?.map((genre: { genre: string; label: string }) => (
                 <p
                   key={genre.label + Math.random()}
-                  className='text-xs w-4 md:w-12 h-6 px-5 md:px-12 flex justify-center items-center text-white bg-gray-500'
+                  className='text-xs w-4 truncate md:w-12 h-6 px-10 md:px-12 flex justify-center items-center text-white bg-gray-500'
                 >
                   {genre.label}
                 </p>
