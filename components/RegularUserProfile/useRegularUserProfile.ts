@@ -14,7 +14,7 @@ import {
   updateRegularUserHandler,
 } from 'services';
 import { toast } from 'react-toastify';
-import { useSession, signOut } from 'next-auth/react';
+import { useSession } from 'next-auth/react';
 
 const useRegularUserProfile = () => {
   const [inputsArray, setInputsArray] = useState([] as InputArrayProps[]);
@@ -31,9 +31,13 @@ const useRegularUserProfile = () => {
   const [isConfirmDialogOpen, setIsConfirmDialogOpen] = useState(false);
   const [openEmailModal, setOpenEmailModal] = useState(false);
   const [makeChanges, setMakeChanges] = useState(false);
+
   const [isEditable, setIsEditable] = useState(false);
   const [newName, setNewName] = useState('');
-  const { userDetails, router } = useHeader(emailRemoveResponse, updateStatus);
+  const { userDetails, router, refreshProfile, setRefreshProfile } = useHeader(
+    emailRemoveResponse,
+    updateStatus
+  );
   const { data: session } = useSession();
   const { t } = useTranslate();
 
@@ -139,13 +143,19 @@ const useRegularUserProfile = () => {
         userDetails?._id as string
       );
       if (response.status === 200) {
-        signOut();
-        router.push('/');
+        setRefreshProfile(true);
       }
     } catch (error) {
       toast.error(t('error'));
     }
   };
+
+  useEffect(() => {
+    if (refreshProfile) {
+      window.location.reload();
+      setRefreshProfile(false);
+    }
+  }, [refreshProfile, setRefreshProfile]);
 
   useEffect(() => {
     if (file !== null) {

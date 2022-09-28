@@ -58,7 +58,7 @@ export const addMovieHandler = async (data: FormData) => {
   return response;
 };
 
-export const getUserHandler = async (data: { email: string | undefined }) => {
+export const getUserHandler = async (data: { email: string }) => {
   const response = await request.post(`/user/get`, data);
   return response;
 };

@@ -29,6 +29,7 @@ export const useHeader = (
   const [openRecoverModal, setOpenRecoverModal] = useState(false);
   const [openCheckEmailModal, setOpenCheckEmailModal] = useState(false);
   const [openNewPasswordModal, setOpenNewPasswordModal] = useState(false);
+  const [refreshProfile, setRefreshProfile] = useState(false);
   const [comments, setComments] =
     useState<SetStateAction<{ userId: string }>>();
   const [openSuccessPasswordChangeModal, setOpenSuccessPasswordChangeModal] =
@@ -200,5 +201,7 @@ export const useHeader = (
     openMobileMenu,
     handleClick,
     handleClickOutside,
+    refreshProfile,
+    setRefreshProfile,
   };
 };
