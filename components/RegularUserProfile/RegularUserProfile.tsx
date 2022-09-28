@@ -163,10 +163,16 @@ const RegularUserProfile: React.FC = () => {
                   name={`secondaryEmails.${index}.secondaryEmail`}
                   onChange={formik.handleChange}
                   defaultValue={email.secondaryEmail}
-                  className={`border-2 md:!w-[528px] ${'border-inputYellow  bg-inputYellow text-white'}`}
+                  className={`border-2 md:!w-[528px]  ${
+                    !email.isVerified
+                      ? 'border-inputYellow  bg-inputYellow'
+                      : ''
+                  }`}
                 />
 
-                <ExclamationCircleIcon className='w-6 h-6 absolute text-yellow-700 right-2 top-[58%]' />
+                {!email.isVerified && (
+                  <ExclamationCircleIcon className='w-6 h-6 absolute text-yellow-700 right-2 top-[58%]' />
+                )}
 
                 {email.isVerified && (
                   <div
