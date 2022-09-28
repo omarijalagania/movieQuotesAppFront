@@ -119,5 +119,6 @@
   "cantSee": "We can't see the page you are looking for",
   "updated": "Information successfully updated",
   "noMovies": "No Movies",
-  "editQuote": "Edit quote"
+  "editQuote": "Edit quote",
+  "userExists": "User already exists"
 }

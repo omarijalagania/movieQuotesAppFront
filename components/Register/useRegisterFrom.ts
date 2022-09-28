@@ -25,8 +25,13 @@ export const usePersonalInformationForm = () => {
       try {
         const response = await registerHandler(data);
         dispatch(saveRegisterResponse(response));
+        console.log(response);
         formik.resetForm();
-      } catch (error) {
+      } catch (error: any) {
+        if (error.response.data === 'User already exists') {
+          setError(t('userExists'));
+          return;
+        }
         setError('wrongCreds');
       }
     },
