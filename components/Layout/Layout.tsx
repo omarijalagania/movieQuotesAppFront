@@ -26,7 +26,7 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
         <Header />
       </div>
       <div
-        className={`grid grid-cols-5 overflow-x-hidden bg-gradient-to-r from-bg1 to-bg2 grid-rows-1 w-auto`}
+        className={`grid grid-cols-5 overflow-y-auto scrollbar-hide bg-gradient-to-r from-bg1 to-bg2 grid-rows-1 w-auto`}
       >
         <aside className='hidden h-screen md:block'>
           <div className='fixed'>
