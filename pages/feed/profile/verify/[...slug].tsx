@@ -23,13 +23,13 @@ const UserEmail = () => {
         };
         const response = await confirmUserEmailHandler(data);
         if (response.status === 200) {
-          router.push('/feed/profile');
+          router.push('/');
           localStorage.removeItem('secondaryEmails');
         } else if (response.status === 500) {
-          router.push('/feed/profile');
+          router.push('/');
           localStorage.removeItem('secondaryEmails');
         } else if (response.status === 404) {
-          router.push('/feed/profile');
+          router.push('/');
           localStorage.removeItem('secondaryEmails');
         }
       }
