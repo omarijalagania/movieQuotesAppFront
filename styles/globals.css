@@ -13,6 +13,9 @@
     font-family: 'Montserrat', sans-serif;
     background-color: #11101a;
   }
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
   .vertical-gradient::after {
     content: '' !important;
     position: absolute;
