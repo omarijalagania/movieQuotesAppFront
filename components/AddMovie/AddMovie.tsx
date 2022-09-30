@@ -160,9 +160,9 @@ const AddMovie: React.FC<AddMovieProp> = ({ setOpenAddMovieModal }) => {
           <p className='text-red-500 mt-1'>{t(formik.errors.descriptionGe)}</p>
         )}
         <div className='mb-3 md:mb-6'>
-          <label className='flex px-2 w-full py-3 transition bg-darkBlue border-[1px] h-[84px] border-gray-700  cursor-pointer  focus:outline-none'>
+          <label className='flex !px-2 w-full !py-3 transition bg-darkBlue border-[1px] h-[84px] border-gray-700  cursor-pointer  focus:outline-none'>
             <span className='flex items-center space-x-2'>
-              <CameraIcon className='w-5 h-5 text-white' />
+              <CameraIcon className='w-5 h-5 !p-2 text-white' />
               <span className='text-sm flex text-white'>
                 {(width.width as unknown as number) > 768 ? (
                   <p className='text-xl'>{t('drag')}</p>
